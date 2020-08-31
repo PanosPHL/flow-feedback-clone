@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import PageLoad from './components/PageLoad';
 import LogIn from './components/LogIn';
+import SignUp from './components/SignUp';
 import configureStore from './store/configureStore';
 
 export const store = configureStore();
@@ -23,7 +24,7 @@ function App() {
       }
       setTimeout(() => {
         setLoading(false);
-      }, 1000)
+      }, 1200)
     }
     loadUser();
   }, []);
@@ -35,8 +36,11 @@ function App() {
     return (
       <BrowserRouter>
       <Provider store={store}>
-        <Route path="/">
-          <LogIn />
+        <Route path="/login">
+          <LogIn store={store}/>
+        </Route>
+        <Route path='/sign-up'>
+          <SignUp store={store}/>
         </Route>
       </Provider>
       </BrowserRouter>
