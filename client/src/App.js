@@ -5,7 +5,7 @@ import PageLoad from './components/PageLoad';
 import LogIn from './components/LogIn';
 import configureStore from './store/configureStore';
 
-const store = configureStore();
+export const store = configureStore();
 
 if (process.env.NODE_ENV !== 'production') {
   window.store = store;
