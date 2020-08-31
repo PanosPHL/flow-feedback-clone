@@ -2,7 +2,11 @@
 
 const bcrypt = require('bcryptjs');
 
-function createPassword() {
+function createPassword(password) {
+  if (password) {
+    return bcrypt.hashSync(password);
+  }
+
   return bcrypt.hashSync('password');
 }
 
@@ -18,6 +22,7 @@ module.exports = {
       r({ email: 'demo@example.com', hashedPassword: createPassword() }),
       r({ email: 'yusuke@example.com', hashedPassword: createPassword() }),
       r({ email: 'petra@example.com', hashedPassword: createPassword() }),
+      r({ email: 'panosssbm@gmail.com', hashedPassword: createPassword('panosPass') })
     ]);
   },
 

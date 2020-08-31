@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { MDBBtn } from 'mdbreact';
+import { Provider } from 'react-redux';
 import PageLoad from './components/PageLoad';
 import LogIn from './components/LogIn';
+import configureStore from './store/configureStore';
+
+const store = configureStore();
+
+if (process.env.NODE_ENV !== 'production') {
+  window.store = store;
+}
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -27,9 +34,11 @@ function App() {
 
     return (
       <BrowserRouter>
+      <Provider store={store}>
         <Route path="/">
           <LogIn />
         </Route>
+      </Provider>
       </BrowserRouter>
     );
 }
