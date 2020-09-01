@@ -1,15 +1,26 @@
 import React, { useState, useContext } from 'react';
 import { login } from '../store/auth';
 import { useDispatch } from 'react-redux';
-import { MDBInput, MDBBtn, MDBBox } from 'mdbreact';
+import { MDBInput, MDBBtn, MDBBox, MDBAlert } from 'mdbreact';
 import styles from '../css-modules/LoginForm.module.css';
 import LogInModalContext from '../contexts/LogInModalContext';
 
 const LogIn = () => {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
+    const [ error, setError ] = useState('');
     const dispatch = useDispatch();
     const value = useContext(LogInModalContext);
+
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+        setError('');
+    }
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+        setError('');
+    }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -17,16 +28,20 @@ const LogIn = () => {
 
         if (res.ok) {
             value.toggleLoginModal();
+            return;
         }
+
+        setError(res.data.message);
     }
 
     return (
         <MDBBox>
                     <form onSubmit={handleSubmit} className={styles.loginForm}>
-                        <p className='h2 text-center mb-4'>Log In</p>
+                        <p className={styles.loginHeader + ' h2 text-center mb-3'}>Log In</p>
+                        {error ? <MDBAlert className={styles.errorContainer} color='danger'>{error}</MDBAlert> : <></>}
                         <div className='grey-text'>
-                            <MDBInput onChange={(event) => setEmail(event.target.value)} size='lg' name='login-email' id='login-email' label='Email' icon='envelope' group type='email' value={email} />
-                            <MDBInput onChange={(event) => setPassword(event.target.value)} size='lg' name='login-password' id='login-password' label='Password' icon='lock' group type='password' value={password} />
+                            <MDBInput onChange={handleEmailChange} size='lg' name='login-email' id='login-email' label='Email' icon='envelope' group type='email' value={email} />
+                            <MDBInput onChange={handlePasswordChange} size='lg' name='login-password' id='login-password' label='Password' icon='lock' group type='password' value={password} />
                         </div>
                         <MDBBtn type='submit' className={styles.submitButton + ' amber darken-4'} size='lg' >Submit</MDBBtn>
                     </form>
