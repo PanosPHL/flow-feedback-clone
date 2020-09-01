@@ -55,6 +55,7 @@ const HomePage = () => {
             </MDBBox>
             </div>
             <LogInModal />
+            <SignUpModal />
         </MDBContainer>
         </SignUpModalContext.Provider>
         </LogInModalContext.Provider>

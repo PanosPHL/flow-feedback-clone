@@ -1,11 +1,10 @@
-.signUpForm {
-    width: 12vw;
-}
-
 .submitButton {
-    margin-left: 5.4em;
+    display: block;
+    margin: 3em auto 0 auto;
 }
 
-form {
-    padding: 1em;
+.signUpForm {
+    width: 20vw;
+    padding: 4vh 0;
+    margin: 0 auto;
 }

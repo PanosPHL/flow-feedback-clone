@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 import { MDBContainer, MDBModal } from 'mdbreact';
 import SignUpModalContext from '../contexts/SignUpModalContext';
 import SignUp from './SignUp';
