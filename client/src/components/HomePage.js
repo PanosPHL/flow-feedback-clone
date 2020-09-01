@@ -18,7 +18,7 @@ const HomePage = () => {
                     </a>
                     <div className='headerTopRow__rightContainer'>
                         <MDBDropdown>
-                            <MDBDropdownToggle size='s' caret color='amber darken-4'>
+                            <MDBDropdownToggle caret className={styles.dropdownButton} color='amber darken-4'>
                                 Login
                             </MDBDropdownToggle>
                             <MDBDropdownMenu>

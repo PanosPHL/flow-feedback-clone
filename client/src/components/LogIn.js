@@ -24,7 +24,7 @@ const LogIn = () => {
                             <MDBInput onChange={(event) => setEmail(event.target.value)} name='login-email' id='login-email' label='Type your email' icon='envelope' group type='email' value={email} />
                             <MDBInput onChange={(event) => setPassword(event.target.value)} name='login-password' id='login-password' label='Type your password' icon='lock' group type='password' value={password} />
                         </div>
-                        <MDBBtn type='submit' className={styles.submitButton + ' amber darken-4'}>Submit</MDBBtn>
+                        <MDBBtn type='submit' size='sm' className={styles.submitButton + ' amber darken-4'}>Submit</MDBBtn>
                     </form>
                 </MDBCol>
             </MDBRow>
