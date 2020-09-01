@@ -47,8 +47,8 @@ const HomePage = () => {
                             currentUser ?
                             <div></div> :
                             <div className={styles.headerTopRow__rightContainer_notLoggedIn}>
-                            <LogInModalButton className={styles.dropdownButton}/>
-                            <SignUpModalButton className={styles.dropdownButton}/>
+                            <LogInModalButton/>
+                            <SignUpModalButton/>
                             </div>
                         }
                 </div>

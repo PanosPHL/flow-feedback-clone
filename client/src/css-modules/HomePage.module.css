@@ -53,14 +53,9 @@
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
 }
 
-.dropdownButton {
-    padding: 0.5em 1em;
-}
-
 .headerTopRow__rightContainer_notLoggedIn {
     display: flex;
-    padding-top: 0.8em;
-    width: 10vw;
-    justify-content: space-between;
-    margin-right: 1vw;
+    padding-top: 1em;
+    min-width: 10vw;
+    justify-content: space-evenly;
 }
