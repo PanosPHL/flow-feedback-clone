@@ -9,7 +9,7 @@ const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState({errors: []});
     const dispatch = useDispatch();
     const value = useContext(SignUpModalContext);
 
@@ -27,17 +27,17 @@ const SignUp = () => {
             value.toggleSignUpModal();
             return;
         }
-        setErrors(res.data.error.errors);
+        setErrors({errors: res.data.error.errors});
     };
 
     return (
         <MDBBox className={styles.signUpForm}>
                     <form onSubmit={handleSubmit}>
                         <p className='h2 text-center mb-4'>Sign Up</p>
-                        {errors.length ?
+                        {errors.errors && errors.errors.length > 0 ?
                         <MDBAlert color='danger'>
                             <ul className={styles.signUpErrors}>
-                                {errors.map((error, i) => <li key={`error-${i + 1}`}>{error.split(': ')[1]}</li>)}
+                                {errors.errors.map((error, i) => <li key={`error-${i + 1}`}>{error.split(': ')[1]}</li>)}
                             </ul>
                         </MDBAlert>
                         : <></>
