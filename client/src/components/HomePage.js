@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import { MDBContainer, MDBBox } from 'mdbreact';
 import styles from '../css-modules/HomePage.module.css';
@@ -10,12 +10,10 @@ import SignUpModalButton from './SignUpModalButton';
 import SignUpModal from './SignUpModal';
 import CreateFlowButton from './CreateFlowButton';
 import LogOut from './LogOut';
-import PageLoad from './PageLoad'
 
 const HomePage = () => {
     const [loginModal, setLoginModal] = useState(false);
     const [signUpModal, setSignUpModal] = useState(false);
-    const [loading, setLoading] = useState(true);
     const currentUser = useSelector(state => state.auth.id);
 
     const toggleLoginModal = () => {
@@ -34,27 +32,6 @@ const HomePage = () => {
     const signUpModalState = {
         signUpModal: signUpModal,
         toggleSignUpModal
-    }
-
-    useEffect(() => {
-        setLoading(false);
-
-        const loadToggle = async () => {
-            await setLoading(true);
-
-            setTimeout(async () => {
-                await setLoading(false);
-            }, 200);
-            return;
-        }
-
-        loadToggle();
-    }, [currentUser]);
-
-    if (loading) {
-        return (
-            <PageLoad />
-        )
     }
 
     return (
