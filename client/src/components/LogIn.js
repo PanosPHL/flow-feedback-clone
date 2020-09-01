@@ -11,10 +11,13 @@ const LogIn = () => {
     const dispatch = useDispatch();
     const value = useContext(LogInModalContext);
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        dispatch(login(email, password));
-        value.toggleLoginModal();
+        const res = await dispatch(login(email, password));
+
+        if (res.ok) {
+            value.toggleLoginModal();
+        }
     }
 
     return (
