@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import HomePage from './components/HomePage';
 import PageLoad from './components/PageLoad';
 import LogIn from './components/LogIn';
 import SignUp from './components/SignUp';
@@ -36,6 +37,9 @@ function App() {
     return (
       <BrowserRouter>
       <Provider store={store}>
+        <Route exact path='/'>
+          <HomePage />
+        </Route>
         <Route path="/login">
           <LogIn store={store}/>
         </Route>
