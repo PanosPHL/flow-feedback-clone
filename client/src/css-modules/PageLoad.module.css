@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Shadows+Into+Light&display=swap');
+
+.loadingDiv {
+    margin: 20% auto;
+    width: 50vw;
+    justify-content: center;
+}
+
+.loadingText {
+    font-family: 'Shadows Into Light';
+    font-size: 8em;
+}
+
+.spinnerContainer {
+    margin-top: 2em;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 10vw;
+}

@@ -1,10 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
+import './index.css';
 import App from './App';
+import { Provider } from 'react-redux';
+import configureStore from './store/configureStore';
+
+export const store = configureStore();
 
 if (process.env.NODE_ENV !== 'production') {
   const getCSRFToken = () => {
@@ -12,11 +16,13 @@ if (process.env.NODE_ENV !== 'production') {
   };
 
   getCSRFToken();
+
+  window.store = store;
 }
 
 ReactDOM.render(
-  <>
+  <Provider store={store}>
     <App />
-  </>,
+  </Provider>,
   document.getElementById('root')
 );
