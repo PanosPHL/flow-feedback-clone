@@ -4,7 +4,7 @@ export const SET_USER = 'auth/SET_USER';
 
 const csrfToken = Cookies.get('XSRF-TOKEN');
 
-const setUser = (user) => {
+export const setUser = (user) => {
     return {
         type: SET_USER,
         user

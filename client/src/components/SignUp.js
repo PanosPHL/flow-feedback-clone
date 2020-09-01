@@ -12,7 +12,7 @@ const SignUp = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(signUp(email, password, confirmPassword))
+        dispatch(signUp(email, password, confirmPassword));
     };
 
     return (

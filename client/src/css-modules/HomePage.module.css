@@ -57,9 +57,10 @@
     padding: 0.5em 1em;
 }
 
-.headerTopRow__rightContainer {
+.headerTopRow__rightContainer_notLoggedIn {
     display: flex;
-    padding-top: 0.6em;
-    width: 12vw;
-    justify-content: space-around;
+    padding-top: 0.8em;
+    width: 10vw;
+    justify-content: space-between;
+    margin-right: 1vw;
 }
