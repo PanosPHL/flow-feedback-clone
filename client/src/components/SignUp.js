@@ -19,18 +19,6 @@ const SignUp = () => {
         }
     }, [email, password, confirmPassword]);
 
-    const handleEmailChange = (event) => {
-        setEmail(event.target.value);
-    }
-
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
-    }
-
-    const handleConfirmPasswordChange = (event) => {
-        setConfirmPassword(event.target.value);
-    }
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         const res = await dispatch(signUp(email, password, confirmPassword));

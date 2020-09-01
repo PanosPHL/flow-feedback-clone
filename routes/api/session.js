@@ -32,7 +32,6 @@ router.put(
   validateLogin,
   handleValidationErrors,
   asyncHandler(async function (req, res, next) {
-    console.log(req.body);
     const user = await User.login(req.body);
     if (user) {
       const token = await generateToken(user);
@@ -48,5 +47,12 @@ router.put(
     return next(new Error('Invalid credentials'));
   })
 );
+
+router.delete('/', asyncHandler(async (req, res) => {
+  res.clearCookie('token');
+  res.json({
+    message: 'Success'
+  });
+}));
 
 module.exports = router;

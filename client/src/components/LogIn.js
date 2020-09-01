@@ -18,14 +18,6 @@ const LogIn = () => {
         }
     }, [email, password]);
 
-    const handleEmailChange = (event) => {
-        setEmail(event.target.value);
-    }
-
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
-    }
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         const res = await dispatch(login(email, password));
@@ -44,8 +36,8 @@ const LogIn = () => {
                         <p className={styles.loginHeader + ' h2 text-center mb-3'}>Log In</p>
                         {error ? <MDBAlert className={styles.errorContainer} color='danger'>{error}</MDBAlert> : <></>}
                         <div className='grey-text'>
-                            <MDBInput onChange={handleEmailChange} size='lg' name='login-email' id='login-email' label='Email' icon='envelope' group type='email' value={email} />
-                            <MDBInput onChange={handlePasswordChange} size='lg' name='login-password' id='login-password' label='Password' icon='lock' group type='password' value={password} />
+                            <MDBInput onChange={(event) => setEmail(event.target.value)} size='lg' name='login-email' id='login-email' label='Email' icon='envelope' group type='email' value={email} />
+                            <MDBInput onChange={(event) => setPassword(event.target.value)} size='lg' name='login-password' id='login-password' label='Password' icon='lock' group type='password' value={password} />
                         </div>
                         <MDBBtn type='submit' className={styles.submitButton + ' amber darken-4'} size='lg' >Submit</MDBBtn>
                     </form>

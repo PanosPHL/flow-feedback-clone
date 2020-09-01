@@ -21,7 +21,7 @@ function App() {
       }
       setTimeout(() => {
         setLoading(false);
-      }, 1200)
+      }, 800)
     }
     loadUser();
   }, [dispatch]);
