@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { signUp } from '../store/auth';
-import { MDBBox, MDBInput, MDBBtn } from 'mdbreact';
+import { MDBBox, MDBInput, MDBBtn, MDBAlert } from 'mdbreact';
 import styles from '../css-modules/SignUpForm.module.css';
 import SignUpModalContext from '../contexts/SignUpModalContext';
 
@@ -9,8 +9,27 @@ const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
     const value = useContext(SignUpModalContext);
+
+    useEffect(() => {
+        return () => {
+            setErrors([]);
+        }
+    }, [email, password, confirmPassword]);
+
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+    }
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    }
+
+    const handleConfirmPasswordChange = (event) => {
+        setConfirmPassword(event.target.value);
+    }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -18,13 +37,23 @@ const SignUp = () => {
 
         if (res.ok) {
             value.toggleSignUpModal();
+            return;
         }
+        setErrors(res.data.error.errors);
     };
 
     return (
         <MDBBox className={styles.signUpForm}>
                     <form onSubmit={handleSubmit}>
                         <p className='h2 text-center mb-4'>Sign Up</p>
+                        {errors.length ?
+                        <MDBAlert color='danger'>
+                            <ul className={styles.signUpErrors}>
+                                {errors.map((error, i) => <li key={`error-${i + 1}`}>{error.split(': ')[1]}</li>)}
+                            </ul>
+                        </MDBAlert>
+                        : <></>
+                    }
                         <div className='grey-text'>
                             <MDBInput onChange={(event) => setEmail(event.target.value)} size='lg' name='signup-email' id='signup-email' label='Email' icon='envelope' group type='email' value={email} />
                             <MDBInput onChange={(event) => setPassword(event.target.value)} size='lg' name='signup-password' id='signup-password' label='Password' icon='lock' group type='password' value={password} />

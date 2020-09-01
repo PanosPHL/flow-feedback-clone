@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { login } from '../store/auth';
 import { useDispatch } from 'react-redux';
 import { MDBInput, MDBBtn, MDBBox, MDBAlert } from 'mdbreact';
@@ -12,14 +12,18 @@ const LogIn = () => {
     const dispatch = useDispatch();
     const value = useContext(LogInModalContext);
 
+    useEffect(() => {
+        return () => {
+            setError('')
+        }
+    }, [email, password]);
+
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
-        setError('');
     }
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
-        setError('');
     }
 
     const handleSubmit = async (event) => {
