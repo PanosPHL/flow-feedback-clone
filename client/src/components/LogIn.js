@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { login } from '../store/auth';
 import { useDispatch } from 'react-redux';
-import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact';
+import { MDBInput, MDBBtn, MDBBox } from 'mdbreact';
 import styles from '../css-modules/LoginForm.module.css';
 
 const LogIn = () => {
@@ -15,20 +15,16 @@ const LogIn = () => {
     }
 
     return (
-        <MDBContainer>
-            <MDBRow>
-                <MDBCol md='12'>
-                    <form onSubmit={handleSubmit} className='login-form'>
+        <MDBBox className={styles.loginForm}>
+                    <form onSubmit={handleSubmit}>
                         <p className='h5 text-center mb-4'>Log In</p>
                         <div className='grey-text'>
-                            <MDBInput onChange={(event) => setEmail(event.target.value)} name='login-email' id='login-email' label='Type your email' icon='envelope' group type='email' value={email} />
-                            <MDBInput onChange={(event) => setPassword(event.target.value)} name='login-password' id='login-password' label='Type your password' icon='lock' group type='password' value={password} />
+                            <MDBInput onChange={(event) => setEmail(event.target.value)} size='sm' name='login-email' id='login-email' label='Email' icon='envelope' group type='email' value={email} />
+                            <MDBInput onChange={(event) => setPassword(event.target.value)} size='sm' name='login-password' id='login-password' label='Password' icon='lock' group type='password' value={password} />
                         </div>
                         <MDBBtn type='submit' size='sm' className={styles.submitButton + ' amber darken-4'}>Submit</MDBBtn>
                     </form>
-                </MDBCol>
-            </MDBRow>
-        </MDBContainer>
+        </MDBBox>
     );
 }
 

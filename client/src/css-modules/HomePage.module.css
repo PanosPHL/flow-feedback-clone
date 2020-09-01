@@ -29,6 +29,11 @@
     backdrop-filter: blur(2px);
 }
 
+.headerTopRowContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
 .headerTopRow__homeLink {
     padding-top: 0.5em;
     display: flex;
@@ -50,4 +55,11 @@
 
 .dropdownButton {
     padding: 0.5em 1em;
+}
+
+.headerTopRow__rightContainer {
+    display: flex;
+    padding-top: 0.6em;
+    width: 12vw;
+    justify-content: space-around;
 }
