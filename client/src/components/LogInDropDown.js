@@ -5,14 +5,14 @@ import styles from '../css-modules/HomePage.module.css';
 
 const LogInDropdown = () => {
     return (
-            <MDBDropdown>
-                <MDBDropdownToggle caret className={styles.dropdownButton} color='amber darken-4'>
-                    Login
-                            </MDBDropdownToggle>
-                <MDBDropdownMenu>
-                    <LogIn />
-                </MDBDropdownMenu>
-            </MDBDropdown>
+        <MDBDropdown>
+            <MDBDropdownToggle caret className={styles.dropdownButton} color='amber darken-4'>
+                Login
+            </MDBDropdownToggle>
+            <MDBDropdownMenu>
+                <LogIn />
+            </MDBDropdownMenu>
+        </MDBDropdown>
     );
 }
 

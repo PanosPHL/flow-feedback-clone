@@ -6,6 +6,7 @@ import LogInModalContext from '../contexts/LogInModalContext';
 import LogInDropDown from './LogInDropDown';
 import SignUpDropDown from './SignUpDropDown';
 import LogInModalButton from './LogInModalButton';
+import LogInModal from './LogInModal';
 
 const HomePage = () => {
     const [loginModal, setLoginModal] = useState(false);
@@ -15,8 +16,13 @@ const HomePage = () => {
         setLoginModal(!loginModal);
     }
 
+    const state = {
+        loginModal: loginModal,
+        toggleLoginModal
+    };
+
     return (
-        <LogInModalContext.Provider value={toggleLoginModal}>
+        <LogInModalContext.Provider value={state}>
         <MDBContainer fluid className={styles.headerSplashContainer}>
             <div className={styles.imageFilter}>
             <MDBBox className={styles.headerSplash__contentBox}>
@@ -29,14 +35,13 @@ const HomePage = () => {
                             currentUser ?
                             <div></div> :
                             <div className={styles.headerTopRow__rightContainer_notLoggedIn}>
-                            <LogInDropDown />
-                            <SignUpDropDown />
                             <LogInModalButton />
                             </div>
                         }
                 </div>
             </MDBBox>
             </div>
+            <LogInModal />
         </MDBContainer>
         </LogInModalContext.Provider>
     );

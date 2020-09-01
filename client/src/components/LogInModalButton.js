@@ -5,8 +5,9 @@ const LogInModalButton = () => {
     return (
         <LogInModalContext.Consumer>
             {value => {
+                const { toggleLoginModal } = value;
                 return (
-                    <button type='button' onClick={value}>Hi Mom!</button>
+                    <button type='button' onClick={toggleLoginModal} size='sm' className='btn btn-amber'>Login</button>
                 )
             }}
         </LogInModalContext.Consumer>

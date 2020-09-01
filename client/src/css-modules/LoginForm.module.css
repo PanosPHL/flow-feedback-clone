@@ -1,7 +1,9 @@
 .submitButton {
-    margin-left: 5.5em;
+    display: block;
+    margin: 1em auto;
 }
 
 .loginForm {
-    width: 12vw;
+    width: 20vw;
+    margin: 0 auto;
 }
