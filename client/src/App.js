@@ -1,5 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import PageLoad from './components/PageLoad';
+import LogIn from './components/LogIn';
+import SignUp from './components/SignUp';
+import configureStore from './store/configureStore';
+
+export const store = configureStore();
+
+if (process.env.NODE_ENV !== 'production') {
+  window.store = store;
+}
+
 function App() {
   const [loading, setLoading] = useState(true);
 
@@ -10,20 +22,29 @@ function App() {
       if (res.ok) {
         res.data = await res.json(); // current user info
       }
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1200)
     }
     loadUser();
   }, []);
 
-  if (loading) return null;
-
-  return (
-    <BrowserRouter>
-      <Route path="/">
-        <h1>My Home Page</h1>
-      </Route>
-    </BrowserRouter>
+  if (loading) return (
+    <PageLoad />
   );
+
+    return (
+      <BrowserRouter>
+      <Provider store={store}>
+        <Route path="/login">
+          <LogIn store={store}/>
+        </Route>
+        <Route path='/sign-up'>
+          <SignUp store={store}/>
+        </Route>
+      </Provider>
+      </BrowserRouter>
+    );
 }
 
 export default App;
