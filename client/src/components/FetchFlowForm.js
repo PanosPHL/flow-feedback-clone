@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Redirect} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setVid } from '../store/flow';
 import { MDBInput, MDBBtn, MDBAlert } from 'mdbreact';
@@ -7,6 +8,7 @@ import styles from '../css-modules/FetchFlowForm.module.css';
 const FetchFlowForm = () => {
     const [url, setURL] = useState('');
     const [errors, setErrors] = useState({ errors: [] });
+    const [success, setSuccess] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -20,7 +22,8 @@ const FetchFlowForm = () => {
         const res = await dispatch(setVid(url));
 
         if (res.ok) {
-
+            setSuccess(true);
+            return;
         }
 
         const { data: { error: { errors: resErrors } } } = res;
@@ -29,6 +32,8 @@ const FetchFlowForm = () => {
     }
 
     return (
+        <>
+        { success ? <Redirect to='/flow/new' /> : <> </>}
         <form onSubmit={handleSubmit}>
             <h5 className='font-weight-bold'>Select video</h5>
             {errors.errors && errors.errors.length > 0 ?
@@ -42,6 +47,7 @@ const FetchFlowForm = () => {
             <MDBInput onChange={(event) => setURL(event.target.value)} icon='link' type='text' />
             <MDBBtn type='submit'>Preview</MDBBtn>
         </form>
+        </>
     )
 }
 
