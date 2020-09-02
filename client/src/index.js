@@ -6,16 +6,7 @@ import 'mdbreact/dist/css/mdb.css';
 import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
-import { saveState, loadState } from './store/localStorage';
-
-const initialState = loadState();
-
-export const store = configureStore(initialState);
-
-store.subscribe(() => {
-  saveState(store.getState());
-});
+import store from './store/storeSetup';
 
 if (process.env.NODE_ENV !== 'production') {
   const getCSRFToken = () => {
