@@ -4,8 +4,7 @@ import { useDispatch } from 'react-redux';
 import { setUser } from './store/auth';
 import HomePage from './components/HomePage';
 import PageLoad from './components/PageLoad';
-import LogIn from './components/LogIn';
-import SignUp from './components/SignUp';
+import FetchFlow from './components/FetchFlow';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -35,11 +34,8 @@ function App() {
         <Route exact path='/'>
           <HomePage />
         </Route>
-        <Route path="/login">
-          <LogIn />
-        </Route>
-        <Route path='/sign-up'>
-          <SignUp />
+        <Route exact path='/flow/fetch'>
+          <FetchFlow />
         </Route>
       </BrowserRouter>
     );
