@@ -26,7 +26,7 @@ module.exports = {
         }
       },
       videoId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING(256),
         allowNull: false,
         references: {
           model: 'Videos'

@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { MDBBtn } from 'mdbreact';
-import { set } from 'js-cookie';
+import { addFlow } from '../store/flows';
 
 const NewFlowForm = () => {
     const newFlow = useSelector(state => state.newFlow);
     const categories = useSelector(state => state.categories);
-    const [flowCat, setFlowCat] = useState(0);
+    const userId = useSelector(state => state.auth.id);
+    const dispatch = useDispatch();
+    const [flowCat, setFlowCat] = useState(-1);
     const [flowTitle, setFlowTitle] = useState(newFlow.title);
     const [description, setDescription] = useState('');
 
-    const handleSubmit = () => {
-
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const res = await dispatch(addFlow(flowTitle, description, userId, newFlow, flowCat));
     }
 
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <label htmlFor="newFlowTitle" className="grey-text">
                 Title <span>*</span>
             </label>

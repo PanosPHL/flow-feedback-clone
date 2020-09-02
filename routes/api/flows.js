@@ -4,27 +4,23 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../util/validation');
 
-
-const { Flow } = require('../../db/models');
+const { sequelize } = require('../../db/models');
+const { Flow, Video } = require('../../db/models');
 
 const validateFlow = [
 ];
 
 const validateURL = [
     check('url', 'Please provide a valid YouTube URL')
-    .exists()
-    .custom((value) => {
-        const yt = /^(http\:|https\:)\/\/www\.youtube\.com\/watch\?/;
+        .exists()
+        .custom((value) => {
+            const yt = /^(http\:|https\:)\/\/www\.youtube\.com\/watch\?/;
 
-        return yt.test(value);
-    })
+            return yt.test(value);
+        })
 ]
 
 const router = express.Router();
-
-router.post('/', asyncHandler(async (req, res, next) => {
-    console.log(req);
-}));
 
 router.put('/', validateURL, handleValidationErrors, asyncHandler(async (req, res, next) => {
     const apiReq = {
@@ -51,6 +47,43 @@ router.put('/', validateURL, handleValidationErrors, asyncHandler(async (req, re
         title,
         url: req.body.url
     });
+}));
+
+router.post('/', asyncHandler(async (req, res, next) => {
+    const { name, description, userId, video, categoryId } = req.body;
+
+    const flow = await sequelize.transaction(async (t) => {
+        try {
+        let newVideo = await Video.findOne({
+            where: {
+                id: video.id
+            }
+        }, { transaction: t });
+
+        if (!newVideo) {
+            newVideo = await Video.create({
+                id: video.id,
+                siteId: 1,
+                url: video.url,
+                title: video.title
+            }, { transaction: t });
+        }
+
+        const flow = await Flow.create({
+            name,
+            description,
+            userId,
+            videoId: video.id,
+            categoryId
+        }, { transaction: t });
+
+        return flow;
+        } catch (err) {
+            console.log(err);
+        }
+    });
+
+    res.json({ flow })
 }));
 
 module.exports = router;

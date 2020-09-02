@@ -4,9 +4,8 @@ module.exports = {
     return queryInterface.createTable('Videos', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING(256)
       },
       siteId: {
         type: Sequelize.INTEGER,
