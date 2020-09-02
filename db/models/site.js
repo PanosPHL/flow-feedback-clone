@@ -1,10 +1,17 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Site = sequelize.define('Site', {
-    name: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING(64),
+      allowNull: false,
+      unique: true,
+      validate: {
+        notEmpty: true
+      }
+    }
   }, {});
   Site.associate = function(models) {
-    // associations can be defined here
+    Site.hasMany(models.Video, { foreignKey: 'siteId' });
   };
   return Site;
 };
