@@ -5,6 +5,7 @@ import { setUser } from './store/auth';
 import HomePage from './components/HomePage';
 import PageLoad from './components/PageLoad';
 import FetchFlow from './components/FetchFlow';
+import NewFlowPage from './components/NewFlowPage';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -36,6 +37,9 @@ function App() {
         </Route>
         <Route exact path='/flow/fetch'>
           <FetchFlow />
+        </Route>
+        <Route exact path='/flow/new'>
+          <NewFlowPage />
         </Route>
       </BrowserRouter>
     );

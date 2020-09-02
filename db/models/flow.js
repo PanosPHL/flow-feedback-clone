@@ -8,6 +8,9 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true
       }
     },
+    description: {
+      type: DataTypes.TEXT
+    },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false

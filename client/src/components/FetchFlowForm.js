@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Redirect} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setVid } from '../store/flow';
 import { MDBInput, MDBBtn, MDBAlert } from 'mdbreact';
 import styles from '../css-modules/FetchFlowForm.module.css';
 
-const FetchFlowForm = () => {
+const FetchFlowForm = (props) => {
     const [url, setURL] = useState('');
     const [errors, setErrors] = useState({ errors: [] });
-    const [success, setSuccess] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -22,7 +21,7 @@ const FetchFlowForm = () => {
         const res = await dispatch(setVid(url));
 
         if (res.ok) {
-            setSuccess(true);
+            props.history.push('/flow/new');
             return;
         }
 
@@ -33,7 +32,6 @@ const FetchFlowForm = () => {
 
     return (
         <>
-        { success ? <Redirect to='/flow/new' /> : <> </>}
         <form onSubmit={handleSubmit}>
             <h5 className='font-weight-bold'>Select video</h5>
             {errors.errors && errors.errors.length > 0 ?
@@ -51,4 +49,4 @@ const FetchFlowForm = () => {
     )
 }
 
-export default FetchFlowForm;
+export default withRouter(FetchFlowForm);

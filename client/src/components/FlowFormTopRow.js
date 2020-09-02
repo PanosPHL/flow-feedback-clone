@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FetchFlowTopRow = () => {
+const FlowFormTopRow = () => {
     return (
         <>
         <h3>Create Flow</h3>
@@ -9,4 +9,4 @@ const FetchFlowTopRow = () => {
     );
 }
 
-export default FetchFlowTopRow;
+export default FlowFormTopRow;

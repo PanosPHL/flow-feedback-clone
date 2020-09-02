@@ -15,6 +15,9 @@ module.exports = {
           notEmpty: true
         }
       },
+      description: {
+        type: Sequelize.TEXT,
+      },
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,

@@ -1,13 +1,13 @@
 import React from 'react';
 import { MDBBox } from 'mdbreact';
-import FetchFlowTopRow from './FetchFlowTopRow';
+import FlowFormTopRow from './FlowFormTopRow';
 import FetchFlowForm from './FetchFlowForm';
 
 const FetchFlow = () => {
     return (
         <>
         <MDBBox>
-            <FetchFlowTopRow />
+            <FlowFormTopRow />
             <FetchFlowForm />
         </MDBBox>
         </>
