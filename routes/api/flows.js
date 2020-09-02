@@ -8,6 +8,11 @@ const { sequelize } = require('../../db/models');
 const { Flow, Video } = require('../../db/models');
 
 const validateFlow = [
+    check('name', 'Please provide a title for your flow')
+    .exists(),
+    check('categoryId', 'Please select a valid category for your flow')
+    .exists()
+    .custom((value) => value > 0)
 ];
 
 const validateURL = [
@@ -49,11 +54,10 @@ router.put('/', validateURL, handleValidationErrors, asyncHandler(async (req, re
     });
 }));
 
-router.post('/', asyncHandler(async (req, res, next) => {
+router.post('/', validateFlow, handleValidationErrors, asyncHandler(async (req, res, next) => {
     const { name, description, userId, video, categoryId } = req.body;
 
     const flow = await sequelize.transaction(async (t) => {
-        try {
         let newVideo = await Video.findOne({
             where: {
                 id: video.id
@@ -78,9 +82,6 @@ router.post('/', asyncHandler(async (req, res, next) => {
         }, { transaction: t });
 
         return flow;
-        } catch (err) {
-            console.log(err);
-        }
     });
 
     res.json({ flow })

@@ -27,7 +27,7 @@ export const addFlow = (name, description, userId, video, categoryId) => {
             console.log(res.data);
         }
 
-        // return res;
+        return res;
     }
 }
 
