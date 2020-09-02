@@ -70,8 +70,6 @@ export const logout = () => {
 
         res.data = await res.json();
 
-        console.log(res);
-
         if (res.ok) {
             dispatch(logoutUser());
         }

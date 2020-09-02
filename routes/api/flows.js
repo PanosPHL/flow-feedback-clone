@@ -10,13 +10,23 @@ const { Flow } = require('../../db/models');
 const validateFlow = [
 ];
 
+const validateURL = [
+    check('url', 'Please provide a valid YouTube URL')
+    .exists()
+    .custom((value) => {
+        const yt = /^(http\:|https\:)\/\/www\.youtube\.com\/watch\?/;
+
+        return yt.test(value);
+    })
+]
+
 const router = express.Router();
 
 router.post('/', asyncHandler(async (req, res, next) => {
     console.log(req);
 }));
 
-router.put('/', asyncHandler(async (req, res, next) => {
+router.put('/', validateURL, handleValidationErrors, asyncHandler(async (req, res, next) => {
     const apiReq = {
         id: req.body.url.split('?v=')[1],
         key: process.env.YOUTUBE_API_KEY,
@@ -38,7 +48,8 @@ router.put('/', asyncHandler(async (req, res, next) => {
 
     res.json({
         id,
-        title
+        title,
+        url: req.body.url
     });
 }));
 

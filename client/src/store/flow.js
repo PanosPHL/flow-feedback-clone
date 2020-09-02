@@ -21,7 +21,11 @@ export const setVid = (url) => {
         })
         res.data = await res.json();
 
-        console.log(res.data);
+        if (res.ok) {
+            dispatch(setFlowVid(res.data));
+        }
+
+        return res;
     }
 }
 
