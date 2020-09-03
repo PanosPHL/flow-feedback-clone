@@ -47,6 +47,7 @@ const NewFlowForm = (props) => {
         </MDBAlert>
         : <> </>}
         </>
+        <h3>Flow Information</h3>
         <form onSubmit={handleSubmit}>
             <label htmlFor="newFlowTitle" className="grey-text">
                 Title <span>*</span>
@@ -55,7 +56,6 @@ const NewFlowForm = (props) => {
             <label htmlFor="newFlowCategory" className="grey-text">
                 Category <span>*</span>
             </label>
-            <div style={{backgroundImage: `url(${categories[0].cover})`}}></div>
             <select onChange={(event) => setFlowCat(parseInt(event.target.value))} className='browser-default custom-select'>
                 <option value='' defaultValue>Select the category</option>
                 { categories.map((category, i) => {

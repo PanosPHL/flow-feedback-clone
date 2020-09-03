@@ -43,7 +43,7 @@ const FetchFlowForm = (props) => {
             }
             <MDBInputGroup
             className='amber-border'
-            hint="i.e. https://www.youtube.com/watch?v=Za8oRc_z9Y0"
+            hint="i.e. https://www.youtube.com/watch?v=dQw4w9WgXcQ"
             append={
             <MDBBtn className='rounded-right btn-amber m-0 px-3 py-2 z-depth-0' type='submit'>Preview</MDBBtn>
             }
