@@ -32,6 +32,13 @@ module.exports = {
           min: 4
         }
       },
+      duration: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        validate: {
+          min: 1
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

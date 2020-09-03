@@ -22,6 +22,13 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true,
         min: 4
       }
+    },
+    duration: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        min: 1
+      }
     }
   }, {});
   Video.associate = function (models) {
