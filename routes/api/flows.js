@@ -40,23 +40,22 @@ router.post('/', validateFlow, handleValidationErrors, asyncHandler(async (req, 
     console.log(toSeconds(video.duration));
 
     const flow = await sequelize.transaction(async (t) => {
-        console.log('hit1')
         let newVideo = await Video.findOne({
             where: {
                 id: video.id
             }
         }, { transaction: t });
-        console.log('hit2')
+
         if (!newVideo) {
             newVideo = await Video.create({
                 id: video.id,
                 siteId: 1,
                 url: video.url,
                 title: video.title,
-                duration: toSeconds(video.duration)
+                duration: toSeconds(parse(video.duration))
             }, { transaction: t });
         }
-        console.log('hit3');
+
         const flow = await Flow.create({
             name,
             description,

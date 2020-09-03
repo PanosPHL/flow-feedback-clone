@@ -9,13 +9,26 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       content: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT,
+        allowNull: false,
+        validate: {
+          notEmpty: true
+        }
       },
       timestamp: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        validate: {
+          isInt: true,
+          min: 0
+        }
       },
       flowId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Flows'
+        }
       },
       createdAt: {
         allowNull: false,

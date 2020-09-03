@@ -28,6 +28,8 @@ module.exports = (sequelize, DataTypes) => {
     Flow.belongsTo(models.Category, { foreignKey: 'categoryId' });
     Flow.belongsTo(models.User, { foreignKey: 'userId' });
     Flow.belongsTo(models.Video, { foreignKey: 'videoId' });
+
+    Flow.hasMany(models.Note, { foreignKey: 'flowId' });
   };
   return Flow;
 };

@@ -1,6 +1,7 @@
 import { csrfToken } from './auth';
 
-export const ADD_FLOW = '/flows/ADD_FLOW';
+const ADD_FLOW = '/flows/ADD_FLOW';
+const EDIT_FLOW_NAME = '/flows/EDIT_FLOW_NAME';
 
 const addNewFlow = (flow) => {
     return {
