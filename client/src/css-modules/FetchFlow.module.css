@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
 
 .topRow {
-    margin: 2em 0;
+    margin: 2em 0 2.5em 0;
 }
 
 .formContainer {
@@ -14,7 +14,7 @@
 }
 
 .logoContainer {
-    margin: 0 auto 2.5em auto;
+    margin: 4em auto 4em auto;
 }
 
 .youtubeLogo {

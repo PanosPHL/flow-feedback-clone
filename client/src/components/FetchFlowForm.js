@@ -34,7 +34,7 @@ const FetchFlowForm = (props) => {
         <>
         <form onSubmit={handleSubmit}>
             {errors.errors && errors.errors.length > 0 ?
-                <MDBAlert color='danger'>
+                <MDBAlert className={styles.errorContainer} color='danger'>
                     <ul className={styles.errors}>
                         {errors.errors.map((error, i) => <li key={`error-${i + 1}`}>{error.split(': ')[1]}</li>)}
                     </ul>
@@ -42,7 +42,6 @@ const FetchFlowForm = (props) => {
                 : <></>
             }
             <MDBInputGroup
-            containerClassName='mb-3'
             className='amber-border'
             hint="i.e. https://www.youtube.com/watch?v=Za8oRc_z9Y0"
             append={
