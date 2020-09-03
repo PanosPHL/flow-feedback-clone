@@ -6,7 +6,6 @@ const router = express.Router();
 const { Video } = require('../../db/models');
 
 router.get('/', async (req, res) => {
-    console.log('hit');
     const videos = await Video.findAll({});
     res.json({videos});
 });

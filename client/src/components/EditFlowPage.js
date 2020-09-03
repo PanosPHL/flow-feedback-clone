@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import YouTube from 'react-youtube';
 import PlayerContext from '../contexts/PlayerContext';
@@ -21,16 +21,51 @@ const FlowPlayer = () => {
     const [player, setPlayer] = useState(null);
     const [timestamp, setTimestamp] = useState(0);
     const [controllable, setControllable] = useState(true);
+    const [displayNoteForm, setDisplayNoteForm] = useState(false);
+
+    const handleKeyUp = (event) => {
+        event.stopPropagation();
+            if (!controllable) {
+                return;
+            }
+
+            else if (event.code === 'ArrowLeft') {
+                document.querySelector('#rewind').click();
+            } else if (event.code === 'Space') {
+                document.getElementById('play/pause').click();
+            } else if (event.code === 'ArrowRight') {
+                document.querySelector('#forward').click();
+            }
+    }
+
+    useEffect(() => {
+        window.addEventListener('keyup', handleKeyUp);
+
+        return () => {
+            window.removeEventListener('keyup', handleKeyUp);
+        }
+    });
+
+    const toggleControllable = () => {
+        setControllable(!controllable);
+    }
+
+    const toggleDisplayNoteForm = () => {
+        toggleControllable();
+        setDisplayNoteForm(!displayNoteForm);
+    }
 
     const opts = {
+        height: 450,
+        width: 800,
         playerVars: {
-            controls: 0
+            controls: 0,
+            disablekb: 1
         }
     }
 
     const onReady = (event) => {
         setPlayer(event.target);
-        console.log(event.target);
     }
 
     const onPlay = () => {
@@ -70,8 +105,13 @@ const FlowPlayer = () => {
         controllable,
         handlers: {
             togglePlay,
-            seek
-        }
+            seek,
+            toggleDisplayNoteForm
+        },
+        displayNoteForm,
+        setDisplayNoteForm,
+        timestamp,
+        setControllable
     }
 
     return (
@@ -79,9 +119,9 @@ const FlowPlayer = () => {
             <div id='formAndPlayerContainer' className={styles.formAndPlayerContainer}>
         <YouTube opts={opts} onPlay={onPlay} onPause={onPause} onReady={onReady} videoId={currentFlow.videoId}/>
         <NewNoteForm />
-            </div>
         <NoteButton />
         <FlowPlayerControls />
+            </div>
         </PlayerContext.Provider>
     )
 }

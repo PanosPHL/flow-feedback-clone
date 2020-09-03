@@ -4,7 +4,16 @@
 
 .noteForm {
     position: absolute;
-    width: 16vw;
-    height: 12vh;
-    top: 31.5vh;
+    width: 20vw;
+    height: 14vh;
+    top: 33.5vh;
+    left: 0.2vw;
+    background-color: white;
+    padding: 0.7em;
+    border-radius: 3px;
+}
+
+.noteFormButtons {
+    display: flex;
+    justify-content: flex-end;
 }

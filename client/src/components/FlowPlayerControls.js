@@ -6,18 +6,7 @@ import styles from '../css-modules/FlowPlayer.module.css';
 const FlowPlayerControls = () => {
     const value = useContext(PlayerContext);
 
-    const { togglePlay, seek } = value.handlers;
-
-    window.addEventListener('keydown', event => {
-        if (event.code === 'ArrowLeft') {
-            document.querySelector('#rewind').click();
-        } else if (event.code === 'Space') {
-            document.getElementById('play/pause').click();
-        } else if (event.code === 'ArrowRight') {
-            document.querySelector('#forward').click();
-        }
-    });
-
+    const { handlers: { togglePlay, seek } } = value;
     return (
         <div className='btn-group' role='group' aria-label='playbackButtonGroup'>
             <button id='rewind' className={styles.playbackButtons + ' btn btn-light'} onClick={seek}><MDBIcon icon='backward' className='grey-text' /></button>

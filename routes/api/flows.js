@@ -37,8 +37,6 @@ const router = express.Router();
 router.post('/', validateFlow, handleValidationErrors, asyncHandler(async (req, res, next) => {
     const { name, description, userId, video, categoryId } = req.body;
 
-    console.log(toSeconds(video.duration));
-
     const flow = await sequelize.transaction(async (t) => {
         let newVideo = await Video.findOne({
             where: {
@@ -71,7 +69,6 @@ router.post('/', validateFlow, handleValidationErrors, asyncHandler(async (req, 
 }));
 
 router.put('/:id(\\d+)', validateFlowUpdate, handleValidationErrors, asyncHandler(async (req, res, next) => {
-    console.log('hit');
     const { name } = req.body;
 
     const flow = await sequelize.transaction(async (t) => {
