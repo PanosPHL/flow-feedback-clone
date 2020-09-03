@@ -23,36 +23,15 @@ const validateURL = [
 
             return yt.test(value);
         })
-]
+];
+
+const validateFlowUpdate = [
+    check('name', 'Please provide a valid Flow name')
+        .exists()
+        .isLength({ min: 1, max: 256})
+];
 
 const router = express.Router();
-
-router.put('/', validateURL, handleValidationErrors, asyncHandler(async (req, res, next) => {
-    const apiReq = {
-        id: req.body.url.split('?v=')[1],
-        key: process.env.YOUTUBE_API_KEY,
-        part: 'snippet',
-        fields: 'items(id,snippet/title)'
-    }
-
-    let fetchParams = [];
-
-    for (let key in apiReq) {
-        fetchParams.push(`${key}=${encodeURIComponent(apiReq[key])}`)
-    }
-
-
-    const apiRes = await fetch(`https://www.googleapis.com/youtube/v3/videos?${fetchParams.join('&')}`);
-    apiRes.data = await apiRes.json();
-
-    const { id, snippet: { title } } = apiRes.data.items[0]
-
-    res.json({
-        id,
-        title,
-        url: req.body.url
-    });
-}));
 
 router.post('/', validateFlow, handleValidationErrors, asyncHandler(async (req, res, next) => {
     const { name, description, userId, video, categoryId } = req.body;
@@ -85,6 +64,54 @@ router.post('/', validateFlow, handleValidationErrors, asyncHandler(async (req, 
     });
 
     res.json({ flow })
+}));
+
+router.put('/:id(\\d+)', validateFlowUpdate, handleValidationErrors, asyncHandler(async (req, res, next) => {
+    console.log('hit');
+    const { name } = req.body;
+
+    const flow = await sequelize.transaction(async (t) => {
+        let flowRecord = await Flow.findOne({
+            where: {
+                id: parseInt(req.params.id)
+            }
+        }, { transaction: t });
+
+        flowRecord.name = name;
+
+        await flowRecord.save({ transaction: t });
+
+        return flowRecord;
+    })
+
+    res.json({ flow });
+}))
+
+router.put('/', validateURL, handleValidationErrors, asyncHandler(async (req, res, next) => {
+    const apiReq = {
+        id: req.body.url.split('?v=')[1],
+        key: process.env.YOUTUBE_API_KEY,
+        part: 'snippet',
+        fields: 'items(id,snippet/title)'
+    }
+
+    let fetchParams = [];
+
+    for (let key in apiReq) {
+        fetchParams.push(`${key}=${encodeURIComponent(apiReq[key])}`)
+    }
+
+
+    const apiRes = await fetch(`https://www.googleapis.com/youtube/v3/videos?${fetchParams.join('&')}`);
+    apiRes.data = await apiRes.json();
+
+    const { id, snippet: { title } } = apiRes.data.items[0]
+
+    res.json({
+        id,
+        title,
+        url: req.body.url
+    });
 }));
 
 module.exports = router;
