@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PlayerContext from '../contexts/PlayerContext';
-import { MDBBtn, MDBIcon } from 'mdbreact';
+import { MDBIcon } from 'mdbreact';
 import styles from '../css-modules/FlowPlayer.module.css';
 
 const FlowPlayerControls = () => {
@@ -16,7 +16,7 @@ const FlowPlayerControls = () => {
         } else if (event.code === 'ArrowRight') {
             document.querySelector('#forward').click();
         }
-    })
+    });
 
     return (
         <div className='btn-group' role='group' aria-label='playbackButtonGroup'>

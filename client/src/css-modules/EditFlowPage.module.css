@@ -1,0 +1,10 @@
+.formAndPlayerContainer {
+    position: relative;
+}
+
+.noteForm {
+    position: absolute;
+    width: 16vw;
+    height: 12vh;
+    top: 31.5vh;
+}

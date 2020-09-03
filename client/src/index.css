@@ -42,3 +42,7 @@ body.modal-open {
     box-shadow: none;
     border: 1px solid rgb(207, 207, 207);
 }
+
+.btn-light {
+    transition-property: color, background-color, box-shadow;
+}
