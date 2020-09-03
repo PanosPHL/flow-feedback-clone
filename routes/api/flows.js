@@ -3,6 +3,7 @@ const fetch = require('node-fetch');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../util/validation');
+const { toSeconds, parse } = require('iso8601-duration');
 
 const { sequelize } = require('../../db/models');
 const { Flow, Video } = require('../../db/models');
@@ -36,22 +37,26 @@ const router = express.Router();
 router.post('/', validateFlow, handleValidationErrors, asyncHandler(async (req, res, next) => {
     const { name, description, userId, video, categoryId } = req.body;
 
+    console.log(toSeconds(video.duration));
+
     const flow = await sequelize.transaction(async (t) => {
+        console.log('hit1')
         let newVideo = await Video.findOne({
             where: {
                 id: video.id
             }
         }, { transaction: t });
-
+        console.log('hit2')
         if (!newVideo) {
             newVideo = await Video.create({
                 id: video.id,
                 siteId: 1,
                 url: video.url,
-                title: video.title
+                title: video.title,
+                duration: toSeconds(video.duration)
             }, { transaction: t });
         }
-
+        console.log('hit3');
         const flow = await Flow.create({
             name,
             description,
@@ -63,7 +68,7 @@ router.post('/', validateFlow, handleValidationErrors, asyncHandler(async (req, 
         return flow;
     });
 
-    res.json({ flow })
+        res.json({ flow });
 }));
 
 router.put('/:id(\\d+)', validateFlowUpdate, handleValidationErrors, asyncHandler(async (req, res, next) => {

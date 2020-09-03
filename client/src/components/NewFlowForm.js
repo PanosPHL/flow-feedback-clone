@@ -31,7 +31,12 @@ const NewFlowForm = (props) => {
             return;
         }
 
-        setErrors({ errors: res.data.error.errors });
+        if (res.data.error.errors) {
+            setErrors({ errors: res.data.error.errors });
+            return;
+        }
+
+        setErrors({ errors: [res.data.message]})
     }
 
     return (
@@ -40,7 +45,7 @@ const NewFlowForm = (props) => {
         <>
         { errors.errors.length ?
         <MDBAlert color='danger'>
-        <ul>
+        <ul className={styles.errors}>
             {errors.errors.map((error, i) => {
                 return (
                         <li key={`error-${i + 1}`}>{error.split(': ')[1]}</li>
