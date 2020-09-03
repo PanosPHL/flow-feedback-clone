@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 export const SET_USER = 'auth/SET_USER';
 export const LOGOUT_USER = 'auth/LOGOUT_USER';
 
-const csrfToken = Cookies.get('XSRF-TOKEN');
+export const csrfToken = Cookies.get('XSRF-TOKEN');
 
 export const logoutUser = () => {
     return {
@@ -69,8 +69,6 @@ export const logout = () => {
         });
 
         res.data = await res.json();
-
-        console.log(res);
 
         if (res.ok) {
             dispatch(logoutUser());

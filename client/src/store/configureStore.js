@@ -2,9 +2,15 @@ import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 import auth from './auth';
+import newFlow from './newFlow';
+import categories from './categories';
+import flows from './flows';
 
 const rootReducer = combineReducers({
-  auth
+  auth,
+  newFlow,
+  categories,
+  flows
 });
 
 let storeEnhancer;

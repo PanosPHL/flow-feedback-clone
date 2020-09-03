@@ -1,0 +1,20 @@
+.requiredField {
+    color: red;
+}
+
+.flowFormContainer {
+    margin-top: 1em;
+}
+
+.input {
+    margin-bottom: 0.8em;
+}
+
+.description {
+    margin: 2em 0 1em 0;
+}
+
+.submitButton {
+    width: 12vw;
+    margin: 2em 30%;
+}

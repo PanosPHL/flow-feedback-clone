@@ -40,6 +40,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   User.associate = function(models) {
+    User.hasMany(models.Flow, { foreignKey: 'userId' });
   };
 
   User.prototype.toSafeObject = function() {
