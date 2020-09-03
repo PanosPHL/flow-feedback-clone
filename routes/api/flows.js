@@ -91,9 +91,9 @@ router.put('/', validateURL, handleValidationErrors, asyncHandler(async (req, re
     const apiReq = {
         id: req.body.url.split('?v=')[1],
         key: process.env.YOUTUBE_API_KEY,
-        part: 'snippet',
-        fields: 'items(id,snippet/title)'
-    }
+        part: 'snippet,contentDetails',
+        fields: 'items(id,snippet/title,contentDetails/duration)'
+    };
 
     let fetchParams = [];
 
@@ -105,12 +105,13 @@ router.put('/', validateURL, handleValidationErrors, asyncHandler(async (req, re
     const apiRes = await fetch(`https://www.googleapis.com/youtube/v3/videos?${fetchParams.join('&')}`);
     apiRes.data = await apiRes.json();
 
-    const { id, snippet: { title } } = apiRes.data.items[0]
+    const { id, snippet: { title }, contentDetails : { duration } } = apiRes.data.items[0]
 
     res.json({
         id,
         title,
-        url: req.body.url
+        url: req.body.url,
+        duration
     });
 }));
 
