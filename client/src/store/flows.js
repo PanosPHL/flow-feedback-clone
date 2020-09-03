@@ -20,13 +20,11 @@ export const addFlow = (name, description, userId, video, categoryId) => {
             body: JSON.stringify({name, description, userId, video, categoryId})
         });
 
-        console.log(res);
         res.data = await res.json();
-        console.log(res);
-        if (res.ok) {
-            console.log(res.data);
-        }
 
+        if (res.ok) {
+            dispatch(addNewFlow(res.data.flow));
+        }
         return res;
     }
 }

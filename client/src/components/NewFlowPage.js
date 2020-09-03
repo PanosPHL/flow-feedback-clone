@@ -4,7 +4,8 @@ import { MDBContainer } from 'mdbreact';
 import YouTube from 'react-youtube';
 import NewFlowForm from './NewFlowForm';
 import FlowFormTopRow from './FlowFormTopRow';
-import styles from '../css-modules/FetchFlow.module.css'
+import styles from '../css-modules/FetchFlow.module.css';
+import nfps from '../css-modules/NewFlowPage.module.css';
 
 const NewFlowPage = () => {
     const newFlow = useSelector(state => state.newFlow);
@@ -13,8 +14,10 @@ const NewFlowPage = () => {
         <div className={styles.formContainer}>
         <MDBContainer className={styles.formText}>
             <FlowFormTopRow />
-            <h3>Video Preview</h3>
+            <div className={nfps.videoInfoContainer}>
+            <h5 className={nfps.headerText + ' font-weight-bold'}>Video Preview</h5>
             <YouTube videoId={newFlow.id} />
+            </div>
             <NewFlowForm />
         </MDBContainer>
         </div>

@@ -1,3 +1,20 @@
-.dropdown {
-    background-color: rgba(244, 67, 54, 0.1);
+.requiredField {
+    color: red;
+}
+
+.flowFormContainer {
+    margin-top: 1em;
+}
+
+.input {
+    margin-bottom: 0.8em;
+}
+
+.description {
+    margin: 2em 0 1em 0;
+}
+
+.submitButton {
+    width: 12vw;
+    margin: 2em 30%;
 }

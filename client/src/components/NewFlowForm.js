@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { MDBBtn, MDBAlert } from 'mdbreact';
 import { addFlow } from '../store/flows';
+import styles from '../css-modules/NewFlowForm.module.css';
+import nfps from '../css-modules/NewFlowPage.module.css';
 
 const NewFlowForm = (props) => {
     const newFlow = useSelector(state => state.newFlow);
@@ -33,30 +35,31 @@ const NewFlowForm = (props) => {
     }
 
     return (
-        <>
+        <div className={styles.flowFormContainer}>
+        <h5 className={nfps.headerText + ' font-weight-bold'}>Flow Information</h5>
         <>
         { errors.errors.length ?
         <MDBAlert color='danger'>
         <ul>
             {errors.errors.map((error, i) => {
                 return (
-                        <li>{error}</li>
+                        <li key={`error-${i + 1}`}>{error.split(': ')[1]}</li>
                 )
             })}
         </ul>
         </MDBAlert>
         : <> </>}
         </>
-        <h3>Flow Information</h3>
         <form onSubmit={handleSubmit}>
+            <div className='form-group'>
             <label htmlFor="newFlowTitle" className="grey-text">
-                Title <span>*</span>
+                Title <span className={styles.requiredField}>*</span>
             </label>
-            <input type="text" id="newFlowTitle" className="form-control" value={flowTitle} onChange={(event) => setFlowTitle(event.target.value)}/>
+            <input type="text" id="newFlowTitle" className={styles.input + " form-control"} value={flowTitle} onChange={(event) => setFlowTitle(event.target.value)}/>
             <label htmlFor="newFlowCategory" className="grey-text">
-                Category <span>*</span>
+                Category <span className={styles.requiredField}>*</span>
             </label>
-            <select onChange={(event) => setFlowCat(parseInt(event.target.value))} className='browser-default custom-select'>
+            <select onChange={(event) => setFlowCat(parseInt(event.target.value))} className={styles.input + ' browser-default custom-select'}>
                 <option value='' defaultValue>Select the category</option>
                 { categories.map((category, i) => {
                     return (
@@ -64,13 +67,16 @@ const NewFlowForm = (props) => {
                     )
                 })}
             </select>
+            </div>
+            <div className={styles.description}>
             <label htmlFor="newFlowDescription" className="grey-text">
                 Description
             </label>
             <textarea onChange={(event) => setDescription(event.target.value)} className='form-control'></textarea>
-            <MDBBtn type='submit' className='btn btn-amber darken-4'>Create New Flow</MDBBtn>
+            </div>
+            <MDBBtn type='submit' className={styles.submitButton + ' btn btn-amber'}>Create New Flow</MDBBtn>
         </form>
-        </>
+        </div>
     )
 }
 

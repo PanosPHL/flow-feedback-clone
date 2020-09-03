@@ -13,7 +13,7 @@ const FetchFlow = () => {
             <h5 className='font-weight-bold mb-3'>Select a video</h5>
             <div className={styles.logoContainer}>
                 <div className={styles.nestedDiv + ' mx-auto'}>
-                <img src='/images/youtube.png' className={styles.youtubeLogo + ' mx-auto'}/>
+                <img src='/images/youtube.png' className={styles.youtubeLogo + ' mx-auto'} alt='youtube logo'/>
                 <div className={styles.youtubeText + ' mx-auto'}>YouTube</div>
                 </div>
             </div>

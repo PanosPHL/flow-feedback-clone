@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setVid } from '../store/newFlow';
-import { MDBInput, MDBBtn, MDBAlert, MDBInputGroup } from 'mdbreact';
+import { MDBBtn, MDBAlert, MDBInputGroup } from 'mdbreact';
 import styles from '../css-modules/FetchFlowForm.module.css';
 
 const FetchFlowForm = (props) => {
