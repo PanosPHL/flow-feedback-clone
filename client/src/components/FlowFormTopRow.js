@@ -1,11 +1,12 @@
 import React from 'react';
+import styles from '../css-modules/FetchFlow.module.css';
 
 const FlowFormTopRow = () => {
     return (
-        <>
-        <h3>Create Flow</h3>
-        <h6>Self analyze your videos or share with friends</h6>
-        </>
+        <div className={styles.topRow + ' border-bottom header border-light'}>
+            <h3 className='font-weight-bold'>Create Flow</h3>
+            <h5>Self analyze your videos or share with friends</h5>
+        </div>
     );
 }
 
