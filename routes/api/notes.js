@@ -27,7 +27,7 @@ router.post('/', validateNote, handleValidationErrors, asyncHandler(async (req, 
 
     const note = await Note.create({
         content,
-        timestamp,
+        timestamp: Number(timestamp),
         flowId
     });
 

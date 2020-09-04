@@ -18,21 +18,33 @@ const EditFlowPage = () => {
     const [timestamp, setTimestamp] = useState(0);
     const [controllable, setControllable] = useState(true);
 
+    const sortNotes = (a, b) => {
+        const timeA = parseFloat(a.timestamp);
+        const timeB = parseFloat(b.timestamp);
+
+        let comparison = 0;
+        if (timeA > timeB) {
+            comparison = 1;
+        } else if (timeA < timeB) {
+            comparison = -1;
+        }
+        return comparison;
+    }
+
     const handleKeyUp = (event) => {
         event.stopPropagation();
-        console.log(controllable);
-            if (!controllable) {
-                return;
-            }
+        if (!controllable) {
+            return;
+        }
 
-            else if (event.code === 'ArrowLeft') {
-                document.querySelector('#rewind').click();
-            } else if (event.code === 'Space') {
-                console.log('hit el')
-                document.getElementById('play/pause').click();
-            } else if (event.code === 'ArrowRight') {
-                document.querySelector('#forward').click();
-            }
+        else if (event.code === 'ArrowLeft') {
+            document.querySelector('#rewind').click();
+        } else if (event.code === 'Space') {
+            console.log('hit el')
+            document.getElementById('play/pause').click();
+        } else if (event.code === 'ArrowRight') {
+            document.querySelector('#forward').click();
+        }
     }
 
 
@@ -55,12 +67,19 @@ const EditFlowPage = () => {
             }
         }
 
-            fetchCurrentFlow();
+        fetchCurrentFlow();
     }, []);
+
+    useEffect(() => {
+        if (currentFlow.Notes) {
+            currentFlow.Notes.sort(sortNotes);
+        }
+    }, [currentFlow]);
 
     const addNoteToFlow = (note) => {
         const newState = Object.assign({}, currentFlow);
         newState.Notes.push(note);
+        newState.Notes.sort(sortNotes);
         setCurrentFlow(newState);
     }
 
@@ -141,19 +160,19 @@ const EditFlowPage = () => {
     return (
         <PlayerContext.Provider value={value}>
             <div id='formAndPlayerContainer' className={styles.formAndPlayerContainer}>
-        <YouTube opts={opts} onPlay={onPlay} onPause={onPause} onReady={onReady} videoId={currentFlow.videoId}/>
-        <NewNoteForm />
-        <NoteButton />
-        <FlowPlayerControls />
+                <YouTube opts={opts} onPlay={onPlay} onPause={onPause} onReady={onReady} videoId={currentFlow.videoId} />
+                <NewNoteForm />
+                <NoteButton />
+                <FlowPlayerControls />
             </div>
             <div className='notes-container'>
-            {currentFlow.Notes ?
-            currentFlow.Notes.map((note, i) => {
-                return (
-                    <NoteCard key={`note-${i + 1}`} content={note.content} timestamp={note.timestamp}/>
-                )
-            }) : <> </>}
-        </div>
+                {currentFlow.Notes ?
+                    currentFlow.Notes.map((note, i) => {
+                        return (
+                            <NoteCard key={`note-${i + 1}`} content={note.content} timestamp={note.timestamp} />
+                        )
+                    }) : <> </>}
+            </div>
         </PlayerContext.Provider>
     )
 }

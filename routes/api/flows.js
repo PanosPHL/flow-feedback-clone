@@ -73,7 +73,8 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
         where: {
             id: parseInt(req.params.id)
         },
-        include: [{ model: Note }]
+        include: [{ model: Note}],
+        order: [[{model: Note} , 'timestamp', 'asc']]
     });
 
     res.json({ flow });
