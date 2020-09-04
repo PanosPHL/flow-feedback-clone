@@ -16,7 +16,6 @@ const NewNoteForm = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const res = await dispatch(addNewNote(content, timestamp, id));
-        console.log(res);
         if (res.ok) {
             toggleDisplayNoteForm();
         }
