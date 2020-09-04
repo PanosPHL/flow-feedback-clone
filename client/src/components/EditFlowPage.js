@@ -7,6 +7,7 @@ import { round } from '../utils/round';
 import NoteButton from './NoteButton';
 import NewNoteForm from './NewNoteForm';
 import styles from '../css-modules/EditFlowPage.module.css';
+import NoteCard from './NoteCard';
 
 const EditFlowPage = () => {
     const id = Number(window.location.toString().split('/')[4]);
@@ -19,6 +20,7 @@ const EditFlowPage = () => {
 
     const handleKeyUp = (event) => {
         event.stopPropagation();
+        console.log(controllable);
             if (!controllable) {
                 return;
             }
@@ -26,6 +28,7 @@ const EditFlowPage = () => {
             else if (event.code === 'ArrowLeft') {
                 document.querySelector('#rewind').click();
             } else if (event.code === 'Space') {
+                console.log('hit el')
                 document.getElementById('play/pause').click();
             } else if (event.code === 'ArrowRight') {
                 document.querySelector('#forward').click();
@@ -36,6 +39,12 @@ const EditFlowPage = () => {
     useEffect(() => {
         window.addEventListener('keyup', handleKeyUp);
 
+        return () => {
+            window.removeEventListener('keyup', handleKeyUp);
+        }
+    });
+
+    useEffect(() => {
         const fetchCurrentFlow = async () => {
             const res = await fetch(`/api/flows/${id}`);
             res.data = await res.json();
@@ -47,11 +56,13 @@ const EditFlowPage = () => {
         }
 
             fetchCurrentFlow();
-
-        return () => {
-            window.removeEventListener('keyup', handleKeyUp);
-        }
     }, []);
+
+    const addNoteToFlow = (note) => {
+        const newState = Object.assign({}, currentFlow);
+        newState.Notes.push(note);
+        setCurrentFlow(newState);
+    }
 
     const toggleControllable = () => {
         setControllable(!controllable);
@@ -114,13 +125,15 @@ const EditFlowPage = () => {
         handlers: {
             togglePlay,
             seek,
-            toggleDisplayNoteForm
+            toggleDisplayNoteForm,
+            addNoteToFlow
         },
         timestamp,
         setControllable
     }
 
     return (
+        <>
         <PlayerContext.Provider value={value}>
             <div id='formAndPlayerContainer' className={styles.formAndPlayerContainer}>
         <YouTube opts={opts} onPlay={onPlay} onPause={onPause} onReady={onReady} videoId={currentFlow.videoId}/>
@@ -129,6 +142,15 @@ const EditFlowPage = () => {
         <FlowPlayerControls />
             </div>
         </PlayerContext.Provider>
+        <div className='notes-container'>
+            {currentFlow.Notes ?
+            currentFlow.Notes.map((note, i) => {
+                return (
+                    <NoteCard key={`note-${i + 1}`} content={note.content} />
+                )
+            }) : <> </>}
+        </div>
+        </>
     )
 }
 

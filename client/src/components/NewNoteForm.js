@@ -5,7 +5,7 @@ import PlayerContext from '../contexts/PlayerContext';
 import { addNewNote } from '../store/notes';
 
 const NewNoteForm = () => {
-    const {id, timestamp, handlers: { toggleDisplayNoteForm } } = useContext(PlayerContext);
+    const {id, timestamp, handlers: { toggleDisplayNoteForm, addNoteToFlow } } = useContext(PlayerContext);
     const [content, setContent] = useState('');
     const dispatch = useDispatch();
 
@@ -18,6 +18,7 @@ const NewNoteForm = () => {
         const res = await dispatch(addNewNote(content, timestamp, id));
         if (res.ok) {
             toggleDisplayNoteForm();
+            addNoteToFlow(res.data.note);
         }
     };
 

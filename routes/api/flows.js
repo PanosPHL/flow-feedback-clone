@@ -6,7 +6,7 @@ const { handleValidationErrors } = require('../util/validation');
 const { toSeconds, parse } = require('iso8601-duration');
 
 const { sequelize } = require('../../db/models');
-const { Flow, Video } = require('../../db/models');
+const { Flow, Video, Note } = require('../../db/models');
 
 const validateFlow = [
     check('name', 'Please provide a title for your flow')
@@ -72,7 +72,8 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
     const flow = await Flow.findOne({
         where: {
             id: parseInt(req.params.id)
-        }
+        },
+        include: [{ model: Note }]
     });
 
     res.json({ flow });
