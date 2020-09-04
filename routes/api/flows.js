@@ -68,6 +68,16 @@ router.post('/', validateFlow, handleValidationErrors, asyncHandler(async (req, 
         res.json({ flow });
 }));
 
+router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
+    const flow = await Flow.findOne({
+        where: {
+            id: parseInt(req.params.id)
+        }
+    });
+
+    res.json({ flow });
+}))
+
 router.put('/:id(\\d+)', validateFlowUpdate, handleValidationErrors, asyncHandler(async (req, res, next) => {
     const { name } = req.body;
 
