@@ -77,10 +77,11 @@ const EditFlowPage = () => {
         height: 450,
         width: 800,
         playerVars: {
-            controls: 0,
             disablekb: 1
         }
     }
+
+    let setTimestampInterval;
 
     const onReady = (event) => {
         setPlayer(event.target);
@@ -88,11 +89,15 @@ const EditFlowPage = () => {
 
     const onPlay = () => {
         setPlaying(true);
+        setTimestampInterval = setInterval(() => {
+            setTimestamp(round(player.getCurrentTime(), 2));
+        }, 50);
     }
 
     const onPause = () => {
         setPlaying(false);
         setTimestamp(round(player.getCurrentTime(), 2));
+        clearInterval(setTimestampInterval);
     }
 
     const togglePlay = () => {
@@ -133,7 +138,6 @@ const EditFlowPage = () => {
     }
 
     return (
-        <>
         <PlayerContext.Provider value={value}>
             <div id='formAndPlayerContainer' className={styles.formAndPlayerContainer}>
         <YouTube opts={opts} onPlay={onPlay} onPause={onPause} onReady={onReady} videoId={currentFlow.videoId}/>
@@ -141,16 +145,15 @@ const EditFlowPage = () => {
         <NoteButton />
         <FlowPlayerControls />
             </div>
-        </PlayerContext.Provider>
-        <div className='notes-container'>
+            <div className='notes-container'>
             {currentFlow.Notes ?
             currentFlow.Notes.map((note, i) => {
                 return (
-                    <NoteCard key={`note-${i + 1}`} content={note.content} />
+                    <NoteCard key={`note-${i + 1}`} content={note.content} timestamp={note.timestamp}/>
                 )
             }) : <> </>}
         </div>
-        </>
+        </PlayerContext.Provider>
     )
 }
 

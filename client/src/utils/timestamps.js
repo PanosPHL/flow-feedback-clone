@@ -1,8 +1,7 @@
 export const timestampToStr = (timestamp) => {
-        let hours = Math.floor(timestamp / 3600);
-        let minutes = Math.floor((timestamp - (hours * 3600)) / 60);
-        let seconds = Math.floor((timestamp - ((hours * 3600) + (minutes * 60))));
-        let times = [hours, minutes, seconds];
+        let minutes = Math.floor(timestamp / 60);
+        let seconds = Math.floor((timestamp - (minutes * 60)));
+        let times = [minutes, seconds];
         let str = [];
 
         for (let i = 0; i < times.length; i++) {
@@ -12,6 +11,10 @@ export const timestampToStr = (timestamp) => {
                 } else {
                     str.push(`${times[i]}`);
                 }
+            }
+
+            if (times[i] === 0 && times[i] === minutes) {
+                str.push('0');
             }
         }
 
