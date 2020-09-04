@@ -11,12 +11,14 @@ import NoteCard from './NoteCard';
 
 const EditFlowPage = () => {
     const id = Number(window.location.toString().split('/')[4]);
+    const userId = useSelector(state => state.auth.id);
 
     const [currentFlow, setCurrentFlow] = useState({});
     const [playing, setPlaying] = useState(false);
     const [player, setPlayer] = useState(null);
     const [timestamp, setTimestamp] = useState(0);
     const [controllable, setControllable] = useState(true);
+    const [pausedCard, setPausedCard] = useState(-1);
 
     const sortNotes = (a, b) => {
         const timeA = parseFloat(a.timestamp);
@@ -68,7 +70,7 @@ const EditFlowPage = () => {
         }
 
         fetchCurrentFlow();
-    }, []);
+    });
 
     useEffect(() => {
         if (currentFlow.Notes) {
@@ -139,6 +141,8 @@ const EditFlowPage = () => {
             if (event.target.id === 'forward') {
                 player.seekTo(time + 2)
             }
+
+            setPausedCard(-1);
         }
     }
 
@@ -154,24 +158,35 @@ const EditFlowPage = () => {
             addNoteToFlow
         },
         timestamp,
-        setControllable
+        setControllable,
+        pausedCard,
+        setPausedCard
     }
 
     return (
         <PlayerContext.Provider value={value}>
+            <div className={styles.pageContainer}>
             <div id='formAndPlayerContainer' className={styles.formAndPlayerContainer}>
                 <YouTube opts={opts} onPlay={onPlay} onPause={onPause} onReady={onReady} videoId={currentFlow.videoId} />
+                { currentFlow.userId === userId ?
+                <>
                 <NewNoteForm />
                 <NoteButton />
+                </> :
+                <div>
+                </div>}
                 <FlowPlayerControls />
             </div>
-            <div className='notes-container'>
+            <div className={styles.noteCardContainer}>
+                <div id='accordian'>
                 {currentFlow.Notes ?
                     currentFlow.Notes.map((note, i) => {
                         return (
-                            <NoteCard key={`note-${i + 1}`} content={note.content} timestamp={note.timestamp} />
+                            <NoteCard key={`note-${i + 1}`} content={note.content} timestamp={note.timestamp} noteId={note.id}/>
                         )
                     }) : <> </>}
+                </div>
+            </div>
             </div>
         </PlayerContext.Provider>
     )
