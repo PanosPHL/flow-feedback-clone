@@ -10,13 +10,8 @@ import styles from '../css-modules/EditFlowPage.module.css';
 
 const EditFlowPage = () => {
     const id = Number(window.location.toString().split('/')[4]);
-    const currentFlow = useSelector(state => {
-        for (let flow of state.flows) {
-            if (flow.id === id) {
-                return flow;
-            }
-        }
-    });
+
+    const [currentFlow, setCurrentFlow] = useState({});
     const [playing, setPlaying] = useState(false);
     const [player, setPlayer] = useState(null);
     const [timestamp, setTimestamp] = useState(0);
@@ -37,13 +32,26 @@ const EditFlowPage = () => {
             }
     }
 
+
     useEffect(() => {
         window.addEventListener('keyup', handleKeyUp);
+
+        const fetchCurrentFlow = async () => {
+            const res = await fetch(`/api/flows/${id}`);
+            res.data = await res.json();
+            console.log(res);
+
+            if (res.ok) {
+                setCurrentFlow(res.data.flow);
+            }
+        }
+
+            fetchCurrentFlow();
 
         return () => {
             window.removeEventListener('keyup', handleKeyUp);
         }
-    });
+    }, []);
 
     const toggleControllable = () => {
         setControllable(!controllable);
