@@ -8,7 +8,7 @@ import NoteButton from './NoteButton';
 import NewNoteForm from './NewNoteForm';
 import styles from '../css-modules/EditFlowPage.module.css';
 
-const FlowPlayer = () => {
+const EditFlowPage = () => {
     const id = Number(window.location.toString().split('/')[4]);
     const currentFlow = useSelector(state => {
         for (let flow of state.flows) {
@@ -21,7 +21,6 @@ const FlowPlayer = () => {
     const [player, setPlayer] = useState(null);
     const [timestamp, setTimestamp] = useState(0);
     const [controllable, setControllable] = useState(true);
-    const [displayNoteForm, setDisplayNoteForm] = useState(false);
 
     const handleKeyUp = (event) => {
         event.stopPropagation();
@@ -52,7 +51,7 @@ const FlowPlayer = () => {
 
     const toggleDisplayNoteForm = () => {
         toggleControllable();
-        setDisplayNoteForm(!displayNoteForm);
+        document.querySelector('.submit-note').classList.toggle('hidden');
     }
 
     const opts = {
@@ -100,6 +99,7 @@ const FlowPlayer = () => {
     }
 
     const value = {
+        id,
         player,
         playing,
         controllable,
@@ -108,8 +108,6 @@ const FlowPlayer = () => {
             seek,
             toggleDisplayNoteForm
         },
-        displayNoteForm,
-        setDisplayNoteForm,
         timestamp,
         setControllable
     }
@@ -126,4 +124,4 @@ const FlowPlayer = () => {
     )
 }
 
-export default FlowPlayer;
+export default EditFlowPage;

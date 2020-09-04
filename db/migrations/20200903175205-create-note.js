@@ -16,7 +16,7 @@ module.exports = {
         }
       },
       timestamp: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.DECIMAL,
         allowNull: false,
         validate: {
           isInt: true,

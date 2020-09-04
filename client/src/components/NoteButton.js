@@ -3,7 +3,7 @@ import { MDBIcon } from 'mdbreact';
 import PlayerContext from '../contexts/PlayerContext';
 
 const NoteButton = () => {
-    const { handlers: { toggleDisplayNoteForm }, playing, controllable } = useContext(PlayerContext);
+    const { handlers: { toggleDisplayNoteForm }, playing } = useContext(PlayerContext);
 
     const handleClick = () => {
         if (playing) {

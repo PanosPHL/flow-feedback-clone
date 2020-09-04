@@ -5,12 +5,14 @@ import auth from './auth';
 import newFlow from './newFlow';
 import categories from './categories';
 import flows from './flows';
+import notes from './notes';
 
 const rootReducer = combineReducers({
   auth,
   newFlow,
   categories,
-  flows
+  flows,
+  notes
 });
 
 let storeEnhancer;

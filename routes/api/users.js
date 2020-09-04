@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require("express-validator");
 
-const { User } = require("../../db/models");
+const { User, Flow, Note } = require("../../db/models");
 const { handleValidationErrors } = require("../util/validation");
 const { generateToken } = require("../util/auth");
 const {
@@ -46,5 +46,30 @@ router.post(
     });
   })
 );
+
+router.get('/:id/flows', asyncHandler(async (req, res, next) => {
+  const flows = await Flow.findAll({
+    where: {
+      userId: parseInt(req.params.id)
+    }
+  });
+
+  res.json({ flows });
+}));
+
+router.get('/:id/notes', asyncHandler(async (req, res, next) => {
+  const notes = await Note.findAll({
+    include: [
+      {
+        model: Flow,
+        where: {
+          userId: parseInt(req.params.id)
+        }
+      }
+    ]
+  });
+
+  res.json({ notes });
+}));
 
 module.exports = router;

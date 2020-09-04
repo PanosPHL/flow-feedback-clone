@@ -46,3 +46,7 @@ body.modal-open {
 .btn-light {
     transition-property: color, background-color, box-shadow;
 }
+
+.hidden {
+    display: none;
+}
