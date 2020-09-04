@@ -5,12 +5,13 @@ import PlayerContext from '../contexts/PlayerContext';
 import { round } from '../utils/round';
 
 const NoteCard = (props) => {
-    const {timestamp} = useContext(PlayerContext);
+    const {timestamp, player} = useContext(PlayerContext);
 
     useEffect(() => {
-        if (round(timestamp, 1) === round(props.timestamp, 1)) {
-            console.log('hit');
-            document.getElementById('play/pause').click();
+        if (round(timestamp, 2) === round(props.timestamp, 2)) {
+            if (player) {
+                player.pauseVideo();
+            }
         }
     }, [timestamp])
 

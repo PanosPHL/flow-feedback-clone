@@ -77,6 +77,7 @@ const EditFlowPage = () => {
         height: 450,
         width: 800,
         playerVars: {
+            controls: 0,
             disablekb: 1
         }
     }
@@ -90,13 +91,13 @@ const EditFlowPage = () => {
     const onPlay = () => {
         setPlaying(true);
         setTimestampInterval = setInterval(() => {
-            setTimestamp(round(player.getCurrentTime(), 2));
+            setTimestamp(player.getCurrentTime(), 2);
         }, 50);
     }
 
     const onPause = () => {
         setPlaying(false);
-        setTimestamp(round(player.getCurrentTime(), 2));
+        setTimestamp(player.getCurrentTime(), 2);
         clearInterval(setTimestampInterval);
     }
 

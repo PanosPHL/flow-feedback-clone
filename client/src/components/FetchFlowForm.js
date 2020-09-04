@@ -19,6 +19,7 @@ const FetchFlowForm = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const res = await dispatch(setVid(url));
+        console.log(res);
 
         if (res.ok) {
             props.history.push('/flow/new');
