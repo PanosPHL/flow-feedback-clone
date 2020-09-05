@@ -96,3 +96,8 @@
     font-size: 12px;
     padding: 0;
 }
+
+.noteTopRow {
+    display: flex;
+    justify-content: space-between;
+}

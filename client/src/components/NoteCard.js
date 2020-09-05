@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { timestampToStr } from '../utils/timestamps';
-import { MDBCard, MDBCardBody, MDBCardText, MDBContainer, MDBAlert } from "mdbreact";
+import { MDBCard, MDBCardBody, MDBCardText, MDBContainer, MDBAlert, MDBIcon } from "mdbreact";
 import PlayerContext from '../contexts/PlayerContext';
 import { round } from '../utils/round';
 import styles from '../css-modules/EditFlowPage.module.css';
@@ -110,7 +110,10 @@ const NoteCard = (props) => {
                     <>
                     <MDBCardText>
                         <span className={styles.textDiv}>
-                        <span className={styles.cardTimestamp + ' font-weight-bold'}>{timestampToStr(props.timestamp)} </span>
+                            <span className={styles.noteTopRow}>
+                        <span className={styles.cardTimestamp + ' font-weight-bold'}>{timestampToStr(props.timestamp)}</span>
+                        <button type='button' className='btn btn-red btn-sm'><MDBIcon icon='trash' /></button>
+                            </span>
                         <span className={styles.cardContent}>{noteContent}</span>
                         </span>
                     </MDBCardText>
