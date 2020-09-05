@@ -36,12 +36,14 @@ const FlowTitleAndForm = ({ flowName }) => {
         <div className={styles.container}>
         { showForm ?
         <form className={styles.formContainer}>
-            <input type='text' onChange={handleNameChange} className='form-control form-control-lg' value={name}/>
+            <input type='text' onChange={handleNameChange} className={styles.input + ' form-control form-control-lg'} value={name}/>
+            <div>
             <button type='submit' className='btn btn-amber'><MDBIcon icon='paper-plane' /></button>
             <button onClick={handleCancelClick} type='button' className='btn btn-blue-grey'><MDBIcon icon='times'/></button>
+            </div>
         </form> :
         <>
-            <h3 className={styles.textalign}>{flowName}</h3>
+            <h4 className={styles.textalign + ' font-weight-normal'}>{flowName}</h4>
             <button onClick={handleEditClick} type='button' className='btn btn-amber'><MDBIcon icon='edit'></MDBIcon></button>
             </>}
         </div>

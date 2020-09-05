@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
 .formAndPlayerContainer {
     position: relative;
     grid-column: 1 / 4;
@@ -8,9 +10,9 @@
 
 .noteForm {
     position: absolute;
-    width: 20vw;
-    height: 14vh;
-    top: 33.5vh;
+    width: 24vw;
+    height: 16vh;
+    top: 51.5vh;
     left: 0.2vw;
     background-color: white;
     padding: 0.7em;
@@ -28,6 +30,7 @@
     grid-template-rows: repeat(5, 20vh);
     overflow: hidden;
     height: 100vh;
+    font-family: 'Lato';
 }
 
 .noteCardContainer {
@@ -61,7 +64,7 @@
 }
 
 .textarea {
-    padding: 1.2em;
+    rows: 5;
 }
 
 .buttonContainer {
