@@ -1,30 +1,52 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { timestampToStr } from '../utils/timestamps';
 import { MDBCard, MDBCardBody, MDBCardText, MDBContainer, MDBIcon, MDBCardHeader } from "mdbreact";
 import PlayerContext from '../contexts/PlayerContext';
 import { round } from '../utils/round';
+import styles from '../css-modules/EditFlowPage.module.css';
 
 const NoteCard = (props) => {
-    const {timestamp, player, pausedCard, setPausedCard} = useContext(PlayerContext);
+    const { timestamp, player, pausedCard, setPausedCard, playing } = useContext(PlayerContext);
+    const [inactive, setInactive] = useState('inactiveCard');
 
     useEffect(() => {
         if (round(timestamp, 1) === round(props.timestamp, 1)) {
-            if (player && pausedCard !== props.noteId) {
+            if (player && props.noteId !== pausedCard) {
                 player.pauseVideo();
                 setPausedCard(props.noteId);
+                setInactive('activeCard');
             }
         }
-    }, [timestamp, pausedCard, player, props.noteId, props.timestamp, setPausedCard])
+    }, [timestamp]);
+
+    useEffect(() => {
+        if (pausedCard !== props.noteId) {
+            setInactive('inactiveCard');
+        }
+    }, [pausedCard, playing]);
+
+    const handleClick = () => {
+        if (player) {
+            player.seekTo(props.timestamp, true);
+            player.pauseVideo();
+            setPausedCard(props.noteId);
+            setInactive('activeCard');
+        }
+    }
 
     return (
-        <MDBContainer>
+        <MDBContainer id={`note-${props.i}`} className={inactive + " " + styles.noteCard} onClick={handleClick}>
             <MDBCard>
                 <MDBCardBody>
                     <MDBCardText>
-                        <h6>{timestampToStr(props.timestamp)}</h6>
+                        <div className={styles.textDiv}>
+                        <span>{timestampToStr(props.timestamp)} </span>
                         <span>{props.content}</span>
+                        </div>
                     </MDBCardText>
-                    <button type='button' className='btn'>Button</button>
+                    <div className={styles.buttonDiv}>
+                    <button type='button' className='btn btn-sm btn-blue-grey'>Edit Note</button>
+                    </div>
                 </MDBCardBody>
             </MDBCard>
         </MDBContainer>

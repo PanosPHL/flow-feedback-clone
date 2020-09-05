@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import YouTube from 'react-youtube';
 import PlayerContext from '../contexts/PlayerContext';
 import FlowPlayerControls from './FlowPlayerControls';
-import { round } from '../utils/round';
 import NoteButton from './NoteButton';
 import NewNoteForm from './NewNoteForm';
 import styles from '../css-modules/EditFlowPage.module.css';
@@ -70,7 +69,7 @@ const EditFlowPage = () => {
         }
 
         fetchCurrentFlow();
-    });
+    }, []);
 
     useEffect(() => {
         if (currentFlow.Notes) {
@@ -113,6 +112,9 @@ const EditFlowPage = () => {
         setPlaying(true);
         setTimestampInterval = setInterval(() => {
             setTimestamp(player.getCurrentTime(), 2);
+        }, 50);
+        setTimeout(() => {
+            setPausedCard(-1);
         }, 50);
     }
 
@@ -178,14 +180,12 @@ const EditFlowPage = () => {
                 <FlowPlayerControls />
             </div>
             <div className={styles.noteCardContainer}>
-                <div id='accordian'>
                 {currentFlow.Notes ?
                     currentFlow.Notes.map((note, i) => {
                         return (
-                            <NoteCard key={`note-${i + 1}`} content={note.content} timestamp={note.timestamp} noteId={note.id}/>
+                            <NoteCard key={`note-${i + 1}`} content={note.content} timestamp={note.timestamp} noteId={note.id} i={i + 1}/>
                         )
                     }) : <> </>}
-                </div>
             </div>
             </div>
         </PlayerContext.Provider>

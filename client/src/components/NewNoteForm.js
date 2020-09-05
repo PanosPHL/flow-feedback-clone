@@ -24,7 +24,7 @@ const NewNoteForm = () => {
 
     return (
         <form onSubmit={handleSubmit} className={styles.noteForm + ' hidden submit-note'}>
-            <textarea onChange={handleContentChange} className={styles.textarea + ' form-control form-control-lg'} />
+            <textarea onChange={handleContentChange} className={styles.textarea + ' form-control form-control-sm'} />
             <div className={styles.noteFormButtons}>
             <button type='submit' className='btn btn-primary btn-indigo btn-sm'>Submit</button>
             <button onClick={() => toggleDisplayNoteForm() }type='button' className='btn btn-blue-grey btn-sm'>Cancel</button>

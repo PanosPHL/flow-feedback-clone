@@ -22,12 +22,40 @@
     display: grid;
     grid-template-columns: repeat(5, 20vw);
     grid-template-rows: repeat(5, 20vh);
-    background-color: rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    height: 100vh;
 }
 
 .noteCardContainer {
     display: flex;
     flex-direction: column;
     grid-column: 5 / 7;
+    grid-row: 1 / 8;
     margin-right: 1.2em;
+    width: 21vw;
+    background-color: rgb(231, 231, 231);
+    padding-top: 1.5em;
+    border-left: 2px solid rgb(200, 200, 200);
+    box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.2);
+    height: 1000vh;
+    overflow: scroll;
+}
+
+.noteCard {
+    margin: 0.4em 0;
+}
+
+.buttonDiv {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.textDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.textarea {
+    padding: 1.2em;
 }

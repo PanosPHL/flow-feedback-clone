@@ -50,3 +50,18 @@ body.modal-open {
 .hidden {
     display: none;
 }
+
+.inactiveCard {
+    filter: brightness(88%);
+    transform: scale(.9, .9);
+    transition: filter 0.4s, transform 0.4s, padding-right 0.4s, margin 0.4s;
+}
+
+.activeCard {
+    margin-right: 1em;
+    padding-right: 2em;
+    padding-left: 1.2em;
+    width: 20vw;
+    margin: 0.8em 0;
+    transition: filter 0.4s, transform 0.4s, padding-right 0.4s, margin 0.4s;
+}
