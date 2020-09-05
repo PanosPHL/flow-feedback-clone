@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { timestampToStr } from '../utils/timestamps';
-import { MDBCard, MDBCardBody, MDBCardText, MDBContainer } from "mdbreact";
+import { MDBCard, MDBCardBody, MDBCardText, MDBContainer, MDBAlert } from "mdbreact";
 import PlayerContext from '../contexts/PlayerContext';
 import { round } from '../utils/round';
 import styles from '../css-modules/EditFlowPage.module.css';
@@ -12,6 +12,7 @@ const NoteCard = (props) => {
     const [inactive, setInactive] = useState('inactiveCard');
     const [displayForm, setDisplayForm] = useState(false);
     const [noteContent, setNoteContent] = useState(props.content);
+    const [errors, setErrors] = useState({ errors: [] });
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -33,6 +34,10 @@ const NoteCard = (props) => {
             setControllable(true);
         }
     }, [pausedCard, playing, props.noteId]);
+
+    useEffect(() => {
+        setErrors({ errors: [] });
+    }, [displayForm, noteContent])
 
     const handleClick = () => {
         if (pausedCard === props.noteId) {
@@ -76,7 +81,10 @@ const NoteCard = (props) => {
         if (res.ok) {
             setNoteContent(res.data.note.content);
             setDisplayForm(false);
+            return;
         }
+
+        setErrors({ errors: res.data.error.errors });
     }
 
     return (
@@ -85,6 +93,13 @@ const NoteCard = (props) => {
                 <MDBCardBody>
                     { displayForm ?
                     <div>
+                        {errors.errors.length ?
+                        <MDBAlert color='danger'>
+                            <ul>
+                                {errors.errors.map((error, i) => <li key={`error-${i + 1}`}>{error.split(': ')[1]}</li>)}
+                            </ul>
+                        </MDBAlert> :
+                        <></>}
                         <form onSubmit={handleSubmit}>
                             <textarea className='form-control form-control-sm' value={noteContent} onChange={handleContentChange}/>
                             <button type='submit' className='btn btn-sm btn-indigo'>Submit</button>
