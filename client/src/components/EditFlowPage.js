@@ -7,6 +7,7 @@ import NoteButton from './NoteButton';
 import NewNoteForm from './NewNoteForm';
 import styles from '../css-modules/EditFlowPage.module.css';
 import NoteCard from './NoteCard';
+import { MDBIcon } from 'mdbreact';
 
 const EditFlowPage = () => {
     const id = Number(window.location.toString().split('/')[4]);
@@ -127,6 +128,10 @@ const EditFlowPage = () => {
     }
 
     const togglePlay = () => {
+        if (!controllable) {
+            return;
+        }
+
         if (playing) {
             player.pauseVideo();
         } else {
@@ -135,6 +140,10 @@ const EditFlowPage = () => {
     }
 
     const seek = (event) => {
+        if (!controllable) {
+            return;
+        }
+
         if (playing) {
             let time = player.getCurrentTime();
 
@@ -171,6 +180,8 @@ const EditFlowPage = () => {
         <PlayerContext.Provider value={value}>
             <div className={styles.pageContainer}>
             <div id='formAndPlayerContainer' className={styles.formAndPlayerContainer}>
+            <h3>{currentFlow.name}</h3>
+            <button type='button' className='btn btn-amber'><MDBIcon icon='edit'></MDBIcon></button>
                 <YouTube opts={opts} onPlay={onPlay} onPause={onPause} onReady={onReady} videoId={currentFlow.videoId} />
                 { currentFlow.userId === userId ?
                 <>

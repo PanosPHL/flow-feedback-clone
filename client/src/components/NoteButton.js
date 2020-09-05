@@ -13,7 +13,7 @@ const NoteButton = () => {
     }
 
     return (
-        <button onClick={handleClick} className='btn btn-light'><MDBIcon icon='comment' /></button>
+        <button onClick={handleClick} className='btn btn-amber'><MDBIcon icon='comment' /></button>
     )
 }
 
