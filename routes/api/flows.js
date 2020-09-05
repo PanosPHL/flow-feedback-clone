@@ -95,7 +95,7 @@ router.put('/:id(\\d+)', validateFlowUpdate, handleValidationErrors, asyncHandle
         await flowRecord.save({ transaction: t });
 
         return flowRecord;
-    })
+    });
 
     res.json({ flow });
 }))

@@ -91,8 +91,8 @@ export default function noteReducer(state = [], action) {
                     slice = i;
                     break;
                 }
-                return [...state.slice(0, i), action.note, ...state.slice(i + 1)]
             }
+            return [...state.slice(0, slice), action.note, ...state.slice(slice + 1)]
         default:
             return state;
     }

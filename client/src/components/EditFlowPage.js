@@ -181,7 +181,7 @@ const EditFlowPage = () => {
         <PlayerContext.Provider value={value}>
             <div className={styles.pageContainer}>
             <div id='formAndPlayerContainer' className={styles.formAndPlayerContainer}>
-            <FlowTitleAndForm flowName={currentFlow.name}/>
+            <FlowTitleAndForm flowName={currentFlow.name} id={currentFlow.id}/>
                 <YouTube opts={opts} onPlay={onPlay} onPause={onPause} onReady={onReady} videoId={currentFlow.videoId} />
                 <div className={styles.buttonContainer}>
                 { currentFlow.userId === userId ?
