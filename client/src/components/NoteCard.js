@@ -87,8 +87,8 @@ const NoteCard = (props) => {
     }
 
     return (
-        <MDBContainer id={`note-${props.i}`} className={inactive + " " + styles.noteCard} onClick={handleClick}>
-            <MDBCard>
+        <MDBContainer id={`note-${props.i}`} className={inactive} onClick={handleClick}>
+            <MDBCard className={styles.noteCard}>
                 <MDBCardBody>
                     { displayForm ?
                     <div>
@@ -99,21 +99,23 @@ const NoteCard = (props) => {
                             </ul>
                         </MDBAlert> :
                         <></>}
-                        <form onSubmit={handleSubmit}>
-                            <textarea className='form-control form-control-sm' value={noteContent} onChange={handleContentChange}/>
+                        <form className={styles.editNoteForm} onSubmit={handleSubmit}>
+                            <textarea className='form-control form-control-sm' value={noteContent} onChange={handleContentChange} rows='4.0'/>
+                            <div className={styles.formButtons}>
                             <button type='submit' className='btn btn-sm btn-indigo'>Submit</button>
                             <button onClick={handleFormCancel} type='button' className='btn btn-sm btn-blue-grey'>Cancel</button>
+                            </div>
                         </form>
                     </div> :
                     <>
                     <MDBCardText>
                         <span className={styles.textDiv}>
-                        <span>{timestampToStr(props.timestamp)} </span>
-                        <span>{noteContent}</span>
+                        <span className={styles.cardTimestamp + ' font-weight-bold'}>{timestampToStr(props.timestamp)} </span>
+                        <span className={styles.cardContent}>{noteContent}</span>
                         </span>
                     </MDBCardText>
                     <div className={styles.buttonDiv}>
-                    <button onClick={handleBtnClick} type='button' className='btn btn-sm btn-blue-grey'>Edit Note</button>
+                    <button onClick={handleBtnClick} type='button' className={styles.editNote + ' btn btn-sm btn-blue-grey'}>Edit Note</button>
                     </div>
                     </>
                 }

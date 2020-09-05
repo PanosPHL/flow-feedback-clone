@@ -97,8 +97,8 @@ const EditFlowPage = () => {
     }
 
     const opts = {
-        height: 562.5,
-        width: 1000,
+        height: 630,
+        width: 1120,
         playerVars: {
             controls: 0,
             disablekb: 1,

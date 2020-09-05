@@ -12,11 +12,13 @@
     position: absolute;
     width: 24vw;
     height: 16vh;
-    top: 51.5vh;
+    top: 58.5vh;
     left: 0.2vw;
     background-color: white;
     padding: 0.7em;
     border-radius: 3px;
+    border: 1px solid rgb(207, 207, 207);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .noteFormButtons {
@@ -41,7 +43,7 @@
     margin-right: 1.2em;
     width: 21vw;
     background-color: rgb(231, 231, 231);
-    padding-top: 1.5em;
+    padding-top: 0;
     border-left: 2px solid rgb(200, 200, 200);
     box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.2);
     height: 1000vh;
@@ -49,7 +51,8 @@
 }
 
 .noteCard {
-    margin: 0.4em 0;
+    margin: 0.8em 0;
+    height: 18vh;
 }
 
 .buttonDiv {
@@ -61,15 +64,35 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-}
-
-.textarea {
-    rows: 5;
+    height: 8vh;
 }
 
 .buttonContainer {
     display: flex;
-    width: 52.3vw;
+    width: 58.6vw;
     justify-content: space-between;
     margin-top: 1em;
+}
+
+.cardTimestamp {
+    margin-bottom: 0em;
+}
+
+.cardContent {
+    font-size: 16px;
+    margin-top: 0em;
+}
+
+.formButtons {
+    display: flex;
+    width: inherit;
+    justify-content: right;
+    margin-top: 0.4em;
+    margin-left: 5.8em;
+}
+
+.newNoteErrors {
+    height: 1vw;
+    font-size: 12px;
+    padding: 0;
 }
