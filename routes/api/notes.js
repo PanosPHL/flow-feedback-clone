@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../util/validation');
 
-const { Note } = require('../../db/models');
+const { Note, sequelize } = require('../../db/models');
 
 const router = express.Router();
 
@@ -21,14 +21,40 @@ const validateNote = [
         .withMessage('Please ensure your note is associated with a specific flow')
 ]
 
+const validateNoteUpdate = [
+    check('content')
+        .exists()
+        .isLength({ min: 1 })
+        .withMessage('Please provide some valid content for your note')
+]
+
 router.post('/', validateNote, handleValidationErrors, asyncHandler(async (req, res, next) => {
-    console.log(req.body);
     const { content, timestamp, flowId } = req.body;
 
     const note = await Note.create({
         content,
         timestamp: Number(timestamp),
         flowId
+    });
+
+    res.json({ note });
+}));
+
+router.get('/', validateNoteUpdate, handleValidationErrors, asyncHandler(async (req, res, next) => {
+    const { content, noteId } = req.body;
+
+    const note = await sequelize.transaction(async (t) => {
+        let noteRecord = await Note.findOne({
+            where: {
+                id: noteId
+            }
+        }, { transaction: t });
+
+        noteRecord.content = content;
+
+        await noteRecord.save({ transaction: t });
+
+        return noteRecord;
     });
 
     res.json({ note });
