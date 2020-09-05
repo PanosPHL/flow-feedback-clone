@@ -123,4 +123,8 @@ const NoteCard = (props) => {
     )
 }
 
+NoteCard.defaultProps = {
+
+};
+
 export default NoteCard;

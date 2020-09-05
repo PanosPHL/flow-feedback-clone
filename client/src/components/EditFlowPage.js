@@ -175,14 +175,13 @@ const EditFlowPage = () => {
         setControllable,
         pausedCard,
         setPausedCard,
-        currentFlow
     }
 
     return (
         <PlayerContext.Provider value={value}>
             <div className={styles.pageContainer}>
             <div id='formAndPlayerContainer' className={styles.formAndPlayerContainer}>
-            <FlowTitleAndForm />
+            <FlowTitleAndForm flowName={currentFlow.name}/>
                 <YouTube opts={opts} onPlay={onPlay} onPause={onPause} onReady={onReady} videoId={currentFlow.videoId} />
                 <div className={styles.buttonContainer}>
                 { currentFlow.userId === userId ?

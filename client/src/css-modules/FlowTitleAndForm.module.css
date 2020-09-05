@@ -6,5 +6,10 @@
 }
 
 .textalign {
+    display: block;
     margin: auto 0;
+}
+
+.formContainer {
+    display: flex;
 }
