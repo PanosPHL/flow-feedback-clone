@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+    width: 52.4vw;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+
+.textalign {
+    margin: auto 0;
+}

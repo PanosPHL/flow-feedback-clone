@@ -8,6 +8,7 @@ import NewNoteForm from './NewNoteForm';
 import styles from '../css-modules/EditFlowPage.module.css';
 import NoteCard from './NoteCard';
 import { MDBIcon } from 'mdbreact';
+import FlowTitleAndForm from './FlowTitleAndForm';
 
 const EditFlowPage = () => {
     const id = Number(window.location.toString().split('/')[4]);
@@ -96,8 +97,8 @@ const EditFlowPage = () => {
     }
 
     const opts = {
-        height: 450,
-        width: 800,
+        height: 562.5,
+        width: 1000,
         playerVars: {
             controls: 0,
             disablekb: 1,
@@ -173,16 +174,17 @@ const EditFlowPage = () => {
         timestamp,
         setControllable,
         pausedCard,
-        setPausedCard
+        setPausedCard,
+        currentFlow
     }
 
     return (
         <PlayerContext.Provider value={value}>
             <div className={styles.pageContainer}>
             <div id='formAndPlayerContainer' className={styles.formAndPlayerContainer}>
-            <h3>{currentFlow.name}</h3>
-            <button type='button' className='btn btn-amber'><MDBIcon icon='edit'></MDBIcon></button>
+            <FlowTitleAndForm />
                 <YouTube opts={opts} onPlay={onPlay} onPause={onPause} onReady={onReady} videoId={currentFlow.videoId} />
+                <div className={styles.buttonContainer}>
                 { currentFlow.userId === userId ?
                 <>
                 <NewNoteForm />
@@ -191,6 +193,7 @@ const EditFlowPage = () => {
                 <div>
                 </div>}
                 <FlowPlayerControls />
+                </div>
             </div>
             <div className={styles.noteCardContainer}>
                 {currentFlow.Notes ?
