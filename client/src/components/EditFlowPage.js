@@ -69,7 +69,7 @@ const EditFlowPage = () => {
         }
 
         fetchCurrentFlow();
-    }, []);
+    }, [id]);
 
     useEffect(() => {
         if (currentFlow.Notes) {
@@ -98,7 +98,8 @@ const EditFlowPage = () => {
         width: 800,
         playerVars: {
             controls: 0,
-            disablekb: 1
+            disablekb: 1,
+            autoplay: 1
         }
     }
 
@@ -115,7 +116,7 @@ const EditFlowPage = () => {
         }, 50);
         setTimeout(() => {
             setPausedCard(-1);
-        }, 50);
+        }, 100);
     }
 
     const onPause = () => {

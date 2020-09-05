@@ -54,7 +54,7 @@ body.modal-open {
 .inactiveCard {
     filter: brightness(88%);
     transform: scale(.9, .9);
-    transition: filter 0.4s, transform 0.4s, padding-right 0.4s, margin 0.4s;
+    transition: filter 0.3s, transform 0.3s, padding-right 0.3s, margin 0.3s;
 }
 
 .activeCard {
@@ -63,5 +63,10 @@ body.modal-open {
     padding-left: 1.2em;
     width: 20vw;
     margin: 0.8em 0;
-    transition: filter 0.4s, transform 0.4s, padding-right 0.4s, margin 0.4s;
+    transition: filter 0.3s, transform 0.3s, padding-right 0.3s, margin 0.3s;
 }
+
+.ytp-pause-overlay .ytp-pause-overlay-controls-hidden
+ {
+    display: none;
+ }

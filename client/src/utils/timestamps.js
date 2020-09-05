@@ -4,6 +4,10 @@ export const timestampToStr = (timestamp) => {
         let times = [minutes, seconds];
         let str = [];
 
+        if (minutes === 0 && seconds === 0) {
+            return '0:00'
+        }
+
         for (let i = 0; i < times.length; i++) {
             if (times[i] > 0) {
                 if (times[i] < 10) {
