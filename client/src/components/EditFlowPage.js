@@ -59,6 +59,7 @@ const EditFlowPage = () => {
 
     useEffect(() => {
         const fetchCurrentFlow = async () => {
+            console.log(id);
             const res = await fetch(`/api/flows/${id}`);
             res.data = await res.json();
             console.log(res);
@@ -68,7 +69,7 @@ const EditFlowPage = () => {
             }
         }
 
-        fetchCurrentFlow();
+            fetchCurrentFlow();
     }, [id]);
 
     useEffect(() => {

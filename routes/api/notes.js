@@ -40,19 +40,18 @@ router.post('/', validateNote, handleValidationErrors, asyncHandler(async (req, 
     res.json({ note });
 }));
 
-router.get('/', validateNoteUpdate, handleValidationErrors, asyncHandler(async (req, res, next) => {
-    const { content, noteId } = req.body;
-
-    const note = await sequelize.transaction(async (t) => {
+router.put('/:id(\\d+)', validateNoteUpdate, handleValidationErrors, asyncHandler(async (req, res, next) => {
+    const { content } = req.body;
+    const note = await sequelize.transaction(async (un) => {
         let noteRecord = await Note.findOne({
             where: {
-                id: noteId
+                id: parseInt(req.params.id)
             }
-        }, { transaction: t });
+        }, { transaction: un });
 
         noteRecord.content = content;
 
-        await noteRecord.save({ transaction: t });
+        await noteRecord.save();
 
         return noteRecord;
     });

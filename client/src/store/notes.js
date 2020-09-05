@@ -2,6 +2,7 @@ import { csrfToken } from './auth';
 
 const ADD_NOTE = '/notes/ADD_NOTE';
 const SET_NOTES = '/notes/SET_NOTES';
+const EDIT_NOTE = '/notes/EDIT_NOTE';
 
 const addNote = (note) => {
     return {
@@ -50,10 +51,48 @@ export const setUserNotes = (userId) => {
     }
 }
 
+const editNote = (note) => {
+    return {
+        type: EDIT_NOTE,
+        note
+    }
+}
+
+export const updateNote = (noteId, content) => {
+    return async dispatch => {
+        const res = await fetch(`/api/notes/${noteId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrfToken
+            },
+            body: JSON.stringify({ content })
+        });
+
+        console.log(res);
+
+        res.data = await res.json();
+
+        if (res.ok) {
+            dispatch(editNote(res.data.note));
+        }
+        return res;
+    }
+}
+
 export default function noteReducer(state = [], action) {
     switch(action.type) {
         case ADD_NOTE:
             return [...state, action.note];
+        case EDIT_NOTE:
+            let slice;
+            for (let i = 0; i < state.length; i++) {
+                if (state[i].id === action.note.id) {
+                    slice = i;
+                    break;
+                }
+                return [...state.slice(0, i), action.note, ...state.slice(i + 1)]
+            }
         default:
             return state;
     }
