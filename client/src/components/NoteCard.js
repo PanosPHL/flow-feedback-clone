@@ -31,7 +31,6 @@ const NoteCard = (props) => {
         if (pausedCard !== props.noteId) {
             setInactive('inactiveCard');
             setDisplayForm(false);
-            setControllable(true);
         }
     }, [pausedCard, playing, props.noteId]);
 
