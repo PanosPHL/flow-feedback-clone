@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { MDBCol, MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText } from 'mdbreact';
+import { Link } from 'react-router-dom';
+import styles from '../css-modules/BrowseFlows.module.css';
+import BrowseFlowCard from './BroseFlowCard';
 
 const BrowseMyFlows = () => {
     const userId = useSelector(state => state.auth.id);
@@ -22,23 +24,23 @@ const BrowseMyFlows = () => {
     }, []);
 
     return (
-        <div>
-        { flows.flows.length ?
-        flows.flows.map((flow) => {
-            return (
-                <MDBCol>
-                <MDBCard>
-                    <MDBCardImage className='img-fluid' src={flow.Video.thumbnail}/>
-            <MDBCardTitle>{flow.name}</MDBCardTitle>
-            <MDBCardText>
-                <span>{flow.Category.name}</span>
-                <span>{flow.description}</span>
-            </MDBCardText>
-                </MDBCard>
-                </MDBCol>
-            )
-        })
-    : <> </>}
+        <div className={styles.pageContainer}>
+        <div className={styles.cardContainer}>
+            {flows.flows.length ?
+                flows.flows.map((flow, i) => {
+                    return (
+                        <Link to={`/flow/${flow.id}`}>
+                            <BrowseFlowCard
+                            i={i}
+                            thumbnail={flow.Video.thumbnail}
+                            name={flow.name}
+                            catName={flow.Category.name}
+                            description={flow.description}/>
+                        </Link>
+                    )
+                })
+                : <> </>}
+        </div>
         </div>
     )
 }
