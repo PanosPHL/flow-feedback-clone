@@ -25,7 +25,7 @@ const NoteCard = (props) => {
                 setInactive('activeCard');
             }
         }
-    }, [timestamp, pausedCard, player, props.noteId, props.timestamp, setPausedCard]);
+    }, [timestamp, pausedCard, player, props.noteId, props.timestamp, setPausedCard, props.i]);
 
     useEffect(() => {
         if (pausedCard !== props.noteId) {
@@ -93,14 +93,14 @@ const NoteCard = (props) => {
                     { displayForm ?
                     <div>
                         {errors.errors.length ?
-                        <MDBAlert color='danger'>
+                        <MDBAlert color='danger' className={styles.editNoteErrors}>
                             <ul>
                                 {errors.errors.map((error, i) => <li key={`error-${i + 1}`}>{error.split(': ')[1]}</li>)}
                             </ul>
                         </MDBAlert> :
                         <></>}
                         <form className={styles.editNoteForm} onSubmit={handleSubmit}>
-                            <textarea className='form-control form-control-sm' value={noteContent} onChange={handleContentChange} rows='4.0'/>
+                            <textarea style={errors.errors.length ? {padding: '0.6em'} : {}}className='form-control form-control-sm' value={noteContent} onChange={handleContentChange} rows={errors.errors.length ? '2.8' : '4.0'}/>
                             <div className={styles.formButtons}>
                             <button type='submit' className='btn btn-sm btn-indigo'>Submit</button>
                             <button onClick={handleFormCancel} type='button' className='btn btn-sm btn-blue-grey'>Cancel</button>

@@ -17,13 +17,13 @@ const FlowTitleAndForm = ({ flowName, id }) => {
         } else {
             setControllable(true);
         }
-    }, [showForm]);
+    }, [showForm, setControllable]);
 
     useEffect(() => {
         if (!name) {
             setName(flowName);
         }
-    }, [flowName]);
+    }, [flowName, name]);
 
     const handleEditClick = () => {
         setShowForm(true);

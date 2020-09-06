@@ -70,3 +70,18 @@ body.modal-open {
  {
     display: none;
  }
+
+ .noteCardContainer {
+    display: flex;
+    flex-direction: column;
+    grid-column: 5 / 6;
+    grid-row: 1 / 6;
+    margin-right: 1.2em;
+    width: 21vw;
+    background-color: rgb(231, 231, 231);
+    padding-bottom: 2em;
+    border-left: 2px solid rgb(200, 200, 200);
+    box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.2);
+    height: 100vh;
+    overflow-y: scroll;
+}

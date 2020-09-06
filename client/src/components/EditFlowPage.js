@@ -194,7 +194,7 @@ const EditFlowPage = () => {
                 <FlowPlayerControls />
                 </div>
             </div>
-            <div className={styles.noteCardContainer}>
+            <div className='noteCardContainer'>
                 {currentFlow.Notes ?
                     currentFlow.Notes.map((note, i) => {
                         return (

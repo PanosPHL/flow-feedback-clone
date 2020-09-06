@@ -25,6 +25,7 @@ const NewNoteForm = () => {
         if (res.ok) {
             toggleDisplayNoteForm();
             addNoteToFlow(res.data.note);
+            setContent('');
             return;
         }
 

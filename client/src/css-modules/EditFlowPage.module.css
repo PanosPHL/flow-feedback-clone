@@ -30,24 +30,9 @@
     display: grid;
     grid-template-columns: repeat(5, 20vw);
     grid-template-rows: repeat(5, 20vh);
-    overflow: hidden;
     height: 100vh;
     font-family: 'Lato';
-}
-
-.noteCardContainer {
-    display: flex;
-    flex-direction: column;
-    grid-column: 5 / 6;
-    grid-row: 1 / 6;
-    margin-right: 1.2em;
-    width: 21vw;
-    background-color: rgb(231, 231, 231);
-    padding-top: 0;
-    border-left: 2px solid rgb(200, 200, 200);
-    box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.2);
-    height: 1000vh;
-    overflow: scroll;
+    overflow-x: hidden;
 }
 
 .noteCard {
@@ -92,12 +77,22 @@
 }
 
 .newNoteErrors {
-    height: 1vw;
+    height: 2.8vh;
     font-size: 12px;
-    padding: 0;
+    padding-top: 0.4vh;
 }
 
 .noteTopRow {
     display: flex;
     justify-content: space-between;
+}
+
+.editNoteErrors {
+    height: 2vh;
+    font-size: 12px;
+    padding: 0;
+}
+
+.editNoteErrors ul {
+    padding-left: 1.5vw;
 }
