@@ -74,7 +74,7 @@ const FlowTitleAndForm = ({ flowName, id }) => {
             </>}
         </div>
         { errors.errors.length ?
-            <MDBAlert color='danger'>
+            <MDBAlert color='danger' className={styles.errors}>
                 <ul>
                     {errors.errors.map((error, i) => {
                         return (
