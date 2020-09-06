@@ -1,19 +1,26 @@
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
-import auth from './auth';
+import auth, { RESET_STATE } from './auth';
 import newFlow from './newFlow';
 import categories from './categories';
 import flows from './flows';
 import notes from './notes';
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   auth,
   newFlow,
   categories,
   flows,
   notes
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === RESET_STATE) {
+    state = {};
+  }
+  return appReducer(state, action);
+}
 
 let storeEnhancer;
 
