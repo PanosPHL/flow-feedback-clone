@@ -5,10 +5,10 @@ import { MDBCard, MDBCardBody, MDBCardText, MDBContainer, MDBAlert, MDBIcon } fr
 import PlayerContext from '../contexts/PlayerContext';
 import { round } from '../utils/round';
 import styles from '../css-modules/EditFlowPage.module.css';
-import { updateNote } from '../store/notes';
+import { updateNote, deleteNote } from '../store/notes';
 
 const NoteCard = (props) => {
-    const { timestamp, player, pausedCard, setPausedCard, playing, setControllable } = useContext(PlayerContext);
+    const { timestamp, player, pausedCard, setPausedCard, playing, setControllable, handlers: { deleteNoteFromFlow } } = useContext(PlayerContext);
     const [inactive, setInactive] = useState('inactiveCard');
     const [displayForm, setDisplayForm] = useState(false);
     const [noteContent, setNoteContent] = useState(props.content);
@@ -96,6 +96,14 @@ const NoteCard = (props) => {
         setDeleteConf(false);
     }
 
+    const handleDeleteConfirmation = async () => {
+        const res = await dispatch(deleteNote(props.noteId));
+
+        if (res.ok) {
+            deleteNoteFromFlow(props.noteId);
+        }
+    }
+
     return (
         <MDBContainer id={`note-${props.i}`} className={inactive} onClick={handleClick}>
             <MDBCard className={styles.noteCard}>
@@ -123,7 +131,7 @@ const NoteCard = (props) => {
                         <div>
                             <h5>Are you sure you want to delete this note?</h5>
                             <div className={styles.deleteButtonsContainer}>
-                            <button className='btn btn-green btn-sm'><MDBIcon icon='check' /></button>
+                            <button onClick={handleDeleteConfirmation} className='btn btn-green btn-sm'><MDBIcon icon='check' /></button>
                             <button onClick={handleDelCancel} className='btn btn-red btn-sm'><MDBIcon icon='times' /></button>
                             </div>
                         </div>

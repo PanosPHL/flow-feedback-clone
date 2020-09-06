@@ -87,6 +87,20 @@ const EditFlowPage = () => {
         setCurrentFlow(newState);
     }
 
+    const deleteNoteFromFlow = (noteId) => {
+        const newState = Object.assign({}, currentFlow);
+        let slice;
+        for (let i = 0; i < newState.Notes.length; i++) {
+            if (newState.Notes[i].id === noteId) {
+                slice = i;
+                break;
+            }
+        }
+        newState.Notes = [...newState.Notes.slice(0, slice), ...newState.Notes.slice(slice + 1)];
+        newState.Notes.sort(sortNotes);
+        setCurrentFlow(newState);
+    }
+
     const toggleControllable = () => {
         setControllable(!controllable);
     }
@@ -169,7 +183,8 @@ const EditFlowPage = () => {
             togglePlay,
             seek,
             toggleDisplayNoteForm,
-            addNoteToFlow
+            addNoteToFlow,
+            deleteNoteFromFlow
         },
         timestamp,
         setControllable,

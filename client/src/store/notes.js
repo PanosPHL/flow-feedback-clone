@@ -3,6 +3,7 @@ import { csrfToken } from './auth';
 const ADD_NOTE = '/notes/ADD_NOTE';
 const SET_NOTES = '/notes/SET_NOTES';
 const EDIT_NOTE = '/notes/EDIT_NOTE';
+const DELETE_NOTE = '/notes/DELETE_NOTE';
 
 const addNote = (note) => {
     return {
@@ -69,12 +70,35 @@ export const updateNote = (noteId, content) => {
             body: JSON.stringify({ content })
         });
 
-        console.log(res);
-
         res.data = await res.json();
 
         if (res.ok) {
             dispatch(editNote(res.data.note));
+        }
+        return res;
+    }
+}
+
+const delNote = (noteId) => {
+    return {
+        type: DELETE_NOTE,
+        id: noteId
+    }
+}
+
+export const deleteNote = (noteId) => {
+    return async dispatch => {
+        const res = await fetch(`/api/notes/${noteId}`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            }
+        });
+
+        res.data = await res.json();
+
+        if (res.ok) {
+            dispatch(delNote(res.data.id));
         }
         return res;
     }
@@ -92,7 +116,16 @@ export default function noteReducer(state = [], action) {
                     break;
                 }
             }
-            return [...state.slice(0, slice), action.note, ...state.slice(slice + 1)]
+            return [...state.slice(0, slice), action.note, ...state.slice(slice + 1)];
+        case DELETE_NOTE:
+            let delSlice;
+            for (let i = 0; i < state.length; i++) {
+                if (state[i].id === action.id) {
+                    slice = i;
+                    break;
+                }
+            return [...state.slice(0, delSlice), ...state.slice(delSlice + 1)];
+            }
         default:
             return state;
     }
