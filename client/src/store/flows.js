@@ -69,7 +69,6 @@ export const updateFlowName = (flowId, name) => {
             body: JSON.stringify({ name })
         });
 
-        console.log(res);
         res.data = await res.json();
 
         if (res.ok) {

@@ -19,8 +19,6 @@ const NoteCard = (props) => {
     useEffect(() => {
         if (round(timestamp, 1) === round(props.timestamp, 1)) {
             if (player && props.noteId !== pausedCard) {
-                console.log(props.timestamp, timestamp);
-                console.log(props.noteId, pausedCard);
                 player.pauseVideo();
                 setPausedCard(props.noteId);
                 setInactive('activeCard');
@@ -75,7 +73,6 @@ const NoteCard = (props) => {
     }
 
     const handleSubmit = async (event) => {
-        console.log(props.noteId, noteContent);
         event.preventDefault();
         const res = await dispatch(updateNote(props.noteId, noteContent));
 

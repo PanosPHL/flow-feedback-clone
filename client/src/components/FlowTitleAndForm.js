@@ -45,7 +45,7 @@ const FlowTitleAndForm = ({ flowName, id }) => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         const res = await dispatch(updateFlowName(id, name));
-        console.log(res);
+
         if (res.ok) {
             setShowForm(false);
             setName(res.data.flow.name);

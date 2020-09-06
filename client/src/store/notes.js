@@ -44,7 +44,7 @@ export const setUserNotes = (userId) => {
         const res = await fetch(`/api/users/${userId}/notes`);
 
         res.data = await res.json();
-        console.log(res);
+
         if (res.ok) {
             dispatch(setNotes(res.data.notes));
         }
