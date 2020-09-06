@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux'
-import { timestampToStr } from '../utils/timestamps';
 import { MDBCard, MDBCardBody, MDBCardText, MDBContainer, MDBAlert, MDBIcon } from "mdbreact";
 import PlayerContext from '../contexts/PlayerContext';
 import { round } from '../utils/round';
@@ -9,6 +8,9 @@ import { updateNote, deleteNote } from '../store/notes';
 import NoteCardContext from '../contexts/NoteCardContext';
 import EditNoteForm from './EditNoteForm';
 import DeleteNoteForm from './DeleteNoteForm';
+import { timestampToStr } from '../utils/timestamps';
+import NoteBodyContent from './NoteCardBodyContent';
+import NoteCardBodyContent from './NoteCardBodyContent';
 
 const NoteCard = (props) => {
     const { timestamp, player, pausedCard, setPausedCard, playing, setControllable, handlers: { deleteNoteFromFlow } } = useContext(PlayerContext);
@@ -111,7 +113,9 @@ const NoteCard = (props) => {
             handleFormCancel,
             handleContentChange,
             handleDeleteConfirmation,
-            handleDelCancel
+            handleDelCancel,
+            handleBtnClick,
+            handleTrashClick
         },
         noteContent
     }
@@ -129,18 +133,7 @@ const NoteCard = (props) => {
                         <DeleteNoteForm />
                         :
                         <>
-                        <MDBCardText>
-                        <span className={styles.textDiv}>
-                            <span className={styles.noteTopRow}>
-                        <span className={styles.cardTimestamp + ' font-weight-bold'}>{timestampToStr(props.timestamp)}</span>
-                        <button onClick={handleTrashClick} type='button' className={styles.trashButton + ' btn btn-light btn-sm'}><MDBIcon icon='trash' /></button>
-                            </span>
-                        <span className={styles.cardContent}>{noteContent}</span>
-                        </span>
-                    </MDBCardText>
-                    <div className={styles.buttonDiv}>
-                    <button onClick={handleBtnClick} type='button' className={styles.editNote + ' btn btn-sm btn-blue-grey'}>Edit Note</button>
-                    </div>
+                        <NoteCardBodyContent timestamp={props.timestamp} />
                     </>
                     }
                      </>
