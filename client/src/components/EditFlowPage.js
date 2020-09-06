@@ -83,7 +83,6 @@ const EditFlowPage = () => {
     const addNoteToFlow = (note) => {
         const newState = Object.assign({}, currentFlow);
         newState.Notes.push(note);
-        newState.Notes.sort(sortNotes);
         setCurrentFlow(newState);
     }
 
@@ -97,7 +96,7 @@ const EditFlowPage = () => {
             }
         }
         newState.Notes = [...newState.Notes.slice(0, slice), ...newState.Notes.slice(slice + 1)];
-        newState.Notes.sort(sortNotes);
+        console.log(newState.Notes);
         setCurrentFlow(newState);
     }
 
