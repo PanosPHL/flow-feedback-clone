@@ -14,7 +14,7 @@ const stateReset = () => {
     }
 }
 
-export const logoutUser = () => {
+const logoutUser = () => {
     return {
         type: LOGOUT_USER
     }
