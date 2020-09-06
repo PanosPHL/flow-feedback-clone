@@ -13,6 +13,7 @@ const NoteCard = (props) => {
     const [displayForm, setDisplayForm] = useState(false);
     const [noteContent, setNoteContent] = useState(props.content);
     const [errors, setErrors] = useState({ errors: [] });
+    const [deleteConf, setDeleteConf] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -31,6 +32,7 @@ const NoteCard = (props) => {
         if (pausedCard !== props.noteId) {
             setInactive('inactiveCard');
             setDisplayForm(false);
+            setDeleteConf(false);
         }
     }, [pausedCard, playing, props.noteId]);
 
@@ -86,6 +88,14 @@ const NoteCard = (props) => {
         setErrors({ errors: res.data.error.errors });
     }
 
+    const handleTrashClick = () => {
+        setDeleteConf(true);
+    }
+
+    const handleDelCancel = () => {
+        setDeleteConf(false);
+    }
+
     return (
         <MDBContainer id={`note-${props.i}`} className={inactive} onClick={handleClick}>
             <MDBCard className={styles.noteCard}>
@@ -108,11 +118,22 @@ const NoteCard = (props) => {
                         </form>
                     </div> :
                     <>
-                    <MDBCardText>
+                    {
+                        deleteConf ?
+                        <div>
+                            <h5>Are you sure you want to delete this note?</h5>
+                            <div className={styles.deleteButtonsContainer}>
+                            <button className='btn btn-green btn-sm'><MDBIcon icon='check' /></button>
+                            <button onClick={handleDelCancel} className='btn btn-red btn-sm'><MDBIcon icon='times' /></button>
+                            </div>
+                        </div>
+                        :
+                        <>
+                        <MDBCardText>
                         <span className={styles.textDiv}>
                             <span className={styles.noteTopRow}>
                         <span className={styles.cardTimestamp + ' font-weight-bold'}>{timestampToStr(props.timestamp)}</span>
-                        <button type='button' className={styles.trashButton + ' btn btn-red btn-sm'}><MDBIcon icon='trash' /></button>
+                        <button onClick={handleTrashClick} type='button' className={styles.trashButton + ' btn btn-light btn-sm'}><MDBIcon icon='trash' /></button>
                             </span>
                         <span className={styles.cardContent}>{noteContent}</span>
                         </span>
@@ -121,6 +142,8 @@ const NoteCard = (props) => {
                     <button onClick={handleBtnClick} type='button' className={styles.editNote + ' btn btn-sm btn-blue-grey'}>Edit Note</button>
                     </div>
                     </>
+                    }
+                     </>
                 }
                 </MDBCardBody>
             </MDBCard>

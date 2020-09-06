@@ -109,3 +109,10 @@
     top: 120px;
     right: 10px;
 }
+
+.deleteButtonsContainer {
+    display: flex;
+    width: 12vw;
+    justify-content: space-between;
+    margin: 2.4em auto 0 auto;
+}
