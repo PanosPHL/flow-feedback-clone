@@ -96,3 +96,16 @@
 .editNoteErrors ul {
     padding-left: 1.5vw;
 }
+
+.trashButton {
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    padding: 0.6em 1.2em !important;
+}
+
+.editNote {
+    position: absolute;
+    top: 120px;
+    right: 10px;
+}

@@ -112,7 +112,7 @@ const NoteCard = (props) => {
                         <span className={styles.textDiv}>
                             <span className={styles.noteTopRow}>
                         <span className={styles.cardTimestamp + ' font-weight-bold'}>{timestampToStr(props.timestamp)}</span>
-                        <button type='button' className='btn btn-red btn-sm'><MDBIcon icon='trash' /></button>
+                        <button type='button' className={styles.trashButton + ' btn btn-red btn-sm'}><MDBIcon icon='trash' /></button>
                             </span>
                         <span className={styles.cardContent}>{noteContent}</span>
                         </span>
