@@ -50,7 +50,8 @@ router.post('/', validateFlow, handleValidationErrors, asyncHandler(async (req, 
                 siteId: 1,
                 url: video.url,
                 title: video.title,
-                duration: toSeconds(parse(video.duration))
+                duration: toSeconds(parse(video.duration)),
+                thumbnail: video.thumbnail
             }, { transaction: t });
         }
 
@@ -98,14 +99,32 @@ router.put('/:id(\\d+)', validateFlowUpdate, handleValidationErrors, asyncHandle
     });
 
     res.json({ flow });
-}))
+}));
+
+router.delete('/:id(\\d+)', asyncHandler(async (req, res) => {
+    const id = parseInt(req.params.id);
+    const flowId = sequelize.transaction(async (df) => {
+        await Flow.destroy({
+            where: {
+                id
+            },
+            include: [
+                { model: Note }
+            ]
+        });
+
+        return id;
+    });
+
+    res.json({ message: 'Success', id: flowId });
+}));
 
 router.put('/', validateURL, handleValidationErrors, asyncHandler(async (req, res, next) => {
     const apiReq = {
         id: req.body.url.split('?v=')[1],
         key: process.env.YOUTUBE_API_KEY,
         part: 'snippet,contentDetails',
-        fields: 'items(id,snippet/title,contentDetails/duration)'
+        fields: 'items(id,snippet/title,snippet/thumbnails,contentDetails/duration)'
     };
 
     let fetchParams = [];
@@ -118,13 +137,14 @@ router.put('/', validateURL, handleValidationErrors, asyncHandler(async (req, re
     const apiRes = await fetch(`https://www.googleapis.com/youtube/v3/videos?${fetchParams.join('&')}`);
     apiRes.data = await apiRes.json();
 
-    const { id, snippet: { title }, contentDetails : { duration } } = apiRes.data.items[0]
+    const { id, snippet: { title, thumbnails: { high: { url: thumbnail } } }, contentDetails : { duration } } = apiRes.data.items[0];
 
     res.json({
         id,
         title,
         url: req.body.url,
-        duration
+        duration,
+        thumbnail
     });
 }));
 

@@ -2,12 +2,19 @@ import Cookies from 'js-cookie';
 import { setUserNotes } from './notes';
 import { setUserFlows } from './flows';
 
-export const SET_USER = 'auth/SET_USER';
-export const LOGOUT_USER = 'auth/LOGOUT_USER';
+const SET_USER = 'auth/SET_USER';
+const LOGOUT_USER = 'auth/LOGOUT_USER';
+export const RESET_STATE = '/auth/RESET_STATE';
 
 export const csrfToken = Cookies.get('XSRF-TOKEN');
 
-export const logoutUser = () => {
+const stateReset = () => {
+    return {
+        type: RESET_STATE
+    }
+}
+
+const logoutUser = () => {
     return {
         type: LOGOUT_USER
     }
@@ -76,6 +83,7 @@ export const logout = () => {
 
         if (res.ok) {
             dispatch(logoutUser());
+            dispatch(stateReset());
             try {
                 localStorage.removeItem('state')
             } catch (e) {

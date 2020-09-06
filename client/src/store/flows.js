@@ -3,6 +3,7 @@ import { csrfToken } from './auth';
 const ADD_FLOW = '/flows/ADD_FLOW';
 const EDIT_FLOW_NAME = '/flows/EDIT_FLOW_NAME';
 const SET_FLOWS = '/flows/SET_FLOWS';
+const DELETE_FLOW = '/flows/DELETE_FLOW'
 
 const addNewFlow = (flow) => {
     return {
@@ -69,11 +70,36 @@ export const updateFlowName = (flowId, name) => {
             body: JSON.stringify({ name })
         });
 
-        console.log(res);
         res.data = await res.json();
 
         if (res.ok) {
             dispatch(editFlowName(res.data.flow));
+        }
+
+        return res;
+    }
+}
+
+const delFlow = (flowId) => {
+    return {
+        type: DELETE_FLOW,
+        id: flowId
+    }
+}
+
+export const deleteFlow = (flowId) => {
+    return async dispatch => {
+        const res = await fetch(`/api/flows/${flowId}`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            }
+        });
+
+        res.data = res.json();
+
+        if (res.ok) {
+            dispatch(delFlow(flowId));
         }
 
         return res;
@@ -94,6 +120,14 @@ export default function flowReducer(state = [], action) {
                 }
             }
             return [...state.slice(0, slice), action.flow, ...state.slice(slice + 1)];
+        case DELETE_FLOW:
+            let delSlice;
+            for (let i = 0; i < state.length; i++) {
+                if (state[i].id === action.id) {
+                    delSlice = i;
+                }
+            }
+            return [...state.slice(0, delSlice), ...state.slice(delSlice + 1)];
         default:
             return state;
     }

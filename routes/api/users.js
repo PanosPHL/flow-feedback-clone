@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require("express-validator");
 
-const { User, Flow, Note } = require("../../db/models");
+const { User, Flow, Note, Video, Category } = require("../../db/models");
 const { handleValidationErrors } = require("../util/validation");
 const { generateToken } = require("../util/auth");
 const {
@@ -51,7 +51,10 @@ router.get('/:id/flows', asyncHandler(async (req, res, next) => {
   const flows = await Flow.findAll({
     where: {
       userId: parseInt(req.params.id)
-    }
+    },
+    include: [
+      { model: Video, attributes: ['thumbnail'] },
+    { model: Category, attributes: ['name'] }]
   });
 
   res.json({ flows });

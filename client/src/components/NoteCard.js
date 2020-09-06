@@ -1,11 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux'
-import { timestampToStr } from '../utils/timestamps';
 import { MDBCard, MDBCardBody, MDBCardText, MDBContainer, MDBAlert, MDBIcon } from "mdbreact";
 import PlayerContext from '../contexts/PlayerContext';
 import { round } from '../utils/round';
 import styles from '../css-modules/EditFlowPage.module.css';
 import { updateNote, deleteNote } from '../store/notes';
+import NoteCardContext from '../contexts/NoteCardContext';
+import EditNoteForm from './EditNoteForm';
+import DeleteNoteForm from './DeleteNoteForm';
+import { timestampToStr } from '../utils/timestamps';
+import NoteBodyContent from './NoteCardBodyContent';
+import NoteCardBodyContent from './NoteCardBodyContent';
 
 const NoteCard = (props) => {
     const { timestamp, player, pausedCard, setPausedCard, playing, setControllable, handlers: { deleteNoteFromFlow } } = useContext(PlayerContext);
@@ -19,8 +24,6 @@ const NoteCard = (props) => {
     useEffect(() => {
         if (round(timestamp, 1) === round(props.timestamp, 1)) {
             if (player && props.noteId !== pausedCard) {
-                console.log(props.timestamp, timestamp);
-                console.log(props.noteId, pausedCard);
                 player.pauseVideo();
                 setPausedCard(props.noteId);
                 setInactive('activeCard');
@@ -75,7 +78,6 @@ const NoteCard = (props) => {
     }
 
     const handleSubmit = async (event) => {
-        console.log(props.noteId, noteContent);
         event.preventDefault();
         const res = await dispatch(updateNote(props.noteId, noteContent));
 
@@ -104,51 +106,34 @@ const NoteCard = (props) => {
         }
     }
 
+    const value = {
+        errors: errors.errors,
+        handlers: {
+            handleSubmit,
+            handleFormCancel,
+            handleContentChange,
+            handleDeleteConfirmation,
+            handleDelCancel,
+            handleBtnClick,
+            handleTrashClick
+        },
+        noteContent
+    }
+
     return (
+        <NoteCardContext.Provider value={value}>
         <MDBContainer id={`note-${props.i}`} className={inactive} onClick={handleClick}>
             <MDBCard className={styles.noteCard}>
                 <MDBCardBody>
                     { displayForm ?
-                    <div>
-                        {errors.errors.length ?
-                        <MDBAlert color='danger' className={styles.editNoteErrors}>
-                            <ul>
-                                {errors.errors.map((error, i) => <li key={`error-${i + 1}`}>{error.split(': ')[1]}</li>)}
-                            </ul>
-                        </MDBAlert> :
-                        <></>}
-                        <form className={styles.editNoteForm} onSubmit={handleSubmit}>
-                            <textarea style={errors.errors.length ? {padding: '0.6em'} : {}}className='form-control form-control-sm' value={noteContent} onChange={handleContentChange} rows={errors.errors.length ? '2.8' : '4.0'}/>
-                            <div className={styles.formButtons}>
-                            <button type='submit' className='btn btn-sm btn-indigo'>Submit</button>
-                            <button onClick={handleFormCancel} type='button' className='btn btn-sm btn-blue-grey'>Cancel</button>
-                            </div>
-                        </form>
-                    </div> :
+                    <EditNoteForm />:
                     <>
                     {
                         deleteConf ?
-                        <div>
-                            <h5>Are you sure you want to delete this note?</h5>
-                            <div className={styles.deleteButtonsContainer}>
-                            <button onClick={handleDeleteConfirmation} className='btn btn-green btn-sm'><MDBIcon icon='check' /></button>
-                            <button onClick={handleDelCancel} className='btn btn-red btn-sm'><MDBIcon icon='times' /></button>
-                            </div>
-                        </div>
+                        <DeleteNoteForm />
                         :
                         <>
-                        <MDBCardText>
-                        <span className={styles.textDiv}>
-                            <span className={styles.noteTopRow}>
-                        <span className={styles.cardTimestamp + ' font-weight-bold'}>{timestampToStr(props.timestamp)}</span>
-                        <button onClick={handleTrashClick} type='button' className={styles.trashButton + ' btn btn-light btn-sm'}><MDBIcon icon='trash' /></button>
-                            </span>
-                        <span className={styles.cardContent}>{noteContent}</span>
-                        </span>
-                    </MDBCardText>
-                    <div className={styles.buttonDiv}>
-                    <button onClick={handleBtnClick} type='button' className={styles.editNote + ' btn btn-sm btn-blue-grey'}>Edit Note</button>
-                    </div>
+                        <NoteCardBodyContent timestamp={props.timestamp} />
                     </>
                     }
                      </>
@@ -156,6 +141,7 @@ const NoteCard = (props) => {
                 </MDBCardBody>
             </MDBCard>
         </MDBContainer>
+        </NoteCardContext.Provider>
     )
 }
 

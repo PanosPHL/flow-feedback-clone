@@ -43,7 +43,6 @@ const EditFlowPage = () => {
         else if (event.code === 'ArrowLeft') {
             document.querySelector('#rewind').click();
         } else if (event.code === 'Space') {
-            console.log('hit el')
             document.getElementById('play/pause').click();
         } else if (event.code === 'ArrowRight') {
             document.querySelector('#forward').click();
@@ -61,10 +60,8 @@ const EditFlowPage = () => {
 
     useEffect(() => {
         const fetchCurrentFlow = async () => {
-            console.log(id);
             const res = await fetch(`/api/flows/${id}`);
             res.data = await res.json();
-            console.log(res);
 
             if (res.ok) {
                 setCurrentFlow(res.data.flow);
@@ -96,7 +93,6 @@ const EditFlowPage = () => {
             }
         }
         newState.Notes = [...newState.Notes.slice(0, slice), ...newState.Notes.slice(slice + 1)];
-        console.log(newState.Notes);
         setCurrentFlow(newState);
     }
 

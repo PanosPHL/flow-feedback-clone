@@ -7,6 +7,7 @@ import PageLoad from './components/PageLoad';
 import FetchFlow from './components/FetchFlow';
 import NewFlowPage from './components/NewFlowPage';
 import EditFlowPage from './components/EditFlowPage';
+import BrowseFlows from './components/BrowseFlows';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -44,6 +45,9 @@ function App() {
         </Route>
         <Route path='/flow/:id(\d+)' >
           <EditFlowPage />
+        </Route>
+        <Route exact path='/my-flows'>
+          <BrowseFlows />
         </Route>
       </BrowserRouter>
     );

@@ -29,6 +29,9 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         min: 1
       }
+    },
+    thumbnail: {
+      type: DataTypes.STRING(256)
     }
   }, {});
   Video.associate = function (models) {

@@ -45,7 +45,7 @@ const FlowTitleAndForm = ({ flowName, id }) => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         const res = await dispatch(updateFlowName(id, name));
-        console.log(res);
+
         if (res.ok) {
             setShowForm(false);
             setName(res.data.flow.name);
@@ -74,7 +74,7 @@ const FlowTitleAndForm = ({ flowName, id }) => {
             </>}
         </div>
         { errors.errors.length ?
-            <MDBAlert color='danger'>
+            <MDBAlert color='danger' className={styles.errors}>
                 <ul>
                     {errors.errors.map((error, i) => {
                         return (
