@@ -32,3 +32,56 @@ body.modal-open {
 .md-form input:not([type]):focus:not([readonly])+label, .md-form input[type="text"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="password"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="email"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="url"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="time"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="date"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="datetime"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="datetime-local"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="tel"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="number"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="search"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="phone"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="search-md"]:focus:not([readonly])+label, .md-form textarea.md-textarea:focus:not([readonly])+label {
     color: #ffba60;
 }
+
+.btn-light.focus, .btn-light:focus {
+    box-shadow: none;
+    border: 1px solid rgb(207, 207, 207);
+}
+
+.btn-light:hover {
+    box-shadow: none;
+    border: 1px solid rgb(207, 207, 207);
+}
+
+.btn-light {
+    transition-property: color, background-color, box-shadow;
+}
+
+.hidden {
+    display: none;
+}
+
+.inactiveCard {
+    filter: brightness(88%);
+    transform: scale(.9, .9);
+    transition: filter 0.3s, transform 0.3s, padding-right 0.3s, margin 0.3s;
+}
+
+.activeCard {
+    margin-right: 1em;
+    padding-right: 2em;
+    padding-left: 1.2em;
+    width: 20vw;
+    margin: 0.8em 0;
+    transition: filter 0.3s, transform 0.3s, padding-right 0.3s, margin 0.3s;
+}
+
+.ytp-pause-overlay .ytp-pause-overlay-controls-hidden
+ {
+    display: none;
+ }
+
+ .noteCardContainer {
+    display: flex;
+    flex-direction: column;
+    grid-column: 5 / 6;
+    grid-row: 1 / 6;
+    margin-right: 1.2em;
+    width: 21vw;
+    background-color: rgb(231, 231, 231);
+    padding-bottom: 2em;
+    border-left: 2px solid rgb(200, 200, 200);
+    box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.2);
+    height: 100vh;
+    overflow-y: scroll;
+}

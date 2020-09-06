@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    width: 58.6vw;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+
+.textalign {
+    display: block;
+    margin: 0.7em 0 auto 0.4em;
+}
+
+.formContainer {
+    display: flex;
+    justify-content: space-between;
+    width: inherit;
+}
+
+.input {
+    width: 80%;
+    margin-top: 0.2em;
+    font-size: 1.46em;
+}

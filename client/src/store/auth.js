@@ -1,4 +1,6 @@
 import Cookies from 'js-cookie';
+import { setUserNotes } from './notes';
+import { setUserFlows } from './flows';
 
 export const SET_USER = 'auth/SET_USER';
 export const LOGOUT_USER = 'auth/LOGOUT_USER';
@@ -33,6 +35,8 @@ export const login = (email, password) => {
 
         if (res.ok) {
             dispatch(setUser(res.data.user));
+            dispatch(setUserFlows(res.data.user.id));
+            dispatch(setUserNotes(res.data.user.id));
         }
         return res;
     };
@@ -72,6 +76,11 @@ export const logout = () => {
 
         if (res.ok) {
             dispatch(logoutUser());
+            try {
+                localStorage.removeItem('state')
+            } catch (e) {
+                console.log(e);
+            }
         }
 
         return res;
@@ -81,7 +90,7 @@ export const logout = () => {
 export default function authReducer(state = {}, action) {
     switch(action.type) {
         case SET_USER:
-            return action.user
+            return action.user;
         case LOGOUT_USER:
             return {};
         default:

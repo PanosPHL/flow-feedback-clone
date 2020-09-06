@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+.formAndPlayerContainer {
+    position: relative;
+    grid-column: 1 / 5;
+    grid-row: 1 / 5;
+    margin: 2em auto 0 auto;
+}
+
+.noteForm {
+    position: absolute;
+    width: 24vw;
+    height: 16vh;
+    top: 58.5vh;
+    left: 0.6vw;
+    background-color: white;
+    padding: 0.7em;
+    border-radius: 3px;
+    border: 1px solid rgb(207, 207, 207);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.noteFormButtons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.pageContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 20vw);
+    grid-template-rows: repeat(5, 20vh);
+    height: 100vh;
+    font-family: 'Lato';
+    overflow-x: hidden;
+}
+
+.noteCard {
+    margin: 0.8em 0;
+    height: 18vh;
+}
+
+.buttonDiv {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.textDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 8vh;
+}
+
+.buttonContainer {
+    display: flex;
+    width: 58.6vw;
+    justify-content: space-between;
+    margin-top: 1em;
+}
+
+.cardTimestamp {
+    margin-bottom: 0em;
+}
+
+.cardContent {
+    font-size: 16px;
+    margin-top: 0em;
+}
+
+.formButtons {
+    display: flex;
+    width: inherit;
+    justify-content: right;
+    margin-top: 0.4em;
+    margin-left: 5.8em;
+}
+
+.newNoteErrors {
+    height: 2.8vh;
+    font-size: 12px;
+    padding-top: 0.4vh;
+}
+
+.noteTopRow {
+    display: flex;
+    justify-content: space-between;
+}
+
+.editNoteErrors {
+    height: 2vh;
+    font-size: 12px;
+    padding: 0;
+}
+
+.editNoteErrors ul {
+    padding-left: 1.5vw;
+}
+
+.trashButton {
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    padding: 0.6em 1.2em !important;
+}
+
+.editNote {
+    position: absolute;
+    top: 120px;
+    right: 10px;
+}
+
+.deleteButtonsContainer {
+    display: flex;
+    width: 12vw;
+    justify-content: space-between;
+    margin: 2.4em auto 0 auto;
+}
