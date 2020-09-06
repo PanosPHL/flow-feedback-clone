@@ -27,7 +27,8 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Flows'
+          model: 'Flows',
+          onDelete: 'cascade'
         }
       },
       createdAt: {

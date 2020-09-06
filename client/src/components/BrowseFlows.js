@@ -23,6 +23,21 @@ const BrowseMyFlows = () => {
         fetchFlows();
     }, []);
 
+
+    const removeFlow = (id) => {
+        let slice;
+        const newState = Object.assign({}, flows);
+        console.log(newState);
+        for (let i = 0; i < newState.flows.length; i++) {
+            if (newState.flows[i].id === id) {
+                slice = i;
+            }
+        }
+        newState.flows.splice(slice, 1);
+        console.log(newState);
+        setFlows(newState);
+    }
+
     return (
         <div className={styles.pageContainer}>
             <h1>My Flows</h1>
@@ -36,7 +51,9 @@ const BrowseMyFlows = () => {
                             thumbnail={flow.Video.thumbnail}
                             name={flow.name}
                             catName={flow.Category.name}
-                            description={flow.description}/>
+                            description={flow.description}
+                            flowId={flow.id}
+                            removeFlow={removeFlow}/>
                         </Link>
                     )
                 })
