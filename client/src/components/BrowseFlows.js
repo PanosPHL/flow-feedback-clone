@@ -25,6 +25,7 @@ const BrowseMyFlows = () => {
 
     return (
         <div className={styles.pageContainer}>
+            <h1>My Flows</h1>
         <div className={styles.cardContainer}>
             {flows.flows.length ?
                 flows.flows.map((flow, i) => {

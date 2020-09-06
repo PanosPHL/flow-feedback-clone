@@ -99,6 +99,25 @@ router.put('/:id(\\d+)', validateFlowUpdate, handleValidationErrors, asyncHandle
     });
 
     res.json({ flow });
+}));
+
+router.delete('/:id(\\d+)', asyncHandler(async (req, res) => {
+    const id = parseInt(req.params.id);
+    const flowId = sequelize.transaction(async (df) => {
+        let flowRecord = await Flow.findOne({
+            where: {
+                id
+            }
+        }, { transaction: df });
+
+        let flowRecordId = flowRecord.id;
+
+        await flowRecord.destroy({ transaction: df });
+
+        return flowRecordId;
+    });
+
+    res.json({ message: 'Success', id: flowRecordId });
 }))
 
 router.put('/', validateURL, handleValidationErrors, asyncHandler(async (req, res, next) => {
