@@ -189,6 +189,7 @@ const EditFlowPage = () => {
         setControllable,
         pausedCard,
         setPausedCard,
+        currentFlow
     }
 
     return (

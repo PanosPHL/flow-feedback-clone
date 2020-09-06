@@ -12,18 +12,16 @@ const FlowTitleAndForm = ({ flowName, id }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        setName(flowName)
+    }, [flowName]);
+
+    useEffect(() => {
         if (showForm) {
             setControllable(false);
         } else {
             setControllable(true);
         }
     }, [showForm, setControllable]);
-
-    useEffect(() => {
-        if (!name) {
-            setName(flowName);
-        }
-    }, [flowName, name]);
 
     const handleEditClick = () => {
         setShowForm(true);
@@ -67,7 +65,7 @@ const FlowTitleAndForm = ({ flowName, id }) => {
 }
 
 FlowTitleAndForm.defaultProps = {
-
+    flowName: ''
 }
 
 export default FlowTitleAndForm;

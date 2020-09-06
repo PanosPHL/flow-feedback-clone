@@ -11,14 +11,10 @@ const NoteCard = (props) => {
     const { timestamp, player, pausedCard, setPausedCard, playing, setControllable, handlers: { deleteNoteFromFlow } } = useContext(PlayerContext);
     const [inactive, setInactive] = useState('inactiveCard');
     const [displayForm, setDisplayForm] = useState(false);
-    const [noteContent, setNoteContent] = useState('');
+    const [noteContent, setNoteContent] = useState(props.content);
     const [errors, setErrors] = useState({ errors: [] });
     const [deleteConf, setDeleteConf] = useState(false);
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        setNoteContent(props.content);
-    })
 
     useEffect(() => {
         if (round(timestamp, 1) === round(props.timestamp, 1)) {
