@@ -47,6 +47,19 @@
     transition: width 0.3s, padding 0.3s, margin 0.3s;
 }
 
+.lolButtonClosed {
+    width: 1.4vw!important;
+    padding: 0.2em!important;
+    transition: 0.3s;
+}
+
+.lolButtonOpen {
+    width: 2.8vw!important;
+    padding: 0.4em!important;
+    margin-left: 0.8em;
+    transition: 0.3s;
+}
+
 .myFlowsButtonOpen, .createFlowButtonOpen {
     width: 2.8vw!important;
     padding: 0.4em;
@@ -64,12 +77,60 @@
     transition: font-size 0.3s, color 0.3s;
 }
 
+.lolClosed {
+    margin-top: 0.4em;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: rgba(255, 255, 255, 0);
+    font-size: 0;
+    transition: font-size 0.3s, color 0.3s;
+}
+
+.lolOpen {
+    margin-top: 0.8em;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: rgba(255, 255, 255, 1);
+    font-size: 14px;
+    transition: font-size 0.3s, color 0.3s;
+}
+
 .myFlowsOpen, .createFlowOpen {
     margin-top: 2em;
     display: flex;
     flex-direction: column;
     text-align: center;
     color: rgba(255, 255, 255, 1);
-font-size: 14px;
-transition: font-size 0.3s, color 0.3s;
+    font-size: 14px;
+    transition: font-size 0.3s, color 0.3s;
+}
+
+.gamepadClosed {
+    color: white;
+    display: block;
+    margin: 0.3em 0.25em;
+    font-size: 22px;
+    border-bottom: 1px solid black;
+    transition: font-size 0.3s;
+}
+
+.gamepadOpen {
+    color: white;
+    display: block;
+    margin: 0.6em 0.25em;
+    font-size: 44px;
+    border-bottom: 1px solid black;
+    transition: font-size 0.3s;
+}
+
+.lolIconClosed {
+    width: 1vw;
+    filter: invert();
+}
+
+.lolIconOpen {
+    width: 1.4vw;
+    filter: invert();
 }

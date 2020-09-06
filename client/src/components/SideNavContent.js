@@ -25,6 +25,15 @@ const SideNavContent = () => {
                         <span>My Flows</span>
                     </div>
                 </Link>
+                <div className={styles['catContainer' + className]}>
+                    <MDBIcon icon='gamepad' className={styles['gamepad' + className]} />
+                    <Link to='/category/1'>
+                        <div className={styles['lol' + className]}>
+                        <button type='button' className={styles['lolButton' + className] + ' btn btn-amber'}><img src='/images/lol-icon.png' className={styles['lolIcon' + className]}/></button>
+                        <span>League Of Legends</span>
+                        </div>
+                    </Link>
+                </div>
             </div>
         </>
     )

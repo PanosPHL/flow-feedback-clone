@@ -38,7 +38,7 @@ const SideNavComponent = (props) => {
         docked={true}
             open={open}
             onSetOpen={openSidebar}
-            styles={{ sidebar: { background: 'grey', transition: "", WebkitTransition: ""} }}
+            styles={{ sidebar: { background: 'black', transition: "", WebkitTransition: ""} }}
         >
         </Sidebar>
         </SideBarContext.Provider>
