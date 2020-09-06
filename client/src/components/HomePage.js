@@ -12,7 +12,7 @@ import SignUpModal from './SignUpModal';
 import CreateFlowButton from './CreateFlowButton';
 import LogOut from './LogOut';
 
-const LinkToRoot = () => {
+export const LinkToRoot = () => {
     return (
         <>
             <img className={styles.flowNotesLogo} src='/images/flownotesLogo.png' alt='Marvel vs. Capcom cast' />

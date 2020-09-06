@@ -8,3 +8,68 @@
     width: 4vw;
     transition: width 0.3s;
 }
+
+.openButtonClosed {
+    margin-left: 0.7em;
+    width: 1.2vw!important;
+    padding: 0!important;
+    transition: padding 0.3s, width 0.3s;
+}
+
+.openButtonOpen {
+    width: 3vw!important;
+    margin-left: 0.8em;
+    transition: padding 0.3s, width 0.3s
+}
+
+.logoClosed {
+    display: block;
+    width: 1.6vw;
+    margin: 0.4em auto;
+    transition: width 0.3s, margin 0.3s;
+}
+
+.logoOpen {
+    display: block;
+    width: 3.2vw;
+    margin: 0.8em auto;
+    transition: width 0.3s, margin 0.3s;
+}
+
+.lowerContent {
+    margin-top: 6em;
+}
+
+.myFlowsButtonClosed, .createFlowButtonClosed {
+    width: 1.4vw!important;
+    padding: 0!important;
+    margin: 1.6em auto;
+    transition: width 0.3s, padding 0.3s, margin 0.3s;
+}
+
+.myFlowsButtonOpen, .createFlowButtonOpen {
+    width: 2.8vw!important;
+    padding: 0.4em;
+    margin: 0.8em auto;
+    transition: width 0.3s, padding 0.3s, margin 0.3s;
+}
+
+.myFlowsClosed, .createFlowClosed {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: rgba(255, 255, 255, 0);
+    font-size: 0;
+    transition: font-size 0.3s, color 0.3s;
+}
+
+.myFlowsOpen, .createFlowOpen {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: rgba(255, 255, 255, 1);
+font-size: 14px;
+transition: font-size 0.3s, color 0.3s;
+}

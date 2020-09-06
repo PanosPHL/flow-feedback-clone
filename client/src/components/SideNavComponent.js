@@ -1,38 +1,47 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Sidebar from 'react-sidebar';
 import styles from '../css-modules/SideNavComponent.module.css';
-import { MDBIcon } from 'mdbreact';
+import SideBarContext from '../contexts/SideBarContext';
+import SideNavContent from './SideNavContent';
 
 const SideNavComponent = (props) => {
     const [open, setOpen] = useState(false);
-    const [className, setClassName] = useState('sidebarClosed');
+    const [className, setClassName] = useState('Closed');
 
     const openSidebar = () => {
         setOpen(!open)
     }
 
     const toggleSidebar = () => {
-        if (className === 'sidebarClosed') {
-            setClassName('sidebarOpen');
+        if (className === 'Closed') {
+            setClassName('Open');
             return;
         }
-        setClassName('sidebarClosed');
+        setClassName('Closed');
     }
 
+    const value = {
+        className,
+        handlers: {
+            toggleSidebar
+        }
+    };
+
     return (
+        <SideBarContext.Provider value={value}>
         <Sidebar
         sidebar={
-        <button onClick={toggleSidebar} type='button' className='btn btn-sm btn-black'><MDBIcon icon='angle-right' /></button>
+        <SideNavContent />
         }
-        sidebarClassName={styles[className]}
+        sidebarClassName={styles['sidebar' + className]}
         docked={true}
             open={open}
             onSetOpen={openSidebar}
             styles={{ sidebar: { background: 'grey', transition: "", WebkitTransition: ""} }}
         >
-            <button type='button' className='btn' onClick={openSidebar}>Open sidebar</button>
         </Sidebar>
+        </SideBarContext.Provider>
     )
 }
 
