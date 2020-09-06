@@ -39,6 +39,9 @@ module.exports = {
           min: 1
         }
       },
+      thumbnail: {
+        type: Sequelize.STRING(256)
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

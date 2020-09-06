@@ -12,10 +12,12 @@ const BrowseMyFlows = () => {
             res.data = res.json();
 
             if (res.ok) {
-                setFlows({ flows: res.data.Flows})
+                setFlows({ flows: res.data.flows })
             }
         }
-    }, [])
+
+        fetchFlows();
+    }, []);
 
     return (
         <div>
