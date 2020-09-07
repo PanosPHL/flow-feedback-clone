@@ -17,11 +17,13 @@ const CatFlows = (props) => {
 
             res.data = await res.json();
 
-            if (res.ok) {
+            if (res.ok && res.data.category !== null) {
                 setFlows({ flows: res.data.category.Flows });
                 setCategory(res.data.category);
                 return;
             }
+
+            props.history.push('/not-found');
         }
         fetchFlows();
     }, [id]);

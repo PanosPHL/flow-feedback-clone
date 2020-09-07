@@ -27,7 +27,7 @@ const BrowseCats = () => {
         {cats.cats.length ?
         cats.cats.map((cat, i) => {
             return (
-                <CatCard key={`cat-${i + 1}`} cover={cat.cover} catId={cat.id}/>
+                <CatCard key={`cat-${i + 1}`} cover={cat.cover} catId={cat.id} name={cat.name}/>
             )
         }) :
     <> </> }
