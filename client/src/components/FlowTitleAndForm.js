@@ -6,7 +6,7 @@ import styles from '../css-modules/FlowTitleAndForm.module.css';
 import { updateFlowName } from '../store/flows';
 
 const FlowTitleAndForm = ({ flowName, id }) => {
-    const { setControllable } = useContext(PlayerContext);
+    const { setControllable, myFlow } = useContext(PlayerContext);
     const [showForm, setShowForm] = useState(false);
     const [name, setName] = useState('');
     const [errors, setErrors] = useState({ errors: [] });
@@ -70,7 +70,9 @@ const FlowTitleAndForm = ({ flowName, id }) => {
         :
         <>
             <h4 className={styles.textalign + ' font-weight-normal'}>{submitted ? name : flowName}</h4>
-            <button onClick={handleEditClick} type='button' className='btn btn-amber'><MDBIcon icon='edit'></MDBIcon></button>
+            {
+                myFlow ? <button onClick={handleEditClick} type='button' className='btn btn-amber'><MDBIcon icon='edit'></MDBIcon></button> : <></>
+            }
             </>}
         </div>
         { errors.errors.length ?

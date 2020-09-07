@@ -20,6 +20,7 @@ const EditFlowPage = () => {
     const [timestamp, setTimestamp] = useState(0);
     const [controllable, setControllable] = useState(true);
     const [pausedCard, setPausedCard] = useState(-1);
+    const [myFlow, setMyFlow] = useState(false);
 
     const sortNotes = (a, b) => {
         const timeA = parseFloat(a.timestamp);
@@ -62,9 +63,12 @@ const EditFlowPage = () => {
         const fetchCurrentFlow = async () => {
             const res = await fetch(`/api/flows/${id}`);
             res.data = await res.json();
-
             if (res.ok) {
                 setCurrentFlow(res.data.flow);
+
+                if (res.data.flow.userId === userId) {
+                    setMyFlow(true);
+                }
             }
         }
 
@@ -109,7 +113,6 @@ const EditFlowPage = () => {
         height: 630,
         width: 1120,
         playerVars: {
-            controls: 0,
             disablekb: 1,
             autoplay: 1
         }
@@ -185,7 +188,8 @@ const EditFlowPage = () => {
         setControllable,
         pausedCard,
         setPausedCard,
-        currentFlow
+        currentFlow,
+        myFlow
     }
 
     return (
@@ -208,6 +212,7 @@ const EditFlowPage = () => {
                 </div>
             </div>
             <div className='noteCardContainer'>
+                <h5 className={styles.noteContainerHeader + ' font-weight-bold'}>Notes</h5>
                 {currentFlow.Notes ?
                     currentFlow.Notes.map((note, i) => {
                         return (
