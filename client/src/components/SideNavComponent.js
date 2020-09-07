@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import Sidebar from 'react-sidebar';
 import styles from '../css-modules/SideNavComponent.module.css';
 import SideBarContext from '../contexts/SideBarContext';
@@ -40,6 +39,7 @@ const SideNavComponent = (props) => {
             onSetOpen={openSidebar}
             styles={{ sidebar: { background: 'black', transition: "", WebkitTransition: ""} }}
         >
+            <div />
         </Sidebar>
         </SideBarContext.Provider>
     )

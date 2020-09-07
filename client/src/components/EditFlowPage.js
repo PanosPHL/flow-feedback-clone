@@ -7,7 +7,6 @@ import NoteButton from './NoteButton';
 import NewNoteForm from './NewNoteForm';
 import styles from '../css-modules/EditFlowPage.module.css';
 import NoteCard from './NoteCard';
-import { MDBIcon } from 'mdbreact';
 import FlowTitleAndForm from './FlowTitleAndForm';
 import SideNavComponent from './SideNavComponent';
 

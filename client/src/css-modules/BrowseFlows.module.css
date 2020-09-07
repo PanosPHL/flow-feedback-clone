@@ -28,3 +28,18 @@
     overflow: hidden;
     height: 6em;
 }
+
+.headerContainer {
+    display: flex;
+    margin: 1em 0 1em 13em;
+    width: 26vw;
+    justify-content: space-between;
+}
+
+.headerImage {
+    height: 12vh;
+}
+
+.catHeader {
+    margin: auto 0;
+}

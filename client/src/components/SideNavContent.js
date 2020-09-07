@@ -10,7 +10,7 @@ const SideNavContent = () => {
         <>
             <button onClick={toggleSidebar} type='button' className={styles['openButton' + className] + ' btn btn-sm btn-black'}><MDBIcon icon={className === 'Open' ? 'chevron-left' : 'chevron-right'} /></button>
             <Link to='/'>
-                <img src='/images/flownotesLogo.png' className={styles['logo' + className]} />
+                <img alt='flowNotes home' src='/images/flownotesLogo.png' className={styles['logo' + className]} />
             </Link>
             <div className={styles.lowerContent}>
             <Link to='/flow/fetch'>
@@ -29,25 +29,25 @@ const SideNavContent = () => {
                     <MDBIcon icon='gamepad' className={styles['gamepad' + className]} />
                     <Link to='/category/1'>
                         <div className={styles['lol' + className]}>
-                        <button type='button' className={styles['lolButton' + className] + ' btn btn-amber'}><img src='/images/lol-icon.png' className={styles['lolIcon' + className]}/></button>
+                        <button type='button' className={styles['lolButton' + className] + ' btn btn-amber'}><img alt='League of Legends' src='/images/lol-icon.png' className={styles['lolIcon' + className]}/></button>
                         <span>League Of Legends</span>
                         </div>
                     </Link>
                     <Link to='/category/2'>
                         <div className={styles['ssbm' + className]}>
-                        <button type='button' className={styles['lolButton' + className] + ' btn btn-amber'}><img src='/images/ssbm-logo.png' className={styles['lolIcon' + className]}/></button>
+                        <button type='button' className={styles['lolButton' + className] + ' btn btn-amber'}><img alt='Super Smash Bros. Melee' src='/images/ssbm-logo.png' className={styles['lolIcon' + className]}/></button>
                         <span>Melee</span>
                         </div>
                     </Link>
                     <Link to='/category/3'>
                         <div className={styles['overwatch' + className]}>
-                        <button type='button' className={styles['lolButton' + className] + ' btn btn-amber'}><img src='/images/overwatch.png' className={styles['overwatchIcon' + className]}/></button>
+                        <button type='button' className={styles['lolButton' + className] + ' btn btn-amber'}><img alt='Overwatch' src='/images/overwatch.png' className={styles['overwatchIcon' + className]}/></button>
                         <span>Overwatch</span>
                         </div>
                     </Link>
                     <Link to='/category/4'>
                         <div className={styles['csgo' + className]}>
-                            <button type='button' className={styles['lolButton' + className] + ' btn btn-amber'}><img src='/images/cs-go.png' className={styles['csgoIcon' + className]}/></button>
+                            <button type='button' className={styles['lolButton' + className] + ' btn btn-amber'}><img alt='Counter Strike: Global Offensive' src='/images/cs-go.png' className={styles['csgoIcon' + className]}/></button>
                             <span>CS:GO</span>
                         </div>
                     </Link>
