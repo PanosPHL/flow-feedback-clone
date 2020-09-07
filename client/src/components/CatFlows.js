@@ -3,17 +3,11 @@ import { useSelector } from 'react-redux';
 import styles from '../css-modules/BrowseFlows.module.css';
 import SideNavComponent from './SideNavComponent';
 import BrowseFlowCard from './BrowseFlowCard';
+import { withRouter } from 'react-router-dom';
 
-const CatFlows = () => {
-    const id = parseInt(window.location.toString().split('/')[4]);
-    const category = useSelector(state => {
-        for (let i = 0; i < state.categories.length; i++) {
-            let currentCat = state.categories[i];
-            if (state.categories[i].id === id) {
-                return currentCat;
-            }
-        }
-    });
+const CatFlows = (props) => {
+    const id = props.match.params.id;
+    const [category, setCategory] = useState({});
     const currentUser = useSelector(state => state.auth.id);
     const [flows, setFlows] = useState({ flows: [] });
 
@@ -25,10 +19,10 @@ const CatFlows = () => {
 
             if (res.ok) {
                 setFlows({ flows: res.data.category.Flows });
+                setCategory(res.data.category);
                 return;
             }
         }
-
         fetchFlows();
     }, [id]);
 
@@ -51,7 +45,7 @@ const CatFlows = () => {
             <div className={styles.headerContainer}>
                 <h2 className={styles.catHeader}>{category.name}</h2>
             </div>
-            <SideNavComponent />
+            <SideNavComponent pageName='browseFlows'/>
             <div className={styles.cardContainer}>
                 {flows.flows.length ?
                     flows.flows.map((flow, i) => {
@@ -74,4 +68,4 @@ const CatFlows = () => {
     )
 }
 
-export default CatFlows;
+export default withRouter(CatFlows);

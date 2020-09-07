@@ -52,8 +52,8 @@ function App() {
         <Route exact path='/my-flows'>
           <BrowseFlows />
         </Route>
-        <Route exact path='/category/:id(\d+)'>
-          <CatFlows />
+        <Route path='/category/:id(\d+)'>
+          <CatFlows/>
         </Route>
         <Route path='*'>
           <NotFound />

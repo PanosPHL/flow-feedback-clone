@@ -10,7 +10,9 @@ const SideNavContent = () => {
         <>
             <button onClick={toggleSidebar} type='button' className={styles['openButton' + className] + ' btn btn-sm btn-black'}><MDBIcon icon={className === 'Open' ? 'chevron-left' : 'chevron-right'} /></button>
             <Link to='/'>
+                <div>
                 <img alt='flowNotes home' src='/images/flownotesLogo.png' className={styles['logo' + className]} />
+                </div>
             </Link>
             <div className={styles.lowerContent}>
             <Link to='/flow/fetch'>
