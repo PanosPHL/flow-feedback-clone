@@ -13,5 +13,10 @@
  0fIbYBKqzao |      1 | https://www.youtube.com/watch?v=0fIbYBKqzao | Halocline S2J (Falcon) vs. PG Zain (Marth) | Losers Finals | Battle of BC 3                   |      975 | https://i.ytimg.com/vi/0fIbYBKqzao/hqdefault.jpg | 2020-09-07 18:06:56.798-04 | 2020-09-07 18:06:56.798-04
  yLaeWOoqyAA |      1 | https://www.youtube.com/watch?v=yLaeWOoqyAA | Leffen vs Wizzrobe - Losers' Finals: Melee Singles - Smash Summit 8 | Fox vs Captain Falcon   |     1304 | https://i.ytimg.com/vi/yLaeWOoqyAA/hqdefault.jpg | 2020-09-07 18:07:37.609-04 | 2020-09-07 18:07:37.609-04
  _1rRMASiKJg |      1 | https://www.youtube.com/watch?v=_1rRMASiKJg | GOML 2019 SSBM - EMG | Moky (Fox) Vs. Wizzrobe (Falcon) Smash Melee Tournament Losers Eighths |      766 | https://i.ytimg.com/vi/_1rRMASiKJg/hqdefault.jpg | 2020-09-07 18:08:20.944-04 | 2020-09-07 18:08:20.944-04
-(13 rows)
+ bXFTmt-Pb2M |      1 | https://www.youtube.com/watch?v=bXFTmt-Pb2M | FlyQuest vs TSM - Game 1 | Grand Final Playoffs S10 LCS Summer 2020 | FLY vs TSM G1           |     2375 | https://i.ytimg.com/vi/bXFTmt-Pb2M/hqdefault.jpg | 2020-09-07 18:27:52.504-04 | 2020-09-07 18:27:52.504-04
+ roTzaAhQTQM |      1 | https://www.youtube.com/watch?v=roTzaAhQTQM | Cloud 9 vs 100 Thieves | Week 1 Day 3 S10 LCS Summer 2020 | C9 vs 100 W1D3                    |     1759 | https://i.ytimg.com/vi/roTzaAhQTQM/hqdefault.jpg | 2020-09-07 18:29:02.906-04 | 2020-09-07 18:29:02.906-04
+ H7xkzrTya9o |      1 | https://www.youtube.com/watch?v=H7xkzrTya9o | Fnatic vs G2 Esports (BEST GAME EVER!) - LEC Spring 2019 Week 9 Day 1 - FNC vs G2             |     3376 | https://i.ytimg.com/vi/H7xkzrTya9o/hqdefault.jpg | 2020-09-07 18:29:31.005-04 | 2020-09-07 18:29:31.005-04
+ k2OAqgaZxrU |      1 | https://www.youtube.com/watch?v=k2OAqgaZxrU | CLG vs Golden Guardians | Week 2 Day 1 S10 LCS Summer 2020 | CLG vs GG W2D1                   |     2221 | https://i.ytimg.com/vi/k2OAqgaZxrU/hqdefault.jpg | 2020-09-07 18:30:13.632-04 | 2020-09-07 18:30:13.632-04
+ yhI5j-rOy1Y |      1 | https://www.youtube.com/watch?v=yhI5j-rOy1Y | Immortals vs Evil Geniuses | Week 4 Day 3 S10 LCS Summer 2020 | IMT vs EG W4D3                |     3203 | https://i.ytimg.com/vi/yhI5j-rOy1Y/hqdefault.jpg | 2020-09-07 18:31:34.817-04 | 2020-09-07 18:31:34.817-04
+(18 rows)
 
