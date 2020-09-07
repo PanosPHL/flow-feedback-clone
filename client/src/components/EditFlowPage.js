@@ -9,8 +9,9 @@ import styles from '../css-modules/EditFlowPage.module.css';
 import NoteCard from './NoteCard';
 import FlowTitleAndForm from './FlowTitleAndForm';
 import SideNavComponent from './SideNavComponent';
+import { withRouter } from 'react-router-dom';
 
-const EditFlowPage = () => {
+const EditFlowPage = (props) => {
     const id = Number(window.location.toString().split('/')[4]);
     const userId = useSelector(state => state.auth.id);
 
@@ -63,13 +64,16 @@ const EditFlowPage = () => {
         const fetchCurrentFlow = async () => {
             const res = await fetch(`/api/flows/${id}`);
             res.data = await res.json();
-            if (res.ok) {
+            if (res.ok && res.data.flow !== null) {
                 setCurrentFlow(res.data.flow);
 
                 if (res.data.flow.userId === userId) {
                     setMyFlow(true);
                 }
+                return;
             }
+
+            props.history.push('/not-found');
         }
 
             fetchCurrentFlow();
@@ -223,4 +227,4 @@ const EditFlowPage = () => {
     )
 }
 
-export default EditFlowPage;
+export default withRouter(EditFlowPage);
