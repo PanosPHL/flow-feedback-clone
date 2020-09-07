@@ -17,7 +17,16 @@ module.exports = {
       { name: "Immortals vs Evil Geniuses | Week 4 Day 3 S10 LCS Summer 2020 | IMT vs EG W4D3", description: 'EG back in the LCS', userId: 3, videoId: 'yhI5j-rOy1Y', categoryId: 1 },
       // Overwatch
       { name: "Playoffs Round 3A | @LA Gladiators vs @Philadelphia Fusion | Playoffs Week 1 | NA Day 3", description: "Let's go Philly!", userId: 4, videoId: '8ykWVR4IsaY', categoryId: 3 },
-      { name: "FINALS | Paris Eternal vs Philadelphia Fusion | Summer Showdown | NA Day 3", description: '', userId: 4, videoId: 'YPj_4m2Do0k', categoryId: 3 }
+      { name: "FINALS | Paris Eternal vs Philadelphia Fusion | Summer Showdown | NA Day 3", description: '', userId: 4, videoId: 'YPj_4m2Do0k', categoryId: 3 },
+      { name: "@London Spitfire vs @NYXL | Week 29 | APAC Day 1", description: 'NYXL looking dangerous this year', userId: 4, videoId: 'AZr27iqWzWw', categoryId: 3 },
+      { name: "San Francisco Shock vs Vancouver Titans | Week 25 | NA Day 2", description: '', userId: 4, videoId: 'IJwz95WRTM8', categoryId: 3 },
+      { name: "Playoffs Round 1A | @Boston Uprising vs Houston@Outlaws | Playoffs Week 1 | NA Day 1", description: '', userId: 4, videoId: 'dBKmxcOo9KM', categoryId: 3 },
+      // CS:GO
+      { name: "CS:GO - FaZe Clan vs. Fnatic [Mirage] Map 1 - ESL Pro League Season 11 - Stage 2", description: 'Two titans duking it out', userId: 5, videoId: 'S2HnpQ4x0mA', categoryId: 4 },
+      { name: "ELEAGUE CS:GO Premier 2018 - Faze vs Fnatic - Group Stage", description: '', userId: 5, videoId: 'WCMi0E678qo', categoryId: 4 },
+      { name: "ELEAGUE CS:GO Premier 2018 - MiBR vs. Cloud9 - Group Stage", description: '', userId: 5, videoId: 'BDPliBa_QqE', categoryId: 4 },
+      { name: "CS:GO - G2 Esports vs. Team Liquid [Inferno] Map 4 - Final - ESL Pro League Season 9", description: "Let's go Liquid", userId: 5, videoId: 'issovlFJV-A', categoryId: 4 },
+      { name: "CS:GO - Astralis vs. G2 Esports [Dust2] Map 1 - Group B - ESL Pro League Season 10 Finals", description: '', userId: 5, videoId: 'KqF-UugOgp0', categoryId: 4 }
     ])
   },
 
