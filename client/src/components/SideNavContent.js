@@ -33,6 +33,18 @@ const SideNavContent = () => {
                         <span>League Of Legends</span>
                         </div>
                     </Link>
+                    <Link to='/category/2'>
+                        <div className={styles['ssbm' + className]}>
+                        <button type='button' className={styles['lolButton' + className] + ' btn btn-amber'}><img src='/images/ssbm-logo.png' className={styles['lolIcon' + className]}/></button>
+                        <span>Melee</span>
+                        </div>
+                    </Link>
+                    <Link to='/category/3'>
+                        <div className={styles['overwatch' + className]}>
+                        <button type='button' className={styles['lolButton' + className] + ' btn btn-amber'}><img src='/images/overwatch.png' className={styles['overwatchIcon' + className]}/></button>
+                        <span>Overwatch</span>
+                        </div>
+                    </Link>
                 </div>
             </div>
         </>

@@ -77,8 +77,8 @@
     transition: font-size 0.3s, color 0.3s;
 }
 
-.lolClosed {
-    margin-top: 0.4em;
+.lolClosed, .ssbmClosed, .overwatchClosed {
+    margin-top: 0.8em;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -87,8 +87,8 @@
     transition: font-size 0.3s, color 0.3s;
 }
 
-.lolOpen {
-    margin-top: 0.8em;
+.lolOpen, .ssbmOpen, .overwatchOpen {
+    margin-top: 1.6em;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -133,4 +133,14 @@
 .lolIconOpen {
     width: 1.4vw;
     filter: invert();
+}
+
+.overwatchIconClosed {
+    width: 1vw;
+    transition: 0.3s;
+}
+
+.overwatchIconOpen {
+    width: 2vw;
+    transition: 0.3s;
 }
