@@ -1,0 +1,10 @@
+.pageContainer {
+    width: 100%;
+}
+
+.textContainer {
+    width: 80vw;
+    height: 50vh;
+    margin: 12% auto;
+    text-align: center;
+}
