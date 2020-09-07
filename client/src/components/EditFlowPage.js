@@ -73,7 +73,7 @@ const EditFlowPage = () => {
         }
 
             fetchCurrentFlow();
-    }, [id]);
+    }, [id, userId]);
 
     useEffect(() => {
         if (currentFlow.Notes) {

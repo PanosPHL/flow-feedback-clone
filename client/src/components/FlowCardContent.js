@@ -3,7 +3,7 @@ import { MDBCardImage, MDBCardBody, MDBCardText, MDBCardTitle, MDBIcon  } from '
 import FlowCardContext from '../contexts/FlowCardContext';
 import styles from '../css-modules/BrowseFlows.module.css';
 
-const FlowCardContent = ({ thumbnail, name, catName, description, myFlow }) => {
+const FlowCardContent = ({ thumbnail, name, catName, description, myFlow, owner }) => {
     const { handlers: { handleTrashClick } } = useContext(FlowCardContext);
 
     return (
@@ -14,6 +14,10 @@ const FlowCardContent = ({ thumbnail, name, catName, description, myFlow }) => {
                     <MDBCardText>
                         <span className={styles.innerText}>
                         <span>{catName}</span>
+                        {
+                            myFlow ? <></> :
+                            <span>By: {owner}</span>
+                        }
                         <span>{description}</span>
                         </span>
                     </MDBCardText>

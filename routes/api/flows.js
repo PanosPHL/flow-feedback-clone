@@ -6,14 +6,14 @@ const { handleValidationErrors } = require('../util/validation');
 const { toSeconds, parse } = require('iso8601-duration');
 
 const { sequelize } = require('../../db/models');
-const { Flow, Video, Note, Category } = require('../../db/models');
+const { Flow, Video, Note, Category, User } = require('../../db/models');
 
 const validateFlow = [
     check('name', 'Please provide a title for your flow')
-    .exists(),
+        .exists(),
     check('categoryId', 'Please select a valid category for your flow')
-    .exists()
-    .custom((value) => value > 0)
+        .exists()
+        .custom((value) => value > 0)
 ];
 
 const validateURL = [
@@ -29,7 +29,7 @@ const validateURL = [
 const validateFlowUpdate = [
     check('name', 'Please provide a valid Flow name')
         .exists()
-        .isLength({ min: 1, max: 256})
+        .isLength({ min: 1, max: 256 })
 ];
 
 const router = express.Router();
@@ -66,7 +66,7 @@ router.post('/', validateFlow, handleValidationErrors, asyncHandler(async (req, 
         return flow;
     });
 
-        res.json({ flow });
+    res.json({ flow });
 }));
 
 router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
@@ -74,8 +74,8 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
         where: {
             id: parseInt(req.params.id)
         },
-        include: [{ model: Note}],
-        order: [[{model: Note} , 'timestamp', 'asc']]
+        include: [{ model: Note }],
+        order: [[{ model: Note }, 'timestamp', 'asc']]
     });
 
     res.json({ flow });
@@ -137,7 +137,7 @@ router.put('/', validateURL, handleValidationErrors, asyncHandler(async (req, re
     const apiRes = await fetch(`https://www.googleapis.com/youtube/v3/videos?${fetchParams.join('&')}`);
     apiRes.data = await apiRes.json();
 
-    const { id, snippet: { title, thumbnails: { high: { url: thumbnail } } }, contentDetails : { duration } } = apiRes.data.items[0];
+    const { id, snippet: { title, thumbnails: { high: { url: thumbnail } } }, contentDetails: { duration } } = apiRes.data.items[0];
 
     res.json({
         id,
@@ -153,8 +153,9 @@ router.get('/recent', asyncHandler(async (req, res) => {
         order: [['createdAt', 'DESC']],
         limit: 4,
         include: [
-            {model: Video },
-        { model: Category }]
+            { model: Video },
+            { model: Category },
+            { model: User, attributes: ['email'] }]
     });
 
     res.json({ flows });

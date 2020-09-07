@@ -7,7 +7,7 @@ import DeleteFlowForm from './DeleteFlowForm';
 import { deleteFlow } from '../store/flows';
 import { Link } from 'react-router-dom';
 
-const BrowseFlowCard = ({ i, thumbnail, name, catName, description, flowId, removeFlow, myFlow }) => {
+const BrowseFlowCard = ({ i, thumbnail, name, catName, description, flowId, removeFlow, myFlow, owner }) => {
     const [displayDel, setDisplayDel] = useState(false);
     const dispatch = useDispatch();
 
@@ -71,7 +71,7 @@ const BrowseFlowCard = ({ i, thumbnail, name, catName, description, flowId, remo
                     width: '20em',
                     height: '22em'
                 }}>
-                    <FlowCardContent thumbnail={thumbnail} name={name} catName={catName} description={description} myFlow={myFlow}/>
+                    <FlowCardContent thumbnail={thumbnail} name={name} catName={catName} description={description} myFlow={myFlow} owner={owner}/>
                 </MDBCard>
             </MDBContainer>
         </FlowCardContext.Provider>

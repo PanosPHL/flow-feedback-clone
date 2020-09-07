@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import CatCard from './CatCard';
 import styles from '../css-modules/BrowseCats.module.css';
