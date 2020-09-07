@@ -49,7 +49,6 @@ const CatFlows = () => {
     return (
         <div className={styles.pageContainer}>
             <div className={styles.headerContainer}>
-                <img alt='Category Cover' src={category.cover} className={styles.headerImage}/>
                 <h2 className={styles.catHeader}>{category.name}</h2>
             </div>
             <SideNavComponent />

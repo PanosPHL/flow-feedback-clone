@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setUser } from './store/auth';
 import HomePage from './components/HomePage';
@@ -9,6 +9,7 @@ import NewFlowPage from './components/NewFlowPage';
 import EditFlowPage from './components/EditFlowPage';
 import BrowseFlows from './components/BrowseFlows';
 import CatFlows from './components/CatFlows';
+import NotFound from './components/NotFound';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -35,6 +36,7 @@ function App() {
 
     return (
       <BrowserRouter>
+      <Switch>
         <Route exact path='/'>
           <HomePage />
         </Route>
@@ -53,6 +55,10 @@ function App() {
         <Route exact path='/category/:id(\d+)'>
           <CatFlows />
         </Route>
+        <Route path='*'>
+          <NotFound />
+        </Route>
+      </Switch>
       </BrowserRouter>
     );
 }
