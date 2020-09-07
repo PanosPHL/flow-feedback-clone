@@ -14,6 +14,7 @@ import LogOut from './LogOut';
 import HomePageCarousel from './HomePageCarousel';
 import BrowseRecentFlows from './BrowseRecentFlows';
 import BrowseCats from './BrowseCats';
+import HomePageDropdown from './HomePageDropdown';
 
 export const LinkToRoot = () => {
     return (
@@ -59,7 +60,7 @@ const HomePage = () => {
                                 {
                                     currentUser ?
                                         <div className={styles.headerTopRow__rightContainer_loggedIn}>
-                                            <CreateFlowButton />
+                                            <HomePageDropdown />
                                             <LogOut />
                                         </div> :
                                         <div className={styles.headerTopRow__rightContainer_notLoggedIn}>

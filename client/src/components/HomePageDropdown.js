@@ -1,22 +1,25 @@
 import React from 'react';
-import { MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem } from 'mdbreact';
+import { MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBBtn } from 'mdbreact';
 import { Link } from 'react-router-dom';
+import styles from '../css-modules/HomePageDropdown.module.css';
 
 const HomePageDropdown = () => {
     return (
         <MDBDropdown>
-            <MDBDropdownToggle caret color='amber'>
+            <MDBDropdownToggle caret color='amber' className={styles.dropdown}>
                 <MDBIcon icon='user' />
             </MDBDropdownToggle>
             <MDBDropdownMenu>
-            <MDBDropdownItem>
                 <Link to='/flow/fetch'>
-                    Create Flow
+            <MDBDropdownItem>
+                Create Flow
+            </MDBDropdownItem>
                 </Link>
                 <Link to='/my-flows'>
+                    <MDBDropdownItem>
                     My Flows
+                    </MDBDropdownItem>
                 </Link>
-            </MDBDropdownItem>
             </MDBDropdownMenu>
         </MDBDropdown>
     )
