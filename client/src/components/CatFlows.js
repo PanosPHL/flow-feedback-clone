@@ -14,6 +14,7 @@ const CatFlows = () => {
             }
         }
     });
+    const currentUser = useSelector(state => state.auth.id);
     const [flows, setFlows] = useState({ flows: [] });
 
     useEffect(() => {
@@ -50,7 +51,7 @@ const CatFlows = () => {
                                 catName={category.name}
                                 description={flow.description}
                                 flowId={flow.id}
-                                myFlow={false} />
+                                myFlow={currentUser === flow.userId} />
                         )
                     })
                     : <> </>}

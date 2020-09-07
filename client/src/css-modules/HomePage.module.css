@@ -2,7 +2,7 @@
 
 .headerSplashContainer {
     height: 60vh;
-    background-image: url("https://www.desktopbackground.org/download/3440x1440/2015/09/16/1011919_13-quality-marvel-vs-capcom-wallpapers-video-games_3823x5276_h.jpg");
+    background-image: url("./mvc-background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -21,12 +21,12 @@
 }
 
 .headerSplash__contentBox {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.4);
     height: inherit;
     z-index: 1;
     width: 65vw;
     margin: 0 auto;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(4px);
 }
 
 .headerTopRowContainer {

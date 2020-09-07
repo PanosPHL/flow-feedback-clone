@@ -11,11 +11,12 @@ import SignUpModalButton from './SignUpModalButton';
 import SignUpModal from './SignUpModal';
 import CreateFlowButton from './CreateFlowButton';
 import LogOut from './LogOut';
+import HomePageCarousel from './HomePageCarousel';
 
 export const LinkToRoot = () => {
     return (
         <>
-            <img className={styles.flowNotesLogo} src='/images/flownotesLogo.png' alt='Marvel vs. Capcom cast' />
+            <img className={styles.flowNotesLogo} src='/images/flownotesLogo.png' alt='flowNotes logo' />
             <span className={styles.flowNotesText}>flowNotes</span>
         </>
     );
@@ -64,6 +65,7 @@ const HomePage = () => {
                                         </div>
                                 }
                             </div>
+                            <HomePageCarousel />
                         </MDBBox>
                     </div>
                     <LogInModal />
