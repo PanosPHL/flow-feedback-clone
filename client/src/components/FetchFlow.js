@@ -3,10 +3,12 @@ import { MDBBox } from 'mdbreact';
 import FlowFormTopRow from './FlowFormTopRow';
 import FetchFlowForm from './FetchFlowForm';
 import styles from '../css-modules/FetchFlow.module.css';
+import SideNavComponent from './SideNavComponent';
 
 const FetchFlow = () => {
     return (
         <>
+        <SideNavComponent />
         <div className={styles.formContainer}>
         <MDBBox className={styles.formText + ' mx-auto'}>
             <FlowFormTopRow />

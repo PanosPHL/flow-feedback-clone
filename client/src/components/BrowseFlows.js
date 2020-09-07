@@ -41,7 +41,7 @@ const BrowseMyFlows = () => {
 
     return (
         <div className={styles.pageContainer}>
-            <h1>My Flows</h1>
+            <h2 className={styles.header}>My Flows</h2>
             <SideNavComponent />
         <div className={styles.cardContainer}>
             {flows.flows.length ?

@@ -2,11 +2,13 @@
     width: 2vw;
     overflow: hidden;
     transition: width 0.3s;
+    height: 100%;
 }
 
 .sidebarOpen {
     width: 4vw;
     transition: width 0.3s;
+    height: 100%;
 }
 
 .openButtonClosed {

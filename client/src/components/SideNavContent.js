@@ -13,7 +13,7 @@ const SideNavContent = () => {
                 <img src='/images/flownotesLogo.png' className={styles['logo' + className]} />
             </Link>
             <div className={styles.lowerContent}>
-            <Link to='/flow/new'>
+            <Link to='/flow/fetch'>
                 <div className={styles['createFlow' + className]}>
                 <button type='button' className={styles['createFlowButton' + className] + ' btn btn-amber'}><MDBIcon icon='plus' /></button>
                 <span>Create Flow</span>

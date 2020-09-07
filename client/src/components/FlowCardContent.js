@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
-import { MDBCardImage, MDBCardBody, MDBCardText, MDBCardTitle, MDBIcon } from 'mdbreact';
+import { MDBCardImage, MDBCardBody, MDBCardText, MDBCardTitle, MDBIcon  } from 'mdbreact';
 import FlowCardContext from '../contexts/FlowCardContext';
+import styles from '../css-modules/BrowseFlows.module.css';
 
 const FlowCardContent = ({ thumbnail, name, catName, description }) => {
     const { handlers: { handleTrashClick } } = useContext(FlowCardContext);
@@ -9,12 +10,14 @@ const FlowCardContent = ({ thumbnail, name, catName, description }) => {
         <>
         <MDBCardImage className='img-fluid' src={thumbnail} waves />
                 <MDBCardBody>
-                    <MDBCardTitle style={{ fontSize: '16px', color: '#636363' }}>{name.split(' ').slice(0, 9).join(' ') + '...'}</MDBCardTitle>
+                    <MDBCardTitle style={{ fontSize: '16px', color: '#636363', marginBottom: '0.4em' }}>{name.split('').slice(0, 30).join('') + '...'}</MDBCardTitle>
                     <MDBCardText>
+                        <div className={styles.innerText}>
                         <span>{catName}</span>
                         <span>{description}</span>
+                        </div>
                     </MDBCardText>
-                    <button type='button' className='btn btn-sm btn-light' onClick={handleTrashClick}><MDBIcon icon='trash'/></button>
+                    <button type='button' className={styles.trashButton + ' btn btn-sm btn-light'} onClick={handleTrashClick}><MDBIcon icon='trash'/></button>
                 </MDBCardBody>
                 </>
     )

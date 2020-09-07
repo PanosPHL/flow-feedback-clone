@@ -42,8 +42,8 @@ const BrowseFlowCard = ({ i, thumbnail, name, catName, description, flowId, remo
             gridRow: `${(i % 4) + 1} / ${(i % 4) + 2}` }
             }>
             <MDBCard style={{
-                width: '18em',
-                height: '21em'
+                width: '20em',
+                height: '22em'
             }}>
                 {
                     displayDel ? <DeleteFlowForm /> : <FlowCardContent thumbnail={thumbnail} name={name} catName={catName} description={description} />
