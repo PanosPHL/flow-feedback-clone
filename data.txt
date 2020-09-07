@@ -18,5 +18,10 @@
  H7xkzrTya9o |      1 | https://www.youtube.com/watch?v=H7xkzrTya9o | Fnatic vs G2 Esports (BEST GAME EVER!) - LEC Spring 2019 Week 9 Day 1 - FNC vs G2             |     3376 | https://i.ytimg.com/vi/H7xkzrTya9o/hqdefault.jpg | 2020-09-07 18:29:31.005-04 | 2020-09-07 18:29:31.005-04
  k2OAqgaZxrU |      1 | https://www.youtube.com/watch?v=k2OAqgaZxrU | CLG vs Golden Guardians | Week 2 Day 1 S10 LCS Summer 2020 | CLG vs GG W2D1                   |     2221 | https://i.ytimg.com/vi/k2OAqgaZxrU/hqdefault.jpg | 2020-09-07 18:30:13.632-04 | 2020-09-07 18:30:13.632-04
  yhI5j-rOy1Y |      1 | https://www.youtube.com/watch?v=yhI5j-rOy1Y | Immortals vs Evil Geniuses | Week 4 Day 3 S10 LCS Summer 2020 | IMT vs EG W4D3                |     3203 | https://i.ytimg.com/vi/yhI5j-rOy1Y/hqdefault.jpg | 2020-09-07 18:31:34.817-04 | 2020-09-07 18:31:34.817-04
-(18 rows)
+ 8ykWVR4IsaY |      1 | https://www.youtube.com/watch?v=8ykWVR4IsaY | Playoffs Round 3A | @LA Gladiators vs @Philadelphia Fusion | Playoffs Week 1 | NA Day 3       |     5382 | https://i.ytimg.com/vi/8ykWVR4IsaY/hqdefault.jpg | 2020-09-07 18:43:52.263-04 | 2020-09-07 18:43:52.263-04
+ YPj_4m2Do0k |      1 | https://www.youtube.com/watch?v=YPj_4m2Do0k | FINALS | Paris Eternal vs Philadelphia Fusion | Summer Showdown | NA Day 3                    |    12641 | https://i.ytimg.com/vi/YPj_4m2Do0k/hqdefault.jpg | 2020-09-07 18:44:13.662-04 | 2020-09-07 18:44:13.662-04
+ AZr27iqWzWw |      1 | https://www.youtube.com/watch?v=AZr27iqWzWw | @London Spitfire vs @NYXL | Week 29 | APAC Day 1                                              |     4857 | https://i.ytimg.com/vi/AZr27iqWzWw/hqdefault.jpg | 2020-09-07 18:45:11.344-04 | 2020-09-07 18:45:11.344-04
+ IJwz95WRTM8 |      1 | https://www.youtube.com/watch?v=IJwz95WRTM8 | San Francisco Shock vs Vancouver Titans | Week 25 | NA Day 2                                  |     4039 | https://i.ytimg.com/vi/IJwz95WRTM8/hqdefault.jpg | 2020-09-07 18:45:43.656-04 | 2020-09-07 18:45:43.656-04
+ dBKmxcOo9KM |      1 | https://www.youtube.com/watch?v=dBKmxcOo9KM | Playoffs Round 1A | @Boston Uprising vs Houston@Outlaws | Playoffs Week 1 | NA Day 1          |     8012 | https://i.ytimg.com/vi/dBKmxcOo9KM/hqdefault.jpg | 2020-09-07 18:46:40.8-04   | 2020-09-07 18:46:40.8-04
+(23 rows)
 
