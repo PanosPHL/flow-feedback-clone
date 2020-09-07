@@ -17,7 +17,12 @@ module.exports = {
       { id: 'YPj_4m2Do0k', sideId: 1, url: 'https://www.youtube.com/watch?v=YPj_4m2Do0k', title: "FINALS | Paris Eternal vs Philadelphia Fusion | Summer Showdown | NA Day 3", duration: 12641, thumbnail: 'https://i.ytimg.com/vi/YPj_4m2Do0k/hqdefault.jpg'},
       { id: 'AZr27iqWzWw', sideId: 1, url: 'https://www.youtube.com/watch?v=AZr27iqWzWw', title: "@London Spitfire vs @NYXL | Week 29 | APAC Day 1", duration: 4857, thumbnail: 'https://i.ytimg.com/vi/AZr27iqWzWw/hqdefault.jpg'},
       { id: 'IJwz95WRTM8', sideId: 1, url: 'https://www.youtube.com/watch?v=IJwz95WRTM8', title: "San Francisco Shock vs Vancouver Titans | Week 25 | NA Day 2", duration: 4039, thumbnail: 'https://i.ytimg.com/vi/IJwz95WRTM8/hqdefault.jpg'},
-      { id: 'dBKmxcOo9KM', sideId: 1, url: 'https://www.youtube.com/watch?v=dBKmxcOo9KM', title: "Playoffs Round 1A | @Boston Uprising vs Houston@Outlaws | Playoffs Week 1 | NA Day 1", duration: 8012, thumbnail: 'https://i.ytimg.com/vi/dBKmxcOo9KM/hqdefault.jpg'}
+      { id: 'dBKmxcOo9KM', sideId: 1, url: 'https://www.youtube.com/watch?v=dBKmxcOo9KM', title: "Playoffs Round 1A | @Boston Uprising vs Houston@Outlaws | Playoffs Week 1 | NA Day 1", duration: 8012, thumbnail: 'https://i.ytimg.com/vi/dBKmxcOo9KM/hqdefault.jpg'},
+      { id: 'S2HnpQ4x0mA', sideId: 1, url: 'https://www.youtube.com/watch?v=S2HnpQ4x0mA', title: "CS:GO - FaZe Clan vs. Fnatic [Mirage] Map 1 - ESL Pro League Season 11 - Stage 2", duration: 2887, thumbnail: 'https://i.ytimg.com/vi/S2HnpQ4x0mA/hqdefault.jpg'},
+      { id: 'WCMi0E678qo', sideId: 1, url: 'https://www.youtube.com/watch?v=WCMi0E678qo', title: "ELEAGUE CS:GO Premier 2018 - Faze vs Fnatic - Group Stage", duration: 11411, thumbnail: 'https://i.ytimg.com/vi/WCMi0E678qo/hqdefault.jpg'},
+      { id: 'BDPliBa_QqE', sideId: 1, url: 'https://www.youtube.com/watch?v=BDPliBa_QqE', title: "ELEAGUE CS:GO Premier 2018 - MiBR vs. Cloud9 - Group Stage", duration: 11176, thumbnail: 'https://i.ytimg.com/vi/BDPliBa_QqE/hqdefault.jpg'},
+      { id: 'issovlFJV-A', sideId: 1, url: 'https://www.youtube.com/watch?v=issovlFJV-A', title: "CS:GO - G2 Esports vs. Team Liquid [Inferno] Map 4 - Final - ESL Pro League Season 9", duration: 6961, thumbnail: 'https://i.ytimg.com/vi/issovlFJV-A/hqdefault.jpg'},
+      { id: 'KqF-UugOgp0', sideId: 1, url: 'https://www.youtube.com/watch?v=KqF-UugOgp0', title: "CS:GO - Astralis vs. G2 Esports [Dust2] Map 1 - Group B - ESL Pro League Season 10 Finals", duration: 2104, thumbnail: 'https://i.ytimg.com/vi/KqF-UugOgp0/hqdefault.jpg'}
     ])
   },
 
