@@ -70,9 +70,10 @@
 .bodyContainer {
     display: grid;
     min-width: 80vw;
-    min-height: 80vh;
+    min-height: 120vh;
+    padding-bottom: 8em;
     grid-template-columns: repeat(6, 17%);
-    grid-template-rows: repeat(3, 33%);
+    grid-template-rows: repeat(5, 20%);
 }
 
 .pageContainer {

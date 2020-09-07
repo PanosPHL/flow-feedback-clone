@@ -13,6 +13,7 @@ import CreateFlowButton from './CreateFlowButton';
 import LogOut from './LogOut';
 import HomePageCarousel from './HomePageCarousel';
 import BrowseRecentFlows from './BrowseRecentFlows';
+import BrowseCats from './BrowseCats';
 
 export const LinkToRoot = () => {
     return (
@@ -75,6 +76,7 @@ const HomePage = () => {
                 </MDBContainer>
                 <div className={styles.bodyContainer}>
                     <BrowseRecentFlows />
+                    <BrowseCats />
                 </div>
                 </div>
             </SignUpModalContext.Provider>

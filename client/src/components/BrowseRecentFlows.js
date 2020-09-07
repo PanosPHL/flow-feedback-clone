@@ -7,14 +7,17 @@ const BrowseRecentFlows = () => {
     const [flows, setFlows] = useState({ flows: [] })
     const currentUser = useSelector(state => state.auth.id);
 
-    useEffect(async () => {
-        const res = await fetch('/api/flows/recent');
+    useEffect(() => {
+        const fetchFlows = async () => {
+            const res = await fetch('/api/flows/recent');
 
-        res.data = await res.json();
+            res.data = await res.json();
 
-        if (res.ok) {
-            setFlows({ flows: res.data.flows });
+            if (res.ok) {
+                setFlows({ flows: res.data.flows });
+            }
         }
+        fetchFlows();
     }, []);
 
     const removeFlow = (id) => {
@@ -32,7 +35,7 @@ const BrowseRecentFlows = () => {
     }
 
     return (
-        <div style={{ gridRow: '1 / 2', gridColumn: '2 / 6' }} className={styles.section}>
+        <div className={styles.section}>
             <h2 className={styles.header + ' font-weight-bold'}>
                 Recent Flows
             </h2>
