@@ -1,45 +1,46 @@
 .sidebarClosed {
     width: 2vw;
-    overflow: hidden;
     transition: width 0.3s;
-    height: 100%;
 }
 
 .sidebarOpen {
     width: 4vw;
     transition: width 0.3s;
-    height: 100%;
 }
 
 .openButtonClosed {
+    display: block;
+    margin-top: 2em;
     margin-left: 0.7em;
     width: 1.2vw!important;
     padding: 0!important;
-    transition: padding 0.3s, width 0.3s;
+    transition: 0.3s;
 }
 
 .openButtonOpen {
+    display: block;
+    margin-top: 4em;
     width: 3vw!important;
     margin-left: 0.8em;
-    transition: padding 0.3s, width 0.3s
+    transition: 0.3s;
 }
 
 .logoClosed {
     display: block;
     width: 1.6vw;
-    margin: 0.4em auto;
+    margin: 1.2em auto;
     transition: width 0.3s, margin 0.3s;
 }
 
 .logoOpen {
     display: block;
     width: 3.2vw;
-    margin: 0.8em auto;
+    margin: 2.4em auto;
     transition: width 0.3s, margin 0.3s;
 }
 
 .lowerContent {
-    margin-top: 6em;
+    margin-top: 4em;
 }
 
 .myFlowsButtonClosed, .createFlowButtonClosed {

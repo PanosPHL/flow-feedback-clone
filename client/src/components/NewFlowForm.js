@@ -77,7 +77,7 @@ const NewFlowForm = (props) => {
             <label htmlFor="newFlowDescription" className="grey-text">
                 Description
             </label>
-            <textarea onChange={(event) => setDescription(event.target.value)} className='form-control'></textarea>
+            <textarea onChange={(event) => setDescription(event.target.value)} className='form-control' rows='4'></textarea>
             </div>
             <MDBBtn type='submit' className={styles.submitButton + ' btn btn-amber'}>Create New Flow</MDBBtn>
         </form>
