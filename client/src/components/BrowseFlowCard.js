@@ -6,8 +6,9 @@ import FlowCardContent from './FlowCardContent';
 import DeleteFlowForm from './DeleteFlowForm';
 import { deleteFlow } from '../store/flows';
 import { Link } from 'react-router-dom';
+import styles from '../css-modules/BrowseFlows.module.css';
 
-const BrowseFlowCard = ({ i, thumbnail, name, catName, description, flowId, removeFlow, myFlow }) => {
+const BrowseFlowCard = ({ i, thumbnail, name, catName, description, flowId, removeFlow, myFlow, owner }) => {
     const [displayDel, setDisplayDel] = useState(false);
     const dispatch = useDispatch();
 
@@ -41,17 +42,12 @@ const BrowseFlowCard = ({ i, thumbnail, name, catName, description, flowId, remo
     if (displayDel) {
         return (
                 <FlowCardContext.Provider value={value}>
-                    <MDBContainer style={
-                        {
-                            gridColumn: i < 4 ? `${i + 1} / ${i + 2}` : `${(i % 4) + 1} / ${(i % 4) + 2}`,
-                            gridRow: `${(i % 4) + 1} / ${(i % 4) + 2}`
-                        }
-                    }>
+                    <MDBContainer style={{width: '320px', margin: '0'}} className={styles.card}>
                         <MDBCard style={{
-                            width: '20em',
-                            height: '22em'
+                            width: '320px',
+                            height: '352px'
                         }}>
-                            <DeleteFlowForm />
+                            <DeleteFlowForm/>
                         </MDBCard>
                     </MDBContainer>
                 </FlowCardContext.Provider>
@@ -61,17 +57,12 @@ const BrowseFlowCard = ({ i, thumbnail, name, catName, description, flowId, remo
     return (
         <Link to={`/flow/${flowId}`}>
         <FlowCardContext.Provider value={value}>
-            <MDBContainer style={
-                {
-                    gridColumn: i < 4 ? `${i + 1} / ${i + 2}` : `${(i % 4) + 1} / ${(i % 4) + 2}`,
-                    gridRow: `${(i % 4) + 1} / ${(i % 4) + 2}`
-                }
-            }>
+            <MDBContainer className={styles.card}>
                 <MDBCard style={{
-                    width: '20em',
-                    height: '22em'
+                    width: '320px',
+                    height: '352px'
                 }}>
-                    <FlowCardContent thumbnail={thumbnail} name={name} catName={catName} description={description} myFlow={myFlow}/>
+                    <FlowCardContent thumbnail={thumbnail} name={name} catName={catName} description={description} myFlow={myFlow} owner={owner}/>
                 </MDBCard>
             </MDBContainer>
         </FlowCardContext.Provider>

@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import BrowseFlowCard from './BrowseFlowCard';
 import styles from '../css-modules/RecentFlows.module.css';
 
 const BrowseRecentFlows = () => {
     const [flows, setFlows] = useState({ flows: [] })
-    const currentUser = useSelector(state => state.auth.id);
 
     useEffect(() => {
         const fetchFlows = async () => {
             const res = await fetch('/api/flows/recent');
 
             res.data = await res.json();
+            console.log(res);
 
             if (res.ok) {
                 setFlows({ flows: res.data.flows });
@@ -51,6 +50,8 @@ const BrowseRecentFlows = () => {
                         catName={flow.Category.name}
                         flowId={flow.id}
                         removeFlow={removeFlow}
+                        myFlow={false}
+                        owner={flow.User.email}
                         />
                     )
                 }) : <></>}

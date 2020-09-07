@@ -17,6 +17,7 @@ const BrowseMyFlows = () => {
 
             if (res.ok) {
                 setFlows({ flows: res.data.flows })
+                return
             }
         }
 
@@ -40,8 +41,10 @@ const BrowseMyFlows = () => {
 
     return (
         <div className={styles.pageContainer}>
-            <h2 className={styles.header}>My Flows</h2>
-            <SideNavComponent />
+            <div className={styles.headerContainer}>
+            <h2 className={styles.catHeader}>My Flows</h2>
+            </div>
+            <SideNavComponent pageName={'browseFlows'}/>
         <div className={styles.cardContainer}>
             {flows.flows.length ?
                 flows.flows.map((flow, i) => {

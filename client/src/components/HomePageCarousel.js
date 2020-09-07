@@ -22,7 +22,7 @@ const HomePageCarousel = () => {
                             />
                         </MDBView>
                         <MDBCarouselCaption>
-                            <h2 className={styles.cardHeader}>Create flows and add notes to them</h2>
+                            <h1 className={styles.cardHeader}>Create flows and add notes to them</h1>
                         </MDBCarouselCaption>
                     </MDBCarouselItem>
                     <MDBCarouselItem itemId="2">
@@ -34,7 +34,7 @@ const HomePageCarousel = () => {
                             />
                         </MDBView>
                         <MDBCarouselCaption>
-                            <h2 className={styles.cardHeader}>Browse flows by your favorite category</h2>
+                            <h1 className={styles.cardHeader}>Browse flows by your favorite category</h1>
                         </MDBCarouselCaption>
                     </MDBCarouselItem>
                     <MDBCarouselItem itemId="3">
@@ -46,7 +46,7 @@ const HomePageCarousel = () => {
                             />
                         </MDBView>
                         <MDBCarouselCaption>
-                        <h2 className={styles.cardHeader}>View flows from other users</h2>
+                        <h1 className={styles.cardHeader}>View flows from other users</h1>
                         </MDBCarouselCaption>
                     </MDBCarouselItem>
                 </MDBCarouselInner>

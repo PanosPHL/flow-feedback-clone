@@ -1,19 +1,16 @@
 .cardContainer {
     display: grid;
-    width: 90vw;
-    grid-template-columns: repeat(5, 20%);
-    grid-template-rows: repeat(4, 25%);
-    margin-left: 10vw;
-    min-height: 80vh;
+    grid-template-columns: repeat(4, 25%);
+    grid-template-rows: repeat(3, 33%);
+    width: 74vw;
+    margin: 0 auto;
+    min-height: 120vh;
+    justify-content: space-evenly;
 }
 
 .pageContainer {
     min-height: 100vh;
     overflow: hidden;
-}
-
-.header {
-    margin: 0.6em 0 1em 11vw;
 }
 
 .trashButton {
@@ -31,15 +28,15 @@
 
 .headerContainer {
     display: flex;
-    margin: 1em 0 1em 13em;
-    width: 26vw;
+    width: 28vw;
+    margin: 2em 0 1em 16.6em;
     justify-content: space-between;
-}
-
-.headerImage {
-    height: 12vh;
 }
 
 .catHeader {
     margin: auto 0;
+}
+
+.card {
+    transform: scale(0.94);
 }

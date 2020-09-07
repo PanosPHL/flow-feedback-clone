@@ -6,11 +6,14 @@ import NewFlowForm from './NewFlowForm';
 import FlowFormTopRow from './FlowFormTopRow';
 import styles from '../css-modules/FetchFlow.module.css';
 import nfps from '../css-modules/NewFlowPage.module.css';
+import SideNavComponent from './SideNavComponent';
 
 const NewFlowPage = () => {
     const newFlow = useSelector(state => state.newFlow);
 
     return (
+        <>
+        <SideNavComponent pageName={'fetchFlow'}/>
         <div className={styles.formContainer}>
         <MDBContainer className={styles.formText}>
             <FlowFormTopRow />
@@ -21,6 +24,7 @@ const NewFlowPage = () => {
             <NewFlowForm />
         </MDBContainer>
         </div>
+        </>
     )
 }
 

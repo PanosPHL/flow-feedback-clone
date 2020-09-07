@@ -63,7 +63,7 @@
 .headerTopRow__rightContainer_loggedIn {
     display: flex;
     padding-top: 1em;
-    min-width: 11vw;
+    min-width: 10vw;
     justify-content: space-evenly;
 }
 
