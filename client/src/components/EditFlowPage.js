@@ -75,16 +75,12 @@ const EditFlowPage = () => {
             fetchCurrentFlow();
     }, [id, userId]);
 
-    useEffect(() => {
-        if (currentFlow.Notes) {
-            currentFlow.Notes.sort(sortNotes);
-        }
-    }, [currentFlow]);
-
     const addNoteToFlow = (note) => {
+        const notes = [...currentFlow.Notes];
+        notes.push(note);
+        notes.sort(sortNotes);
         const newState = Object.assign({}, currentFlow);
-        newState.Notes.push(note);
-        newState.Notes.sort(sortNotes);
+        newState.Notes = notes;
         setCurrentFlow(newState);
     }
 
