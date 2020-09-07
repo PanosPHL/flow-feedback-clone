@@ -66,3 +66,15 @@
     min-width: 11vw;
     justify-content: space-evenly;
 }
+
+.bodyContainer {
+    display: grid;
+    min-width: 80vw;
+    min-height: 80vh;
+    grid-template-columns: repeat(6, 17%);
+    grid-template-rows: repeat(3, 33%);
+}
+
+.pageContainer {
+    overflow: hidden!important;
+}

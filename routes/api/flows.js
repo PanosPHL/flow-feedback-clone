@@ -6,7 +6,7 @@ const { handleValidationErrors } = require('../util/validation');
 const { toSeconds, parse } = require('iso8601-duration');
 
 const { sequelize } = require('../../db/models');
-const { Flow, Video, Note } = require('../../db/models');
+const { Flow, Video, Note, Category } = require('../../db/models');
 
 const validateFlow = [
     check('name', 'Please provide a title for your flow')
@@ -146,6 +146,18 @@ router.put('/', validateURL, handleValidationErrors, asyncHandler(async (req, re
         duration,
         thumbnail
     });
+}));
+
+router.get('/recent', asyncHandler(async (req, res) => {
+    const flows = await Flow.findAll({
+        order: [['createdAt', 'DESC']],
+        limit: 4,
+        include: [
+            {model: Video },
+        { model: Category }]
+    });
+
+    res.json({ flows });
 }));
 
 module.exports = router;

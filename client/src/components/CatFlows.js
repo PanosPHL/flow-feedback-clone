@@ -30,7 +30,21 @@ const CatFlows = () => {
         }
 
         fetchFlows();
-    }, [id])
+    }, [id]);
+
+    const removeFlow = (id) => {
+        let slice;
+        const newState = Object.assign({}, flows);
+        console.log(newState);
+        for (let i = 0; i < newState.flows.length; i++) {
+            if (newState.flows[i].id === id) {
+                slice = i;
+            }
+        }
+        newState.flows.splice(slice, 1);
+        console.log(newState);
+        setFlows(newState);
+    }
 
     return (
         <div className={styles.pageContainer}>
@@ -51,7 +65,8 @@ const CatFlows = () => {
                                 catName={category.name}
                                 description={flow.description}
                                 flowId={flow.id}
-                                myFlow={currentUser === flow.userId} />
+                                myFlow={currentUser === flow.userId}
+                                removeFlow={removeFlow}/>
                         )
                     })
                     : <> </>}

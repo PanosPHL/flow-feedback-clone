@@ -12,6 +12,7 @@ import SignUpModal from './SignUpModal';
 import CreateFlowButton from './CreateFlowButton';
 import LogOut from './LogOut';
 import HomePageCarousel from './HomePageCarousel';
+import BrowseRecentFlows from './BrowseRecentFlows';
 
 export const LinkToRoot = () => {
     return (
@@ -48,6 +49,7 @@ const HomePage = () => {
     return (
         <LogInModalContext.Provider value={loginModalState}>
             <SignUpModalContext.Provider value={signUpModalState}>
+                <div className={styles.pageContainer}>
                 <MDBContainer fluid className={styles.headerSplashContainer}>
                     <div className={styles.imageFilter}>
                         <MDBBox className={styles.headerSplash__contentBox}>
@@ -71,6 +73,10 @@ const HomePage = () => {
                     <LogInModal />
                     <SignUpModal />
                 </MDBContainer>
+                <div className={styles.bodyContainer}>
+                    <BrowseRecentFlows />
+                </div>
+                </div>
             </SignUpModalContext.Provider>
         </LogInModalContext.Provider>
     );
