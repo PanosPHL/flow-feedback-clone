@@ -7,8 +7,8 @@ import NoteButton from './NoteButton';
 import NewNoteForm from './NewNoteForm';
 import styles from '../css-modules/EditFlowPage.module.css';
 import NoteCard from './NoteCard';
-import { MDBIcon } from 'mdbreact';
 import FlowTitleAndForm from './FlowTitleAndForm';
+import SideNavComponent from './SideNavComponent';
 
 const EditFlowPage = () => {
     const id = Number(window.location.toString().split('/')[4]);
@@ -189,6 +189,8 @@ const EditFlowPage = () => {
     }
 
     return (
+        <>
+        <SideNavComponent />
         <PlayerContext.Provider value={value}>
             <div className={styles.pageContainer}>
             <div id='formAndPlayerContainer' className={styles.formAndPlayerContainer}>
@@ -215,6 +217,7 @@ const EditFlowPage = () => {
             </div>
             </div>
         </PlayerContext.Provider>
+        </>
     )
 }
 

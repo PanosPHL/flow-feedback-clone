@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import styles from '../css-modules/BrowseFlows.module.css';
-import BrowseFlowCard from './BroseFlowCard';
+import BrowseFlowCard from './BrowseFlowCard';
 import SideNavComponent from './SideNavComponent';
 
 const BrowseMyFlows = () => {
@@ -22,7 +21,7 @@ const BrowseMyFlows = () => {
         }
 
         fetchFlows();
-    }, []);
+    }, [userId]);
 
 
     const removeFlow = (id) => {
@@ -41,22 +40,22 @@ const BrowseMyFlows = () => {
 
     return (
         <div className={styles.pageContainer}>
-            <h1>My Flows</h1>
+            <h2 className={styles.header}>My Flows</h2>
             <SideNavComponent />
         <div className={styles.cardContainer}>
             {flows.flows.length ?
                 flows.flows.map((flow, i) => {
                     return (
-                        <Link to={`/flow/${flow.id}`}>
                             <BrowseFlowCard
+                            key={`card-${i + 1}`}
                             i={i}
                             thumbnail={flow.Video.thumbnail}
                             name={flow.name}
                             catName={flow.Category.name}
                             description={flow.description}
                             flowId={flow.id}
-                            removeFlow={removeFlow}/>
-                        </Link>
+                            removeFlow={removeFlow}
+                            myFlow={true}/>
                     )
                 })
                 : <> </>}

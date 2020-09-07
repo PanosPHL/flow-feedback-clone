@@ -1,13 +1,45 @@
 .cardContainer {
     display: grid;
-    width: 80vw;
-    grid-template-columns: repeat(4, 25%);
+    width: 90vw;
+    grid-template-columns: repeat(5, 20%);
     grid-template-rows: repeat(4, 25%);
-    margin-left: 30vw;
-    min-height: 100vh;
+    margin-left: 10vw;
+    min-height: 80vh;
 }
 
 .pageContainer {
-    min-height: 160vh;
+    min-height: 100vh;
     overflow: hidden;
+}
+
+.header {
+    margin: 0.6em 0 1em 11vw;
+}
+
+.trashButton {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+}
+
+.innerText {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 6em;
+}
+
+.headerContainer {
+    display: flex;
+    margin: 1em 0 1em 13em;
+    width: 26vw;
+    justify-content: space-between;
+}
+
+.headerImage {
+    height: 12vh;
+}
+
+.catHeader {
+    margin: auto 0;
 }

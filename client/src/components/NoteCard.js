@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux'
-import { MDBCard, MDBCardBody, MDBCardText, MDBContainer, MDBAlert, MDBIcon } from "mdbreact";
+import { MDBCard, MDBCardBody, MDBContainer } from "mdbreact";
 import PlayerContext from '../contexts/PlayerContext';
 import { round } from '../utils/round';
 import styles from '../css-modules/EditFlowPage.module.css';
@@ -8,8 +8,6 @@ import { updateNote, deleteNote } from '../store/notes';
 import NoteCardContext from '../contexts/NoteCardContext';
 import EditNoteForm from './EditNoteForm';
 import DeleteNoteForm from './DeleteNoteForm';
-import { timestampToStr } from '../utils/timestamps';
-import NoteBodyContent from './NoteCardBodyContent';
 import NoteCardBodyContent from './NoteCardBodyContent';
 
 const NoteCard = (props) => {
