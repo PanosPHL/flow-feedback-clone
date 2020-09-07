@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from '../css-modules/BrowseFlows.module.css';
 import BrowseFlowCard from './BroseFlowCard';
+import SideNavComponent from './SideNavComponent';
 
 const BrowseMyFlows = () => {
     const userId = useSelector(state => state.auth.id);
@@ -41,6 +42,7 @@ const BrowseMyFlows = () => {
     return (
         <div className={styles.pageContainer}>
             <h1>My Flows</h1>
+            <SideNavComponent />
         <div className={styles.cardContainer}>
             {flows.flows.length ?
                 flows.flows.map((flow, i) => {
