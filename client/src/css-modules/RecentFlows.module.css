@@ -1,0 +1,15 @@
+.cardContainer {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 3em;
+}
+
+.header {
+    text-align: center;
+}
+
+.section {
+    margin-top: 2.4em;
+    grid-column: 2 / 6;
+    grid-row: 1 / 4;
+}

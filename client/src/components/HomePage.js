@@ -11,11 +11,14 @@ import SignUpModalButton from './SignUpModalButton';
 import SignUpModal from './SignUpModal';
 import CreateFlowButton from './CreateFlowButton';
 import LogOut from './LogOut';
+import HomePageCarousel from './HomePageCarousel';
+import BrowseRecentFlows from './BrowseRecentFlows';
+import BrowseCats from './BrowseCats';
 
 export const LinkToRoot = () => {
     return (
         <>
-            <img className={styles.flowNotesLogo} src='/images/flownotesLogo.png' alt='Marvel vs. Capcom cast' />
+            <img className={styles.flowNotesLogo} src='/images/flownotesLogo.png' alt='flowNotes logo' />
             <span className={styles.flowNotesText}>flowNotes</span>
         </>
     );
@@ -47,6 +50,7 @@ const HomePage = () => {
     return (
         <LogInModalContext.Provider value={loginModalState}>
             <SignUpModalContext.Provider value={signUpModalState}>
+                <div className={styles.pageContainer}>
                 <MDBContainer fluid className={styles.headerSplashContainer}>
                     <div className={styles.imageFilter}>
                         <MDBBox className={styles.headerSplash__contentBox}>
@@ -64,11 +68,17 @@ const HomePage = () => {
                                         </div>
                                 }
                             </div>
+                            <HomePageCarousel />
                         </MDBBox>
                     </div>
                     <LogInModal />
                     <SignUpModal />
                 </MDBContainer>
+                <div className={styles.bodyContainer}>
+                    <BrowseRecentFlows />
+                    <BrowseCats />
+                </div>
+                </div>
             </SignUpModalContext.Provider>
         </LogInModalContext.Provider>
     );

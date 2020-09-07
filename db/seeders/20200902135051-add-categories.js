@@ -3,17 +3,14 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Categories', [
-      { name: 'Super Smash Bros. Melee', cover: '/images/ssbm.png'}
+      { name: 'League of Legends', cover: '/images/lol-cover.jpg'},
+      { name: 'Super Smash Bros. Melee', cover: '/images/ssbm.png'},
+      { name: 'Overwatch', cover:'/images/overwatch-cover.jpg'},
+      { name: 'Counter Strike: Global Offensive', cover:'/images/csgo-cover.jpg'}
     ], { attributes: ['name', 'cover']})
   },
 
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkDelete('People', null, {});
-    */
+      return queryInterface.bulkDelete('Categories');
   }
 };
