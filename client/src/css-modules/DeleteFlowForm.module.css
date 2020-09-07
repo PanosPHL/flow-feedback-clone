@@ -1,0 +1,14 @@
+.formContainer {
+    font-size: 2em;
+    color: black;
+    width: 16vw;
+    text-align: center;
+    margin: auto;
+}
+
+.buttonContainer {
+    display: flex;
+    width: 10vw;
+    margin: 1em auto 0 auto;
+    justify-content: space-between;
+}

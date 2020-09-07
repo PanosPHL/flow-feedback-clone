@@ -4,6 +4,7 @@
     grid-template-columns: repeat(5, 20%);
     grid-template-rows: repeat(4, 25%);
     margin-left: 10vw;
+    min-height: 80vh;
 }
 
 .pageContainer {

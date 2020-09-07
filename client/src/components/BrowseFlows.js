@@ -47,7 +47,6 @@ const BrowseMyFlows = () => {
             {flows.flows.length ?
                 flows.flows.map((flow, i) => {
                     return (
-                        <Link to={`/flow/${flow.id}`}>
                             <BrowseFlowCard
                             i={i}
                             thumbnail={flow.Video.thumbnail}
@@ -56,7 +55,6 @@ const BrowseMyFlows = () => {
                             description={flow.description}
                             flowId={flow.id}
                             removeFlow={removeFlow}/>
-                        </Link>
                     )
                 })
                 : <> </>}
