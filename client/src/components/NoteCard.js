@@ -115,7 +115,8 @@ const NoteCard = (props) => {
             handleBtnClick,
             handleTrashClick
         },
-        noteContent
+        noteContent,
+        myFlow: props.myFlow
     }
 
     return (
@@ -131,7 +132,7 @@ const NoteCard = (props) => {
                         <DeleteNoteForm />
                         :
                         <>
-                        <NoteCardBodyContent timestamp={props.timestamp} />
+                        <NoteCardBodyContent timestamp={props.timestamp}/>
                     </>
                     }
                      </>

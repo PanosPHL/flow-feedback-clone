@@ -84,6 +84,7 @@ const EditFlowPage = () => {
     const addNoteToFlow = (note) => {
         const newState = Object.assign({}, currentFlow);
         newState.Notes.push(note);
+        newState.Notes.sort(sortNotes);
         setCurrentFlow(newState);
     }
 
@@ -216,7 +217,7 @@ const EditFlowPage = () => {
                 {currentFlow.Notes ?
                     currentFlow.Notes.map((note, i) => {
                         return (
-                            <NoteCard key={`note-${i + 1}`} content={note.content} timestamp={note.timestamp} noteId={note.id} i={i + 1}/>
+                            <NoteCard key={`note-${i + 1}`} content={note.content} timestamp={note.timestamp} noteId={note.id} i={i + 1} myFlow={userId === currentFlow.userId}/>
                         )
                     }) : <> </>}
             </div>
