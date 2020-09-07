@@ -37,7 +37,7 @@ const SideNavComponent = (props) => {
         docked={true}
             open={open}
             onSetOpen={openSidebar}
-            styles={{ root: { minHeight: props.pageName === 'fetchFlow' ? '1080px' : '100%' }, sidebar: { background: 'black', transition: "", WebkitTransition: "", paddingBottom: '6em'}}}
+            styles={{ root: { minHeight: props.pageName === 'fetchFlow' ? '1080px' : '100%', zIndex: props.pageName ? -1 : 2}, sidebar: { background: 'black', transition: "", WebkitTransition: "" }}}
         >
             <div />
         </Sidebar>

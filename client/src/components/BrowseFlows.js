@@ -17,6 +17,7 @@ const BrowseMyFlows = () => {
 
             if (res.ok) {
                 setFlows({ flows: res.data.flows })
+                return
             }
         }
 

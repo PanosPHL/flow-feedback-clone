@@ -11,7 +11,7 @@ const BrowseCats = () => {
             const res = await fetch('/api/categories');
 
             res.data = await res.json();
-console.log(res);
+
             if (res.ok) {
                 setCats({ cats: res.data.categories });
             }

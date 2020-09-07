@@ -61,12 +61,7 @@ const BrowseFlowCard = ({ i, thumbnail, name, catName, description, flowId, remo
     return (
         <Link to={`/flow/${flowId}`}>
         <FlowCardContext.Provider value={value}>
-            <MDBContainer style={
-                {
-                    gridColumn: i < 4 ? `${i + 1} / ${i + 2}` : `${(i % 4) + 1} / ${(i % 4) + 2}`,
-                    gridRow: `${(i % 4) + 1} / ${(i % 4) + 2}`
-                }
-            }>
+            <MDBContainer>
                 <MDBCard style={{
                     width: '20em',
                     height: '22em'
