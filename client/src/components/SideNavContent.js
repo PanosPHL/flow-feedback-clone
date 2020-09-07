@@ -45,6 +45,12 @@ const SideNavContent = () => {
                         <span>Overwatch</span>
                         </div>
                     </Link>
+                    <Link to='/category/4'>
+                        <div className={styles['csgo' + className]}>
+                            <button type='button' className={styles['lolButton' + className] + ' btn btn-amber'}><img src='/images/cs-go.png' className={styles['csgoIcon' + className]}/></button>
+                            <span>CS:GO</span>
+                        </div>
+                    </Link>
                 </div>
             </div>
         </>
