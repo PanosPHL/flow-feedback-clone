@@ -24,6 +24,8 @@
     flex-direction: column;
     overflow: hidden;
     height: 6em;
+    font-size: 14px;
+    margin-top: 0.8em;
 }
 
 .headerContainer {

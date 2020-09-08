@@ -1,7 +1,0 @@
-
- S2HnpQ4x0mA |      1 | https://www.youtube.com/watch?v=S2HnpQ4x0mA | CS:GO - FaZe Clan vs. Fnatic [Mirage] Map 1 - ESL Pro League Season 11 - Stage 2              |     2887 | https://i.ytimg.com/vi/S2HnpQ4x0mA/hqdefault.jpg | 2020-09-07 18:54:14.188-04 | 2020-09-07 18:54:14.188-04
- WCMi0E678qo |      1 | https://www.youtube.com/watch?v=WCMi0E678qo | ELEAGUE CS:GO Premier 2018 - Faze vs Fnatic - Group Stage                                     |    11411 | https://i.ytimg.com/vi/WCMi0E678qo/hqdefault.jpg | 2020-09-07 18:54:33.881-04 | 2020-09-07 18:54:33.881-04
- BDPliBa_QqE |      1 | https://www.youtube.com/watch?v=BDPliBa_QqE | ELEAGUE CS:GO Premier 2018 - MiBR vs. Cloud9 - Group Stage                                    |    11176 | https://i.ytimg.com/vi/BDPliBa_QqE/hqdefault.jpg | 2020-09-07 18:54:54.86-04  | 2020-09-07 18:54:54.86-04
- issovlFJV-A |      1 | https://www.youtube.com/watch?v=issovlFJV-A | CS:GO - G2 Esports vs. Team Liquid [Inferno] Map 4 - Final - ESL Pro League Season 9          |     6961 | https://i.ytimg.com/vi/issovlFJV-A/hqdefault.jpg | 2020-09-07 18:55:23.91-04  | 2020-09-07 18:55:23.91-04
- KqF-UugOgp0 |      1 | https://www.youtube.com/watch?v=KqF-UugOgp0 | CS:GO - Astralis vs. G2 Esports [Dust2] Map 1 - Group B - ESL Pro League Season 10 Finals     |     2104 | https://i.ytimg.com/vi/KqF-UugOgp0/hqdefault.jpg | 2020-09-07 18:56:52.041-04 | 2020-09-07 18:56:52.041-04
-(28 rows)

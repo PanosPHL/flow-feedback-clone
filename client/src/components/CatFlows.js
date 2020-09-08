@@ -16,7 +16,7 @@ const CatFlows = (props) => {
             const res = await fetch(`/api/categories/${id}/flows`);
 
             res.data = await res.json();
-
+            console.log(res);
             if (res.ok && res.data.category !== null) {
                 setFlows({ flows: res.data.category.Flows });
                 setCategory(res.data.category);
@@ -57,11 +57,13 @@ const CatFlows = (props) => {
                                 i={i}
                                 thumbnail={flow.Video.thumbnail}
                                 name={flow.name}
-                                catName={category.name}
+                                catName={category.name === 'Super Smash Bros. Melee' ? 'Melee' : category.name}
                                 description={flow.description}
                                 flowId={flow.id}
                                 myFlow={currentUser === flow.userId}
-                                removeFlow={removeFlow}/>
+                                removeFlow={removeFlow}
+                                owner={flow.User.email}
+                            />
                         )
                     })
                     : <> </>}

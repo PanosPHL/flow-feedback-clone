@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const router = express.Router();
-const { Category, Flow, Video } = require('../../db/models');
+const { Category, Flow, Video, User } = require('../../db/models');
 
 router.get('/', asyncHandler(async (req, res, next) => {
     const categories = await Category.findAll({
@@ -17,7 +17,7 @@ router.get('/:id(\\d+)/flows', asyncHandler(async (req, res, next) => {
             id: parseInt(req.params.id)
         },
         include: [
-            { model: Flow, include: [{ model: Video }]}
+            { model: Flow, include: [{ model: Video }, { model: User, attributes: ['email'] }]}
         ],
         order: [[{ model: Flow }, 'createdAt', 'DESC']]
     });
