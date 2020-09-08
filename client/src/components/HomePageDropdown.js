@@ -1,5 +1,5 @@
 import React from 'react';
-import { MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBBtn } from 'mdbreact';
+import { MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from 'mdbreact';
 import { Link } from 'react-router-dom';
 import styles from '../css-modules/HomePageDropdown.module.css';
 

@@ -26,19 +26,17 @@ const CatFlows = (props) => {
             props.history.push('/not-found');
         }
         fetchFlows();
-    }, [id]);
+    }, [id, props.history]);
 
     const removeFlow = (id) => {
         let slice;
         const newState = Object.assign({}, flows);
-        console.log(newState);
         for (let i = 0; i < newState.flows.length; i++) {
             if (newState.flows[i].id === id) {
                 slice = i;
             }
         }
         newState.flows.splice(slice, 1);
-        console.log(newState);
         setFlows(newState);
     }
 
@@ -57,11 +55,13 @@ const CatFlows = (props) => {
                                 i={i}
                                 thumbnail={flow.Video.thumbnail}
                                 name={flow.name}
-                                catName={category.name}
+                                catName={category.name === 'Super Smash Bros. Melee' ? 'Melee' : category.name}
                                 description={flow.description}
                                 flowId={flow.id}
                                 myFlow={currentUser === flow.userId}
-                                removeFlow={removeFlow}/>
+                                removeFlow={removeFlow}
+                                owner={flow.User.email}
+                            />
                         )
                     })
                     : <> </>}
