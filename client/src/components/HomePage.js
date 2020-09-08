@@ -9,7 +9,6 @@ import LogInModalButton from './LogInModalButton';
 import LogInModal from './LogInModal';
 import SignUpModalButton from './SignUpModalButton';
 import SignUpModal from './SignUpModal';
-import CreateFlowButton from './CreateFlowButton';
 import LogOut from './LogOut';
 import HomePageCarousel from './HomePageCarousel';
 import BrowseRecentFlows from './BrowseRecentFlows';

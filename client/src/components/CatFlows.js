@@ -16,7 +16,7 @@ const CatFlows = (props) => {
             const res = await fetch(`/api/categories/${id}/flows`);
 
             res.data = await res.json();
-            console.log(res);
+
             if (res.ok && res.data.category !== null) {
                 setFlows({ flows: res.data.category.Flows });
                 setCategory(res.data.category);
@@ -26,19 +26,17 @@ const CatFlows = (props) => {
             props.history.push('/not-found');
         }
         fetchFlows();
-    }, [id]);
+    }, [id, props.history]);
 
     const removeFlow = (id) => {
         let slice;
         const newState = Object.assign({}, flows);
-        console.log(newState);
         for (let i = 0; i < newState.flows.length; i++) {
             if (newState.flows[i].id === id) {
                 slice = i;
             }
         }
         newState.flows.splice(slice, 1);
-        console.log(newState);
         setFlows(newState);
     }
 

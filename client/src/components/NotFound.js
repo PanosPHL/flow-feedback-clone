@@ -9,7 +9,7 @@ const NotFound = () => {
         <div className={styles.pageContainer}>
             <div className={styles.textContainer}>
             <h1 className='font-weight-bold'>Sorry, but it seems like the page you requested doesn't exist!</h1>
-            <img src='https://media.giphy.com/media/cn9YaZ1gPc74vVJHWq/giphy.gif' style={{marginTop: '3em'}}/>
+            <img alt='sike' src='https://media.giphy.com/media/cn9YaZ1gPc74vVJHWq/giphy.gif' style={{marginTop: '3em'}}/>
             </div>
         </div>
         </>

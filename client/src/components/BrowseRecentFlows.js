@@ -10,7 +10,6 @@ const BrowseRecentFlows = () => {
             const res = await fetch('/api/flows/recent');
 
             res.data = await res.json();
-            console.log(res);
 
             if (res.ok) {
                 setFlows({ flows: res.data.flows });
@@ -22,14 +21,12 @@ const BrowseRecentFlows = () => {
     const removeFlow = (id) => {
         let slice;
         const newState = Object.assign({}, flows);
-        console.log(newState);
         for (let i = 0; i < newState.flows.length; i++) {
             if (newState.flows[i].id === id) {
                 slice = i;
             }
         }
         newState.flows.splice(slice, 1);
-        console.log(newState);
         setFlows(newState);
     }
 

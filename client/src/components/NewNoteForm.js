@@ -23,7 +23,6 @@ const NewNoteForm = () => {
         event.preventDefault();
         const res = await dispatch(addNewNote(content, timestamp, id));
         if (res.ok) {
-            console.log(res);
             toggleDisplayNoteForm();
             addNoteToFlow(res.data.note);
             setContent('');

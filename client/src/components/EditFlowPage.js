@@ -77,7 +77,7 @@ const EditFlowPage = (props) => {
         }
 
             fetchCurrentFlow();
-    }, [id, userId]);
+    }, [id, userId, props.history]);
 
     const addNoteToFlow = (note) => {
         const notes = [...currentFlow.Notes];
