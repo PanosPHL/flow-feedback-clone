@@ -29,7 +29,7 @@ const HomePageCarousel = () => {
                         <MDBView>
                             <img
                                 className={styles.carouselImg + ' d-block w-100'}
-                                src="/images/carousel2.png"
+                                src="/images/carousel2.PNG"
                                 alt="Second slide"
                             />
                         </MDBView>
@@ -41,7 +41,7 @@ const HomePageCarousel = () => {
                         <MDBView>
                             <img
                                 className={styles.carouselImg + " d-block w-100"}
-                                src="/images/carousel3.png"
+                                src="/images/carousel3.PNG"
                                 alt="Third slide"
                             />
                         </MDBView>
