@@ -32,7 +32,7 @@ export const addNewNote = (content, timestamp, flowId) => {
     }
 };
 
-const setNotes = (notes) => {
+export const setNotes = (notes) => {
     return {
         type: SET_NOTES,
         notes
@@ -104,29 +104,18 @@ export const deleteNote = (noteId) => {
     }
 }
 
-export default function noteReducer(state = [], action) {
+export default function noteReducer(state = {}, action) {
+    const newState = Object.assign({}, state);
     switch(action.type) {
         case ADD_NOTE:
-            return [...state, action.note];
+            newState[action.note.id] = action.note;
+            return newState;
         case EDIT_NOTE:
-            let slice;
-            for (let i = 0; i < state.length; i++) {
-                if (state[i].id === action.note.id) {
-                    slice = i;
-                    break;
-                }
-            }
-            return [...state.slice(0, slice), action.note, ...state.slice(slice + 1)];
+            newState[action.note.id] = action.note;
+            return newState;
         case DELETE_NOTE:
-            let delSlice;
-            for (let i = 0; i < state.length; i++) {
-                if (state[i].id === action.id) {
-                    slice = i;
-                    break;
-                }
-            return [...state.slice(0, delSlice), ...state.slice(delSlice + 1)];
-            }
-            break;
+            delete newState[action.id];
+            return newState;
         default:
             return state;
     }

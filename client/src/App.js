@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setUser } from './store/auth';
+import { setNotes } from './store/notes';
+import { setCategories } from './store/categories';
+import { setFlows } from './store/flows';
 import HomePage from './components/HomePage';
 import PageLoad from './components/PageLoad';
 import FetchFlow from './components/FetchFlow';
@@ -28,6 +31,18 @@ function App() {
       }, 800)
     }
     loadUser();
+
+    const loadAppData = async () => {
+      const res = await fetch('/api/session/data');
+      if (res.ok) {
+        res.data = await res.json();
+        dispatch(setCategories(res.data.categories));
+        dispatch(setFlows(res.data.flows));
+        dispatch(setNotes(res.data.notes));
+      }
+    }
+
+    loadAppData();
   }, [dispatch]);
 
   if (loading) return (

@@ -32,7 +32,7 @@ export const addFlow = (name, description, userId, video, categoryId) => {
     }
 }
 
-const setFlows = (flows) => {
+export const setFlows = (flows) => {
     return {
         type: SET_FLOWS,
         flows
@@ -106,28 +106,23 @@ export const deleteFlow = (flowId) => {
     }
 }
 
-export default function flowReducer(state = [], action) {
+export default function flowReducer(state = {}, action) {
+    const newState = Object.assign({}, state);
     switch(action.type) {
         case ADD_FLOW:
-            return [...state, action.flow];
+            newState[action.flow.id] = action.flow;
+            return newState;
         case SET_FLOWS:
-            return action.flows;
+            for (const flow of action.flows) {
+                newState[flow.id] = flow;
+            }
+            return newState;
         case EDIT_FLOW_NAME:
-            let slice;
-            for (let i = 0; i < state.length; i++) {
-                if (state[i].id === action.flow.id) {
-                    slice = i;
-                }
-            }
-            return [...state.slice(0, slice), action.flow, ...state.slice(slice + 1)];
+            newState[action.flow.id] = action.flow;
+            return newState;
         case DELETE_FLOW:
-            let delSlice;
-            for (let i = 0; i < state.length; i++) {
-                if (state[i].id === action.id) {
-                    delSlice = i;
-                }
-            }
-            return [...state.slice(0, delSlice), ...state.slice(delSlice + 1)];
+            delete newState[action.id];
+            return newState;
         default:
             return state;
     }
