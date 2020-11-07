@@ -5,10 +5,10 @@ import SideBarContext from '../contexts/SideBarContext';
 import { MDBIcon } from 'mdbreact';
 
 const SideNavContent = () => {
-    const { handlers: { toggleSidebar }, className } = useContext(SideBarContext);
+    const { handlers: { openSidebar }, className } = useContext(SideBarContext);
     return (
         <>
-            <button onClick={toggleSidebar} type='button' className={styles['openButton' + className] + ' btn btn-sm btn-black'}><MDBIcon icon={className === 'Open' ? 'chevron-left' : 'chevron-right'} /></button>
+            <button onClick={openSidebar} type='button' className={styles['openButton' + className] + ' btn btn-sm btn-black'}><MDBIcon icon={className === 'Open' ? 'chevron-left' : 'chevron-right'} /></button>
             <Link to='/'>
                 <div>
                 <img alt='flowNotes home' src='/images/flownotesLogo.png' className={styles['logo' + className]} />

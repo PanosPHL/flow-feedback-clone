@@ -10,10 +10,12 @@ import users from './users';
 import videos from './videos';
 import home from './ui/home';
 import flow from './ui/flow';
+import nav from './ui/nav';
 
 const ui = combineReducers({
   home,
-  flow
+  flow,
+  nav
 });
 
 const entities = combineReducers({

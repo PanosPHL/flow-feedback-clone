@@ -1,29 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleSidebar } from '../store/ui/nav';
 import Sidebar from 'react-sidebar';
 import styles from '../css-modules/SideNavComponent.module.css';
 import SideBarContext from '../contexts/SideBarContext';
 import SideNavContent from './SideNavContent';
 
 const SideNavComponent = (props) => {
-    const [open, setOpen] = useState(false);
+    const dispatch = useDispatch();
+    const { open } = useSelector(state => state.ui.nav);
     const [className, setClassName] = useState('Closed');
 
-    const openSidebar = () => {
-        setOpen(!open)
-    }
+    useEffect(() => {
+        open ? setClassName('Open') : setClassName('Closed');
+    }, [open])
 
-    const toggleSidebar = () => {
-        if (className === 'Closed') {
-            setClassName('Open');
-            return;
-        }
-        setClassName('Closed');
+    const openSidebar = () => {
+        dispatch(toggleSidebar());
     }
 
     const value = {
         className,
         handlers: {
-            toggleSidebar
+            openSidebar
         }
     };
 
