@@ -1,4 +1,5 @@
 import { csrfToken } from './auth';
+import { ADD_NOTE, DELETE_NOTE } from './notes';
 
 const ADD_FLOW = '/flows/ADD_FLOW';
 const EDIT_FLOW_NAME = '/flows/EDIT_FLOW_NAME';
@@ -108,6 +109,7 @@ export const deleteFlow = (flowId) => {
 
 export default function flowReducer(state = {}, action) {
     const newState = Object.assign({}, state);
+    let flow;
     switch(action.type) {
         case ADD_FLOW:
             newState[action.flow.id] = action.flow;
@@ -124,6 +126,13 @@ export default function flowReducer(state = {}, action) {
         case DELETE_FLOW:
             delete newState[action.id];
             return newState;
+        case ADD_NOTE:
+            flow = newState[action.note.flowId];
+            flow.notes = [...flow.notes, action.note.id];
+            return newState;
+        case DELETE_NOTE:
+            flow = newState[action.flowId];
+            flow.notes = [...flow.notes.filter((note) => note !== action.noteId)];
         default:
             return state;
     }

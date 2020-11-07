@@ -1,9 +1,9 @@
 import { csrfToken } from './auth';
 
-const ADD_NOTE = '/notes/ADD_NOTE';
+export const ADD_NOTE = '/notes/ADD_NOTE';
 const SET_NOTES = '/notes/SET_NOTES';
 const EDIT_NOTE = '/notes/EDIT_NOTE';
-const DELETE_NOTE = '/notes/DELETE_NOTE';
+export const DELETE_NOTE = '/notes/DELETE_NOTE';
 
 const addNote = (note) => {
     return {
@@ -79,14 +79,15 @@ export const updateNote = (noteId, content) => {
     }
 }
 
-const delNote = (noteId) => {
+const delNote = (noteId, flowId) => {
     return {
         type: DELETE_NOTE,
-        id: noteId
+        noteId,
+        flowId
     }
 }
 
-export const deleteNote = (noteId) => {
+export const deleteNote = (noteId, flowId) => {
     return async dispatch => {
         const res = await fetch(`/api/notes/${noteId}`, {
             method: 'DELETE',
@@ -96,9 +97,8 @@ export const deleteNote = (noteId) => {
         });
 
         res.data = await res.json();
-
         if (res.ok) {
-            dispatch(delNote(res.data.id));
+            dispatch(delNote(noteId, flowId));
         }
         return res;
     }
@@ -119,7 +119,7 @@ export default function noteReducer(state = {}, action) {
             newState[action.note.id] = action.note;
             return newState;
         case DELETE_NOTE:
-            delete newState[action.id];
+            delete newState[action.noteId];
             return newState;
         default:
             return state;

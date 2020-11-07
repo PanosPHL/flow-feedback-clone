@@ -11,7 +11,7 @@ import DeleteNoteForm from './DeleteNoteForm';
 import NoteCardBodyContent from './NoteCardBodyContent';
 
 const NoteCard = (props) => {
-    const { timestamp, player, pausedCard, setPausedCard, playing, setControllable, handlers: { deleteNoteFromFlow } } = useContext(PlayerContext);
+    const { currentFlow, timestamp, player, pausedCard, setPausedCard, playing, setControllable, handlers: { deleteNoteFromFlow } } = useContext(PlayerContext);
     const [inactive, setInactive] = useState('inactiveCard');
     const [displayForm, setDisplayForm] = useState(false);
     const [noteContent, setNoteContent] = useState('');
@@ -101,11 +101,7 @@ const NoteCard = (props) => {
     }
 
     const handleDeleteConfirmation = async () => {
-        const res = await dispatch(deleteNote(props.noteId));
-
-        if (res.ok) {
-            deleteNoteFromFlow(props.noteId);
-        }
+        const res = await dispatch(deleteNote(props.noteId, currentFlow.id));
     }
 
     const value = {

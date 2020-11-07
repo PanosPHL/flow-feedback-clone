@@ -24,7 +24,6 @@ const NewNoteForm = () => {
         const res = await dispatch(addNewNote(content, timestamp, id));
         if (res.ok) {
             toggleDisplayNoteForm();
-            addNoteToFlow(res.data.note);
             setContent('');
             return;
         }

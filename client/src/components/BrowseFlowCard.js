@@ -59,7 +59,7 @@ const BrowseFlowCard = ({ i, flow, flowId, removeFlow, myFlow }) => {
     }
 
     return (
-        <Link to={`/flow/${flowId}`}>
+        <Link to={`/flow/${flow.id}`}>
         <FlowCardContext.Provider value={value}>
             <MDBContainer className={styles.card}>
                 <MDBCard style={{

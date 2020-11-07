@@ -17,6 +17,7 @@ const EditFlowPage = (props) => {
 
     const currentFlow = useSelector(state => state.entities.flows[id]);
     const myFlow = useSelector(state => currentFlow.userId === state.auth.id);
+    const notes = useSelector(state => currentFlow.notes ? Object.values(state.entities.notes).filter((note) => currentFlow.notes.includes(note.id)) : []);
     const [playing, setPlaying] = useState(false);
     const [player, setPlayer] = useState(null);
     const [timestamp, setTimestamp] = useState(0);
@@ -212,8 +213,8 @@ const EditFlowPage = (props) => {
             </div>
             <div className='noteCardContainer'>
                 <h5 className={styles.noteContainerHeader + ' font-weight-bold'}>Notes</h5>
-                {currentFlow.Notes ?
-                    currentFlow.Notes.map((note, i) => {
+                {notes && notes.length ?
+                    notes.map((note, i) => {
                         return (
                             <NoteCard key={`note-${i + 1}`} content={note.content} timestamp={note.timestamp} noteId={note.id} i={i + 1} myFlow={userId === currentFlow.userId}/>
                         )

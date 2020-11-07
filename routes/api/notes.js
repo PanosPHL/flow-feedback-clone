@@ -60,22 +60,26 @@ router.put('/:id(\\d+)', validateNoteUpdate, handleValidationErrors, asyncHandle
 }));
 
 router.delete('/:id(\\d+)', asyncHandler(async (req, res, next) => {
-    const id = parseInt(req.params.id)
-    const noteId = sequelize.transaction(async (dn) => {
+    const id = parseInt(req.params.id);
+    let noteRes;
+    const note = await sequelize.transaction(async (dn) => {
         const note = await Note.findOne({
             where: {
                 id
             }
         }, { transaction: dn });
 
-        let noteId = note.id;
+        noteRes = {
+            noteId: note.dataValues.id,
+            flowId: note.dataValues.flowId
+        };
 
         await note.destroy({ transaction: dn });
 
-        return noteId;
+        return noteRes;
     });
 
-    res.json({ message: 'Success', id: noteId });
+    res.json({ message: 'Success' });
 }));
 
 module.exports = router;
