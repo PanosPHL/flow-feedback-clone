@@ -20,7 +20,7 @@ const EditFlowPage = (props) => {
     const myFlow = useSelector(state => currentFlow.userId === state.session.id);
     const notes = useSelector(state => currentFlow.notes ? Object.values(state.entities.notes).filter((note) => currentFlow.notes.includes(note.id)).sort(sortNotes) : []);
     const pausedCard = useSelector(state => state.session);
-    const { newNoteForm, editNoteForm } = useSelector(state => state.ui.flow);
+    const { newNoteForm, editNoteForm, titleForm } = useSelector(state => state.ui.flow);
     const [playing, setPlaying] = useState(false);
     const [player, setPlayer] = useState(null);
     const [timestamp, setTimestamp] = useState(0);
@@ -41,7 +41,7 @@ const EditFlowPage = (props) => {
     const handleKeyUp = (event) => {
         console.log(event);
         event.stopPropagation();
-        if (newNoteForm || editNoteForm) {
+        if (newNoteForm || editNoteForm || titleForm) {
             return;
         }
 
@@ -64,10 +64,6 @@ const EditFlowPage = (props) => {
             clearInterval(setTimestampInterval);
         }
     }, []);
-
-    const toggleDisplayNoteForm = () => {
-        dispatch(toggleNewNoteForm());
-    }
 
     const opts = {
         height: 630,
@@ -101,7 +97,7 @@ const EditFlowPage = (props) => {
     }
 
     const togglePlay = () => {
-        if (newNoteForm || editNoteForm) {
+        if (newNoteForm || editNoteForm || titleForm) {
             return;
         }
 
@@ -113,7 +109,7 @@ const EditFlowPage = (props) => {
     }
 
     const seek = (event) => {
-        if (newNoteForm || editNoteForm) {
+        if (newNoteForm || editNoteForm || titleForm) {
             return;
         }
 
@@ -138,8 +134,7 @@ const EditFlowPage = (props) => {
         playing,
         handlers: {
             togglePlay,
-            seek,
-            toggleDisplayNoteForm,
+            seek
         },
         timestamp,
         pausedCard,

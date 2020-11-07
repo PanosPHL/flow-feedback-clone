@@ -15,9 +15,8 @@ import NoteCardBodyContent from './NoteCardBodyContent';
 const NoteCard = (props) => {
     const dispatch = useDispatch();
     const { currentFlow, timestamp, player, playing, setControllable, handlers: { deleteNoteFromFlow } } = useContext(PlayerContext);
-    const { editNoteForm } = useSelector(state => state.ui.flow);
+    const { editNoteForm, deleteNote } = useSelector(state => state.ui.flow);
     const { pausedCard } = useSelector(state => state.session);
-    const [displayForm, setDisplayForm] = useState(false);
     const [inactive, setInactive] = useState('inactiveCard');
     const [noteContent, setNoteContent] = useState('');
     const [errors, setErrors] = useState({ errors: [] });
@@ -36,7 +35,9 @@ const NoteCard = (props) => {
     useEffect(() => {
         if (pausedCard !== props.noteId) {
             setInactive('inactiveCard');
-            setDisplayForm(false);
+            if (editNoteForm) {
+                dispatch(toggleEditNoteForm());
+            }
             setDeleteConf(false);
         } else {
             setInactive('activeCard');
@@ -45,7 +46,7 @@ const NoteCard = (props) => {
 
     useEffect(() => {
         setErrors({ errors: [] });
-    }, [displayForm, noteContent])
+    }, [editNoteForm, noteContent])
 
     useEffect(() => {
         setNoteContent(props.content);

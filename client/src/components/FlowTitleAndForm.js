@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { toggleControllable } from '../store/ui/flow';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleTitleForm } from '../store/ui/flow';
 import PlayerContext from '../contexts/PlayerContext';
 import { MDBIcon, MDBAlert } from 'mdbreact';
 import styles from '../css-modules/FlowTitleAndForm.module.css';
@@ -9,7 +9,7 @@ import { updateFlowName } from '../store/flows';
 const FlowTitleAndForm = ({ flowName, id }) => {
     const dispatch = useDispatch();
     const { myFlow } = useContext(PlayerContext);
-    const [showForm, setShowForm] = useState(false);
+    const { titleForm } = useSelector(state => state.ui.flow);
     const [name, setName] = useState('');
     const [errors, setErrors] = useState({ errors: [] });
     const [submitted, setSubmitted] = useState(false);
@@ -19,19 +19,15 @@ const FlowTitleAndForm = ({ flowName, id }) => {
     }, [flowName]);
 
     useEffect(() => {
-        dispatch(toggleControllable());
-    }, [showForm]);
-
-    useEffect(() => {
         setErrors({ errors: [] });
-    }, [showForm, name])
+    }, [titleForm, name])
 
     const handleEditClick = () => {
-        setShowForm(true);
+        dispatch(toggleTitleForm())
     }
 
     const handleCancelClick = () => {
-        setShowForm(false);
+        dispatch(toggleTitleForm());
         setName(flowName);
     }
 
@@ -44,7 +40,7 @@ const FlowTitleAndForm = ({ flowName, id }) => {
         const res = await dispatch(updateFlowName(id, name));
 
         if (res.ok) {
-            setShowForm(false);
+            dispatch(toggleTitleForm());
             setName(res.data.flow.name);
             setSubmitted(true);
             return;
@@ -56,7 +52,7 @@ const FlowTitleAndForm = ({ flowName, id }) => {
     return (
         <>
         <div className={styles.container}>
-        { showForm ?
+        { titleForm ?
         <form className={styles.formContainer} onSubmit={handleFormSubmit}>
             <input type='text' onChange={handleNameChange} className={styles.input + ' form-control form-control-lg'} value={name}/>
             <div>

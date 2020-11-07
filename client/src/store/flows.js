@@ -123,7 +123,9 @@ export default function flowReducer(state = {}, action) {
             }
             return newState;
         case EDIT_FLOW_NAME:
-            newState[action.flow.id] = action.flow;
+            flow = Object.assign({}, newState[action.flow.id]);
+            flow.name = action.flow.name;
+            newState[action.flow.id] = flow;
             return newState;
         case DELETE_FLOW:
             delete newState[action.id];

@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPausedCard } from '../store/session';
+import { toggleNewNoteForm } from '../store/ui/flow';
 import styles from '../css-modules/EditFlowPage.module.css';
 import PlayerContext from '../contexts/PlayerContext';
 import { addNewNote } from '../store/notes';
@@ -26,7 +27,7 @@ const NewNoteForm = () => {
         const res = await dispatch(addNewNote(content, timestamp, id));
         if (res.ok) {
             dispatch(setPausedCard(res.data.note.id));
-            toggleDisplayNoteForm();
+            dispatch(toggleNewNoteForm());
             setContent('');
             return;
         }
@@ -36,7 +37,7 @@ const NewNoteForm = () => {
 
     const handleCancelClick = () => {
         setContent('');
-        toggleDisplayNoteForm();
+        dispatch(toggleNewNoteForm());
     }
 
     return (
@@ -51,7 +52,7 @@ const NewNoteForm = () => {
             })}
         </ul>
         </MDBAlert>
-        : <></>}
+        : <></> }
         <textarea onChange={handleContentChange} className={styles.textarea + ' form-control form-control-sm'} rows={errors.errors.length ? '2.9' : '4'} value={content}/>
             <div className={styles.noteFormButtons}>
             <button type='submit' className='btn btn-primary btn-indigo btn-sm'>Submit</button>
