@@ -1,32 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import CatCard from './CatCard';
 import styles from '../css-modules/BrowseCats.module.css';
 
 const BrowseCats = () => {
-    const [cats, setCats] = useState({ cats: [] });
-
-    useEffect(() => {
-        const fetchCats = async () => {
-            const res = await fetch('/api/categories');
-
-            res.data = await res.json();
-
-            if (res.ok) {
-                setCats({ cats: res.data.categories });
-            }
-        }
-
-        fetchCats();
-    }, [])
+    const categories = useSelector(state => Object.values(state.entities.categories));
 
     return (
             <div style={{gridRow: '3 / 5', gridColumn: '2 / 6'}} className={styles.container}>
         <h2 className={styles.header + ' font-weight-bold'}>Categories</h2>
         <div className={styles.cardContainer}>
-        {cats.cats.length ?
-        cats.cats.map((cat, i) => {
+        {categories.length ?
+        categories.map((category, i) => {
             return (
-                <CatCard key={`cat-${i + 1}`} cover={cat.cover} catId={cat.id} name={cat.name}/>
+                <CatCard key={`cat-${i + 1}`} cover={category.cover} catId={category.id} name={category.name}/>
             )
         }) :
     <> </> }

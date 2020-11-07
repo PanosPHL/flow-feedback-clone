@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleSignUpModal } from '../store/ui/home';
 import { MDBContainer, MDBModal } from 'mdbreact';
-import SignUpModalContext from '../contexts/SignUpModalContext';
 import SignUp from './SignUp';
 
 const SignUpModal = () => {

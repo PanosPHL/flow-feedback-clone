@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { toggleLoginModal } from '../store/ui/home';
 import { MDBContainer, MDBModal } from 'mdbreact';
 import LogIn from './LogIn';
-import LogInModalContext from '../contexts/LogInModalContext';
 
 const LogInModal = () => {
     const dispatch = useDispatch();

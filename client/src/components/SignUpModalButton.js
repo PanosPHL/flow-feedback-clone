@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { toggleSignUpModal } from '../store/ui/home';
 import styles from '../css-modules/TopRowButtonsStyles.module.css';
-import SignUpModalContext from '../contexts/SignUpModalContext';
 
 const SignUpModalButton = () => {
     const dispatch = useDispatch();

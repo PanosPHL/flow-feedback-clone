@@ -107,6 +107,11 @@ export const deleteNote = (noteId) => {
 export default function noteReducer(state = {}, action) {
     const newState = Object.assign({}, state);
     switch(action.type) {
+        case SET_NOTES:
+            for (const note of action.notes) {
+                newState[note.id] = note;
+            }
+            return newState;
         case ADD_NOTE:
             newState[action.note.id] = action.note;
             return newState;

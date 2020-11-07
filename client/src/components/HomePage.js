@@ -1,11 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux';
 import { MDBContainer, MDBBox } from 'mdbreact';
 import { Link } from 'react-router-dom';
-import { toggleLoginModal, toggleSignUpModal } from '../store/ui/home';
-import styles from '../css-modules/HomePage.module.css';
-import LogInModalContext from '../contexts/LogInModalContext';
-import SignUpModalContext from '../contexts/SignUpModalContext';
 import LogInModalButton from './LogInModalButton';
 import LogInModal from './LogInModal';
 import SignUpModalButton from './SignUpModalButton';
@@ -15,6 +11,7 @@ import HomePageCarousel from './HomePageCarousel';
 import BrowseRecentFlows from './BrowseRecentFlows';
 import BrowseCats from './BrowseCats';
 import HomePageDropdown from './HomePageDropdown';
+import styles from '../css-modules/HomePage.module.css';
 
 export const LinkToRoot = () => {
     return (

@@ -1,10 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { toggleSignUpModal } from '../store/ui/home';
 import { useDispatch } from 'react-redux';
 import { signUp } from '../store/auth';
 import { MDBBox, MDBInput, MDBBtn, MDBAlert } from 'mdbreact';
 import styles from '../css-modules/SignUpForm.module.css';
-import SignUpModalContext from '../contexts/SignUpModalContext';
 
 const SignUp = () => {
     const [email, setEmail] = useState('');

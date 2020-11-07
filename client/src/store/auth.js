@@ -1,6 +1,4 @@
 import Cookies from 'js-cookie';
-import { setUserNotes } from './notes';
-import { setUserFlows } from './flows';
 
 const SET_USER = 'auth/SET_USER';
 const LOGOUT_USER = 'auth/LOGOUT_USER';
@@ -93,12 +91,12 @@ export const logout = () => {
     }
 }
 
-export default function authReducer(state = {}, action) {
+export default function authReducer(state = { id: null }, action) {
     switch(action.type) {
         case SET_USER:
-            return action.user;
+            return { id: action.user.id };
         case LOGOUT_USER:
-            return {};
+            return { id: null };
         default:
             return state;
     }

@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import BrowseFlowCard from './BrowseFlowCard';
 import styles from '../css-modules/RecentFlows.module.css';
 
 const BrowseRecentFlows = () => {
     const flows = useSelector(state => {
-        return Object.values(state.entities.flows).sort((a, b) => {
-            return new Date(a.createdAt) - new Date(b.createdAt);
-        }).filter((flow, i) => i <= 3);
+        const flows = Object.values(state.entities.flows);
+        return flows.filter((flow, i) => i >= flows.length - 4);
     }) || [];
 
     return (
@@ -23,12 +22,6 @@ const BrowseRecentFlows = () => {
                         key={`card-${i + 1}`}
                         i={i}
                         flow={flow}
-                        // thumbnail={flow.Video.thumbnail}
-                        // name={flow.name}
-                        // catName={flow.Category.name}
-                        // flowId={flow.id}
-                        // myFlow={false}
-                        // owner={flow.User.email}
                         />
                     )
                 }) : <></>}

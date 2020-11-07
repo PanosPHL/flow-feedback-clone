@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { toggleLoginModal } from '../store/ui/home';
 import styles from '../css-modules/TopRowButtonsStyles.module.css';
-import LogInModalContext from '../contexts/LogInModalContext';
 
 const LogInModalButton = () => {
     const dispatch = useDispatch();

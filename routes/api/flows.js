@@ -35,6 +35,7 @@ const validateFlowUpdate = [
 const router = express.Router();
 
 router.post('/', validateFlow, handleValidationErrors, asyncHandler(async (req, res, next) => {
+    console.log(req.body);
     const { name, description, userId, video, categoryId } = req.body;
 
     const flow = await sequelize.transaction(async (t) => {

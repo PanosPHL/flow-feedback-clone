@@ -41,7 +41,9 @@ function App() {
         dispatch(setNotes(res.data.notes));
         dispatch(setVideos(res.data.videos));
         dispatch(setUsers(res.data.users));
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 800);
       }
     }
 

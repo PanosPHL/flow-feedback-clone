@@ -31,7 +31,9 @@ const appReducer = combineReducers({
 
 const rootReducer = (state, action) => {
   if (action.type === RESET_STATE) {
-    state = {};
+    const newState = Object.assign({}, state)
+    newState.auth.id = null;
+    return newState;
   }
   return appReducer(state, action);
 }

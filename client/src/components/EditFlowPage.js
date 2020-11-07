@@ -15,13 +15,13 @@ const EditFlowPage = (props) => {
     const id = Number(window.location.toString().split('/')[4]);
     const userId = useSelector(state => state.auth.id);
 
-    const [currentFlow, setCurrentFlow] = useState({});
+    const currentFlow = useSelector(state => state.entities.flows[id]);
+    const myFlow = useSelector(state => currentFlow.userId === state.auth.id);
     const [playing, setPlaying] = useState(false);
     const [player, setPlayer] = useState(null);
     const [timestamp, setTimestamp] = useState(0);
     const [controllable, setControllable] = useState(true);
     const [pausedCard, setPausedCard] = useState(-1);
-    const [myFlow, setMyFlow] = useState(false);
 
     const sortNotes = (a, b) => {
         const timeA = parseFloat(a.timestamp);
@@ -60,46 +60,46 @@ const EditFlowPage = (props) => {
         }
     });
 
-    useEffect(() => {
-        const fetchCurrentFlow = async () => {
-            const res = await fetch(`/api/flows/${id}`);
-            res.data = await res.json();
-            if (res.ok && res.data.flow !== null) {
-                setCurrentFlow(res.data.flow);
+    // useEffect(() => {
+    //     const fetchCurrentFlow = async () => {
+    //         const res = await fetch(`/api/flows/${id}`);
+    //         res.data = await res.json();
+    //         if (res.ok && res.data.flow !== null) {
+    //             setCurrentFlow(res.data.flow);
 
-                if (res.data.flow.userId === userId) {
-                    setMyFlow(true);
-                }
-                return;
-            }
+    //             if (res.data.flow.userId === userId) {
+    //                 setMyFlow(true);
+    //             }
+    //             return;
+    //         }
 
-            props.history.push('/not-found');
-        }
+    //         props.history.push('/not-found');
+    //     }
 
-            fetchCurrentFlow();
-    }, [id, userId, props.history]);
+    //         fetchCurrentFlow();
+    // }, [id, userId, props.history]);
 
-    const addNoteToFlow = (note) => {
-        const notes = [...currentFlow.Notes];
-        notes.push(note);
-        notes.sort(sortNotes);
-        const newState = Object.assign({}, currentFlow);
-        newState.Notes = notes;
-        setCurrentFlow(newState);
-    }
+    // const addNoteToFlow = (note) => {
+    //     const notes = [...currentFlow.Notes];
+    //     notes.push(note);
+    //     notes.sort(sortNotes);
+    //     const newState = Object.assign({}, currentFlow);
+    //     newState.Notes = notes;
+    //     setCurrentFlow(newState);
+    // }
 
-    const deleteNoteFromFlow = (noteId) => {
-        const newState = Object.assign({}, currentFlow);
-        let slice;
-        for (let i = 0; i < newState.Notes.length; i++) {
-            if (newState.Notes[i].id === noteId) {
-                slice = i;
-                break;
-            }
-        }
-        newState.Notes = [...newState.Notes.slice(0, slice), ...newState.Notes.slice(slice + 1)];
-        setCurrentFlow(newState);
-    }
+    // const deleteNoteFromFlow = (noteId) => {
+    //     const newState = Object.assign({}, currentFlow);
+    //     let slice;
+    //     for (let i = 0; i < newState.Notes.length; i++) {
+    //         if (newState.Notes[i].id === noteId) {
+    //             slice = i;
+    //             break;
+    //         }
+    //     }
+    //     newState.Notes = [...newState.Notes.slice(0, slice), ...newState.Notes.slice(slice + 1)];
+    //     setCurrentFlow(newState);
+    // }
 
     const toggleControllable = () => {
         setControllable(!controllable);
@@ -182,8 +182,6 @@ const EditFlowPage = (props) => {
             togglePlay,
             seek,
             toggleDisplayNoteForm,
-            addNoteToFlow,
-            deleteNoteFromFlow
         },
         timestamp,
         setControllable,
