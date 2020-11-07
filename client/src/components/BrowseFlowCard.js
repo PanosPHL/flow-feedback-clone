@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { MDBCard, MDBContainer } from 'mdbreact';
 import FlowCardContext from '../contexts/FlowCardContext';
 import FlowCardContent from './FlowCardContent';
@@ -8,7 +8,11 @@ import { deleteFlow } from '../store/flows';
 import { Link } from 'react-router-dom';
 import styles from '../css-modules/BrowseFlows.module.css';
 
-const BrowseFlowCard = ({ i, thumbnail, name, catName, description, flowId, removeFlow, myFlow, owner }) => {
+const BrowseFlowCard = ({ i, flow, flowId, removeFlow, myFlow }) => {
+    const { thumbnail } = useSelector(state => state.entities.videos[flow.videoId]);
+    const { name: catName } = useSelector(state => state.entities.categories[flow.categoryId]);
+    const { email: owner } = useSelector(state => state.entities.users[flow.userId]);
+
     const [displayDel, setDisplayDel] = useState(false);
     const dispatch = useDispatch();
 
@@ -18,10 +22,10 @@ const BrowseFlowCard = ({ i, thumbnail, name, catName, description, flowId, remo
     }
 
     const handleDelClick = async () => {
-        const res = await dispatch(deleteFlow(flowId));
+        const res = await dispatch(deleteFlow(flow.id));
 
         if (res.ok) {
-            removeFlow(flowId);
+            removeFlow(flow.id);
             setDisplayDel(false);
         }
     }
@@ -62,7 +66,7 @@ const BrowseFlowCard = ({ i, thumbnail, name, catName, description, flowId, remo
                     width: '320px',
                     height: '352px'
                 }}>
-                    <FlowCardContent thumbnail={thumbnail} name={name} catName={catName} description={description} myFlow={myFlow} owner={owner}/>
+                    <FlowCardContent thumbnail={thumbnail} name={flow.name} catName={catName} description={flow.description} myFlow={myFlow} owner={owner}/>
                 </MDBCard>
             </MDBContainer>
         </FlowCardContext.Provider>

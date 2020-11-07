@@ -41,9 +41,7 @@ export const login = (email, password) => {
         res.data = await res.json();
 
         if (res.ok) {
-            dispatch(setUser(res.data.user));
-            dispatch(setUserFlows(res.data.user.id));
-            dispatch(setUserNotes(res.data.user.id));
+            dispatch(setUser(res.data.user.id));
         }
         return res;
     };

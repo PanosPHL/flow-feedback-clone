@@ -2,7 +2,7 @@ const express = require("express");
 const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
 
-const { User, Category, Flow, Note } = require("../../db/models");
+const { User, Category, Flow, Note, Video } = require("../../db/models");
 const { handleValidationErrors } = require("../util/validation");
 const { getCurrentUser, generateToken, AuthenticationError } = require("../util/auth");
 const { jwtConfig: { expiresIn }} = require('../../config');
@@ -33,7 +33,9 @@ router.get('/data', asyncHandler( async (req, res, next) => {
         attribute: ['id']
       }
     }),
-    notes: await Note.findAll({})
+    notes: await Note.findAll({}),
+    users: await User.findAll({}),
+    videos: await Video.findAll({})
   });
 }));
 

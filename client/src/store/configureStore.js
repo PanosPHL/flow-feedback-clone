@@ -6,18 +6,26 @@ import newFlow from './newFlow';
 import categories from './categories';
 import flows from './flows';
 import notes from './notes';
+import users from './users';
+import videos from './videos';
 import home from './ui/home';
 
 const ui = combineReducers({
   home
 });
 
-const appReducer = combineReducers({
-  auth,
-  newFlow,
+const entities = combineReducers({
   categories,
   flows,
   notes,
+  users,
+  videos
+});
+
+const appReducer = combineReducers({
+  auth,
+  newFlow,
+  entities,
   ui
 });
 

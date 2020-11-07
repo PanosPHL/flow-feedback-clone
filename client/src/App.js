@@ -5,6 +5,8 @@ import { setUser } from './store/auth';
 import { setNotes } from './store/notes';
 import { setCategories } from './store/categories';
 import { setFlows } from './store/flows';
+import { setUsers } from './store/users';
+import { setVideos } from './store/videos';
 import HomePage from './components/HomePage';
 import PageLoad from './components/PageLoad';
 import FetchFlow from './components/FetchFlow';
@@ -15,7 +17,7 @@ import CatFlows from './components/CatFlows';
 import NotFound from './components/NotFound';
 
 function App() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,9 +28,6 @@ function App() {
         res.data = await res.json(); // current user info
         dispatch(setUser(res.data.user));
       }
-      setTimeout(() => {
-        setLoading(false);
-      }, 800);
     }
     loadUser();
 
@@ -40,6 +39,8 @@ function App() {
         dispatch(setCategories(res.data.categories));
         dispatch(setFlows(res.data.flows));
         dispatch(setNotes(res.data.notes));
+        dispatch(setVideos(res.data.videos));
+        dispatch(setUsers(res.data.users));
         setLoading(false);
       }
     }
