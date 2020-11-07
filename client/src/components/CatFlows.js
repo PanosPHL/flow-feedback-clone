@@ -7,38 +7,9 @@ import { withRouter } from 'react-router-dom';
 
 const CatFlows = (props) => {
     const id = props.match.params.id;
-    const [category, setCategory] = useState({});
+    const category = useSelector(state => state.entities.categories[id]);
+    const flows = useSelector(state => Object.values(state.entities.flows).filter((flow) => flow.categoryId === category.id));
     const currentUser = useSelector(state => state.session.id);
-    const [flows, setFlows] = useState({ flows: [] });
-
-    useEffect(() => {
-        const fetchFlows = async () => {
-            const res = await fetch(`/api/categories/${id}/flows`);
-
-            res.data = await res.json();
-
-            if (res.ok && res.data.category !== null) {
-                setFlows({ flows: res.data.category.Flows });
-                setCategory(res.data.category);
-                return;
-            }
-
-            props.history.push('/not-found');
-        }
-        fetchFlows();
-    }, [id, props.history]);
-
-    const removeFlow = (id) => {
-        let slice;
-        const newState = Object.assign({}, flows);
-        for (let i = 0; i < newState.flows.length; i++) {
-            if (newState.flows[i].id === id) {
-                slice = i;
-            }
-        }
-        newState.flows.splice(slice, 1);
-        setFlows(newState);
-    }
 
     return (
         <div className={styles.pageContainer}>
@@ -47,20 +18,14 @@ const CatFlows = (props) => {
             </div>
             <SideNavComponent pageName='browseFlows'/>
             <div className={styles.cardContainer}>
-                {flows.flows.length ?
-                    flows.flows.map((flow, i) => {
+                {flows.length ?
+                    flows.map((flow, i) => {
                         return (
                             <BrowseFlowCard
                                 key={`card-${i + 1}`}
                                 i={i}
-                                thumbnail={flow.Video.thumbnail}
-                                name={flow.name}
-                                catName={category.name === 'Super Smash Bros. Melee' ? 'Melee' : category.name}
-                                description={flow.description}
-                                flowId={flow.id}
+                                flow={flow}
                                 myFlow={currentUser === flow.userId}
-                                removeFlow={removeFlow}
-                                owner={flow.User.email}
                             />
                         )
                     })
