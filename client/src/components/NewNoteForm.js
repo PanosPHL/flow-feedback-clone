@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { setPausedCard } from '../store/session';
 import styles from '../css-modules/EditFlowPage.module.css';
 import PlayerContext from '../contexts/PlayerContext';
 import { addNewNote } from '../store/notes';
@@ -8,7 +9,7 @@ import { MDBAlert } from 'mdbreact';
 const NewNoteForm = () => {
     const dispatch = useDispatch();
     const { newNoteForm } = useSelector(state => state.ui.flow);
-    const {id, timestamp, setPausedCard, handlers: { toggleDisplayNoteForm } } = useContext(PlayerContext);
+    const {id, timestamp, handlers: { toggleDisplayNoteForm } } = useContext(PlayerContext);
     const [content, setContent] = useState('');
     const [errors, setErrors] = useState({ errors: []});
 
@@ -24,9 +25,9 @@ const NewNoteForm = () => {
         event.preventDefault();
         const res = await dispatch(addNewNote(content, timestamp, id));
         if (res.ok) {
+            dispatch(setPausedCard(res.data.note.id));
             toggleDisplayNoteForm();
             setContent('');
-            setPausedCard(res.data.note.id);
             return;
         }
 

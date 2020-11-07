@@ -2,7 +2,8 @@ import Cookies from 'js-cookie';
 
 const SET_USER = 'session/SET_USER';
 const LOGOUT_USER = 'session/LOGOUT_USER';
-export const RESET_STATE = '/session/RESET_STATE';
+export const RESET_STATE = 'session/RESET_STATE';
+const SET_PAUSED_CARD = 'session/SET_PAUSED_CARD';
 
 export const csrfToken = Cookies.get('XSRF-TOKEN');
 
@@ -25,6 +26,13 @@ export const setUser = (user) => {
     }
 };
 
+export const setPausedCard = (noteId) => {
+    return {
+        type: SET_PAUSED_CARD,
+        noteId
+    }
+}
+
 export const login = (email, password) => {
     return async dispatch => {
         const res = await fetch('/api/session', {
@@ -39,7 +47,7 @@ export const login = (email, password) => {
         res.data = await res.json();
 
         if (res.ok) {
-            dispatch(setUser(res.data.user.id));
+            dispatch(setUser(res.data.user));
         }
         return res;
     };
@@ -91,12 +99,22 @@ export const logout = () => {
     }
 }
 
-export default function sessionReducer(state = { id: null }, action) {
+const initialState = {
+    id: null,
+    pausedCard: null
+};
+
+export default function sessionReducer(state = initialState, action) {
+    const newState = Object.assign({}, state);
     switch(action.type) {
         case SET_USER:
-            return { id: action.user.id };
+            newState.id = action.user.id;
+            return newState;
         case LOGOUT_USER:
-            return { id: null };
+            return initialState;
+        case SET_PAUSED_CARD:
+            newState.pausedCard = action.noteId;
+            return newState;
         default:
             return state;
     }

@@ -1,29 +1,33 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { MDBCard, MDBCardBody, MDBContainer } from "mdbreact";
 import PlayerContext from '../contexts/PlayerContext';
 import { round } from '../utils/round';
 import styles from '../css-modules/EditFlowPage.module.css';
 import { updateNote, deleteNote } from '../store/notes';
+import { toggleEditNoteForm } from '../store/ui/flow';
+import { setPausedCard } from '../store/session';
 import NoteCardContext from '../contexts/NoteCardContext';
 import EditNoteForm from './EditNoteForm';
 import DeleteNoteForm from './DeleteNoteForm';
 import NoteCardBodyContent from './NoteCardBodyContent';
 
 const NoteCard = (props) => {
-    const { currentFlow, timestamp, player, pausedCard, setPausedCard, playing, setControllable, handlers: { deleteNoteFromFlow } } = useContext(PlayerContext);
-    const [inactive, setInactive] = useState('inactiveCard');
+    const dispatch = useDispatch();
+    const { currentFlow, timestamp, player, playing, setControllable, handlers: { deleteNoteFromFlow } } = useContext(PlayerContext);
+    const { editNoteForm } = useSelector(state => state.ui.flow);
+    const { pausedCard } = useSelector(state => state.session);
     const [displayForm, setDisplayForm] = useState(false);
+    const [inactive, setInactive] = useState('inactiveCard');
     const [noteContent, setNoteContent] = useState('');
     const [errors, setErrors] = useState({ errors: [] });
     const [deleteConf, setDeleteConf] = useState(false);
-    const dispatch = useDispatch();
 
     useEffect(() => {
         if (round(timestamp, 1) === round(props.timestamp, 1)) {
             if (player && props.noteId !== pausedCard) {
                 player.pauseVideo();
-                setPausedCard(props.noteId);
+                dispatch(setPausedCard(props.noteId));
                 setInactive('activeCard');
             }
         }
@@ -59,22 +63,21 @@ const NoteCard = (props) => {
             if (playing) {
                 player.pauseVideo();
             }
-            setPausedCard(props.noteId);
+            dispatch(setPausedCard(props.noteId));
             setInactive('activeCard');
         }
     }
 
     const handleBtnClick = () => {
         if (inactive === 'activeCard') {
-            setDisplayForm(true);
-            setControllable(false);
+            dispatch(setPausedCard(props.noteId));
+            dispatch(toggleEditNoteForm());
         }
     }
 
     const handleFormCancel = () => {
         setNoteContent(props.content);
-        setDisplayForm(false);
-        setControllable(true);
+        dispatch(toggleEditNoteForm());
     }
 
     const handleContentChange = (event) => {
@@ -87,7 +90,7 @@ const NoteCard = (props) => {
 
         if (res.ok) {
             setNoteContent(res.data.note.content);
-            setDisplayForm(false);
+            dispatch(toggleEditNoteForm());
             return;
         }
 
@@ -126,7 +129,7 @@ const NoteCard = (props) => {
         <MDBContainer id={`note-${props.i}`} className={inactive} onClick={handleClick}>
             <MDBCard className={styles.noteCard}>
                 <MDBCardBody>
-                    { displayForm ?
+                    { editNoteForm && pausedCard === props.noteId ?
                     <EditNoteForm />:
                     <>
                     {

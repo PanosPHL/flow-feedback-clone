@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { setPausedCard } from '../store/session';
 import { toggleNewNoteForm, toggleEditNoteForm } from '../store/ui/flow';
 import YouTube from 'react-youtube';
 import PlayerContext from '../contexts/PlayerContext';
@@ -16,15 +17,14 @@ const EditFlowPage = (props) => {
     const dispatch = useDispatch();
     const id = Number(window.location.toString().split('/')[4]);
     const userId = useSelector(state => state.session.id);
-
     const currentFlow = useSelector(state => state.entities.flows[id]);
     const myFlow = useSelector(state => currentFlow.userId === state.session.id);
     const notes = useSelector(state => currentFlow.notes ? Object.values(state.entities.notes).filter((note) => currentFlow.notes.includes(note.id)).sort(sortNotes) : []);
+    const pausedCard = useSelector(state => state.session);
     const { newNoteForm, editNoteForm } = useSelector(state => state.ui.flow);
     const [playing, setPlaying] = useState(false);
     const [player, setPlayer] = useState(null);
     const [timestamp, setTimestamp] = useState(0);
-    const [pausedCard, setPausedCard] = useState(-1);
 
     function sortNotes (a, b) {
         const timeA = parseFloat(a.timestamp);
@@ -61,6 +61,8 @@ const EditFlowPage = (props) => {
 
         return () => {
             window.removeEventListener('keyup', handleKeyUp);
+            dispatch(setPausedCard(null));
+            clearInterval(setTimestampInterval);
         }
     }, []);
 
@@ -89,7 +91,7 @@ const EditFlowPage = (props) => {
             setTimestamp(player.getCurrentTime(), 2);
         }, 50);
         setTimeout(() => {
-            setPausedCard(-1);
+            dispatch(setPausedCard(null));
         }, 100);
     }
 
@@ -127,7 +129,7 @@ const EditFlowPage = (props) => {
                 player.seekTo(time + 2)
             }
 
-            setPausedCard(-1);
+            dispatch(setPausedCard(null));
         }
     }
 
