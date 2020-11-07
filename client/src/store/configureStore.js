@@ -1,7 +1,7 @@
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
-import auth, { RESET_STATE } from './auth';
+import session, { RESET_STATE } from './session';
 import newFlow from './newFlow';
 import categories from './categories';
 import flows from './flows';
@@ -9,9 +9,11 @@ import notes from './notes';
 import users from './users';
 import videos from './videos';
 import home from './ui/home';
+import flow from './ui/flow';
 
 const ui = combineReducers({
-  home
+  home,
+  flow
 });
 
 const entities = combineReducers({
@@ -23,7 +25,7 @@ const entities = combineReducers({
 });
 
 const appReducer = combineReducers({
-  auth,
+  session,
   newFlow,
   entities,
   ui
@@ -32,7 +34,7 @@ const appReducer = combineReducers({
 const rootReducer = (state, action) => {
   if (action.type === RESET_STATE) {
     const newState = Object.assign({}, state)
-    newState.auth.id = null;
+    newState.session.id = null;
     return newState;
   }
   return appReducer(state, action);

@@ -1,4 +1,4 @@
-import { csrfToken } from './auth';
+import { csrfToken } from './session';
 import { ADD_NOTE, DELETE_NOTE } from './notes';
 
 const ADD_FLOW = '/flows/ADD_FLOW';

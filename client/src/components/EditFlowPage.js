@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleNewNoteForm, toggleEditNoteForm } from '../store/ui/flow';
 import YouTube from 'react-youtube';
 import PlayerContext from '../contexts/PlayerContext';
 import FlowPlayerControls from './FlowPlayerControls';
@@ -12,16 +13,17 @@ import SideNavComponent from './SideNavComponent';
 import { withRouter } from 'react-router-dom';
 
 const EditFlowPage = (props) => {
+    const dispatch = useDispatch();
     const id = Number(window.location.toString().split('/')[4]);
-    const userId = useSelector(state => state.auth.id);
+    const userId = useSelector(state => state.session.id);
 
     const currentFlow = useSelector(state => state.entities.flows[id]);
-    const myFlow = useSelector(state => currentFlow.userId === state.auth.id);
+    const myFlow = useSelector(state => currentFlow.userId === state.session.id);
     const notes = useSelector(state => currentFlow.notes ? Object.values(state.entities.notes).filter((note) => currentFlow.notes.includes(note.id)).sort(sortNotes) : []);
+    const { newNoteForm, editNoteForm } = useSelector(state => state.ui.flow);
     const [playing, setPlaying] = useState(false);
     const [player, setPlayer] = useState(null);
     const [timestamp, setTimestamp] = useState(0);
-    const [controllable, setControllable] = useState(true);
     const [pausedCard, setPausedCard] = useState(-1);
 
     function sortNotes (a, b) {
@@ -38,8 +40,9 @@ const EditFlowPage = (props) => {
     }
 
     const handleKeyUp = (event) => {
+        console.log(event);
         event.stopPropagation();
-        if (!controllable) {
+        if (newNoteForm || editNoteForm) {
             return;
         }
 
@@ -54,7 +57,6 @@ const EditFlowPage = (props) => {
 
 
     useEffect(() => {
-        console.log('firing');
         window.addEventListener('keyup', handleKeyUp);
 
         return () => {
@@ -62,13 +64,8 @@ const EditFlowPage = (props) => {
         }
     }, []);
 
-    const toggleControllable = () => {
-        setControllable(!controllable);
-    }
-
     const toggleDisplayNoteForm = () => {
-        toggleControllable();
-        document.querySelector('.submit-note').classList.toggle('hidden');
+        dispatch(toggleNewNoteForm());
     }
 
     const opts = {
@@ -103,7 +100,7 @@ const EditFlowPage = (props) => {
     }
 
     const togglePlay = () => {
-        if (!controllable) {
+        if (newNoteForm || editNoteForm) {
             return;
         }
 
@@ -115,7 +112,7 @@ const EditFlowPage = (props) => {
     }
 
     const seek = (event) => {
-        if (!controllable) {
+        if (newNoteForm || editNoteForm) {
             return;
         }
 
@@ -138,14 +135,12 @@ const EditFlowPage = (props) => {
         id,
         player,
         playing,
-        controllable,
         handlers: {
             togglePlay,
             seek,
             toggleDisplayNoteForm,
         },
         timestamp,
-        setControllable,
         pausedCard,
         setPausedCard,
         currentFlow,

@@ -1,8 +1,8 @@
 import Cookies from 'js-cookie';
 
-const SET_USER = 'auth/SET_USER';
-const LOGOUT_USER = 'auth/LOGOUT_USER';
-export const RESET_STATE = '/auth/RESET_STATE';
+const SET_USER = 'session/SET_USER';
+const LOGOUT_USER = 'session/LOGOUT_USER';
+export const RESET_STATE = '/session/RESET_STATE';
 
 export const csrfToken = Cookies.get('XSRF-TOKEN');
 
@@ -91,7 +91,7 @@ export const logout = () => {
     }
 }
 
-export default function authReducer(state = { id: null }, action) {
+export default function sessionReducer(state = { id: null }, action) {
     switch(action.type) {
         case SET_USER:
             return { id: action.user.id };

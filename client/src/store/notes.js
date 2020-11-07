@@ -1,4 +1,4 @@
-import { csrfToken } from './auth';
+import { csrfToken } from './session';
 
 export const ADD_NOTE = '/notes/ADD_NOTE';
 const SET_NOTES = '/notes/SET_NOTES';

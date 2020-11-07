@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useDispatch } from 'react-redux';
 import { MDBIcon } from 'mdbreact';
 import PlayerContext from '../contexts/PlayerContext';
 

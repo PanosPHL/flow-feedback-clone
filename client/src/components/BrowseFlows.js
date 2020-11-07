@@ -5,7 +5,7 @@ import BrowseFlowCard from './BrowseFlowCard';
 import SideNavComponent from './SideNavComponent';
 
 const BrowseMyFlows = () => {
-    const userId = useSelector(state => state.auth.id);
+    const userId = useSelector(state => state.session.id);
     const [flows, setFlows] = useState({ flows: [] });
 
     useEffect(() => {

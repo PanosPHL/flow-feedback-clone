@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { toggleSignUpModal } from '../store/ui/home';
 import { useDispatch } from 'react-redux';
-import { signUp } from '../store/auth';
+import { signUp } from '../store/session';
 import { MDBBox, MDBInput, MDBBtn, MDBAlert } from 'mdbreact';
 import styles from '../css-modules/SignUpForm.module.css';
 

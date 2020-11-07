@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setUser } from './store/auth';
+import { setUser } from './store/session';
 import { setNotes } from './store/notes';
 import { setCategories } from './store/categories';
 import { setFlows } from './store/flows';

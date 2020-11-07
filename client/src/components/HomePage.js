@@ -23,7 +23,7 @@ export const LinkToRoot = () => {
 }
 
 const HomePage = () => {
-    const currentUser = useSelector(state => state.auth.id);
+    const currentUser = useSelector(state => state.session.id);
 
     return (
                 <div className={styles.pageContainer}>

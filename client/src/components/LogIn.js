@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { login } from '../store/auth';
+import { login } from '../store/session';
 import { toggleLoginModal } from '../store/ui/home';
 import { useDispatch } from 'react-redux';
 import { MDBInput, MDBBtn, MDBBox, MDBAlert } from 'mdbreact';

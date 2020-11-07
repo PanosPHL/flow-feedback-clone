@@ -1,29 +1,26 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { toggleControllable } from '../store/ui/flow';
 import PlayerContext from '../contexts/PlayerContext';
 import { MDBIcon, MDBAlert } from 'mdbreact';
 import styles from '../css-modules/FlowTitleAndForm.module.css';
 import { updateFlowName } from '../store/flows';
 
 const FlowTitleAndForm = ({ flowName, id }) => {
-    const { setControllable, myFlow } = useContext(PlayerContext);
+    const dispatch = useDispatch();
+    const { myFlow } = useContext(PlayerContext);
     const [showForm, setShowForm] = useState(false);
     const [name, setName] = useState('');
     const [errors, setErrors] = useState({ errors: [] });
     const [submitted, setSubmitted] = useState(false);
-    const dispatch = useDispatch();
 
     useEffect(() => {
         setName(flowName)
     }, [flowName]);
 
     useEffect(() => {
-        if (showForm) {
-            setControllable(false);
-        } else {
-            setControllable(true);
-        }
-    }, [showForm, setControllable]);
+        dispatch(toggleControllable());
+    }, [showForm]);
 
     useEffect(() => {
         setErrors({ errors: [] });

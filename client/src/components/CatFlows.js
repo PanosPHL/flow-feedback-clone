@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-dom';
 const CatFlows = (props) => {
     const id = props.match.params.id;
     const [category, setCategory] = useState({});
-    const currentUser = useSelector(state => state.auth.id);
+    const currentUser = useSelector(state => state.session.id);
     const [flows, setFlows] = useState({ flows: [] });
 
     useEffect(() => {

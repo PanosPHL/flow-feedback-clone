@@ -9,7 +9,7 @@ import nfps from '../css-modules/NewFlowPage.module.css';
 const NewFlowForm = (props) => {
     const newFlow = useSelector(state => state.newFlow);
     const categories = useSelector(state => Object.values(state.entities.categories));
-    const userId = useSelector(state => state.auth.id);
+    const userId = useSelector(state => state.session.id);
     const dispatch = useDispatch();
     const [flowCat, setFlowCat] = useState(-1);
     const [flowTitle, setFlowTitle] = useState(newFlow.title);

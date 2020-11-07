@@ -1,4 +1,4 @@
-import { csrfToken } from './auth';
+import { csrfToken } from './session';
 
 export const SET_FLOW_VID = '/flow/SET_FLOW_VID';
 
