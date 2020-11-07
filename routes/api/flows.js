@@ -105,13 +105,16 @@ router.put('/:id(\\d+)', validateFlowUpdate, handleValidationErrors, asyncHandle
 router.delete('/:id(\\d+)', asyncHandler(async (req, res) => {
     const id = parseInt(req.params.id);
     const flowId = sequelize.transaction(async (df) => {
+        await Note.destroy({
+            where: {
+                flowId: id
+            }
+        });
+
         await Flow.destroy({
             where: {
                 id
-            },
-            include: [
-                { model: Note }
-            ]
+            }
         });
 
         return id;

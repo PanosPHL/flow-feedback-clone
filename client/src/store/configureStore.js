@@ -8,11 +8,13 @@ import flows from './flows';
 import notes from './notes';
 import users from './users';
 import videos from './videos';
+import browse from './ui/browse';
 import home from './ui/home';
 import flow from './ui/flow';
 import nav from './ui/nav';
 
 const ui = combineReducers({
+  browse,
   home,
   flow,
   nav

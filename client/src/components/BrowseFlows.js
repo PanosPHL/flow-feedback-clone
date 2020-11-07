@@ -6,35 +6,7 @@ import SideNavComponent from './SideNavComponent';
 
 const BrowseMyFlows = () => {
     const userId = useSelector(state => state.session.id);
-    const [flows, setFlows] = useState({ flows: [] });
-
-    useEffect(() => {
-        const fetchFlows = async () => {
-            const res = await fetch(`/api/users/${userId}/flows`);
-
-            res.data = await res.json();
-
-            if (res.ok) {
-                setFlows({ flows: res.data.flows })
-                return
-            }
-        }
-
-        fetchFlows();
-    }, [userId]);
-
-
-    const removeFlow = (id) => {
-        let slice;
-        const newState = Object.assign({}, flows);
-        for (let i = 0; i < newState.flows.length; i++) {
-            if (newState.flows[i].id === id) {
-                slice = i;
-            }
-        }
-        newState.flows.splice(slice, 1);
-        setFlows(newState);
-    }
+    const flows = useSelector(state => Object.values(state.entities.flows).filter((flow) => flow.userId === userId));
 
     return (
         <div className={styles.pageContainer}>
@@ -43,18 +15,13 @@ const BrowseMyFlows = () => {
             </div>
             <SideNavComponent pageName={'browseFlows'}/>
         <div className={styles.cardContainer}>
-            {flows.flows.length ?
-                flows.flows.map((flow, i) => {
+            {flows.length ?
+                flows.map((flow, i) => {
                     return (
                             <BrowseFlowCard
                             key={`card-${i + 1}`}
                             i={i}
-                            thumbnail={flow.Video.thumbnail}
-                            name={flow.name}
-                            catName={flow.Category.name}
-                            description={flow.description}
-                            flowId={flow.id}
-                            removeFlow={removeFlow}
+                            flow={flow}
                             myFlow={true}/>
                     )
                 })

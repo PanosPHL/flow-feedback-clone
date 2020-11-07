@@ -5,37 +5,43 @@ import FlowCardContext from '../contexts/FlowCardContext';
 import FlowCardContent from './FlowCardContent';
 import DeleteFlowForm from './DeleteFlowForm';
 import { deleteFlow } from '../store/flows';
+import { setFlowToDelete } from '../store/session';
+import { toggleDeleteConfirmation } from '../store/ui/browse';
 import { Link } from 'react-router-dom';
 import styles from '../css-modules/BrowseFlows.module.css';
 
-const BrowseFlowCard = ({ i, flow, flowId, removeFlow, myFlow }) => {
+const BrowseFlowCard = ({ i, flow, myFlow }) => {
+    const dispatch = useDispatch();
     const { thumbnail } = useSelector(state => state.entities.videos[flow.videoId]);
     const { name: catName } = useSelector(state => state.entities.categories[flow.categoryId]);
     const { email: owner } = useSelector(state => state.entities.users[flow.userId]);
-
-    const [displayDel, setDisplayDel] = useState(false);
-    const dispatch = useDispatch();
+    const { deleteFlow: deleteConf } = useSelector(state => state.ui.browse);
+    const { flowToDelete } = useSelector(state => state.session);
 
     const handleTrashClick = (event) => {
         event.preventDefault();
-        setDisplayDel(true);
+        dispatch(setFlowToDelete(flow.id))
+
+        if (!deleteConf) {
+            dispatch(toggleDeleteConfirmation());
+        }
     }
 
     const handleDelClick = async () => {
         const res = await dispatch(deleteFlow(flow.id));
 
         if (res.ok) {
-            removeFlow(flow.id);
-            setDisplayDel(false);
+            dispatch(setFlowToDelete(null));
+            dispatch(toggleDeleteConfirmation());
         }
     }
 
     const handleCancelClick = () => {
-        setDisplayDel(false);
+        dispatch(setFlowToDelete(null));
+        dispatch(toggleDeleteConfirmation());
     }
 
     const value = {
-        displayDel,
         handlers: {
             handleTrashClick,
             handleDelClick,
@@ -43,7 +49,7 @@ const BrowseFlowCard = ({ i, flow, flowId, removeFlow, myFlow }) => {
         }
     };
 
-    if (displayDel) {
+    if (deleteConf && flowToDelete === flow.id) {
         return (
                 <FlowCardContext.Provider value={value}>
                     <MDBContainer style={{width: '320px', margin: '0'}} className={styles.card}>

@@ -4,8 +4,16 @@ const SET_USER = 'session/SET_USER';
 const LOGOUT_USER = 'session/LOGOUT_USER';
 export const RESET_STATE = 'session/RESET_STATE';
 const SET_PAUSED_CARD = 'session/SET_PAUSED_CARD';
+const SET_FLOW_TO_DELETE = 'session/SET_FLOW_TO_DELETE';
 
 export const csrfToken = Cookies.get('XSRF-TOKEN');
+
+export const setFlowToDelete = (flowId) => {
+    return {
+        type: SET_FLOW_TO_DELETE,
+        flowId
+    }
+}
 
 const stateReset = () => {
     return {
@@ -101,7 +109,8 @@ export const logout = () => {
 
 const initialState = {
     id: null,
-    pausedCard: null
+    pausedCard: null,
+    flowToDelete: null
 };
 
 export default function sessionReducer(state = initialState, action) {
@@ -114,6 +123,9 @@ export default function sessionReducer(state = initialState, action) {
             return initialState;
         case SET_PAUSED_CARD:
             newState.pausedCard = action.noteId;
+            return newState;
+        case SET_FLOW_TO_DELETE:
+            newState.flowToDelete = action.flowId;
             return newState;
         default:
             return state;

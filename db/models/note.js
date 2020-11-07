@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     timestamp: DataTypes.DECIMAL,
     flowId: DataTypes.INTEGER
   }, {});
-  Note.associate = function(models) {
+  Note.associate = function (models) {
     Note.belongsTo(models.Flow, { foreignKey: 'flowId' });
   };
   return Note;
