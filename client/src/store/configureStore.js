@@ -6,13 +6,19 @@ import newFlow from './newFlow';
 import categories from './categories';
 import flows from './flows';
 import notes from './notes';
+import home from './ui/home';
+
+const ui = combineReducers({
+  home
+});
 
 const appReducer = combineReducers({
   auth,
   newFlow,
   categories,
   flows,
-  notes
+  notes,
+  ui
 });
 
 const rootReducer = (state, action) => {

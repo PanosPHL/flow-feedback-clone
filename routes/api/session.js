@@ -26,7 +26,13 @@ router.get(
 router.get('/data', asyncHandler( async (req, res, next) => {
   return res.json({
     categories: await Category.findAll({}),
-    flows: await Flow.findAll({}),
+    flows: await Flow.findAll({
+      include: {
+        model: Note,
+        as: 'notes',
+        attribute: ['id']
+      }
+    }),
     notes: await Note.findAll({})
   });
 }));

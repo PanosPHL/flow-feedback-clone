@@ -15,7 +15,7 @@ import CatFlows from './components/CatFlows';
 import NotFound from './components/NotFound';
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,7 +28,7 @@ function App() {
       }
       setTimeout(() => {
         setLoading(false);
-      }, 800)
+      }, 800);
     }
     loadUser();
 
@@ -36,9 +36,11 @@ function App() {
       const res = await fetch('/api/session/data');
       if (res.ok) {
         res.data = await res.json();
+        console.log(res.data);
         dispatch(setCategories(res.data.categories));
         dispatch(setFlows(res.data.flows));
         dispatch(setNotes(res.data.notes));
+        setLoading(false);
       }
     }
 

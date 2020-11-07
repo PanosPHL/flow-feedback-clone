@@ -1,23 +1,23 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleLoginModal } from '../store/ui/home';
 import { MDBContainer, MDBModal } from 'mdbreact';
 import LogIn from './LogIn';
 import LogInModalContext from '../contexts/LogInModalContext';
 
 const LogInModal = () => {
-    return (
-        <LogInModalContext.Consumer>
-            {value => {
-                const { loginModal, toggleLoginModal } = value;
+    const dispatch = useDispatch();
+    const { loginModal } = useSelector(state => state.ui.home);
 
-                return (
-                <MDBContainer>
-                <MDBModal isOpen={loginModal} toggle={toggleLoginModal} centered>
-                        <LogIn />
-                </MDBModal>
-                </MDBContainer>
-                );
-            }}
-        </LogInModalContext.Consumer>
+    const handleToggle = () => {
+        dispatch(toggleLoginModal());
+    }
+    return (
+        <MDBContainer>
+            <MDBModal isOpen={loginModal} toggle={handleToggle} centered>
+                <LogIn />
+            </MDBModal>
+        </MDBContainer>
     )
 }
 

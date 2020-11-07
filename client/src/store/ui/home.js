@@ -7,13 +7,13 @@ export const toggleLoginModal = () => {
     }
 }
 
-export const toggleSignupModal = () => {
+export const toggleSignUpModal = () => {
     return {
         type: TOGGLE_SIGNUP_MODAL
     }
 }
 
-initialState = {
+const initialState = {
     loginModal: false,
     signUpModal: false
 }

@@ -114,6 +114,7 @@ export default function flowReducer(state = {}, action) {
             return newState;
         case SET_FLOWS:
             for (const flow of action.flows) {
+                flow.notes = flow.notes.map((note) => note.id);
                 newState[flow.id] = flow;
             }
             return newState;

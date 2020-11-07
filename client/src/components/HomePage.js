@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import { MDBContainer, MDBBox } from 'mdbreact';
 import { Link } from 'react-router-dom';
+import { toggleLoginModal, toggleSignUpModal } from '../store/ui/home';
 import styles from '../css-modules/HomePage.module.css';
 import LogInModalContext from '../contexts/LogInModalContext';
 import SignUpModalContext from '../contexts/SignUpModalContext';
@@ -25,31 +26,9 @@ export const LinkToRoot = () => {
 }
 
 const HomePage = () => {
-    const [loginModal, setLoginModal] = useState(false);
-    const [signUpModal, setSignUpModal] = useState(false);
     const currentUser = useSelector(state => state.auth.id);
 
-    const toggleLoginModal = () => {
-        setLoginModal(!loginModal);
-    }
-
-    const toggleSignUpModal = () => {
-        setSignUpModal(!signUpModal);
-    }
-
-    const loginModalState = {
-        loginModal: loginModal,
-        toggleLoginModal
-    };
-
-    const signUpModalState = {
-        signUpModal: signUpModal,
-        toggleSignUpModal
-    }
-
     return (
-        <LogInModalContext.Provider value={loginModalState}>
-            <SignUpModalContext.Provider value={signUpModalState}>
                 <div className={styles.pageContainer}>
                 <MDBContainer fluid className={styles.headerSplashContainer}>
                     <div className={styles.imageFilter}>
@@ -79,8 +58,6 @@ const HomePage = () => {
                     <BrowseCats />
                 </div>
                 </div>
-            </SignUpModalContext.Provider>
-        </LogInModalContext.Provider>
     );
 };
 
