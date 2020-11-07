@@ -5,7 +5,7 @@ import PlayerContext from '../contexts/PlayerContext';
 import { round } from '../utils/round';
 import styles from '../css-modules/EditFlowPage.module.css';
 import { updateNote, deleteNote } from '../store/notes';
-import { toggleEditNoteForm } from '../store/ui/flow';
+import { toggleEditNoteForm, toggleDeleteConfirmation } from '../store/ui/flow';
 import { setPausedCard } from '../store/session';
 import NoteCardContext from '../contexts/NoteCardContext';
 import EditNoteForm from './EditNoteForm';
@@ -14,13 +14,12 @@ import NoteCardBodyContent from './NoteCardBodyContent';
 
 const NoteCard = (props) => {
     const dispatch = useDispatch();
-    const { currentFlow, timestamp, player, playing, setControllable, handlers: { deleteNoteFromFlow } } = useContext(PlayerContext);
-    const { editNoteForm, deleteNote } = useSelector(state => state.ui.flow);
+    const { currentFlow, timestamp, player, playing } = useContext(PlayerContext);
+    const { editNoteForm, deleteNote: displayDelete } = useSelector(state => state.ui.flow);
     const { pausedCard } = useSelector(state => state.session);
     const [inactive, setInactive] = useState('inactiveCard');
     const [noteContent, setNoteContent] = useState('');
     const [errors, setErrors] = useState({ errors: [] });
-    const [deleteConf, setDeleteConf] = useState(false);
 
     useEffect(() => {
         if (round(timestamp, 1) === round(props.timestamp, 1)) {
@@ -38,7 +37,9 @@ const NoteCard = (props) => {
             if (editNoteForm) {
                 dispatch(toggleEditNoteForm());
             }
-            setDeleteConf(false);
+            if (displayDelete) {
+                dispatch(toggleDeleteConfirmation());
+            }
         } else {
             setInactive('activeCard');
         }
@@ -66,6 +67,9 @@ const NoteCard = (props) => {
             }
             if (editNoteForm) {
                 dispatch(toggleEditNoteForm());
+            }
+            if (displayDelete) {
+                dispatch(toggleDeleteConfirmation());
             }
             dispatch(setPausedCard(props.noteId));
             setInactive('activeCard');
@@ -102,11 +106,11 @@ const NoteCard = (props) => {
     }
 
     const handleTrashClick = () => {
-        setDeleteConf(true);
+        dispatch(toggleDeleteConfirmation());
     }
 
     const handleDelCancel = () => {
-        setDeleteConf(false);
+        dispatch(toggleDeleteConfirmation());
     }
 
     const handleDeleteConfirmation = async () => {
@@ -137,7 +141,7 @@ const NoteCard = (props) => {
                     <EditNoteForm />:
                     <>
                     {
-                        deleteConf ?
+                        displayDelete && pausedCard === props.noteId ?
                         <DeleteNoteForm />
                         :
                         <>
