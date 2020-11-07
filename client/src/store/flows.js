@@ -25,7 +25,7 @@ export const addFlow = (name, description, userId, video, categoryId) => {
         });
 
         res.data = await res.json();
-
+        console.log(res);
         if (res.ok) {
             dispatch(addNewFlow(res.data.flow));
         }
@@ -112,7 +112,9 @@ export default function flowReducer(state = {}, action) {
     let flow;
     switch(action.type) {
         case ADD_FLOW:
-            newState[action.flow.id] = action.flow;
+            flow = action.flow;
+            flow.notes = [];
+            newState[action.flow.id] = flow;
             return newState;
         case SET_FLOWS:
             for (const flow of action.flows) {

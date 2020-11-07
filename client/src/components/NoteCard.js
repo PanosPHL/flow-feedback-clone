@@ -63,6 +63,9 @@ const NoteCard = (props) => {
             if (playing) {
                 player.pauseVideo();
             }
+            if (editNoteForm) {
+                dispatch(toggleEditNoteForm());
+            }
             dispatch(setPausedCard(props.noteId));
             setInactive('activeCard');
         }

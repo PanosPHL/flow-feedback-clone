@@ -15,9 +15,8 @@ import { withRouter } from 'react-router-dom';
 
 const EditFlowPage = (props) => {
     const dispatch = useDispatch();
-    const id = Number(window.location.toString().split('/')[4]);
     const userId = useSelector(state => state.session.id);
-    const currentFlow = useSelector(state => state.entities.flows[id]);
+    const currentFlow = useSelector(state => state.entities.flows[props.match.params.id]);
     const myFlow = useSelector(state => currentFlow.userId === state.session.id);
     const notes = useSelector(state => currentFlow.notes ? Object.values(state.entities.notes).filter((note) => currentFlow.notes.includes(note.id)).sort(sortNotes) : []);
     const pausedCard = useSelector(state => state.session);
@@ -134,7 +133,7 @@ const EditFlowPage = (props) => {
     }
 
     const value = {
-        id,
+        id: props.match.params.id,
         player,
         playing,
         handlers: {
@@ -144,7 +143,6 @@ const EditFlowPage = (props) => {
         },
         timestamp,
         pausedCard,
-        setPausedCard,
         currentFlow,
         myFlow
     }
