@@ -17,14 +17,14 @@ const EditFlowPage = (props) => {
 
     const currentFlow = useSelector(state => state.entities.flows[id]);
     const myFlow = useSelector(state => currentFlow.userId === state.auth.id);
-    const notes = useSelector(state => currentFlow.notes ? Object.values(state.entities.notes).filter((note) => currentFlow.notes.includes(note.id)) : []);
+    const notes = useSelector(state => currentFlow.notes ? Object.values(state.entities.notes).filter((note) => currentFlow.notes.includes(note.id)).sort(sortNotes) : []);
     const [playing, setPlaying] = useState(false);
     const [player, setPlayer] = useState(null);
     const [timestamp, setTimestamp] = useState(0);
     const [controllable, setControllable] = useState(true);
     const [pausedCard, setPausedCard] = useState(-1);
 
-    const sortNotes = (a, b) => {
+    function sortNotes (a, b) {
         const timeA = parseFloat(a.timestamp);
         const timeB = parseFloat(b.timestamp);
 
@@ -54,53 +54,13 @@ const EditFlowPage = (props) => {
 
 
     useEffect(() => {
+        console.log('firing');
         window.addEventListener('keyup', handleKeyUp);
 
         return () => {
             window.removeEventListener('keyup', handleKeyUp);
         }
-    });
-
-    // useEffect(() => {
-    //     const fetchCurrentFlow = async () => {
-    //         const res = await fetch(`/api/flows/${id}`);
-    //         res.data = await res.json();
-    //         if (res.ok && res.data.flow !== null) {
-    //             setCurrentFlow(res.data.flow);
-
-    //             if (res.data.flow.userId === userId) {
-    //                 setMyFlow(true);
-    //             }
-    //             return;
-    //         }
-
-    //         props.history.push('/not-found');
-    //     }
-
-    //         fetchCurrentFlow();
-    // }, [id, userId, props.history]);
-
-    // const addNoteToFlow = (note) => {
-    //     const notes = [...currentFlow.Notes];
-    //     notes.push(note);
-    //     notes.sort(sortNotes);
-    //     const newState = Object.assign({}, currentFlow);
-    //     newState.Notes = notes;
-    //     setCurrentFlow(newState);
-    // }
-
-    // const deleteNoteFromFlow = (noteId) => {
-    //     const newState = Object.assign({}, currentFlow);
-    //     let slice;
-    //     for (let i = 0; i < newState.Notes.length; i++) {
-    //         if (newState.Notes[i].id === noteId) {
-    //             slice = i;
-    //             break;
-    //         }
-    //     }
-    //     newState.Notes = [...newState.Notes.slice(0, slice), ...newState.Notes.slice(slice + 1)];
-    //     setCurrentFlow(newState);
-    // }
+    }, []);
 
     const toggleControllable = () => {
         setControllable(!controllable);

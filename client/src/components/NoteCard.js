@@ -34,6 +34,8 @@ const NoteCard = (props) => {
             setInactive('inactiveCard');
             setDisplayForm(false);
             setDeleteConf(false);
+        } else {
+            setInactive('activeCard');
         }
     }, [pausedCard, playing, props.noteId]);
 

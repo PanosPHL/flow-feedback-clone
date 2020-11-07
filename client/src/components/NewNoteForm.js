@@ -6,7 +6,7 @@ import { addNewNote } from '../store/notes';
 import { MDBAlert } from 'mdbreact';
 
 const NewNoteForm = () => {
-    const {id, timestamp, handlers: { toggleDisplayNoteForm, addNoteToFlow } } = useContext(PlayerContext);
+    const {id, timestamp, setPausedCard, handlers: { toggleDisplayNoteForm } } = useContext(PlayerContext);
     const [content, setContent] = useState('');
     const [errors, setErrors] = useState({ errors: []});
     const dispatch = useDispatch();
@@ -25,6 +25,7 @@ const NewNoteForm = () => {
         if (res.ok) {
             toggleDisplayNoteForm();
             setContent('');
+            setPausedCard(res.data.note.id);
             return;
         }
 
