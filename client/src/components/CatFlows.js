@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import styles from '../css-modules/BrowseFlows.module.css';
-import SideNavComponent from './SideNavComponent';
 import BrowseFlowCard from './BrowseFlowCard';
 import { withRouter } from 'react-router-dom';
 
@@ -16,7 +15,6 @@ const CatFlows = (props) => {
             <div className={styles.headerContainer}>
                 <h2 className={styles.catHeader}>{category.name}</h2>
             </div>
-            <SideNavComponent pageName='browseFlows'/>
             <div className={styles.cardContainer}>
                 {flows.length ?
                     flows.map((flow, i) => {

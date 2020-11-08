@@ -9,16 +9,11 @@ import { setUsers } from './store/users';
 import { setVideos } from './store/videos';
 import HomePage from './components/HomePage';
 import PageLoad from './components/PageLoad';
-import FetchFlow from './components/FetchFlow';
-import NewFlowPage from './components/NewFlowPage';
-import EditFlowPage from './components/EditFlowPage';
-import BrowseFlows from './components/BrowseFlows';
-import CatFlows from './components/CatFlows';
-import NotFound from './components/NotFound';
+import Main from './components/Main';
 
 function App() {
-  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadUser = async () => {
@@ -57,27 +52,8 @@ function App() {
     return (
       <BrowserRouter>
       <Switch>
-        <Route exact path='/'>
-          <HomePage />
-        </Route>
-        <Route exact path='/flow/fetch'>
-          <FetchFlow />
-        </Route>
-        <Route exact path='/flow/new'>
-          <NewFlowPage />
-        </Route>
-        <Route path='/flow/:id(\d+)' >
-          <EditFlowPage />
-        </Route>
-        <Route exact path='/my-flows'>
-          <BrowseFlows />
-        </Route>
-        <Route path='/category/:id(\d+)'>
-          <CatFlows/>
-        </Route>
-        <Route path='*'>
-          <NotFound />
-        </Route>
+        <Route exact path='/' component={HomePage} />
+        <Route path='/' component={Main} />
       </Switch>
       </BrowserRouter>
     );

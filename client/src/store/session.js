@@ -107,20 +107,20 @@ export const logout = () => {
     }
 }
 
-const initialState = {
+export const initialSessionState = {
     id: null,
     pausedCard: null,
     flowToDelete: null
 };
 
-export default function sessionReducer(state = initialState, action) {
+export default function sessionReducer(state = initialSessionState, action) {
     const newState = Object.assign({}, state);
     switch(action.type) {
         case SET_USER:
             newState.id = action.user.id;
             return newState;
         case LOGOUT_USER:
-            return initialState;
+            return initialSessionState;
         case SET_PAUSED_CARD:
             newState.pausedCard = action.noteId;
             return newState;

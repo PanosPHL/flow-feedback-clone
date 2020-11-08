@@ -29,7 +29,7 @@ const NoteCard = (props) => {
                 setInactive('activeCard');
             }
         }
-    }, [timestamp, pausedCard, player, props.noteId, props.timestamp, setPausedCard, props.i]);
+    }, [timestamp, pausedCard, player, props.noteId, props.timestamp, props.i, dispatch]);
 
     useEffect(() => {
         if (pausedCard !== props.noteId) {
@@ -43,7 +43,7 @@ const NoteCard = (props) => {
         } else {
             setInactive('activeCard');
         }
-    }, [pausedCard, playing, props.noteId]);
+    }, [dispatch, displayDelete, editNoteForm, pausedCard, playing, props.noteId]);
 
     useEffect(() => {
         setErrors({ errors: [] });
@@ -114,7 +114,7 @@ const NoteCard = (props) => {
     }
 
     const handleDeleteConfirmation = async () => {
-        const res = await dispatch(deleteNote(props.noteId, currentFlow.id));
+        await dispatch(deleteNote(props.noteId, currentFlow.id));
     }
 
     const value = {

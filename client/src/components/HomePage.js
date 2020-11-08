@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { MDBContainer, MDBBox } from 'mdbreact';
 import { Link } from 'react-router-dom';

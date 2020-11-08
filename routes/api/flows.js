@@ -38,7 +38,7 @@ router.post('/', validateFlow, handleValidationErrors, asyncHandler(async (req, 
     console.log(req.body);
     const { name, description, userId, video, categoryId } = req.body;
 
-    const flow = await sequelize.transaction(async (t) => {
+    const data = await sequelize.transaction(async (t) => {
         let newVideo = await Video.findOne({
             where: {
                 id: video.id
@@ -64,10 +64,13 @@ router.post('/', validateFlow, handleValidationErrors, asyncHandler(async (req, 
             categoryId
         }, { transaction: t });
 
-        return flow;
+        return {
+            flow,
+            video
+        };
     });
 
-    res.json({ flow });
+    res.json({ data });
 }));
 
 router.get('/:id(\\d+)', asyncHandler(async (req, res) => {

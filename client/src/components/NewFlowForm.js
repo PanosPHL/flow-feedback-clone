@@ -27,7 +27,7 @@ const NewFlowForm = (props) => {
         const res = await dispatch(addFlow(flowTitle, description, userId, newFlow, flowCat));
         console.log(res);
         if (res.ok) {
-            props.history.push(`/flow/${res.data.flow.id}`);
+            props.history.push(`/flow/${res.data.data.flow.id}`);
             return;
         }
 

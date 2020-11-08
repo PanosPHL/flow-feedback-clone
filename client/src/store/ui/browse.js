@@ -6,11 +6,11 @@ export const toggleDeleteConfirmation = () => {
     }
 }
 
-const initialState = {
+export const initialBrowseState = {
     deleteFlow: false
 }
 
-export default function browseReducer(state = initialState, action) {
+export default function browseReducer(state = initialBrowseState, action) {
     const newState = Object.assign({}, state);
     switch(action.type) {
         case TOGGLE_DELETE_CONFIRMATION:

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { toggleSidebar } from '../store/ui/nav';
 import Sidebar from 'react-sidebar';
 import styles from '../css-modules/SideNavComponent.module.css';
@@ -30,13 +31,13 @@ const SideNavComponent = (props) => {
         <SideBarContext.Provider value={value}>
         <Sidebar
         sidebar={
-        <SideNavContent />
+        <SideNavContent history={props.history}/>
         }
         sidebarClassName={styles['sidebar' + className]}
         docked={true}
             open={open}
             onSetOpen={openSidebar}
-            styles={{ root: { width: '8vw', minHeight: props.pageName === 'fetchFlow' ? '1080px' : props.pageName === 'browseFlows' ? '1220px' : '100%'}, sidebar: { background: 'black', transition: "", WebkitTransition: "" }, content: { zIndex: 2 }}}
+            styles={{ root: { position: 'fixed', width: '8vw', minHeight: props.pageName === 'fetchFlow' ? '1080px' : props.pageName === 'browseFlows' ? '1220px' : '100%'}, sidebar: { background: 'black', transition: "", WebkitTransition: "" }, content: { zIndex: 2 }}}
         >
             <div />
         </Sidebar>
@@ -44,4 +45,4 @@ const SideNavComponent = (props) => {
     )
 }
 
-export default SideNavComponent;
+export default withRouter(SideNavComponent);

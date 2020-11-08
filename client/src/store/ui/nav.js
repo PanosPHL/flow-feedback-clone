@@ -6,7 +6,11 @@ export const toggleSidebar = () => {
     }
 }
 
-export default function navReducer(state = { open: false }, action) {
+export const initialNavState = {
+    open: false
+}
+
+export default function navReducer(state = initialNavState, action) {
     const newState = Object.assign({}, state);
     switch(action.type) {
         case TOGGLE_SIDEBAR:

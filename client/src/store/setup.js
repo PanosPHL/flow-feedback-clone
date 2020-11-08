@@ -1,4 +1,9 @@
 import configureStore from './configureStore';
+import { initialBrowseState } from './ui/browse';
+import { initialFlowState } from './ui/flow';
+import { initialHomeState } from './ui/home';
+import { initialNavState } from './ui/nav';
+import { initialSessionState } from './session';
 import { saveState, loadState } from './localStorage';
 
 const initialState = loadState();
@@ -7,20 +12,13 @@ const store = configureStore(initialState);
 
 store.subscribe(() => {
   const state = Object.assign({}, store.getState());
-  state.session = {
-    id: null,
-    pausedCard: null
-  }
+  state.session = initialSessionState;
 
   state.ui = {
-    home: {
-      loginModal: false,
-      signUpModal: false
-    },
-    flow: {
-      newNoteForm: false,
-      editNoteForm: false
-    }
+    browse: initialBrowseState,
+    home: initialHomeState,
+    flow: initialFlowState,
+    nav: initialNavState
   }
 
   saveState(store);

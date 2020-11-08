@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPausedCard } from '../store/session';
-import { toggleNewNoteForm, toggleEditNoteForm } from '../store/ui/flow';
 import YouTube from 'react-youtube';
 import PlayerContext from '../contexts/PlayerContext';
 import FlowPlayerControls from './FlowPlayerControls';
@@ -10,7 +9,6 @@ import NewNoteForm from './NewNoteForm';
 import styles from '../css-modules/EditFlowPage.module.css';
 import NoteCard from './NoteCard';
 import FlowTitleAndForm from './FlowTitleAndForm';
-import SideNavComponent from './SideNavComponent';
 import { withRouter } from 'react-router-dom';
 
 const EditFlowPage = (props) => {
@@ -56,6 +54,7 @@ const EditFlowPage = (props) => {
 
 
     useEffect(() => {
+        console.log('firing');
         window.addEventListener('keyup', handleKeyUp);
 
         return () => {
@@ -63,7 +62,7 @@ const EditFlowPage = (props) => {
             dispatch(setPausedCard(null));
             clearInterval(setTimestampInterval);
         }
-    }, []);
+    }, [dispatch]);
 
     const opts = {
         height: 630,
@@ -143,8 +142,6 @@ const EditFlowPage = (props) => {
     }
 
     return (
-        <>
-        <SideNavComponent />
         <PlayerContext.Provider value={value}>
             <div className={styles.pageContainer}>
             <div id='formAndPlayerContainer' className={styles.formAndPlayerContainer}>
@@ -172,7 +169,6 @@ const EditFlowPage = (props) => {
             </div>
             </div>
         </PlayerContext.Provider>
-        </>
     )
 }
 

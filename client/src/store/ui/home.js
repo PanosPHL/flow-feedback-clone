@@ -13,12 +13,12 @@ export const toggleSignUpModal = () => {
     }
 }
 
-const initialState = {
+export const initialHomeState = {
     loginModal: false,
     signUpModal: false
 }
 
-export default function homeReducer(state = initialState, action) {
+export default function homeReducer(state = initialHomeState, action) {
     const newState = Object.assign({}, state);
     switch(action.type) {
         case TOGGLE_LOGIN_MODAL:

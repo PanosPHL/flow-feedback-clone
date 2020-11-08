@@ -1,19 +1,20 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import styles from '../css-modules/SideNavComponent.module.css';
 import SideBarContext from '../contexts/SideBarContext';
 import { MDBIcon } from 'mdbreact';
 
-const SideNavContent = () => {
+const SideNavContent = ({ history }) => {
     const { handlers: { openSidebar }, className } = useContext(SideBarContext);
+
     return (
         <>
             <button onClick={openSidebar} type='button' className={styles['openButton' + className] + ' btn btn-sm btn-black'}><MDBIcon icon={className === 'Open' ? 'chevron-left' : 'chevron-right'} /></button>
-            <Link to='/'>
+            <a href='/'>
                 <div>
                 <img alt='flowNotes home' src='/images/flownotesLogo.png' className={styles['logo' + className]} />
                 </div>
-            </Link>
+            </a>
             <div className={styles.lowerContent}>
             <Link to='/flow/fetch'>
                 <div className={styles['createFlow' + className]}>

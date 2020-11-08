@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { MDBCard, MDBContainer } from 'mdbreact';
 import FlowCardContext from '../contexts/FlowCardContext';

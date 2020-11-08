@@ -1,5 +1,6 @@
 import { csrfToken } from './session';
 import { ADD_NOTE, DELETE_NOTE } from './notes';
+import { addVideo } from './videos';
 
 const ADD_FLOW = '/flows/ADD_FLOW';
 const EDIT_FLOW_NAME = '/flows/EDIT_FLOW_NAME';
@@ -27,7 +28,8 @@ export const addFlow = (name, description, userId, video, categoryId) => {
         res.data = await res.json();
         console.log(res);
         if (res.ok) {
-            dispatch(addNewFlow(res.data.flow));
+            dispatch(addNewFlow(res.data.data.flow));
+            dispatch(addVideo(res.data.data.video));
         }
         return res;
     }
@@ -137,6 +139,8 @@ export default function flowReducer(state = {}, action) {
         case DELETE_NOTE:
             flow = newState[action.flowId];
             flow.notes = [...flow.notes.filter((note) => note !== action.noteId)];
+            newState[action.flowId] = flow;
+            return newState;
         default:
             return state;
     }

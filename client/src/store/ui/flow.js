@@ -27,14 +27,14 @@ export const toggleDeleteConfirmation = () => {
     }
 }
 
-const initialState = {
+export const initialFlowState = {
     newNoteForm: false,
     editNoteForm: false,
     deleteNote: false,
     titleForm: false
 }
 
-export default function flowReducer(state = {}, action) {
+export default function flowReducer(state = initialFlowState, action) {
     const newState = Object.assign({}, state);
     switch(action.type) {
         case TOGGLE_NEW_NOTE_FORM:
