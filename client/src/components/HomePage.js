@@ -1,10 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { MDBContainer, MDBBox } from 'mdbreact';
 import { Link } from 'react-router-dom';
-import styles from '../css-modules/HomePage.module.css';
-import LogInModalContext from '../contexts/LogInModalContext';
-import SignUpModalContext from '../contexts/SignUpModalContext';
 import LogInModalButton from './LogInModalButton';
 import LogInModal from './LogInModal';
 import SignUpModalButton from './SignUpModalButton';
@@ -14,6 +11,7 @@ import HomePageCarousel from './HomePageCarousel';
 import BrowseRecentFlows from './BrowseRecentFlows';
 import BrowseCats from './BrowseCats';
 import HomePageDropdown from './HomePageDropdown';
+import styles from '../css-modules/HomePage.module.css';
 
 export const LinkToRoot = () => {
     return (
@@ -25,31 +23,9 @@ export const LinkToRoot = () => {
 }
 
 const HomePage = () => {
-    const [loginModal, setLoginModal] = useState(false);
-    const [signUpModal, setSignUpModal] = useState(false);
-    const currentUser = useSelector(state => state.auth.id);
-
-    const toggleLoginModal = () => {
-        setLoginModal(!loginModal);
-    }
-
-    const toggleSignUpModal = () => {
-        setSignUpModal(!signUpModal);
-    }
-
-    const loginModalState = {
-        loginModal: loginModal,
-        toggleLoginModal
-    };
-
-    const signUpModalState = {
-        signUpModal: signUpModal,
-        toggleSignUpModal
-    }
+    const currentUser = useSelector(state => state.session.id);
 
     return (
-        <LogInModalContext.Provider value={loginModalState}>
-            <SignUpModalContext.Provider value={signUpModalState}>
                 <div className={styles.pageContainer}>
                 <MDBContainer fluid className={styles.headerSplashContainer}>
                     <div className={styles.imageFilter}>
@@ -79,8 +55,6 @@ const HomePage = () => {
                     <BrowseCats />
                 </div>
                 </div>
-            </SignUpModalContext.Provider>
-        </LogInModalContext.Provider>
     );
 };
 

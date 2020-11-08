@@ -1,4 +1,4 @@
-import { csrfToken } from './auth';
+import { csrfToken } from './session';
 
 export const SET_FLOW_VID = '/flow/SET_FLOW_VID';
 
@@ -29,7 +29,15 @@ export const setVid = (url) => {
     }
 }
 
-export default function newFlowReducer(state = {}, action) {
+const initialState = {
+    id: null,
+    title: '',
+    url: '',
+    duration: '',
+    thumbnail: ''
+};
+
+export default function newFlowReducer(state = initialState, action) {
     switch(action.type) {
         case SET_FLOW_VID:
             return action.flow;

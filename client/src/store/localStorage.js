@@ -2,11 +2,11 @@ export const loadState = () => {
     try {
         const preloadedState = localStorage.getItem("state");
         if (!preloadedState) {
-            return undefined;
+            return {};
         }
         return JSON.parse(preloadedState);
     } catch (err) {
-        return undefined;
+        return {};
     }
 }
 

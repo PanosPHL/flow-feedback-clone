@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPausedCard } from '../store/session';
 import YouTube from 'react-youtube';
 import PlayerContext from '../contexts/PlayerContext';
 import FlowPlayerControls from './FlowPlayerControls';
@@ -8,22 +9,21 @@ import NewNoteForm from './NewNoteForm';
 import styles from '../css-modules/EditFlowPage.module.css';
 import NoteCard from './NoteCard';
 import FlowTitleAndForm from './FlowTitleAndForm';
-import SideNavComponent from './SideNavComponent';
 import { withRouter } from 'react-router-dom';
 
 const EditFlowPage = (props) => {
-    const id = Number(window.location.toString().split('/')[4]);
-    const userId = useSelector(state => state.auth.id);
-
-    const [currentFlow, setCurrentFlow] = useState({});
+    const dispatch = useDispatch();
+    const userId = useSelector(state => state.session.id);
+    const currentFlow = useSelector(state => state.entities.flows[props.match.params.id]);
+    const myFlow = useSelector(state => currentFlow.userId === state.session.id);
+    const notes = useSelector(state => currentFlow.notes ? Object.values(state.entities.notes).filter((note) => currentFlow.notes.includes(note.id)).sort(sortNotes) : []);
+    const pausedCard = useSelector(state => state.session);
+    const { newNoteForm, editNoteForm, titleForm } = useSelector(state => state.ui.flow);
     const [playing, setPlaying] = useState(false);
     const [player, setPlayer] = useState(null);
     const [timestamp, setTimestamp] = useState(0);
-    const [controllable, setControllable] = useState(true);
-    const [pausedCard, setPausedCard] = useState(-1);
-    const [myFlow, setMyFlow] = useState(false);
 
-    const sortNotes = (a, b) => {
+    function sortNotes (a, b) {
         const timeA = parseFloat(a.timestamp);
         const timeB = parseFloat(b.timestamp);
 
@@ -37,8 +37,9 @@ const EditFlowPage = (props) => {
     }
 
     const handleKeyUp = (event) => {
+        console.log(event);
         event.stopPropagation();
-        if (!controllable) {
+        if (newNoteForm || editNoteForm || titleForm) {
             return;
         }
 
@@ -53,62 +54,15 @@ const EditFlowPage = (props) => {
 
 
     useEffect(() => {
+        console.log('firing');
         window.addEventListener('keyup', handleKeyUp);
 
         return () => {
             window.removeEventListener('keyup', handleKeyUp);
+            dispatch(setPausedCard(null));
+            clearInterval(setTimestampInterval);
         }
-    });
-
-    useEffect(() => {
-        const fetchCurrentFlow = async () => {
-            const res = await fetch(`/api/flows/${id}`);
-            res.data = await res.json();
-            if (res.ok && res.data.flow !== null) {
-                setCurrentFlow(res.data.flow);
-
-                if (res.data.flow.userId === userId) {
-                    setMyFlow(true);
-                }
-                return;
-            }
-
-            props.history.push('/not-found');
-        }
-
-            fetchCurrentFlow();
-    }, [id, userId, props.history]);
-
-    const addNoteToFlow = (note) => {
-        const notes = [...currentFlow.Notes];
-        notes.push(note);
-        notes.sort(sortNotes);
-        const newState = Object.assign({}, currentFlow);
-        newState.Notes = notes;
-        setCurrentFlow(newState);
-    }
-
-    const deleteNoteFromFlow = (noteId) => {
-        const newState = Object.assign({}, currentFlow);
-        let slice;
-        for (let i = 0; i < newState.Notes.length; i++) {
-            if (newState.Notes[i].id === noteId) {
-                slice = i;
-                break;
-            }
-        }
-        newState.Notes = [...newState.Notes.slice(0, slice), ...newState.Notes.slice(slice + 1)];
-        setCurrentFlow(newState);
-    }
-
-    const toggleControllable = () => {
-        setControllable(!controllable);
-    }
-
-    const toggleDisplayNoteForm = () => {
-        toggleControllable();
-        document.querySelector('.submit-note').classList.toggle('hidden');
-    }
+    }, [dispatch]);
 
     const opts = {
         height: 630,
@@ -131,7 +85,7 @@ const EditFlowPage = (props) => {
             setTimestamp(player.getCurrentTime(), 2);
         }, 50);
         setTimeout(() => {
-            setPausedCard(-1);
+            dispatch(setPausedCard(null));
         }, 100);
     }
 
@@ -142,7 +96,7 @@ const EditFlowPage = (props) => {
     }
 
     const togglePlay = () => {
-        if (!controllable) {
+        if (newNoteForm || editNoteForm || titleForm) {
             return;
         }
 
@@ -154,7 +108,7 @@ const EditFlowPage = (props) => {
     }
 
     const seek = (event) => {
-        if (!controllable) {
+        if (newNoteForm || editNoteForm || titleForm) {
             return;
         }
 
@@ -169,33 +123,25 @@ const EditFlowPage = (props) => {
                 player.seekTo(time + 2)
             }
 
-            setPausedCard(-1);
+            dispatch(setPausedCard(null));
         }
     }
 
     const value = {
-        id,
+        id: props.match.params.id,
         player,
         playing,
-        controllable,
         handlers: {
             togglePlay,
-            seek,
-            toggleDisplayNoteForm,
-            addNoteToFlow,
-            deleteNoteFromFlow
+            seek
         },
         timestamp,
-        setControllable,
         pausedCard,
-        setPausedCard,
         currentFlow,
         myFlow
     }
 
     return (
-        <>
-        <SideNavComponent />
         <PlayerContext.Provider value={value}>
             <div className={styles.pageContainer}>
             <div id='formAndPlayerContainer' className={styles.formAndPlayerContainer}>
@@ -214,8 +160,8 @@ const EditFlowPage = (props) => {
             </div>
             <div className='noteCardContainer'>
                 <h5 className={styles.noteContainerHeader + ' font-weight-bold'}>Notes</h5>
-                {currentFlow.Notes ?
-                    currentFlow.Notes.map((note, i) => {
+                {notes && notes.length ?
+                    notes.map((note, i) => {
                         return (
                             <NoteCard key={`note-${i + 1}`} content={note.content} timestamp={note.timestamp} noteId={note.id} i={i + 1} myFlow={userId === currentFlow.userId}/>
                         )
@@ -223,7 +169,6 @@ const EditFlowPage = (props) => {
             </div>
             </div>
         </PlayerContext.Provider>
-        </>
     )
 }
 

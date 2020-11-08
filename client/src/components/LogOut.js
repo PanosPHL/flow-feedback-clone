@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { logout } from '../store/auth';
+import { logout } from '../store/session';
 import Cookies from 'js-cookie';
 
 const LogOut = () => {

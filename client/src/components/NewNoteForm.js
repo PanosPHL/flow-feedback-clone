@@ -1,15 +1,18 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPausedCard } from '../store/session';
+import { toggleNewNoteForm } from '../store/ui/flow';
 import styles from '../css-modules/EditFlowPage.module.css';
 import PlayerContext from '../contexts/PlayerContext';
 import { addNewNote } from '../store/notes';
 import { MDBAlert } from 'mdbreact';
 
 const NewNoteForm = () => {
-    const {id, timestamp, handlers: { toggleDisplayNoteForm, addNoteToFlow } } = useContext(PlayerContext);
+    const dispatch = useDispatch();
+    const { newNoteForm } = useSelector(state => state.ui.flow);
+    const {id, timestamp, handlers: { toggleDisplayNoteForm } } = useContext(PlayerContext);
     const [content, setContent] = useState('');
     const [errors, setErrors] = useState({ errors: []});
-    const dispatch = useDispatch();
 
     useEffect(() => {
         setErrors({ errors: []});
@@ -23,8 +26,8 @@ const NewNoteForm = () => {
         event.preventDefault();
         const res = await dispatch(addNewNote(content, timestamp, id));
         if (res.ok) {
-            toggleDisplayNoteForm();
-            addNoteToFlow(res.data.note);
+            dispatch(setPausedCard(res.data.note.id));
+            dispatch(toggleNewNoteForm());
             setContent('');
             return;
         }
@@ -34,11 +37,11 @@ const NewNoteForm = () => {
 
     const handleCancelClick = () => {
         setContent('');
-        toggleDisplayNoteForm();
+        dispatch(toggleNewNoteForm());
     }
 
     return (
-        <form onSubmit={handleSubmit} className={styles.noteForm + ' hidden submit-note'}>
+        <form onSubmit={handleSubmit} className={styles.noteForm + ' submit-note' + (newNoteForm ? '' : ' hidden')}>
             { errors.errors.length ?
         <MDBAlert color='danger' className={styles.newNoteErrors}>
         <ul>
@@ -49,7 +52,7 @@ const NewNoteForm = () => {
             })}
         </ul>
         </MDBAlert>
-        : <></>}
+        : <></> }
         <textarea onChange={handleContentChange} className={styles.textarea + ' form-control form-control-sm'} rows={errors.errors.length ? '2.9' : '4'} value={content}/>
             <div className={styles.noteFormButtons}>
             <button type='submit' className='btn btn-primary btn-indigo btn-sm'>Submit</button>

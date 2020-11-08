@@ -1,16 +1,15 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { login } from '../store/auth';
+import React, { useState, useEffect } from 'react';
+import { login } from '../store/session';
+import { toggleLoginModal } from '../store/ui/home';
 import { useDispatch } from 'react-redux';
 import { MDBInput, MDBBtn, MDBBox, MDBAlert } from 'mdbreact';
 import styles from '../css-modules/LoginForm.module.css';
-import LogInModalContext from '../contexts/LogInModalContext';
 
 const LogIn = () => {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ error, setError ] = useState('');
     const dispatch = useDispatch();
-    const value = useContext(LogInModalContext);
 
     useEffect(() => {
         return () => {
@@ -23,7 +22,7 @@ const LogIn = () => {
         const res = await dispatch(login(email, password));
 
         if (res.ok) {
-            value.toggleLoginModal();
+            dispatch(toggleLoginModal());
             return;
         }
 

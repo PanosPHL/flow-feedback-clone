@@ -1,4 +1,6 @@
-import { csrfToken } from './auth';
+import { csrfToken } from './session';
+import { ADD_NOTE, DELETE_NOTE } from './notes';
+import { addVideo } from './videos';
 
 const ADD_FLOW = '/flows/ADD_FLOW';
 const EDIT_FLOW_NAME = '/flows/EDIT_FLOW_NAME';
@@ -24,15 +26,16 @@ export const addFlow = (name, description, userId, video, categoryId) => {
         });
 
         res.data = await res.json();
-
+        console.log(res);
         if (res.ok) {
-            dispatch(addNewFlow(res.data.flow));
+            dispatch(addNewFlow(res.data.data.flow));
+            dispatch(addVideo(res.data.data.video));
         }
         return res;
     }
 }
 
-const setFlows = (flows) => {
+export const setFlows = (flows) => {
     return {
         type: SET_FLOWS,
         flows
@@ -106,28 +109,38 @@ export const deleteFlow = (flowId) => {
     }
 }
 
-export default function flowReducer(state = [], action) {
+export default function flowReducer(state = {}, action) {
+    const newState = Object.assign({}, state);
+    let flow;
     switch(action.type) {
         case ADD_FLOW:
-            return [...state, action.flow];
+            flow = action.flow;
+            flow.notes = [];
+            newState[action.flow.id] = flow;
+            return newState;
         case SET_FLOWS:
-            return action.flows;
+            for (const flow of action.flows) {
+                flow.notes = flow.notes.map((note) => note.id);
+                newState[flow.id] = flow;
+            }
+            return newState;
         case EDIT_FLOW_NAME:
-            let slice;
-            for (let i = 0; i < state.length; i++) {
-                if (state[i].id === action.flow.id) {
-                    slice = i;
-                }
-            }
-            return [...state.slice(0, slice), action.flow, ...state.slice(slice + 1)];
+            flow = Object.assign({}, newState[action.flow.id]);
+            flow.name = action.flow.name;
+            newState[action.flow.id] = flow;
+            return newState;
         case DELETE_FLOW:
-            let delSlice;
-            for (let i = 0; i < state.length; i++) {
-                if (state[i].id === action.id) {
-                    delSlice = i;
-                }
-            }
-            return [...state.slice(0, delSlice), ...state.slice(delSlice + 1)];
+            delete newState[action.id];
+            return newState;
+        case ADD_NOTE:
+            flow = newState[action.note.flowId];
+            flow.notes = [...flow.notes, action.note.id];
+            return newState;
+        case DELETE_NOTE:
+            flow = newState[action.flowId];
+            flow.notes = [...flow.notes.filter((note) => note !== action.noteId)];
+            newState[action.flowId] = flow;
+            return newState;
         default:
             return state;
     }

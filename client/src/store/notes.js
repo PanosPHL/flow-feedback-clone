@@ -1,9 +1,9 @@
-import { csrfToken } from './auth';
+import { csrfToken } from './session';
 
-const ADD_NOTE = '/notes/ADD_NOTE';
+export const ADD_NOTE = '/notes/ADD_NOTE';
 const SET_NOTES = '/notes/SET_NOTES';
 const EDIT_NOTE = '/notes/EDIT_NOTE';
-const DELETE_NOTE = '/notes/DELETE_NOTE';
+export const DELETE_NOTE = '/notes/DELETE_NOTE';
 
 const addNote = (note) => {
     return {
@@ -32,7 +32,7 @@ export const addNewNote = (content, timestamp, flowId) => {
     }
 };
 
-const setNotes = (notes) => {
+export const setNotes = (notes) => {
     return {
         type: SET_NOTES,
         notes
@@ -79,14 +79,15 @@ export const updateNote = (noteId, content) => {
     }
 }
 
-const delNote = (noteId) => {
+const delNote = (noteId, flowId) => {
     return {
         type: DELETE_NOTE,
-        id: noteId
+        noteId,
+        flowId
     }
 }
 
-export const deleteNote = (noteId) => {
+export const deleteNote = (noteId, flowId) => {
     return async dispatch => {
         const res = await fetch(`/api/notes/${noteId}`, {
             method: 'DELETE',
@@ -96,37 +97,30 @@ export const deleteNote = (noteId) => {
         });
 
         res.data = await res.json();
-
         if (res.ok) {
-            dispatch(delNote(res.data.id));
+            dispatch(delNote(noteId, flowId));
         }
         return res;
     }
 }
 
-export default function noteReducer(state = [], action) {
+export default function noteReducer(state = {}, action) {
+    const newState = Object.assign({}, state);
     switch(action.type) {
+        case SET_NOTES:
+            for (const note of action.notes) {
+                newState[note.id] = note;
+            }
+            return newState;
         case ADD_NOTE:
-            return [...state, action.note];
+            newState[action.note.id] = action.note;
+            return newState;
         case EDIT_NOTE:
-            let slice;
-            for (let i = 0; i < state.length; i++) {
-                if (state[i].id === action.note.id) {
-                    slice = i;
-                    break;
-                }
-            }
-            return [...state.slice(0, slice), action.note, ...state.slice(slice + 1)];
+            newState[action.note.id] = action.note;
+            return newState;
         case DELETE_NOTE:
-            let delSlice;
-            for (let i = 0; i < state.length; i++) {
-                if (state[i].id === action.id) {
-                    slice = i;
-                    break;
-                }
-            return [...state.slice(0, delSlice), ...state.slice(delSlice + 1)];
-            }
-            break;
+            delete newState[action.noteId];
+            return newState;
         default:
             return state;
     }

@@ -8,8 +8,8 @@ import nfps from '../css-modules/NewFlowPage.module.css';
 
 const NewFlowForm = (props) => {
     const newFlow = useSelector(state => state.newFlow);
-    const categories = useSelector(state => state.categories);
-    const userId = useSelector(state => state.auth.id);
+    const categories = useSelector(state => Object.values(state.entities.categories));
+    const userId = useSelector(state => state.session.id);
     const dispatch = useDispatch();
     const [flowCat, setFlowCat] = useState(-1);
     const [flowTitle, setFlowTitle] = useState(newFlow.title);
@@ -25,9 +25,9 @@ const NewFlowForm = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const res = await dispatch(addFlow(flowTitle, description, userId, newFlow, flowCat));
-
+        console.log(res);
         if (res.ok) {
-            props.history.push(`/flow/${res.data.flow.id}`);
+            props.history.push(`/flow/${res.data.data.flow.id}`);
             return;
         }
 

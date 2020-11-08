@@ -1,12 +1,19 @@
 import Cookies from 'js-cookie';
-import { setUserNotes } from './notes';
-import { setUserFlows } from './flows';
 
-const SET_USER = 'auth/SET_USER';
-const LOGOUT_USER = 'auth/LOGOUT_USER';
-export const RESET_STATE = '/auth/RESET_STATE';
+const SET_USER = 'session/SET_USER';
+const LOGOUT_USER = 'session/LOGOUT_USER';
+export const RESET_STATE = 'session/RESET_STATE';
+const SET_PAUSED_CARD = 'session/SET_PAUSED_CARD';
+const SET_FLOW_TO_DELETE = 'session/SET_FLOW_TO_DELETE';
 
 export const csrfToken = Cookies.get('XSRF-TOKEN');
+
+export const setFlowToDelete = (flowId) => {
+    return {
+        type: SET_FLOW_TO_DELETE,
+        flowId
+    }
+}
 
 const stateReset = () => {
     return {
@@ -27,6 +34,13 @@ export const setUser = (user) => {
     }
 };
 
+export const setPausedCard = (noteId) => {
+    return {
+        type: SET_PAUSED_CARD,
+        noteId
+    }
+}
+
 export const login = (email, password) => {
     return async dispatch => {
         const res = await fetch('/api/session', {
@@ -42,8 +56,6 @@ export const login = (email, password) => {
 
         if (res.ok) {
             dispatch(setUser(res.data.user));
-            dispatch(setUserFlows(res.data.user.id));
-            dispatch(setUserNotes(res.data.user.id));
         }
         return res;
     };
@@ -95,12 +107,26 @@ export const logout = () => {
     }
 }
 
-export default function authReducer(state = {}, action) {
+export const initialSessionState = {
+    id: null,
+    pausedCard: null,
+    flowToDelete: null
+};
+
+export default function sessionReducer(state = initialSessionState, action) {
+    const newState = Object.assign({}, state);
     switch(action.type) {
         case SET_USER:
-            return action.user;
+            newState.id = action.user.id;
+            return newState;
         case LOGOUT_USER:
-            return {};
+            return initialSessionState;
+        case SET_PAUSED_CARD:
+            newState.pausedCard = action.noteId;
+            return newState;
+        case SET_FLOW_TO_DELETE:
+            newState.flowToDelete = action.flowId;
+            return newState;
         default:
             return state;
     }

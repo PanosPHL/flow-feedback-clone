@@ -1,9 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { toggleSignUpModal } from '../store/ui/home';
 import { useDispatch } from 'react-redux';
-import { signUp } from '../store/auth';
+import { signUp } from '../store/session';
 import { MDBBox, MDBInput, MDBBtn, MDBAlert } from 'mdbreact';
 import styles from '../css-modules/SignUpForm.module.css';
-import SignUpModalContext from '../contexts/SignUpModalContext';
 
 const SignUp = () => {
     const [email, setEmail] = useState('');
@@ -11,7 +11,6 @@ const SignUp = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [errors, setErrors] = useState({errors: []});
     const dispatch = useDispatch();
-    const value = useContext(SignUpModalContext);
 
     useEffect(() => {
         return () => {
@@ -24,7 +23,7 @@ const SignUp = () => {
         const res = await dispatch(signUp(email, password, confirmPassword));
 
         if (res.ok) {
-            value.toggleSignUpModal();
+            dispatch(toggleSignUpModal());
             return;
         }
         setErrors({errors: res.data.error.errors});

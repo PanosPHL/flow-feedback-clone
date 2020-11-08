@@ -1,10 +1,10 @@
 .cardContainer {
     display: grid;
     grid-template-columns: repeat(4, 25%);
-    grid-template-rows: repeat(3, 33%);
-    width: 74vw;
-    margin: 0 auto;
-    min-height: 120vh;
+    grid-auto-rows: 380px;
+    width: 78vw;
+    margin: 0px 211px 0px 240px;
+    min-height: 851px;
     justify-content: space-evenly;
 }
 
