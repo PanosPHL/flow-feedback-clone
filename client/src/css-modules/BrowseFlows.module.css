@@ -40,5 +40,9 @@
 }
 
 .card {
-    transform: scale(0.94);
+    transform: scale(0.96);
+}
+
+.cardImage {
+    transform: translateY(-30px);
 }

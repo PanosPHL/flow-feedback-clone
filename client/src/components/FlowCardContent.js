@@ -8,7 +8,7 @@ const FlowCardContent = ({ thumbnail, name, catName, description, myFlow, owner 
 
     return (
         <>
-            <MDBCardImage className='img-fluid' src={thumbnail} waves />
+            <MDBCardImage className={styles.cardImage + ' img-fluid'} src={thumbnail} waves />
             <MDBCardBody>
                 <MDBCardTitle style={{ fontSize: '16px', color: '#636363' }}>{name.split('').slice(0, 32).join('') + '...'}</MDBCardTitle>
                 <MDBCardText>

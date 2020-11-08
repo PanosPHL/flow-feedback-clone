@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from '../css-modules/SideNavComponent.module.css';
 import SideBarContext from '../contexts/SideBarContext';
 import { MDBIcon } from 'mdbreact';

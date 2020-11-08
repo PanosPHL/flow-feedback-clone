@@ -12,7 +12,7 @@ import styles from '../css-modules/BrowseFlows.module.css';
 
 const BrowseFlowCard = ({ i, flow, myFlow }) => {
     const dispatch = useDispatch();
-    const { thumbnail } = useSelector(state => state.entities.videos[flow.videoId]);
+    const { thumbnail, duration } = useSelector(state => state.entities.videos[flow.videoId]);
     const { name: catName } = useSelector(state => state.entities.categories[flow.categoryId]);
     const { email: owner } = useSelector(state => state.entities.users[flow.userId]);
     const { deleteFlow: deleteConf } = useSelector(state => state.ui.browse);

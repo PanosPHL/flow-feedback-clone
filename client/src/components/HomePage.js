@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux';
 import { MDBContainer, MDBBox } from 'mdbreact';
 import { Link } from 'react-router-dom';
@@ -7,7 +7,7 @@ import LogInModal from './LogInModal';
 import SignUpModalButton from './SignUpModalButton';
 import SignUpModal from './SignUpModal';
 import LogOut from './LogOut';
-import HomePageCarousel from './HomePageCarousel';
+import HomePageInfo from './HomePageInfo';
 import BrowseRecentFlows from './BrowseRecentFlows';
 import BrowseCats from './BrowseCats';
 import HomePageDropdown from './HomePageDropdown';
@@ -44,7 +44,7 @@ const HomePage = () => {
                                         </div>
                                 }
                             </div>
-                            <HomePageCarousel />
+                           <HomePageInfo />
                         </MDBBox>
                     </div>
                     <LogInModal />
