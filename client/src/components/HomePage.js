@@ -8,7 +8,7 @@ import SignUpModalButton from './SignUpModalButton';
 import SignUpModal from './SignUpModal';
 import LogOut from './LogOut';
 import HomePageInfo from './HomePageInfo';
-import BrowseRecentFlows from './BrowseRecentFlows';
+import BrowseFlowRow from './BrowseFlowRow';
 import BrowseCats from './BrowseCats';
 import HomePageDropdown from './HomePageDropdown';
 import styles from '../css-modules/HomePage.module.css';
@@ -52,7 +52,11 @@ const HomePage = () => {
                 </MDBContainer>
                 <div className={styles.bodyContainer}>
                     <BrowseCats />
-                    <BrowseRecentFlows />
+                    <BrowseFlowRow category={null}/>
+                    <BrowseFlowRow category='lol'/>
+                    <BrowseFlowRow category='ssbm' />
+                    <BrowseFlowRow category='ow' />
+                    <BrowseFlowRow category='csgo' />
                 </div>
                 </div>
     );

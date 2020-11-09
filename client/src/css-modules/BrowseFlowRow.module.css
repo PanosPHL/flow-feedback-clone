@@ -7,7 +7,7 @@
     font-size: 28px;
     font-weight: 500;
 
-    margin-left: 20px;
+    margin-left: 16px;
     margin-top: 4px;
 }
 
@@ -30,7 +30,34 @@
     background-color: #FFFBF8;
 }
 
+.lolOuterSection {
+    grid-row: 3 / 4;
+    grid-column: 1 / 8;
+}
+
+.ssbmOuterSection {
+    grid-row: 4 / 5;
+    grid-column: 1 / 8;
+    background-color: #FFFBF8;
+}
+
+.owOuterSection {
+    grid-row: 5 / 6;
+    grid-column: 1 / 8;
+}
+
+.csgoOuterSection {
+    grid-row: 6 / 7;
+    grid-column: 1 / 8;
+    background-color: #FFFBF8;
+}
+
 .logo {
     height: 40px;
     width: 40px;
+}
+
+.csgoLogo {
+    width: 64px;
+    height: 36px;
 }

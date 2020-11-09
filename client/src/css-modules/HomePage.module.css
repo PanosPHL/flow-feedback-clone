@@ -71,9 +71,8 @@
     display: grid;
     min-width: 80vw;
     min-height: 120vh;
-    padding-bottom: 8em;
     grid-template-columns: 14% repeat(4, 18%) 14%;
-    grid-template-rows: 400px repeat(4, 420px);
+    grid-template-rows: 400px repeat(5, 440px);
 }
 
 .pageContainer {

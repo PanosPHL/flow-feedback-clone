@@ -26,15 +26,15 @@ const FlowCardContent = ({ thumbnail, name, myFlow, owner, date, duration }) => 
     }
 
     const getTime = (createdAt) => {
-        let diff = Math.floor(((Date.now() - new Date(createdAt).getTime()) / 1000) / 3600);
+        let diff = Math.floor(((Date.now() - new Date(createdAt).getTime()) / 1000) / (3600 * 60));
+        console.log(diff);
 
-        switch(diff) {
-            case diff < 24:
-                return `${diff} hours ago`
-            case diff > 24 && diff < 48:
-                return 'yesterday';
-            default:
-                return `${diff} days ago`;
+        if (!diff) {
+            return `Today`;
+        } else if (diff === 1) {
+            return 'Yesterday';
+        } else {
+            return `${diff} days ago`;
         }
     }
 
