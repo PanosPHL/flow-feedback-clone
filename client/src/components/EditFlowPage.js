@@ -163,7 +163,7 @@ const EditFlowPage = (props) => {
                 {notes && notes.length ?
                     notes.map((note, i) => {
                         return (
-                            <NoteCard key={`note-${i + 1}`} content={note.content} timestamp={note.timestamp} noteId={note.id} i={i + 1} myFlow={userId === currentFlow.userId}/>
+                            <NoteCard key={`note-${i + 1}`} length={notes.length} content={note.content} timestamp={note.timestamp} noteId={note.id} i={i + 1} myFlow={userId === currentFlow.userId}/>
                         )
                     }) : <> </>}
             </div>

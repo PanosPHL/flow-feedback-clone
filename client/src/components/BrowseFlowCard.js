@@ -51,10 +51,10 @@ const BrowseFlowCard = ({ i, flow, myFlow }) => {
     if (deleteConf && flowToDelete === flow.id) {
         return (
                 <FlowCardContext.Provider value={value}>
-                    <MDBContainer style={{width: '320px', margin: '0'}} className={styles.card}>
+                    <MDBContainer className={styles.card}>
                         <MDBCard style={{
-                            width: '320px',
-                            height: '352px'
+                            width: '310px',
+                            height: '342px'
                         }}>
                             <DeleteFlowForm/>
                         </MDBCard>

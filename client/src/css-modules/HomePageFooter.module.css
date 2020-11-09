@@ -1,0 +1,15 @@
+.footerContainer {
+    display: flex;
+
+    padding: 28px 248px;
+
+    height: 180px;
+
+    color: white;
+
+    background-color: #31393F;
+}
+
+.secondFooterList {
+    margin-left: 256px;
+}

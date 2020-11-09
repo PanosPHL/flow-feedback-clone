@@ -24,9 +24,21 @@ const NoteCard = (props) => {
     useEffect(() => {
         if (round(timestamp, 1) === round(props.timestamp, 1)) {
             if (player && props.noteId !== pausedCard) {
-                player.pauseVideo();
                 dispatch(setPausedCard(props.noteId));
+                player.pauseVideo();
                 setInactive('activeCard');
+
+                if (props.i >= 5 && props.length >= 5) {
+                    document.querySelector('.noteCardContainer').scroll({
+                        top: Number(props.i) * 100,
+                        behavior: "smooth"
+                    });
+                } else if (props.i < 5 && props.length >= 5) {
+                    document.querySelector('.noteCardContainer').scroll({
+                        top: -1 * Number(props.i) * 100,
+                        behavior: "smooth"
+                    })
+                }
             }
         }
     }, [timestamp, pausedCard, player, props.noteId, props.timestamp, props.i, dispatch]);

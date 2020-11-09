@@ -11,6 +11,7 @@ import HomePageInfo from './HomePageInfo';
 import BrowseFlowRow from './BrowseFlowRow';
 import BrowseCats from './BrowseCats';
 import HomePageDropdown from './HomePageDropdown';
+import HomePageFooter from './HomePageFooter';
 import styles from '../css-modules/HomePage.module.css';
 
 export const LinkToRoot = () => {
@@ -58,6 +59,7 @@ const HomePage = () => {
                     <BrowseFlowRow category='ow' />
                     <BrowseFlowRow category='csgo' />
                 </div>
+                <HomePageFooter />
                 </div>
     );
 };

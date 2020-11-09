@@ -1,11 +1,13 @@
 .cardContainer {
     display: flex;
     justify-content: space-evenly;
+
+    margin-left: 40px;
 }
 
 .header {
     font-size: 24px;
-    margin-left: 116px;
+    margin-left: 150px;
     font-weight: 500;
 
     margin-bottom: 12px;

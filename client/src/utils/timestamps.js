@@ -3,7 +3,7 @@ export const timestampToStr = (timestamp) => {
         timestamp = timestamp - (hours * 3600);
         let minutes = Math.floor(timestamp / 60);
         timestamp = timestamp - (minutes * 60);
-        let seconds = timestamp;
+        let seconds = Math.floor(timestamp);
         let times = [minutes, seconds];
         let str = [];
 

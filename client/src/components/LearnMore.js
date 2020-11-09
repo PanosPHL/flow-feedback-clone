@@ -29,7 +29,9 @@ const LearnMore = () => {
     return (
         <div className={styles.learnMoreContainer}>
             <button onClick={handleCloseClick} className={styles.closeButton}><MDBIcon icon="times" /></button>
+            <div>
             <YouTube opts={opts} onReady={onReady}/>
+            </div>
             <p className={styles.learnMoreText}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
