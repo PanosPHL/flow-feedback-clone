@@ -1,25 +1,26 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { MDBCard, MDBCardBody, MDBContainer } from "mdbreact";
-import PlayerContext from '../contexts/PlayerContext';
 import { round } from '../utils/round';
-import styles from '../css-modules/EditFlowPage.module.css';
-import { updateNote, deleteNote } from '../store/notes';
-import { toggleEditNoteForm, toggleDeleteConfirmation } from '../store/ui/flow';
 import { setPausedCard } from '../store/session';
+import { updateNote, deleteNote } from '../store/notes';
+import { setErrors, clearErrors } from '../store/errors';
+import { toggleEditNoteForm, toggleDeleteConfirmation } from '../store/ui/flow';
 import NoteCardContext from '../contexts/NoteCardContext';
 import EditNoteForm from './EditNoteForm';
 import DeleteNoteForm from './DeleteNoteForm';
 import NoteCardBodyContent from './NoteCardBodyContent';
+import PlayerContext from '../contexts/PlayerContext';
+import styles from '../css-modules/EditFlowPage.module.css';
 
 const NoteCard = (props) => {
     const dispatch = useDispatch();
+    const errors = useSelector(state => state.errors);
     const { currentFlow, timestamp, player, playing } = useContext(PlayerContext);
     const { editNoteForm, deleteNote: displayDelete } = useSelector(state => state.ui.flow);
     const { pausedCard } = useSelector(state => state.session);
     const [inactive, setInactive] = useState('inactiveCard');
     const [noteContent, setNoteContent] = useState('');
-    const [errors, setErrors] = useState({ errors: [] });
 
     useEffect(() => {
         if (round(timestamp, 1) === round(props.timestamp, 1)) {
@@ -58,7 +59,7 @@ const NoteCard = (props) => {
     }, [dispatch, displayDelete, editNoteForm, pausedCard, playing, props.noteId]);
 
     useEffect(() => {
-        setErrors({ errors: [] });
+        dispatch(clearErrors())
     }, [editNoteForm, noteContent])
 
     useEffect(() => {
@@ -107,14 +108,14 @@ const NoteCard = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const res = await dispatch(updateNote(props.noteId, noteContent));
-
+        console.log(res);
         if (res.ok) {
             setNoteContent(res.data.note.content);
             dispatch(toggleEditNoteForm());
             return;
         }
 
-        setErrors({ errors: res.data.error.errors });
+        dispatch(setErrors(res.data.error.errors))
     }
 
     const handleTrashClick = () => {

@@ -71,7 +71,7 @@
     display: flex;
     width: inherit;
     justify-content: right;
-    margin-top: 0.4em;
+    margin-top: 0.2em;
     margin-left: 5.8em;
 }
 
@@ -87,9 +87,15 @@
 }
 
 .editNoteErrors {
-    height: 2vh;
+    position: absolute;
+    top: 2px;
+
     font-size: 12px;
     padding: 0;
+
+    vertical-align: center;
+
+    list-style: none;
 }
 
 .editNoteErrors ul {
@@ -119,4 +125,16 @@
 .noteContainerHeader {
     color: grey;
     margin: 0.6em auto 0 auto;
+}
+
+.editFormBody {
+    position: relative;
+}
+
+.textarea {
+    resize: none;
+}
+
+.newNoteErrorList {
+    list-style: none;
 }
