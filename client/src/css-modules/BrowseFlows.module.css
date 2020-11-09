@@ -14,7 +14,9 @@
 }
 
 .trashButton {
-    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 10px;
     bottom: 4px;
     right: 4px;
 }
@@ -25,7 +27,6 @@
     overflow: hidden;
     height: 6em;
     font-size: 14px;
-    margin-top: 0.8em;
 }
 
 .headerContainer {
@@ -40,9 +41,59 @@
 }
 
 .card {
-    transform: scale(0.96);
+    transform: scale(0.94);
 }
 
 .cardImage {
     transform: translateY(-30px);
+}
+
+.imageAndCardSeparator {
+    position: absolute;
+
+    top: 170px;
+    left: 14.48px;
+    width: 311.1px;
+
+    border-left: 0.2px solid rgba(0, 0, 0, 0.06);
+    border-right: 0.2px solid rgba(0, 0, 0, 0.06);
+
+    height: 28px;
+    background-color: #ECEDEC;
+
+    z-index: 0;
+}
+
+.dateAndTrashContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    border-top: 1px solid #ECEDEC;
+
+    padding-top: 6px;
+    margin-top: 12px;
+}
+
+.hidden {
+    display: block;
+    opacity: 0;
+    margin: 6px;
+    width: 72px;
+    height: 26px;
+}
+
+.duration {
+    position: absolute;
+    top: 144px;
+    right: 6px;
+
+    padding-left: 4px;
+    padding-right: 4px;
+
+    font-size: 14px;
+
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
 }
