@@ -110,7 +110,7 @@ const NoteCard = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const res = await dispatch(updateNote(props.noteId, noteContent));
-        console.log(res);
+
         if (res.ok) {
             setNoteContent(res.data.note.content);
             dispatch(toggleEditNoteForm());

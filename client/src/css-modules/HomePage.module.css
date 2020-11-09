@@ -71,7 +71,7 @@
     display: grid;
     min-width: 80vw;
     min-height: 120vh;
-    grid-template-columns: 14% repeat(4, 18%) 14%;
+    grid-template-columns: 266.5px repeat(4, 342.5px) 266.5px;
     grid-template-rows: 400px repeat(5, 440px);
 }
 

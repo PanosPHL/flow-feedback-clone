@@ -1,6 +1,6 @@
 .cardContainer {
     display: grid;
-    grid-template-columns: repeat(4, 25%);
+    grid-template-columns: repeat(4, 374.5px);
     grid-auto-rows: 380px;
     width: 1498px;
     margin: 0px 211px 0px 240px;
@@ -68,7 +68,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 270px;
 
     border-top: 1px solid #ECEDEC;
 

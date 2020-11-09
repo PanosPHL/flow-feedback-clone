@@ -30,10 +30,10 @@ const LearnMore = () => {
         <div className={styles.learnMoreContainer}>
             <button onClick={handleCloseClick} className={styles.closeButton}><MDBIcon icon="times" /></button>
             <div>
-            <YouTube opts={opts} onReady={onReady}/>
+            <YouTube opts={opts} onReady={onReady} videoId='PjWAQ8LBCTs'/>
             </div>
             <p className={styles.learnMoreText}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Watch this video for a quick demo on how flowNotes works!
             </p>
         </div>
     )

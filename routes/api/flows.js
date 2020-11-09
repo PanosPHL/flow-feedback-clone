@@ -10,7 +10,8 @@ const { Flow, Video, Note, Category, User } = require('../../db/models');
 
 const validateFlow = [
     check('name', 'Please provide a title for your flow')
-        .exists(),
+        .exists()
+        .isLength({ min: 1 }),
     check('categoryId', 'Please select a valid category for your flow')
         .exists()
         .custom((value) => value > 0)
