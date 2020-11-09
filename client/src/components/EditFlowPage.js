@@ -9,14 +9,14 @@ import NewNoteForm from './NewNoteForm';
 import styles from '../css-modules/EditFlowPage.module.css';
 import NoteCard from './NoteCard';
 import FlowTitleAndForm from './FlowTitleAndForm';
-import { withRouter } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 
 const EditFlowPage = (props) => {
     const dispatch = useDispatch();
     const userId = useSelector(state => state.session.id);
     const currentFlow = useSelector(state => state.entities.flows[props.match.params.id]);
-    const myFlow = useSelector(state => currentFlow.userId === state.session.id);
-    const notes = useSelector(state => currentFlow.notes ? Object.values(state.entities.notes).filter((note) => currentFlow.notes.includes(note.id)).sort(sortNotes) : []);
+    const myFlow = useSelector(state => currentFlow ? currentFlow.userId === state.session.id : false);
+    const notes = useSelector(state => currentFlow ? Object.values(state.entities.notes).filter((note) => currentFlow.notes.includes(note.id)).sort(sortNotes) : []);
     const pausedCard = useSelector(state => state.session);
     const { newNoteForm, editNoteForm, titleForm } = useSelector(state => state.ui.flow);
     const [playing, setPlaying] = useState(false);
@@ -137,6 +137,12 @@ const EditFlowPage = (props) => {
         pausedCard,
         currentFlow,
         myFlow
+    }
+
+    if (!currentFlow) {
+        return (
+            <Redirect to='/not-found'/>
+        )
     }
 
     return (

@@ -17,7 +17,7 @@ const NoteCard = (props) => {
     const dispatch = useDispatch();
     const errors = useSelector(state => state.errors);
     const { currentFlow, timestamp, player, playing } = useContext(PlayerContext);
-    const { editNoteForm, deleteNote: displayDelete } = useSelector(state => state.ui.flow);
+    const { newNoteForm, editNoteForm, deleteNote: displayDelete } = useSelector(state => state.ui.flow);
     const { pausedCard } = useSelector(state => state.session);
     const [inactive, setInactive] = useState('inactiveCard');
     const [noteContent, setNoteContent] = useState('');
@@ -92,7 +92,9 @@ const NoteCard = (props) => {
     const handleBtnClick = () => {
         if (inactive === 'activeCard') {
             dispatch(setPausedCard(props.noteId));
-            dispatch(toggleEditNoteForm());
+            if (!newNoteForm) {
+                dispatch(toggleEditNoteForm());
+            }
         }
     }
 

@@ -12,7 +12,7 @@ const FlowTitleAndForm = ({ flowName, id }) => {
     const dispatch = useDispatch();
     const errors = useSelector(state => state.errors);
     const { myFlow } = useContext(PlayerContext);
-    const { titleForm } = useSelector(state => state.ui.flow);
+    const { titleForm, newNoteForm, editNoteForm } = useSelector(state => state.ui.flow);
     const [name, setName] = useState('');
     const [submitted, setSubmitted] = useState(false);
 
@@ -25,7 +25,9 @@ const FlowTitleAndForm = ({ flowName, id }) => {
     }, [dispatch, titleForm, name])
 
     const handleEditClick = () => {
-        dispatch(toggleTitleForm())
+        if (!newNoteForm && !editNoteForm) {
+            dispatch(toggleTitleForm())
+        }
     }
 
     const handleCancelClick = () => {
@@ -53,27 +55,27 @@ const FlowTitleAndForm = ({ flowName, id }) => {
 
     return (
         <>
-        <div className={styles.container}>
-        { titleForm ?
-        <form className={styles.formContainer} onSubmit={handleFormSubmit}>
-            <input type='text' onChange={handleNameChange} className={styles.input + ' form-control form-control-lg'} value={name}/>
-            <div>
-            <button type='submit' className='btn btn-amber'><MDBIcon icon='paper-plane' /></button>
-            <button onClick={handleCancelClick} type='button' className='btn btn-blue-grey'><MDBIcon icon='times'/></button>
+            <div className={styles.container}>
+                {titleForm ?
+                    <form className={styles.formContainer} onSubmit={handleFormSubmit}>
+                        <input type='text' onChange={handleNameChange} className={styles.input + ' form-control form-control-lg'} value={name} />
+                        <div>
+                            <button type='submit' className='btn btn-amber'><MDBIcon icon='paper-plane' /></button>
+                            <button onClick={handleCancelClick} type='button' className='btn btn-blue-grey'><MDBIcon icon='times' /></button>
+                        </div>
+                        {errors.length ?
+                            <Errors className={styles.errorList} containerClass={styles.errorContainer} errors={errors} />
+                            :
+                            <> </>}
+                    </form>
+                    :
+                    <>
+                        <h4 className={styles.textalign + ' font-weight-normal'}>{submitted ? name : flowName}</h4>
+                        {
+                            myFlow ? <button onClick={handleEditClick} type='button' className='btn btn-amber'><MDBIcon icon='edit'></MDBIcon></button> : <></>
+                        }
+                    </>}
             </div>
-        </form>
-        :
-        <>
-            <h4 className={styles.textalign + ' font-weight-normal'}>{submitted ? name : flowName}</h4>
-            {
-                myFlow ? <button onClick={handleEditClick} type='button' className='btn btn-amber'><MDBIcon icon='edit'></MDBIcon></button> : <></>
-            }
-            </>}
-        </div>
-        { errors.length ?
-        <Errors className={styles.errorList} containerClass={styles.errorContainer} errors={errors}/>
-            :
-            <> </>}
         </>
     )
 }

@@ -13,13 +13,6 @@
     margin-bottom: 12px;
 }
 
-.card {
-    width: 10vw;
-    height: 32vh;
-    padding-top: 1em;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-}
-
 .container {
     padding-top: 36px;
 }

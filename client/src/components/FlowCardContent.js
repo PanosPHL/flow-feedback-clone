@@ -42,7 +42,7 @@ const FlowCardContent = ({ thumbnail, name, myFlow, owner, date, duration }) => 
             <MDBCardImage className={styles.cardImage + ' img-fluid'} src={thumbnail} waves />
             <MDBCardBody>
                 <div className={styles.duration}>{timestampToStr(duration)}</div>
-                <MDBCardTitle style={{ fontWeight: 'bold', fontSize: '18px', color: '#636363' }}>{name.length > 50 ? name.slice(0, findSlice(name)) + '...' : name}</MDBCardTitle>
+                <MDBCardTitle style={{ minHeight: '42px', fontWeight: 'bold', fontSize: '18px', color: '#636363' }}>{name.length > 50 ? name.slice(0, findSlice(name)) + '...' : name}</MDBCardTitle>
                 <MDBCardText>
                     <span className={styles.innerText}>
                         <span>{owner}</span>

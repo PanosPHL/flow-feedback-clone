@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Shadows+Into+Light&display=swap');
 
 .headerSplashContainer {
-    height: 60vh;
+    height: 562px;
     background-image: url("./mvc-background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -24,7 +24,7 @@
     background-color: rgba(255, 255, 255, 0.4);
     height: inherit;
     z-index: 1;
-    width: 65vw;
+    width: 1248px;
     margin: 0 auto;
     backdrop-filter: blur(4px);
 }
@@ -56,14 +56,14 @@
 .headerTopRow__rightContainer_notLoggedIn {
     display: flex;
     padding-top: 1em;
-    min-width: 10vw;
+    min-width: 192px;
     justify-content: space-evenly;
 }
 
 .headerTopRow__rightContainer_loggedIn {
     display: flex;
     padding-top: 1em;
-    min-width: 10vw;
+    min-width: 192px;
     justify-content: space-evenly;
 }
 
