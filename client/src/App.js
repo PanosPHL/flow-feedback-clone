@@ -44,9 +44,11 @@ function App() {
     loadAppData();
   }, [dispatch]);
 
-  if (loading) return (
-    <PageLoad />
-  );
+    if (loading) {
+      return (
+        <PageLoad />
+      );
+    }
 
     return (
       <BrowserRouter>

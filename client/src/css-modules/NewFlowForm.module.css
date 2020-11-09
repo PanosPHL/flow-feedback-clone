@@ -3,20 +3,24 @@
 }
 
 .flowFormContainer {
-    margin-top: 1em;
+    margin-top: 16px;
 }
 
 .input {
-    margin-bottom: 0.8em;
+    margin-bottom: 13px;
 }
 
 .description {
-    margin: 2em 0 1em 0;
+    margin: 32px 0 16px 0;
+}
+
+.textarea {
+    resize: none;
 }
 
 .submitButton {
     width: 162px;
-    margin: 2em 33%;
+    margin: 26px 244px;
 
     box-sizing: content-box;
 }

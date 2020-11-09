@@ -1,119 +1,135 @@
 .sidebarClosed {
-    width: 2vw;
-    transition: width 0.3s;
+    width: 38.4px;
+    transition: 0.3s;
 }
 
 .sidebarOpen {
-    width: 4vw;
-    transition: width 0.3s;
+    width: 76.8px;
+    transition: 0.3s;
 }
 
 .openButtonClosed {
     display: block;
-    margin-top: 2em;
-    margin-left: 0.7em;
-    width: 1.2vw!important;
+    margin-top: 20.5px;
+    margin-left: 7.2px;
+    width: 23px!important;
     padding: 0!important;
     transition: 0.3s;
+
+    box-sizing: content-box;
 }
 
 .openButtonOpen {
     display: block;
-    margin-top: 4em;
-    width: 3vw!important;
-    margin-left: 0.8em;
+    margin-top: 41px;
+    width: 6.4px!important;
+    margin-left: 8.2px;
+
+    box-sizing: content-box;
+
     transition: 0.3s;
 }
 
 .logoClosed {
     display: block;
-    width: 1.6vw;
-    margin: 1.2em auto;
-    transition: width 0.3s, margin 0.3s;
+    width: 31px;
+    margin: 19.2px auto;
+    transition: 0.3s;
 }
 
 .logoOpen {
     display: block;
-    width: 3.2vw;
-    margin: 2.4em auto;
-    transition: width 0.3s, margin 0.3s;
+    width: 61.5px;
+    margin: 38.4px auto;
+    transition: 0.3s;
 }
 
 .lowerContent {
-    margin-top: 4em;
+    margin-top: 64px;
 }
 
 .myFlowsButtonClosed, .createFlowButtonClosed {
-    width: 1.4vw!important;
+    width: 27px!important;
     padding: 0!important;
-    margin: 1.6em auto;
-    transition: width 0.3s, padding 0.3s, margin 0.3s;
+    margin: 20.8px auto;
+    transition: 0.3s;
 }
 
 .lolButtonClosed {
-    width: 1.4vw!important;
-    padding: 0.2em!important;
+    width: 22px!important;
+    padding: 2.6px!important;
     transition: 0.3s;
+
+    box-sizing: content-box;
 }
 
 .lolButtonOpen {
-    width: 2.8vw!important;
+    width: 43.4px!important;
     padding: 0.4em!important;
-    margin-left: 0.8em;
+    margin-left: 10.4px;
     transition: 0.3s;
+
+    box-sizing: content-box;
 }
 
 .myFlowsButtonOpen, .createFlowButtonOpen {
-    width: 2.8vw!important;
-    padding: 0.4em;
-    margin: 0.8em auto;
-    transition: width 0.3s, padding 0.3s, margin 0.3s;
+    width: 43.4px!important;
+    padding: 5.2px;
+    margin: 10.4px auto;
+    transition: 0.3s;
+
+    box-sizing: content-box;
 }
 
 .myFlowsClosed, .createFlowClosed {
-    margin-top: 1em;
     display: flex;
     flex-direction: column;
     text-align: center;
     color: rgba(255, 255, 255, 0);
     font-size: 0;
-    transition: font-size 0.3s, color 0.3s;
+
+    margin-right: 2.2px;
+
+    transition: 0.3s;
 }
 
 .lolClosed, .ssbmClosed, .overwatchClosed, .csgoClosed {
-    margin-top: 0.8em;
     display: flex;
     flex-direction: column;
     text-align: center;
     color: rgba(255, 255, 255, 0);
     font-size: 0;
-    transition: font-size 0.3s, color 0.3s;
+
+    transition: 0.3s;
 }
 
 .lolOpen, .ssbmOpen, .overwatchOpen, .csgoOpen {
-    margin-top: 1.6em;
+    margin-top: 22.4px;
     display: flex;
     flex-direction: column;
     text-align: center;
     color: rgba(255, 255, 255, 1);
     font-size: 14px;
-    transition: font-size 0.3s, color 0.3s;
+    transition: 0.3s;
 }
 
 .myFlowsOpen, .createFlowOpen {
-    margin-top: 2em;
+    margin-top: 28px;
     display: flex;
     flex-direction: column;
     text-align: center;
     color: rgba(255, 255, 255, 1);
     font-size: 14px;
-    transition: font-size 0.3s, color 0.3s;
+
+    margin-right: 2.2px;
+
+    transition: 0.3s;
 }
 
 .gamepadClosed {
     color: white;
     display: block;
-    margin: 0.3em 0.25em;
+    margin: 6.6px 5.5px;
     font-size: 22px;
     border-bottom: 1px solid black;
     transition: font-size 0.3s;
@@ -122,38 +138,38 @@
 .gamepadOpen {
     color: white;
     display: block;
-    margin: 0.6em 0.25em;
+    margin: 20px 8.4px;
     font-size: 44px;
     border-bottom: 1px solid black;
     transition: font-size 0.3s;
 }
 
 .lolIconClosed {
-    width: 1vw;
+    width: 19.2px;
     filter: invert();
 }
 
 .lolIconOpen {
-    width: 1.4vw;
+    width: 26.9px;
     filter: invert();
 }
 
 .overwatchIconClosed {
-    width: 1vw;
+    width: 19.2px;
     transition: 0.3s;
 }
 
 .overwatchIconOpen {
-    width: 2vw;
+    width: 38.4px;
     transition: 0.3s;
 }
 
 .csgoIconClosed {
-    width: 1vw;
+    width: 19.2px;
     transition: 0.3s;
 }
 
 .csgoIconOpen {
-    width: 2vw;
+    width: 38.4px;
     transition: 0.3s;
 }

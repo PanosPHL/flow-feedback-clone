@@ -57,24 +57,24 @@
     display: flex;
     width: 1125px;
     justify-content: space-between;
-    margin-top: 1em;
+    margin-top: 16px;
 }
 
 .cardTimestamp {
-    margin-bottom: 0em;
+    margin-bottom: 0;
 }
 
 .cardContent {
     font-size: 16px;
-    margin-top: 0em;
+    margin-top: 0;
 }
 
 .formButtons {
     display: flex;
     width: inherit;
     justify-content: right;
-    margin-top: 0.2em;
-    margin-left: 5.8em;
+    margin-top: 3px;
+    margin-left: 93px;
 }
 
 .newNoteErrors {
@@ -106,7 +106,7 @@
     position: absolute;
     top: 12px;
     right: 10px;
-    padding: 0.6em 1.2em !important;
+    padding: 6px 12px !important;
 }
 
 .editNote {
@@ -119,12 +119,12 @@
     display: flex;
     width: 230px;
     justify-content: space-between;
-    margin: 2.4em auto 0 auto;
+    margin: 38px auto 0 auto;
 }
 
 .noteContainerHeader {
     color: grey;
-    margin: 0.6em auto 0 auto;
+    margin: 12px auto 0 auto;
 }
 
 .editFormBody {
