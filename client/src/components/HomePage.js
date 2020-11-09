@@ -51,8 +51,8 @@ const HomePage = () => {
                     <SignUpModal />
                 </MDBContainer>
                 <div className={styles.bodyContainer}>
-                    <BrowseRecentFlows />
                     <BrowseCats />
+                    <BrowseRecentFlows />
                 </div>
                 </div>
     );

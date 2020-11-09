@@ -10,10 +10,14 @@ const BrowseRecentFlows = () => {
     }) || [];
 
     return (
+        <div className={styles.outerSection}>
         <div className={styles.section}>
-            <h2 className={styles.header + ' font-weight-bold'}>
+            <div className={styles.headerContainer}>
+            <img src='/images/flownotesLogo.png' className={styles.logo}/>
+            <h2 className={styles.header}>
                 Recent Flows
             </h2>
+            </div>
             <div className={styles.cardContainer}>
                 {flows.length ?
                 flows.map((flow, i) => {
@@ -26,6 +30,7 @@ const BrowseRecentFlows = () => {
                     )
                 }) : <></>}
             </div>
+        </div>
         </div>
     )
 }
