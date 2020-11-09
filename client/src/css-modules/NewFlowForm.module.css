@@ -3,22 +3,34 @@
 }
 
 .flowFormContainer {
-    margin-top: 1em;
+    margin-top: 16px;
 }
 
 .input {
-    margin-bottom: 0.8em;
+    margin-bottom: 13px;
 }
 
 .description {
-    margin: 2em 0 1em 0;
+    margin: 32px 0 16px 0;
+}
+
+.textarea {
+    resize: none;
 }
 
 .submitButton {
-    width: 12vw;
-    margin: 2em 33%;
+    width: 162px;
+    margin: 26px 244px;
+
+    box-sizing: content-box;
 }
 
 .errors {
-    margin: 0
+    margin: 0;
+    list-style: none;
+}
+
+.errorContainer {
+    width: 360px;
+    margin: 0 auto;
 }

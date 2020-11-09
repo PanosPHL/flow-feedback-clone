@@ -10,7 +10,8 @@ const { Flow, Video, Note, Category, User } = require('../../db/models');
 
 const validateFlow = [
     check('name', 'Please provide a title for your flow')
-        .exists(),
+        .exists()
+        .isLength({ min: 1 }),
     check('categoryId', 'Please select a valid category for your flow')
         .exists()
         .custom((value) => value > 0)
@@ -35,7 +36,6 @@ const validateFlowUpdate = [
 const router = express.Router();
 
 router.post('/', validateFlow, handleValidationErrors, asyncHandler(async (req, res, next) => {
-    console.log(req.body);
     const { name, description, userId, video, categoryId } = req.body;
 
     const data = await sequelize.transaction(async (t) => {

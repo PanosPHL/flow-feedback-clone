@@ -2,21 +2,24 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPausedCard } from '../store/session';
 import { toggleNewNoteForm } from '../store/ui/flow';
-import styles from '../css-modules/EditFlowPage.module.css';
-import PlayerContext from '../contexts/PlayerContext';
 import { addNewNote } from '../store/notes';
-import { MDBAlert } from 'mdbreact';
+import { setErrors, clearErrors } from '../store/errors';
+import Errors from './Errors';
+import PlayerContext from '../contexts/PlayerContext';
+import styles from '../css-modules/EditFlowPage.module.css';
 
 const NewNoteForm = () => {
     const dispatch = useDispatch();
+    const errors = useSelector(state => state.errors);
     const { newNoteForm } = useSelector(state => state.ui.flow);
     const {id, timestamp, handlers: { toggleDisplayNoteForm } } = useContext(PlayerContext);
     const [content, setContent] = useState('');
-    const [errors, setErrors] = useState({ errors: []});
 
     useEffect(() => {
-        setErrors({ errors: []});
-    }, [content, toggleDisplayNoteForm])
+        return () => {
+            dispatch(clearErrors());
+        }
+    }, [dispatch, content, newNoteForm, toggleDisplayNoteForm])
 
     const handleContentChange = (event) => {
         setContent(event.target.value);
@@ -32,7 +35,7 @@ const NewNoteForm = () => {
             return;
         }
 
-        setErrors({errors: res.data.error.errors});
+        dispatch(setErrors(res.data.error.errors));
     };
 
     const handleCancelClick = () => {
@@ -42,18 +45,10 @@ const NewNoteForm = () => {
 
     return (
         <form onSubmit={handleSubmit} className={styles.noteForm + ' submit-note' + (newNoteForm ? '' : ' hidden')}>
-            { errors.errors.length ?
-        <MDBAlert color='danger' className={styles.newNoteErrors}>
-        <ul>
-            {errors.errors.map((error, i) => {
-                return (
-                <li key={`error${i + 1}`}>{error.split(': ')[1]}</li>
-                )
-            })}
-        </ul>
-        </MDBAlert>
+            { errors.length ?
+            <Errors errors={errors} className={styles.newNoteErrorList} containerClass={styles.newNoteErrors}/>
         : <></> }
-        <textarea onChange={handleContentChange} className={styles.textarea + ' form-control form-control-sm'} rows={errors.errors.length ? '2.9' : '4'} value={content}/>
+        <textarea onChange={handleContentChange} className={styles.textarea + ' form-control form-control-sm'} rows={errors.length ? '2.9' : '4'} value={content}/>
             <div className={styles.noteFormButtons}>
             <button type='submit' className='btn btn-primary btn-indigo btn-sm'>Submit</button>
             <button onClick={handleCancelClick} type='button' className='btn btn-blue-grey btn-sm'>Cancel</button>

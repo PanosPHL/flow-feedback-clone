@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setVid } from '../store/newFlow';
-import { MDBBtn, MDBAlert, MDBInputGroup } from 'mdbreact';
+import { setErrors, clearErrors } from '../store/errors';
+import { MDBBtn, MDBInputGroup } from 'mdbreact';
+import Errors from './Errors';
 import styles from '../css-modules/FetchFlowForm.module.css';
 
 const FetchFlowForm = (props) => {
     const [url, setURL] = useState('');
-    const [errors, setErrors] = useState({ errors: [] });
+    const errors = useSelector(state => state.errors);
     const dispatch = useDispatch();
 
     useEffect(() => {
         return () => {
-            setErrors({ errors: [] });
+            dispatch(clearErrors());
         }
-    }, [url]);
+    }, [dispatch, url]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -27,18 +29,14 @@ const FetchFlowForm = (props) => {
 
         const { data: { error: { errors: resErrors } } } = res;
 
-        setErrors({ errors: resErrors });
+        dispatch(setErrors(resErrors));
     }
 
     return (
         <>
         <form onSubmit={handleSubmit}>
-            {errors.errors && errors.errors.length > 0 ?
-                <MDBAlert className={styles.errorContainer} color='danger'>
-                    <ul className={styles.errors}>
-                        {errors.errors.map((error, i) => <li key={`error-${i + 1}`}>{error.split(': ')[1]}</li>)}
-                    </ul>
-                </MDBAlert>
+            {errors.length ?
+                <Errors errors={errors} containerClass={styles.errorContainer} className={styles.errors} />
                 : <></>
             }
             <MDBInputGroup

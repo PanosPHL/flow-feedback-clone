@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import session, { RESET_STATE } from './session';
 import newFlow from './newFlow';
 import categories from './categories';
+import errors from './errors';
 import flows from './flows';
 import notes from './notes';
 import users from './users';
@@ -29,9 +30,10 @@ const entities = combineReducers({
 });
 
 const appReducer = combineReducers({
-  session,
-  newFlow,
   entities,
+  errors,
+  newFlow,
+  session,
   ui
 });
 

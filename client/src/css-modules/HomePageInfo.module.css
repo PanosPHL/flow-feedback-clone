@@ -1,0 +1,133 @@
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    min-height: 359px;
+
+    margin-top: 64px;
+}
+
+.header {
+    font-family: 'Shadows into Light';
+    font-size: 112px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+
+    margin-bottom: -20px;
+
+    color: white;
+}
+
+.subheader {
+    font-size: 26px;
+
+    color: white;
+}
+
+.twoButtonContainer {
+    display: flex;
+    justify-content: space-between;
+
+    width: 324.5px;
+}
+
+.singleButtonContainer {
+    width: auto;
+}
+
+.button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 80px;
+    width: 140px;
+
+    border: none;
+    border-radius: 2px;
+
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+
+    padding: 8px 0px;
+}
+
+.button:hover {
+    background-color: rgba(0, 0, 0, 0.65);
+}
+
+.button:active {
+    outline: none;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.65);
+    transform: scale(1.1);
+}
+
+.button:focus {
+    outline: none;
+}
+
+.icon {
+    font-size: 32px;
+}
+
+.buttonText {
+    font-size: 14px;
+}
+
+.learnMoreContainer {
+    position: relative;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 850.5px;
+    height: 300px;
+
+    margin-top: -44px;
+    padding: 30px 24px 24px 24px;
+
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.learnMoreText {
+    width: 324px;
+
+    color: white;
+    font-size: 18px;
+
+    line-height: 2;
+
+    text-align: center;
+}
+
+.closeButton {
+    position: absolute;
+
+    top: 16px;
+    right: 24px;
+
+    background-color: rgba(0, 0, 0, 0);
+
+    color: white;
+
+    padding: 2px 8px;
+    border-radius: 4px;
+
+    border: none;
+}
+
+.closeButton:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:active {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:focus {
+    outline: none;
+}

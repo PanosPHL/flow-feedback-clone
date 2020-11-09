@@ -4,20 +4,22 @@
     position: relative;
     grid-column: 1 / 5;
     grid-row: 1 / 5;
-    margin: 2em auto 0 auto;
+    margin: 32px auto 0 auto;
 }
 
 .noteForm {
     position: absolute;
-    width: 24vw;
-    height: 16vh;
-    top: 58.5vh;
-    left: 0.3vw;
+    width: 436px;
+    height: 126px;
+    top: 548px;
+    left: 6px;
     background-color: white;
-    padding: 0.7em;
+    padding: 11px;
     border-radius: 3px;
     border: 1px solid rgb(207, 207, 207);
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+
+    box-sizing: content-box;
 }
 
 .noteFormButtons {
@@ -35,8 +37,8 @@
 }
 
 .noteCard {
-    margin: 0.8em 0;
-    height: 18vh;
+    margin: 13px 0;
+    height: 169px;
 }
 
 .buttonDiv {
@@ -48,37 +50,39 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 8vh;
+    height: 75px;
 }
 
 .buttonContainer {
     display: flex;
-    width: 58.6vw;
+    width: 1125px;
     justify-content: space-between;
-    margin-top: 1em;
+    margin-top: 16px;
 }
 
 .cardTimestamp {
-    margin-bottom: 0em;
+    margin-bottom: 0;
 }
 
 .cardContent {
     font-size: 16px;
-    margin-top: 0em;
+    margin-top: 0;
 }
 
 .formButtons {
     display: flex;
     width: inherit;
     justify-content: right;
-    margin-top: 0.4em;
-    margin-left: 5.8em;
+    margin-top: 3px;
+    margin-left: 93px;
 }
 
 .newNoteErrors {
-    height: 2.8vh;
+    height: 8.5px;
     font-size: 12px;
-    padding-top: 0.4vh;
+    padding-top: 4px;
+
+    box-sizing: content-box;
 }
 
 .noteTopRow {
@@ -87,20 +91,22 @@
 }
 
 .editNoteErrors {
-    height: 2vh;
+    position: absolute;
+    top: 2px;
+
     font-size: 12px;
     padding: 0;
-}
 
-.editNoteErrors ul {
-    padding-left: 1.5vw;
+    vertical-align: center;
+
+    list-style: none;
 }
 
 .trashButton {
     position: absolute;
     top: 12px;
     right: 10px;
-    padding: 0.6em 1.2em !important;
+    padding: 6px 12px !important;
 }
 
 .editNote {
@@ -111,12 +117,24 @@
 
 .deleteButtonsContainer {
     display: flex;
-    width: 12vw;
+    width: 230px;
     justify-content: space-between;
-    margin: 2.4em auto 0 auto;
+    margin: 38px auto 0 auto;
 }
 
 .noteContainerHeader {
     color: grey;
-    margin: 0.6em auto 0 auto;
+    margin: 12px auto 0 auto;
+}
+
+.editFormBody {
+    position: relative;
+}
+
+.textarea {
+    resize: none;
+}
+
+.newNoteErrorList {
+    list-style: none;
 }

@@ -1,5 +1,12 @@
 const TOGGLE_LOGIN_MODAL = 'ui/home/TOGGLE_LOGIN_MODAL';
 const TOGGLE_SIGNUP_MODAL = 'ui/home/TOGGLE_SIGNUP_MODAL';
+const TOGGLE_LEARN_MORE = 'ui/home/TOGGLE_LEARN_MORE';
+
+export const toggleLearnMore = () => {
+    return {
+        type: TOGGLE_LEARN_MORE
+    }
+}
 
 export const toggleLoginModal = () => {
     return {
@@ -15,7 +22,8 @@ export const toggleSignUpModal = () => {
 
 export const initialHomeState = {
     loginModal: false,
-    signUpModal: false
+    signUpModal: false,
+    learnMore: false
 }
 
 export default function homeReducer(state = initialHomeState, action) {
@@ -26,6 +34,9 @@ export default function homeReducer(state = initialHomeState, action) {
             return newState;
         case TOGGLE_SIGNUP_MODAL:
             newState.signUpModal = !newState.signUpModal;
+            return newState;
+        case TOGGLE_LEARN_MORE:
+            newState.learnMore = !newState.learnMore;
             return newState;
         default:
             return state;

@@ -1,7 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { toggleSidebarDisplay } from '../store/ui/nav';
-import { BrowserRouter as Router, Switch, Route, withRouter, Redirect } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SideNavComponent from './SideNavComponent';
 import FetchFlow from './FetchFlow';
 import NewFlowPage from './NewFlowPage';
@@ -11,14 +9,6 @@ import CatFlows from './CatFlows';
 import NotFound from './NotFound';
 
 const Main = ({ match }) => {
-
-    // useEffect(() => {
-    //     document.body.classList.add('no-scroll');
-
-    //     return () => {
-    //         document.body.classList.remove('no-scroll');
-    //     }
-    // }, [])
 
     return (
             <Router>

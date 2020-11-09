@@ -12,8 +12,7 @@ import styles from '../css-modules/BrowseFlows.module.css';
 
 const BrowseFlowCard = ({ i, flow, myFlow }) => {
     const dispatch = useDispatch();
-    const { thumbnail } = useSelector(state => state.entities.videos[flow.videoId]);
-    const { name: catName } = useSelector(state => state.entities.categories[flow.categoryId]);
+    const { thumbnail, duration } = useSelector(state => state.entities.videos[flow.videoId]);
     const { email: owner } = useSelector(state => state.entities.users[flow.userId]);
     const { deleteFlow: deleteConf } = useSelector(state => state.ui.browse);
     const { flowToDelete } = useSelector(state => state.session);
@@ -52,10 +51,10 @@ const BrowseFlowCard = ({ i, flow, myFlow }) => {
     if (deleteConf && flowToDelete === flow.id) {
         return (
                 <FlowCardContext.Provider value={value}>
-                    <MDBContainer style={{width: '320px', margin: '0'}} className={styles.card}>
+                    <MDBContainer className={styles.card}>
                         <MDBCard style={{
-                            width: '320px',
-                            height: '352px'
+                            width: '310px',
+                            height: '342px'
                         }}>
                             <DeleteFlowForm/>
                         </MDBCard>
@@ -68,12 +67,14 @@ const BrowseFlowCard = ({ i, flow, myFlow }) => {
         <Link to={`/flow/${flow.id}`}>
         <FlowCardContext.Provider value={value}>
             <MDBContainer className={styles.card}>
-                <MDBCard style={{
-                    width: '320px',
-                    height: '352px'
+                <MDBCard narrow style={{
+                    position: 'relative',
+                    width: '310px',
+                    height: '342px'
                 }}>
-                    <FlowCardContent thumbnail={thumbnail} name={flow.name} catName={catName} description={flow.description} myFlow={myFlow} owner={owner}/>
+                    <FlowCardContent thumbnail={thumbnail} name={flow.name} date={flow.createdAt} myFlow={myFlow} owner={owner} duration={duration}/>
                 </MDBCard>
+                    <div className={styles.imageAndCardSeparator}></div>
             </MDBContainer>
         </FlowCardContext.Provider>
         </Link>

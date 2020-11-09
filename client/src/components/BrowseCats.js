@@ -7,8 +7,8 @@ const BrowseCats = () => {
     const categories = useSelector(state => Object.values(state.entities.categories));
 
     return (
-            <div style={{gridRow: '3 / 5', gridColumn: '2 / 6'}} className={styles.container}>
-        <h2 className={styles.header + ' font-weight-bold'}>Categories</h2>
+            <div style={{gridRow: '1 / 2', gridColumn: '2 / 6'}} className={styles.container}>
+        <h2 className={styles.header}>Categories</h2>
         <div className={styles.cardContainer}>
         {categories.length ?
         categories.map((category, i) => {

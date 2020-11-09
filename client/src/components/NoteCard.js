@@ -1,35 +1,48 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { MDBCard, MDBCardBody, MDBContainer } from "mdbreact";
-import PlayerContext from '../contexts/PlayerContext';
 import { round } from '../utils/round';
-import styles from '../css-modules/EditFlowPage.module.css';
-import { updateNote, deleteNote } from '../store/notes';
-import { toggleEditNoteForm, toggleDeleteConfirmation } from '../store/ui/flow';
 import { setPausedCard } from '../store/session';
+import { updateNote, deleteNote } from '../store/notes';
+import { setErrors, clearErrors } from '../store/errors';
+import { toggleEditNoteForm, toggleDeleteConfirmation } from '../store/ui/flow';
 import NoteCardContext from '../contexts/NoteCardContext';
 import EditNoteForm from './EditNoteForm';
 import DeleteNoteForm from './DeleteNoteForm';
 import NoteCardBodyContent from './NoteCardBodyContent';
+import PlayerContext from '../contexts/PlayerContext';
+import styles from '../css-modules/EditFlowPage.module.css';
 
 const NoteCard = (props) => {
     const dispatch = useDispatch();
+    const errors = useSelector(state => state.errors);
     const { currentFlow, timestamp, player, playing } = useContext(PlayerContext);
-    const { editNoteForm, deleteNote: displayDelete } = useSelector(state => state.ui.flow);
+    const { newNoteForm, editNoteForm, deleteNote: displayDelete } = useSelector(state => state.ui.flow);
     const { pausedCard } = useSelector(state => state.session);
     const [inactive, setInactive] = useState('inactiveCard');
     const [noteContent, setNoteContent] = useState('');
-    const [errors, setErrors] = useState({ errors: [] });
 
     useEffect(() => {
         if (round(timestamp, 1) === round(props.timestamp, 1)) {
             if (player && props.noteId !== pausedCard) {
-                player.pauseVideo();
                 dispatch(setPausedCard(props.noteId));
+                player.pauseVideo();
                 setInactive('activeCard');
+
+                if (props.i >= 5 && props.length >= 5) {
+                    document.querySelector('.noteCardContainer').scroll({
+                        top: Number(props.i) * 100,
+                        behavior: "smooth"
+                    });
+                } else if (props.i < 5 && props.length >= 5) {
+                    document.querySelector('.noteCardContainer').scroll({
+                        top: -1 * Number(props.i) * 100,
+                        behavior: "smooth"
+                    })
+                }
             }
         }
-    }, [timestamp, pausedCard, player, props.noteId, props.timestamp, props.i, dispatch]);
+    }, [timestamp, pausedCard, player, props.noteId, props.timestamp, props.i, props.length, dispatch]);
 
     useEffect(() => {
         if (pausedCard !== props.noteId) {
@@ -43,11 +56,11 @@ const NoteCard = (props) => {
         } else {
             setInactive('activeCard');
         }
-    }, [dispatch, displayDelete, editNoteForm, pausedCard, playing, props.noteId]);
+    }, [dispatch, pausedCard, playing, props.noteId]);
 
     useEffect(() => {
-        setErrors({ errors: [] });
-    }, [editNoteForm, noteContent])
+        dispatch(clearErrors())
+    }, [dispatch, editNoteForm, noteContent])
 
     useEffect(() => {
         setNoteContent(props.content);
@@ -79,7 +92,9 @@ const NoteCard = (props) => {
     const handleBtnClick = () => {
         if (inactive === 'activeCard') {
             dispatch(setPausedCard(props.noteId));
-            dispatch(toggleEditNoteForm());
+            if (!newNoteForm) {
+                dispatch(toggleEditNoteForm());
+            }
         }
     }
 
@@ -102,7 +117,7 @@ const NoteCard = (props) => {
             return;
         }
 
-        setErrors({ errors: res.data.error.errors });
+        dispatch(setErrors(res.data.error.errors))
     }
 
     const handleTrashClick = () => {
@@ -114,7 +129,11 @@ const NoteCard = (props) => {
     }
 
     const handleDeleteConfirmation = async () => {
-        await dispatch(deleteNote(props.noteId, currentFlow.id));
+        const res = await dispatch(deleteNote(props.noteId, currentFlow.id));
+
+        if (res.ok) {
+            dispatch(setPausedCard(null));
+        }
     }
 
     const value = {

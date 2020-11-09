@@ -1,0 +1,31 @@
+.footerContainer {
+    display: flex;
+
+    padding: 28px 248px;
+
+    height: 180px;
+
+    color: white;
+
+    background-color: #31393F;
+}
+
+.footerList {
+    list-style: none;
+}
+
+.footerList:hover {
+    cursor: default;
+}
+
+.listItem {
+    color: white;
+}
+
+.listItem:hover {
+    color: rgb(204, 204, 212);
+}
+
+.secondFooterList {
+    margin-left: 256px;
+}

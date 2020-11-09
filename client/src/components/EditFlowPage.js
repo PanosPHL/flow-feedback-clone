@@ -9,14 +9,14 @@ import NewNoteForm from './NewNoteForm';
 import styles from '../css-modules/EditFlowPage.module.css';
 import NoteCard from './NoteCard';
 import FlowTitleAndForm from './FlowTitleAndForm';
-import { withRouter } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 
 const EditFlowPage = (props) => {
     const dispatch = useDispatch();
     const userId = useSelector(state => state.session.id);
     const currentFlow = useSelector(state => state.entities.flows[props.match.params.id]);
-    const myFlow = useSelector(state => currentFlow.userId === state.session.id);
-    const notes = useSelector(state => currentFlow.notes ? Object.values(state.entities.notes).filter((note) => currentFlow.notes.includes(note.id)).sort(sortNotes) : []);
+    const myFlow = useSelector(state => currentFlow ? currentFlow.userId === state.session.id : false);
+    const notes = useSelector(state => currentFlow ? Object.values(state.entities.notes).filter((note) => currentFlow.notes.includes(note.id)).sort(sortNotes) : []);
     const pausedCard = useSelector(state => state.session);
     const { newNoteForm, editNoteForm, titleForm } = useSelector(state => state.ui.flow);
     const [playing, setPlaying] = useState(false);
@@ -37,7 +37,6 @@ const EditFlowPage = (props) => {
     }
 
     const handleKeyUp = (event) => {
-        console.log(event);
         event.stopPropagation();
         if (newNoteForm || editNoteForm || titleForm) {
             return;
@@ -54,7 +53,6 @@ const EditFlowPage = (props) => {
 
 
     useEffect(() => {
-        console.log('firing');
         window.addEventListener('keyup', handleKeyUp);
 
         return () => {
@@ -141,6 +139,12 @@ const EditFlowPage = (props) => {
         myFlow
     }
 
+    if (!currentFlow) {
+        return (
+            <Redirect to='/not-found'/>
+        )
+    }
+
     return (
         <PlayerContext.Provider value={value}>
             <div className={styles.pageContainer}>
@@ -163,7 +167,7 @@ const EditFlowPage = (props) => {
                 {notes && notes.length ?
                     notes.map((note, i) => {
                         return (
-                            <NoteCard key={`note-${i + 1}`} content={note.content} timestamp={note.timestamp} noteId={note.id} i={i + 1} myFlow={userId === currentFlow.userId}/>
+                            <NoteCard key={`note-${i + 1}`} length={notes.length} content={note.content} timestamp={note.timestamp} noteId={note.id} i={i + 1} myFlow={userId === currentFlow.userId}/>
                         )
                     }) : <> </>}
             </div>

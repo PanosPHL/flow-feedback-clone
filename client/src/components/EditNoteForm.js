@@ -1,22 +1,20 @@
 import React, { useContext } from 'react';
+import { useSelector } from 'react-redux';
+import Errors from './Errors';
 import NoteCardContext from '../contexts/NoteCardContext';
 import styles from '../css-modules/EditFlowPage.module.css';
-import { MDBAlert } from 'mdbreact';
 
 const EditNoteForm = () => {
-    const { errors, noteContent, handlers: { handleSubmit, handleFormCancel, handleContentChange } } = useContext(NoteCardContext);
+    const errors = useSelector(state => state.errors);
+    const { noteContent, handlers: { handleSubmit, handleFormCancel, handleContentChange } } = useContext(NoteCardContext);
 
     return (
-    <div>
+    <div className={styles.editFormBody}>
         {errors.length ?
-            <MDBAlert color='danger' className={styles.editNoteErrors}>
-                <ul>
-                    {errors.map((error, i) => <li key={`error-${i + 1}`}>{error.split(': ')[1]}</li>)}
-                </ul>
-            </MDBAlert> :
-            <></>}
+            <Errors errors={errors} className={styles.editNoteErrors}/>
+            : <></>}
         <form className={styles.editNoteForm} onSubmit={handleSubmit}>
-            <textarea style={errors.length ? { padding: '0.6em' } : {}} className='form-control form-control-sm' value={noteContent} onChange={handleContentChange} rows={errors.length ? '2.8' : '4.0'} />
+            <textarea className={styles.textarea + ' form-control form-control-sm'} value={noteContent} onChange={handleContentChange} rows={errors.length ? '2.8' : '4.0'} />
             <div className={styles.formButtons}>
                 <button type='submit' className='btn btn-sm btn-indigo'>Submit</button>
                 <button onClick={handleFormCancel} type='button' className='btn btn-sm btn-blue-grey'>Cancel</button>

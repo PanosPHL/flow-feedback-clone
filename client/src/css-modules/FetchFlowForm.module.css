@@ -1,7 +1,13 @@
 .errors {
-    margin: 0
+    margin: 0;
+    width: 300px;
+    list-style: none;
+    padding-left: 8px;
 }
 
 .errorContainer {
-    margin-top: -1em;
+    margin-top: -16px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
 }

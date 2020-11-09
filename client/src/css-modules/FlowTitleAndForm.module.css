@@ -1,13 +1,13 @@
 .container {
     display: flex;
-    width: 58.6vw;
+    width: 1125px;
     justify-content: space-between;
-    margin-bottom: 1em;
+    margin-bottom: 16px;
 }
 
 .textalign {
     display: block;
-    margin: 0.7em 0 auto 0.4em;
+    margin: 16.8px 0 auto 9.6px;
 }
 
 .formContainer {
@@ -17,12 +17,23 @@
 }
 
 .input {
-    width: 80%;
-    margin-top: 0.2em;
-    font-size: 1.46em;
+    width: 866px;
+    margin-top: 5px;
+    font-size: 23.4px;
 }
 
-.errors {
-    height: 5.2vh;
-    width: 18vw;
+.errorContainer {
+    position: absolute;
+    height: 24px;
+    width: 240px;
+
+    top: 32px;
+    right: 225px;
+}
+
+.errorList {
+    text-align: center;
+    list-style: none;
+    margin-top: -10px;
+    font-size: 14px;
 }
