@@ -41,7 +41,7 @@ const NoteCard = (props) => {
                 }
             }
         }
-    }, [timestamp, pausedCard, player, props.noteId, props.timestamp, props.i, dispatch]);
+    }, [timestamp, pausedCard, player, props.noteId, props.timestamp, props.i, props.length, dispatch]);
 
     useEffect(() => {
         if (pausedCard !== props.noteId) {

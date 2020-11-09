@@ -35,7 +35,12 @@ const BrowseFlowRow = ({ category }) => {
             category === 'ow' ? '/images/ow-home-logo.png' :
             category === 'csgo' ? '/images/csgo-home-logo.png' :
             '/images/flownotesLogo.png'}
-            className={ category === 'csgo' ? styles.csgoLogo : styles.logo}/>
+            className={ category === 'csgo' ? styles.csgoLogo : styles.logo}
+            alt={category === 'lol' ? 'League of Legends' :
+            category === 'ssbm' ? 'Super Smash Bros. Melee' :
+            category === 'ow' ? 'Overwatch' :
+            category === 'csgo' ? 'Counter-Strike: Global Offensive' :
+            'flowNotes'}/>
             <h2 className={styles.header}>
                 {
                 category === 'lol' ? 'League of Legends' :

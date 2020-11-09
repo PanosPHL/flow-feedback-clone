@@ -10,6 +10,18 @@
     background-color: #31393F;
 }
 
+.footerList {
+    list-style: none;
+}
+
+.listItem {
+    color: white;
+}
+
+.listItem:hover {
+    color: rgb(111, 113, 151);
+}
+
 .secondFooterList {
     margin-left: 256px;
 }
