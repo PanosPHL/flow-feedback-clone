@@ -31,5 +31,6 @@
 }
 
 .errorContainer {
-    width: 40px;
+    width: 360px;
+    margin: 0 auto;
 }
