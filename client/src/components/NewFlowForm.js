@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { MDBBtn, MDBAlert } from 'mdbreact';
+import { MDBBtn } from 'mdbreact';
 import { addFlow } from '../store/flows';
 import { setErrors, clearErrors } from '../store/errors';
 import Errors from './Errors';
