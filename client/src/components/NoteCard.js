@@ -56,11 +56,11 @@ const NoteCard = (props) => {
         } else {
             setInactive('activeCard');
         }
-    }, [dispatch, displayDelete, editNoteForm, pausedCard, playing, props.noteId]);
+    }, [dispatch, pausedCard, playing, props.noteId]);
 
     useEffect(() => {
         dispatch(clearErrors())
-    }, [editNoteForm, noteContent])
+    }, [dispatch, editNoteForm, noteContent])
 
     useEffect(() => {
         setNoteContent(props.content);
@@ -127,7 +127,11 @@ const NoteCard = (props) => {
     }
 
     const handleDeleteConfirmation = async () => {
-        await dispatch(deleteNote(props.noteId, currentFlow.id));
+        const res = await dispatch(deleteNote(props.noteId, currentFlow.id));
+
+        if (res.ok) {
+            dispatch(setPausedCard(null));
+        }
     }
 
     const value = {

@@ -4,7 +4,7 @@ import { login } from '../store/session';
 import { setErrors, clearErrors } from '../store/errors';
 import { toggleLoginModal } from '../store/ui/home';
 import { useDispatch } from 'react-redux';
-import { MDBInput, MDBBtn, MDBBox, MDBAlert } from 'mdbreact';
+import { MDBInput, MDBBtn, MDBBox } from 'mdbreact';
 import styles from '../css-modules/LoginForm.module.css';
 import Errors from './Errors';
 
@@ -13,13 +13,12 @@ const LogIn = () => {
     const errors = useSelector(state => state.errors);
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
-    const [ error, setError ] = useState('');
 
     useEffect(() => {
         return () => {
             dispatch(clearErrors());
         }
-    }, [email, password]);
+    }, [dispatch, email, password]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -29,7 +28,6 @@ const LogIn = () => {
             dispatch(toggleLoginModal());
             return;
         }
-        console.log(res);
 
         dispatch(setErrors([res.data.message]));
     }

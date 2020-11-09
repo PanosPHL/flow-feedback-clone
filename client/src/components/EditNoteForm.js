@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { useSelector } from 'react-redux';
-import { MDBAlert } from 'mdbreact';
 import Errors from './Errors';
 import NoteCardContext from '../contexts/NoteCardContext';
 import styles from '../css-modules/EditFlowPage.module.css';

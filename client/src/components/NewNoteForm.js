@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { MDBAlert } from 'mdbreact';
 import { setPausedCard } from '../store/session';
 import { toggleNewNoteForm } from '../store/ui/flow';
 import { addNewNote } from '../store/notes';
@@ -20,7 +19,7 @@ const NewNoteForm = () => {
         return () => {
             dispatch(clearErrors());
         }
-    }, [content, newNoteForm, toggleDisplayNoteForm])
+    }, [dispatch, content, newNoteForm, toggleDisplayNoteForm])
 
     const handleContentChange = (event) => {
         setContent(event.target.value);

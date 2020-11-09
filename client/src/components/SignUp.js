@@ -3,7 +3,7 @@ import { toggleSignUpModal } from '../store/ui/home';
 import { setErrors, clearErrors } from '../store/errors';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUp } from '../store/session';
-import { MDBBox, MDBInput, MDBBtn, MDBAlert } from 'mdbreact';
+import { MDBBox, MDBInput, MDBBtn } from 'mdbreact';
 import Errors from './Errors';
 import styles from '../css-modules/SignUpForm.module.css';
 
@@ -18,7 +18,7 @@ const SignUp = () => {
         return () => {
             dispatch(clearErrors());
         }
-    }, [email, password, confirmPassword]);
+    }, [dispatch, email, password, confirmPassword]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
