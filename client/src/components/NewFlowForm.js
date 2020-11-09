@@ -25,7 +25,7 @@ const NewFlowForm = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const res = await dispatch(addFlow(flowTitle, description, userId, newFlow, flowCat));
-        console.log(res);
+
         if (res.ok) {
             props.history.push(`/flow/${res.data.data.flow.id}`);
             return;

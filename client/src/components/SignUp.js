@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { toggleSignUpModal } from '../store/ui/home';
-import { useDispatch } from 'react-redux';
+import { setErrors, clearErrors } from '../store/errors';
+import { useDispatch, useSelector } from 'react-redux';
 import { signUp } from '../store/session';
 import { MDBBox, MDBInput, MDBBtn, MDBAlert } from 'mdbreact';
+import Errors from './Errors';
 import styles from '../css-modules/SignUpForm.module.css';
 
 const SignUp = () => {
+    const dispatch = useDispatch();
+    const errors = useSelector(state => state.errors);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [errors, setErrors] = useState({errors: []});
-    const dispatch = useDispatch();
 
     useEffect(() => {
         return () => {
-            setErrors([]);
+            dispatch(clearErrors());
         }
     }, [email, password, confirmPassword]);
 
@@ -26,19 +28,15 @@ const SignUp = () => {
             dispatch(toggleSignUpModal());
             return;
         }
-        setErrors({errors: res.data.error.errors});
+        dispatch(setErrors(res.data.error.errors));
     };
 
     return (
         <MDBBox className={styles.signUpForm}>
                     <form onSubmit={handleSubmit}>
                         <p className='h2 text-center mb-4'>Sign Up</p>
-                        {errors.errors && errors.errors.length > 0 ?
-                        <MDBAlert color='danger'>
-                            <ul className={styles.signUpErrors}>
-                                {errors.errors.map((error, i) => <li key={`error-${i + 1}`}>{error.split(': ')[1]}</li>)}
-                            </ul>
-                        </MDBAlert>
+                        {errors.length ?
+                        <Errors errors={errors} className={styles.signUpErrors} />
                         : <></>
                     }
                         <div className='grey-text'>

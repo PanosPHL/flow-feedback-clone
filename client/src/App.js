@@ -30,7 +30,6 @@ function App() {
       const res = await fetch('/api/session/data');
       if (res.ok) {
         res.data = await res.json();
-        console.log(res.data);
         dispatch(setCategories(res.data.categories));
         dispatch(setFlows(res.data.flows));
         dispatch(setNotes(res.data.notes));

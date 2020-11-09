@@ -27,7 +27,6 @@ const FlowCardContent = ({ thumbnail, name, myFlow, owner, date, duration }) => 
 
     const getTime = (createdAt) => {
         let diff = Math.floor(((Date.now() - new Date(createdAt).getTime()) / 1000) / (3600 * 60));
-        console.log(diff);
 
         if (!diff) {
             return `Today`;

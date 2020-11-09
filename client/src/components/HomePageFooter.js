@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styles from '../css-modules/HomePageFooter.module.css';
 
 const HomePageFooter = () => {
@@ -7,30 +6,30 @@ const HomePageFooter = () => {
         <section className={styles.footerContainer}>
             <ul className={styles.footerList}>
                 <h6>Panayiotis' Links</h6>
-                <Link className={styles.listItem} to='https://www.linkedin.com/in/panayiotis-dimopoulos/'>
+                <a target='_blank' className={styles.listItem} href='https://www.linkedin.com/in/panayiotis-dimopoulos/'>
                     <li>LinkedIn</li>
-                </Link>
-                <Link className={styles.listItem} to='https://github.com/PanosPHL'>
+                </a>
+                <a target='_blank' className={styles.listItem} href='https://github.com/PanosPHL'>
                     <li>GitHub</li>
-                </Link>
-                <Link className={styles.listItem} to='https://panosphl.github.io/panos-portfolio/'>
+                </a>
+                <a target='_blank' className={styles.listItem} href='https://panosphl.github.io/panos-portfolio/'>
                     <li>Portfolio</li>
-                </Link>
+                </a>
             </ul>
             <ul className={styles.footerList + ' ' + styles.secondFooterList}>
                 <h6>Panayiotis' Project Links</h6>
-                <Link className={styles.listItem} to='https://github.com/PanosPHL/flownotes'>
+                <a target='_blank' className={styles.listItem} href='https://github.com/PanosPHL/flownotes'>
                     <li>flowNotes Repo</li>
-                </Link>
-                <Link className={styles.listItem} to='https://player-seeking-player.herokuapp.com'>
+                </a>
+                <a target='_blank' className={styles.listItem} href='https://player-seeking-player.herokuapp.com'>
                     <li>Player Seeking Player</li>
-                </Link>
-                <Link className={styles.listItem} to='https://everquote.herokuapp.com'>
+                </a>
+                <a target='_blank' className={styles.listItem} href='https://everquote.herokuapp.com'>
                     <li>EverQuote</li>
-                </Link>
-                <Link className={styles.listItem} to='https://aagoodreads.herokuapp.com'>
+                </a>
+                <a target='_blank' className={styles.listItem} href='https://aagoodreads.herokuapp.com'>
                     <li>aAGoodreads</li>
-                </Link>
+                </a>
             </ul>
         </section>
     )

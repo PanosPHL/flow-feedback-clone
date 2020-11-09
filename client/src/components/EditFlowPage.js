@@ -37,7 +37,6 @@ const EditFlowPage = (props) => {
     }
 
     const handleKeyUp = (event) => {
-        console.log(event);
         event.stopPropagation();
         if (newNoteForm || editNoteForm || titleForm) {
             return;
@@ -54,7 +53,6 @@ const EditFlowPage = (props) => {
 
 
     useEffect(() => {
-        console.log('firing');
         window.addEventListener('keyup', handleKeyUp);
 
         return () => {

@@ -26,7 +26,7 @@ export const addFlow = (name, description, userId, video, categoryId) => {
         });
 
         res.data = await res.json();
-        console.log(res);
+;
         if (res.ok) {
             dispatch(addNewFlow(res.data.data.flow));
             dispatch(addVideo(res.data.data.video));

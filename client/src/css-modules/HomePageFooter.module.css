@@ -14,12 +14,16 @@
     list-style: none;
 }
 
+.footerList:hover {
+    cursor: default;
+}
+
 .listItem {
     color: white;
 }
 
 .listItem:hover {
-    color: rgb(111, 113, 151);
+    color: rgb(204, 204, 212);
 }
 
 .secondFooterList {
