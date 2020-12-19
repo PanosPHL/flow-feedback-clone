@@ -1,28 +1,6 @@
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
-
-:root {
-    --white-link-hover-color: #b0bcd6;
-}
-
-.badge {
-    margin-left: 24px;
-}
-
-.logoLink {
-    text-decoration: none;
-    color: white;
-}
-
-.logoLink:hover {
-    text-decoration: none;
-    color: var(--white-link-hover-color);
-}
-</style>
-
 <a class="logoLink" href="https://flownotes.herokuapp.com">
 <div style="display: flex; align-items: center; justify-content: center;">
-<img style="width: 6%;" src='client/public/images/flownotesLogo.PNG'>
+<img style="width: 6%;" src='/client/public/images/flownotesLogo.png'>
 <h2 style="font-family: 'Shadows Into Light'; font-size: 56px; margin: 12px 0 0 18px;">flowNotes</h2>
 </div>
 </a>
@@ -37,12 +15,12 @@
 <hr></hr>
 
 ## Table of Contents
-* ### [About](https://github.com/PanosPHL/flownotes#about)
+* ### [About](#about)
 * ### Features
 * ### Code Snippets
 * ### Credits
 
-## About(#about)
+## About
 ---
 <a class="logoLink" href="https://flownotes.herokuapp.com"><strong>flowNotes</strong></a> is a fullstack video / notetaking application that aims to give gamers a single hub for analyzing esports footage.
 
