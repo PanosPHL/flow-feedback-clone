@@ -67,9 +67,34 @@ Users can...
 
 On flowNotes, if you have created at least one note for a flow and are rewatching said flow, the app will automatically pause the video and the highlight the note at the associated timestamp. Here's an example:
 
+<br/>
 <img src="client/public/images/note-pause.gif" />
+<br/>
 
-This is accomplished with
+The EditFlowPage component houses two pieces of state that are the basis of this functionality. **Playing**, which is a boolean flag signifying the state of whether the video player is playing, and **timestamp**, which is the time in seconds to the second decimal of
+the current video.
+
+<br />
+<img src="client/public/images/playing-and-timestamp-state.png" />
+<br />
+
+The **react-youtube** library's YouTube player component is then passed an onPlay callback that fires any time the player begins playing which sets an interval to set the timestamp every 50ms.
+
+<br />
+<img src="client/public/images/onPlay-callback.PNG" />
+<br />
+
+Finally, the NoteCard component consumes the PlayerContext to have access to the state of the video player. useEffects are then used to fire a callback function any time the timestamp is updated **AND** the player is playing to see if its timestamp matches the player's state. If it does, and the pausedCard is not the card itself, it dispatches to the Redux store to tell it that it is the current paused card and pauses the video.
+
+<br />
+<img src="client/public/images/note-useEffects.PNG" />
+<br />
+
+The inactive piece of state houses what class name to apply to the card for styling when it is the active paused card.
+
+<br />
+<img src="client/public/images/inactive.png" />
+<br />
 
 ...validating youtube video
 <img src="client/public/images/youtube-validate.gif" />
