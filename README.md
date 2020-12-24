@@ -14,11 +14,12 @@
 <hr></hr>
 
 ## Table of Contents
-* ### [About](#about)
-* ### [Features & Demo](#featuresanddemo)
-* ### [Code Snippets](#codesnippets)
-* ### [Future Features](#futurefeatures)
-* ### [Credits](#credits)
+
+- ### [About](#about)
+- ### [Features & Demo](#featuresanddemo)
+- ### [Code Snippets](#codesnippets)
+- ### [Future Features](#futurefeatures)
+- ### [Credits](#credits)
 
 <h2 id="about">About</h2>
 <hr></hr>
@@ -26,27 +27,31 @@
 
 It is a community-driven site which allows a user to interact with other users' content making it a great tool for <em><strong>self-analysis</strong></em>, <em><strong>collaborative learning</strong></em>, and <em><strong>coaching</strong></em>.
 
-
 <h2 id="featuresanddemo">Features And Demo</h2>
 <hr></hr>
 
 ### Auth:
+
 Users can...
-* Sign in as a demo user if they don't have an account
-* Create an account
-* Sign into an existing account
+
+- Sign in as a demo user if they don't have an account
+- Create an account
+- Sign into an existing account
 
 ### Flows:
+
 Users can...
-* Create a flow
-  * Must be a valid YouTube URL
-  * Must be assigned a category
-  * Can be assigned an optional description
-* Rename a flow
-* Delete a flow they own
-* Not modify or delete a flow they do not own in any way
+
+- Create a flow
+  - Must be a valid YouTube URL
+  - Must be assigned a category
+  - Can be assigned an optional description
+- Rename a flow
+- Delete a flow they own
+- Not modify or delete a flow they do not own in any way
 
 ### Notes:
+
 <li>When a video's timestamp matches a notes, the video for the flow will pause</li>
 <li>Clicking on a note will navigate to its timestamp in the video</li>
 <br/>
@@ -58,7 +63,8 @@ Users can...
 </ul>
 
 ### Categories:
-* Users can browse flows by category
+
+- Users can browse flows by category
 
 <h2 id="codesnippets">Code Snippets</h2>
 <hr></hr>
@@ -96,15 +102,33 @@ The inactive piece of state houses what class name to apply to the card for styl
 <img src="client/public/images/inactive.png" />
 <br />
 
-...validating youtube video
+**Validating a YouTube URL on Flow Creation**
+
+On flowNotes, when a user creates a new flow they are met with a validation error if the link they provide is not a valid YouTube URL. Here's an example:
+
+<br />
 <img src="client/public/images/youtube-validate.gif" />
+<br />
+
+The FetchFlowForm component houses a controlled component that subscribes to the url slice of state. On submit the form sends an AJAX request to the Express backend via a Redux thunk
+
+<br />
+<img src="client/public/images/fetch-flow-youtube-url.PNG"/>
+<img src="client/public/images/fetch-flow-redux-thunk.png" />
+<br />
+
+The backend then uses a mixture of the **express-validator** library, a regular expression to check if the URL provided is a valid YouTube URL, and a custom **handleValidationErrors** middleware to return the error to the client if the URL provided by the user is not a valid YouTube URL
+
+<br />
+<img src="client/public/images/flow-put-route.PNG" />
+<img src="client/public/images/validateURL.png" />
+<img src="client/public/images/handleValidationErrors.png" />
+<br />
 
 ...sidebar code
 <img src="client/public/images/sidebar.gif" />
 
-
 <h2 id="futurefeatures">Future Features</h2>
 <hr></hr>
-
 
 <h2 id="credits">Credits</h2>
