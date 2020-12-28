@@ -1,6 +1,6 @@
 <p align=center>
 <a href="https://flownotes.herokuapp.com">
-<img width="40%;" src='client/public/images/readmeLogo.png'>
+<img width="40%;" src='./wiki/images/readmeLogo.png'>
 </a>
 </p>
 
@@ -74,32 +74,42 @@ Users can...
 On flowNotes, if you have created at least one note for a flow and are rewatching said flow, the app will automatically pause the video and the highlight the note at the associated timestamp. Here's an example:
 
 <br/>
-<img src="client/public/images/note-pause.gif" />
+<div align="center">
+<img src="./wiki/images/note-pause.gif" margin="0 auto"/>
+</div>
 <br/>
 
 The EditFlowPage component houses two pieces of state that are the basis of this functionality. **Playing**, which is a boolean flag signifying the state of whether the video player is playing, and **timestamp**, which is the time in seconds to the second decimal of
 the current video.
 
 <br />
-<img src="client/public/images/playing-and-timestamp-state.png" />
+<div align="center">
+<img src="./wiki/images/playing-and-timestamp-state.png" />
+</div>
 <br />
 
 The **react-youtube** library's YouTube player component is then passed an onPlay callback that fires any time the player begins playing which sets an interval to set the timestamp every 50ms.
 
 <br />
-<img src="client/public/images/onPlay-callback.PNG" />
+<div align="center">
+<img src="./wiki/images/onPlay-callback.PNG" />
+</div>
 <br />
 
 Finally, the NoteCard component consumes the PlayerContext to have access to the state of the video player. useEffects are then used to fire a callback function any time the timestamp is updated **AND** the player is playing to see if its timestamp matches the player's state. If it does, and the pausedCard is not the card itself, it dispatches to the Redux store to tell it that it is the current paused card and pauses the video.
 
 <br />
-<img src="client/public/images/note-useEffects.PNG" />
+<div align="center">
+<img src="./wiki/images/note-useEffects.PNG" />
+</div>
 <br />
 
 The inactive piece of state houses what class name to apply to the card for styling when it is the active paused card.
 
 <br />
-<img src="client/public/images/inactive.png" />
+<div align="center">
+<img src="./wiki/images/inactive.png" />
+</div>
 <br />
 
 **Validating a YouTube URL on Flow Creation**
@@ -107,28 +117,76 @@ The inactive piece of state houses what class name to apply to the card for styl
 On flowNotes, when a user creates a new flow they are met with a validation error if the link they provide is not a valid YouTube URL. Here's an example:
 
 <br />
-<img src="client/public/images/youtube-validate.gif" />
+<div align="center">
+<img src="./wiki/images/youtubeValidate.gif" />
+</div>
 <br />
 
 The FetchFlowForm component houses a controlled component that subscribes to the url slice of state. On submit the form sends an AJAX request to the Express backend via a Redux thunk
 
 <br />
-<img src="client/public/images/fetch-flow-youtube-url.PNG"/>
-<img src="client/public/images/fetch-flow-redux-thunk.png" />
+<div align="center">
+<div>
+<img width="518px" src="./wiki/images/fetch-flow-youtube-url.png"/>
+</div>
+<img src="./wiki/images/fetch-flow-redux-thunk.PNG" />
+</div>
 <br />
 
 The backend then uses a mixture of the **express-validator** library, a regular expression to check if the URL provided is a valid YouTube URL, and a custom **handleValidationErrors** middleware to return the error to the client if the URL provided by the user is not a valid YouTube URL
 
 <br />
-<img src="client/public/images/flow-put-route.PNG" />
-<img src="client/public/images/validateURL.png" />
-<img src="client/public/images/handleValidationErrors.png" />
+<div align="center">
+<img width="725px" src="./wiki/images/flow-put-route.png" />
+<img width="725px" src="./wiki/images/validateURL.PNG" />
+<img width="725px" src="./wiki/images/handleValidationErrors.PNG" />
+</div>
 <br />
 
-...sidebar code
-<img src="client/public/images/sidebar.gif" />
+**Navigating flowNotes with the sidebar**
+
+On flowNotes, you can use a toggleable sidebar to navigate around various portions of the site. Here's an example:
+
+<br />
+<div align="center">
+<img src="./wiki/images/sidebar.gif" />
+</div>
+<br />
+
+The SideNavComponent houses the two slices of state, as well as a handler, to manage the state and styling of the Sidebar component from the **react-sidebar** library. The className and openSidebar handler are passed through a context so nested child components of the SideNavComponent can access them.
+
+<br />
+<div align="center">
+<img src="./wiki/images/sidenav-component.PNG" />
+</div>
+<br />
+
+Next, the Sidebar component from the **react-sidebar** receives some custom styling provided by its styles prop which merges with its default styling to seamlessly integrate it into the site. All of the sidebar's content is passed into the Sidebar component's sidebar prop.
+
+<br />
+<div align="center">
+<img src="./wiki/images/sidenav-component-content.PNG" />
+</div>
+<br />
+
+Finally, the SideNavContent component houses a collection of Link components from the **react-router-dom** library to route the different buttons on the sidebar to different portions of the site. Some CSS transitions are additionally applied to animate the sidebar opening and closing.
+
+<br />
+<div align="center">
+<img src="./wiki/images/sidenav-css-transitions.PNG" />
+</div>
+<br />
 
 <h2 id="futurefeatures">Future Features</h2>
 <hr></hr>
 
+- Fully Responsive Design _currently only optimized for larger screens_
+- Drawings
+- Sharing flows with other users so they can create notes and drawings on your flow
+
 <h2 id="credits">Credits</h2>
+
+- Rounding utility function from [https://www.jacklmoore.com/notes/rounding-in-javascript/](https://www.jacklmoore.com/notes/rounding-in-javascript/)
+- react-youtube library [https://www.npmjs.com/package/react-youtube](https://www.npmjs.com/package/react-youtube)
+- react-sidebar library [https://www.npmjs.com/package/react-sidebar](https://www.npmjs.com/package/react-sidebar)
+- MDBReact [https://www.npmjs.com/package/mdbreact](https://www.npmjs.com/package/mdbreact)
