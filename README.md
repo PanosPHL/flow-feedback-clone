@@ -66,6 +66,16 @@ Users can...
 
 - Users can browse flows by category
 
+### Demo:
+
+For a look at what using [flowNotes](https://flownotes.herokuapp.com) is normally like, check out this video demonstration by its developer, Panayiotis Dimopoulos!
+
+<div align='center'>
+<a href="https://www.youtube.com/watch?v=PjWAQ8LBCTs">
+<img src="https://img.youtube.com/vi/PjWAQ8LBCTs/0.jpg" alt="flowNotes" />
+</a>
+</div>
+
 <h2 id="codesnippets">Code Snippets</h2>
 <hr></hr>
 
