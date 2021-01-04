@@ -1,80 +1,80 @@
 @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Shadows+Into+Light&display=swap');
 
 .headerSplashContainer {
-    height: 562px;
-    background-image: url("./mvc-background.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
+  height: 562px;
+  background-image: url('./mvc-background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
 
-    padding: 0;
+  padding: 0;
 
-    box-shadow: 0 4px 6px 2px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 6px 2px rgba(0, 0, 0, 0.4);
 }
 
 .imageFilter {
-    height: inherit;
-    width: 100vw;
-    background-color: rgba(0, 0, 0, 0.75);
-    z-index: -1;
+  height: inherit;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: -1;
 }
 
 .headerSplash__contentBox {
-    background-color: rgba(255, 255, 255, 0.4);
-    height: inherit;
-    z-index: 1;
-    width: 1248px;
-    margin: 0 auto;
-    backdrop-filter: blur(4px);
+  background-color: rgba(255, 255, 255, 0.4);
+  height: inherit;
+  z-index: 1;
+  width: 1248px;
+  margin: 0 auto;
+  backdrop-filter: blur(4px);
 }
 
 .headerTopRowContainer {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .headerTopRow__homeLink {
-    padding-top: 8px;
-    display: flex;
-    width: 160px;
-    justify-content: space-around;
+  padding-top: 8px;
+  display: flex;
+  width: 160px;
+  justify-content: space-around;
 }
 
 .flowNotesLogo {
-    height: 48px;
+  height: 48px;
 }
 
 .flowNotesText {
-    font-family: 'Shadows Into Light';
-    color: white;
-    font-size: 25.6px;
-    margin: auto 0;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+  font-family: 'Shadows Into Light';
+  color: white;
+  font-size: 25.6px;
+  margin: auto 0;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
 }
 
 .headerTopRow__rightContainer_notLoggedIn {
-    display: flex;
-    padding-top: 16px;
-    min-width: 192px;
-    justify-content: space-evenly;
+  display: flex;
+  padding-top: 16px;
+  min-width: 192px;
+  justify-content: space-evenly;
 }
 
 .headerTopRow__rightContainer_loggedIn {
-    display: flex;
-    padding-top: 16px;
-    min-width: 192px;
-    justify-content: space-evenly;
+  display: flex;
+  padding-top: 16px;
+  min-width: 192px;
+  justify-content: space-evenly;
 }
 
 .bodyContainer {
-    display: grid;
-    min-width: 80vw;
-    min-height: 120vh;
-    grid-template-columns: 266.5px repeat(4, 342.5px) 266.5px;
-    grid-template-rows: 400px repeat(5, 440px);
+  display: grid;
+  min-width: 80vw;
+  min-height: 80vh;
+  grid-template-columns: 14% repeat(4, 18%) 14%;
+  grid-template-rows: repeat(5, 440px);
 }
 
 .pageContainer {
-    overflow: hidden!important;
+  overflow: hidden !important;
 }
