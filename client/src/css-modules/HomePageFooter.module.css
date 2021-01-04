@@ -1,31 +1,37 @@
 .footerContainer {
-    display: flex;
+  display: flex;
 
-    padding: 28px 248px;
+  padding: 28px 248px;
 
-    height: 180px;
+  height: 180px;
 
-    color: white;
+  color: white;
 
-    background-color: #31393F;
+  background-color: #31393f;
 }
 
 .footerList {
-    list-style: none;
+  list-style: none;
 }
 
 .footerList:hover {
-    cursor: default;
+  cursor: default;
 }
 
 .listItem {
-    color: white;
+  color: white;
 }
 
 .listItem:hover {
-    color: rgb(204, 204, 212);
+  color: rgb(204, 204, 212);
 }
 
 .secondFooterList {
-    margin-left: 256px;
+  margin-left: 256px;
+}
+
+@media screen and (max-width: 1440px) {
+  .footerContainer {
+    padding: 3vh 4%;
+  }
 }

@@ -1,63 +1,68 @@
 .cardContainer {
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-between;
 }
 
 .header {
-    font-size: 28px;
-    font-weight: 500;
-
-    margin-left: 16px;
-    margin-top: 4px;
+  font-size: 28px;
+  font-weight: 500;
+  margin-top: 6px;
+  margin-left: 10px;
 }
 
 .headerContainer {
-    display: flex;
-
-    padding-top: 10px;
-    margin-left: 56px;
-    margin-top: 8px;
+  display: flex;
+  max-width: 490px;
+  margin-left: 24px;
 }
 
 .section {
-    margin: 0 auto;
-    width: 1522px;
+  padding: 0px 12%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.outerSection {
-    grid-row: 2 / 3;
-    grid-column: 1 / 8;
-    background-color: #FFFBF8;
+.recent {
+  grid-row: 1 / 2;
+  background-color: #fffbf8;
 }
 
-.lolOuterSection {
-    grid-row: 3 / 4;
-    grid-column: 1 / 8;
+.lol {
+  grid-row: 2 / 3;
 }
 
-.ssbmOuterSection {
-    grid-row: 4 / 5;
-    grid-column: 1 / 8;
-    background-color: #FFFBF8;
+.ssbm {
+  grid-row: 3 / 4;
+  background-color: #fffbf8;
 }
 
-.owOuterSection {
-    grid-row: 5 / 6;
-    grid-column: 1 / 8;
+.ow {
+  grid-row: 4 / 5;
 }
 
-.csgoOuterSection {
-    grid-row: 6 / 7;
-    grid-column: 1 / 8;
-    background-color: #FFFBF8;
+.csgo {
+  grid-row: 5 / 6;
+  background-color: #fffbf8;
 }
 
 .logo {
-    height: 40px;
-    width: 40px;
+  height: 40px;
+  width: 40px;
 }
 
 .csgoLogo {
-    width: 76px;
-    height: 36px;
+  width: 76px;
+  height: 36px;
+}
+
+@media screen and (max-width: 1440px) {
+  .headerContainer {
+    margin-left: 26px;
+    padding-left: 0;
+  }
+
+  .section {
+    padding: 16px 5% 0 2.5%;
+  }
 }
