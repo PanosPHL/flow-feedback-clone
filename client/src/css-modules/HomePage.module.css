@@ -24,7 +24,7 @@
   background-color: rgba(255, 255, 255, 0.4);
   height: inherit;
   z-index: 1;
-  width: 1248px;
+  width: 65vw;
   margin: 0 auto;
   backdrop-filter: blur(4px);
 }
