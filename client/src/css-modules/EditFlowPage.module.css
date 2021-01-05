@@ -1,140 +1,159 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 .formAndPlayerContainer {
-    position: relative;
-    grid-column: 1 / 5;
-    grid-row: 1 / 5;
-    margin: 32px auto 0 auto;
+  position: relative;
+  grid-column: 1 / 5;
+  grid-row: 1 / 5;
+  margin: 32px auto 0 auto;
 }
 
 .noteForm {
-    position: absolute;
-    width: 436px;
-    height: 126px;
-    top: 548px;
-    left: 6px;
-    background-color: white;
-    padding: 11px;
-    border-radius: 3px;
-    border: 1px solid rgb(207, 207, 207);
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  width: 436px;
+  height: 126px;
+  top: 548px;
+  left: 6px;
+  background-color: white;
+  padding: 11px;
+  border-radius: 3px;
+  border: 1px solid rgb(207, 207, 207);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 
-    box-sizing: content-box;
+  box-sizing: content-box;
 }
 
 .noteFormButtons {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .pageContainer {
-    display: grid;
-    grid-template-columns: repeat(5, 20vw);
-    grid-template-rows: repeat(5, 20vh);
-    height: 100vh;
-    font-family: 'Lato';
-    overflow-x: hidden;
+  display: grid;
+  grid-template-columns: repeat(5, 20vw);
+  grid-template-rows: repeat(5, 20vh);
+  height: 100vh;
+  font-family: 'Lato';
+  overflow-x: hidden;
 }
 
 .noteCard {
-    margin: 13px 0;
-    height: 169px;
+  margin: 13px 0;
+  height: 169px;
 }
 
 .buttonDiv {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .textDiv {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 75px;
 }
 
 .buttonContainer {
-    display: flex;
-    width: 1125px;
-    justify-content: space-between;
-    margin-top: 16px;
+  display: flex;
+  width: 1125px;
+  justify-content: space-between;
+  margin-top: 16px;
 }
 
 .cardTimestamp {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .cardContent {
-    font-size: 16px;
-    margin-top: 0;
+  font-size: 16px;
+  margin-top: 0;
 }
 
 .formButtons {
-    display: flex;
-    width: inherit;
-    justify-content: right;
-    margin-top: 3px;
-    margin-left: 93px;
+  display: flex;
+  width: inherit;
+  justify-content: right;
+  margin-top: 3px;
+  margin-left: 93px;
 }
 
 .newNoteErrors {
-    height: 8.5px;
-    font-size: 12px;
-    padding-top: 4px;
+  height: 8.5px;
+  font-size: 12px;
+  padding-top: 4px;
 
-    box-sizing: content-box;
+  box-sizing: content-box;
 }
 
 .noteTopRow {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .editNoteErrors {
-    position: absolute;
-    top: 2px;
+  position: absolute;
+  top: 2px;
 
-    font-size: 12px;
-    padding: 0;
+  font-size: 12px;
+  padding: 0;
 
-    vertical-align: center;
+  vertical-align: center;
 
-    list-style: none;
+  list-style: none;
 }
 
 .trashButton {
-    position: absolute;
-    top: 12px;
-    right: 10px;
-    padding: 6px 12px !important;
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  padding: 6px 12px !important;
 }
 
 .editNote {
-    position: absolute;
-    top: 120px;
-    right: 10px;
+  position: absolute;
+  top: 120px;
+  right: 10px;
 }
 
 .deleteButtonsContainer {
-    display: flex;
-    width: 230px;
-    justify-content: space-between;
-    margin: 38px auto 0 auto;
+  display: flex;
+  width: 230px;
+  justify-content: space-between;
+  margin: 38px auto 0 auto;
 }
 
 .noteContainerHeader {
-    color: grey;
-    margin: 12px auto 0 auto;
+  color: grey;
+  margin: 12px auto 0 auto;
 }
 
 .editFormBody {
-    position: relative;
+  position: relative;
 }
 
 .textarea {
-    resize: none;
+  resize: none;
 }
 
 .newNoteErrorList {
-    list-style: none;
+  list-style: none;
+}
+
+.videoPlayer {
+  height: 630px;
+  width: 1120px;
+}
+
+@media screen and (max-width: 1560px) {
+  .videoPlayer {
+    height: 576px;
+    width: 1024px;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .videoPlayer {
+    height: 473px;
+    width: 840px;
+  }
 }
