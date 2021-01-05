@@ -1,99 +1,108 @@
 .cardContainer {
-    display: grid;
-    grid-template-columns: repeat(4, 374.5px);
-    grid-auto-rows: 380px;
-    width: 1498px;
-    margin: 0px 211px 0px 240px;
-    min-height: 851px;
-    justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: repeat(4, 22%);
+  grid-auto-rows: 380px;
+  width: 78vw;
+  min-height: 851px;
+  justify-content: space-between;
 }
 
 .pageContainer {
-    min-height: 100vh;
-    overflow: hidden;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: 32px 8vw 32px 12.5vw;
 }
 
 .trashButton {
-    display: flex;
-    justify-content: center;
-    width: 10px;
-    bottom: 4px;
-    right: 4px;
+  display: flex;
+  justify-content: center;
+  width: 10px;
+  bottom: 4px;
+  right: 4px;
 }
 
 .innerText {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    height: 84px;
-    font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 84px;
+  font-size: 14px;
 }
 
 .headerContainer {
-    display: flex;
-    width: 538px;
-    margin: 32px 0 16px 266px;
-    justify-content: space-between;
+  display: flex;
+  width: 538px;
 }
 
 .catHeader {
-    margin: auto 0;
+  margin-left: 1.4vw;
 }
 
 .card {
-    transform: scale(0.94);
+  transform: scale(0.94);
 }
 
 .cardImage {
-    transform: translateY(-30px);
+  transform: translateY(-30px);
 }
 
 .imageAndCardSeparator {
-    position: absolute;
+  position: absolute;
 
-    top: 170px;
-    left: 14.48px;
-    width: 311.1px;
+  top: 170px;
+  left: 14.48px;
+  width: 311.1px;
 
-    border-left: 0.2px solid rgba(0, 0, 0, 0.06);
-    border-right: 0.2px solid rgba(0, 0, 0, 0.06);
+  border-left: 0.2px solid rgba(0, 0, 0, 0.06);
+  border-right: 0.2px solid rgba(0, 0, 0, 0.06);
 
-    height: 28px;
-    background-color: #ECEDEC;
+  height: 28px;
+  background-color: #ecedec;
 
-    z-index: 0;
+  z-index: 0;
 }
 
 .dateAndTrashContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 270px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 270px;
 
-    border-top: 1px solid #ECEDEC;
+  border-top: 1px solid #ecedec;
 
-    padding-top: 6px;
-    margin-top: 12px;
+  padding-top: 6px;
+  margin-top: 12px;
 }
 
 .hidden {
-    display: block;
-    opacity: 0;
-    margin: 6px;
-    width: 72px;
-    height: 26px;
+  display: block;
+  opacity: 0;
+  margin: 6px;
+  width: 72px;
+  height: 26px;
 }
 
 .duration {
-    position: absolute;
-    top: 144px;
-    right: 6px;
+  position: absolute;
+  top: 144px;
+  right: 6px;
 
-    padding-left: 4px;
-    padding-right: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
 
-    font-size: 14px;
+  font-size: 14px;
 
-    color: white;
-    background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+@media screen and (max-width: 1500px) {
+  .pageContainer {
+    padding-left: 5.25vw;
+    padding-right: 2vw;
+  }
+
+  .cardContainer {
+    width: 88vw;
+  }
 }
