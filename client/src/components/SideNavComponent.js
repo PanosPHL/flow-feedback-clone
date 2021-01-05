@@ -50,6 +50,7 @@ const SideNavComponent = ({ history, pageName }) => {
             background: 'black',
             transition: '',
             WebkitTransition: '',
+            overflow: 'hidden',
           },
           content: {
             zIndex: 2,
