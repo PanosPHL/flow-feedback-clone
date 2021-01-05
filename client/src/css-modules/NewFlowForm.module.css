@@ -1,36 +1,36 @@
 .requiredField {
-    color: red;
+  color: red;
 }
 
 .flowFormContainer {
-    margin-top: 16px;
+  margin-top: 1.5vh;
 }
 
 .input {
-    margin-bottom: 13px;
+  margin-bottom: 1.2vh;
 }
 
 .description {
-    margin: 32px 0 16px 0;
+  margin: 3vh 0 0.8vw 0;
 }
 
 .textarea {
-    resize: none;
+  resize: none;
 }
 
 .submitButton {
-    width: 162px;
-    margin: 26px 244px;
+  width: 8.5vw;
+  margin: 26px 244px;
 
-    box-sizing: content-box;
+  box-sizing: content-box;
 }
 
 .errors {
-    margin: 0;
-    list-style: none;
+  margin: 0;
+  list-style: none;
 }
 
 .errorContainer {
-    width: 360px;
-    margin: 0 auto;
+  width: 360px;
+  margin: 0 auto;
 }

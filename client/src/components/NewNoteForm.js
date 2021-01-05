@@ -9,52 +9,80 @@ import PlayerContext from '../contexts/PlayerContext';
 import styles from '../css-modules/EditFlowPage.module.css';
 
 const NewNoteForm = () => {
-    const dispatch = useDispatch();
-    const errors = useSelector(state => state.errors);
-    const { newNoteForm } = useSelector(state => state.ui.flow);
-    const {id, timestamp, handlers: { toggleDisplayNoteForm } } = useContext(PlayerContext);
-    const [content, setContent] = useState('');
+  const dispatch = useDispatch();
+  const errors = useSelector((state) => state.errors);
+  const { newNoteForm } = useSelector((state) => state.ui.flow);
+  const {
+    id,
+    timestamp,
+    handlers: { toggleDisplayNoteForm },
+  } = useContext(PlayerContext);
+  const [content, setContent] = useState('');
 
-    useEffect(() => {
-        return () => {
-            dispatch(clearErrors());
-        }
-    }, [dispatch, content, newNoteForm, toggleDisplayNoteForm])
-
-    const handleContentChange = (event) => {
-        setContent(event.target.value);
+  useEffect(() => {
+    return () => {
+      dispatch(clearErrors());
     };
+  }, [dispatch, content, newNoteForm, toggleDisplayNoteForm]);
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const res = await dispatch(addNewNote(content, timestamp, id));
-        if (res.ok) {
-            dispatch(setPausedCard(res.data.note.id));
-            dispatch(toggleNewNoteForm());
-            setContent('');
-            return;
-        }
+  const handleContentChange = (event) => {
+    setContent(event.target.value);
+  };
 
-        dispatch(setErrors(res.data.error.errors));
-    };
-
-    const handleCancelClick = () => {
-        setContent('');
-        dispatch(toggleNewNoteForm());
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const res = await dispatch(addNewNote(content, timestamp, id));
+    if (res.ok) {
+      dispatch(setPausedCard(res.data.note.id));
+      dispatch(toggleNewNoteForm());
+      setContent('');
+      return;
     }
 
-    return (
-        <form onSubmit={handleSubmit} className={styles.noteForm + ' submit-note' + (newNoteForm ? '' : ' hidden')}>
-            { errors.length ?
-            <Errors errors={errors} className={styles.newNoteErrorList} containerClass={styles.newNoteErrors}/>
-        : <></> }
-        <textarea onChange={handleContentChange} className={styles.textarea + ' form-control form-control-sm'} rows={errors.length ? '2.9' : '4'} value={content}/>
-            <div className={styles.noteFormButtons}>
-            <button type='submit' className='btn btn-primary btn-indigo btn-sm'>Submit</button>
-            <button onClick={handleCancelClick} type='button' className='btn btn-blue-grey btn-sm'>Cancel</button>
-            </div>
-        </form>
-    )
-}
+    dispatch(setErrors(res.data.error.errors));
+  };
+
+  const handleCancelClick = () => {
+    setContent('');
+    dispatch(toggleNewNoteForm());
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className={
+        styles.noteForm + ' submit-note' + (newNoteForm ? '' : ' hidden')
+      }
+    >
+      {errors.length ? (
+        <Errors
+          errors={errors}
+          className={styles.newNoteErrorList}
+          containerClass={styles.newNoteErrors}
+        />
+      ) : (
+        <></>
+      )}
+      <textarea
+        onChange={handleContentChange}
+        className={styles.textarea + ' form-control form-control-sm'}
+        rows={errors.length ? '3' : '4'}
+        value={content}
+      />
+      <div className={styles.noteFormButtons}>
+        <button type="submit" className="btn btn-primary btn-indigo btn-sm">
+          Submit
+        </button>
+        <button
+          onClick={handleCancelClick}
+          type="button"
+          className="btn btn-blue-grey btn-sm"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  );
+};
 
 export default NewNoteForm;
