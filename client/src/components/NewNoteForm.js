@@ -66,7 +66,7 @@ const NewNoteForm = () => {
       <textarea
         onChange={handleContentChange}
         className={styles.textarea + ' form-control form-control-sm'}
-        rows={errors.length ? '3' : '4'}
+        rows={errors.length ? '2' : '4'}
         value={content}
       />
       <div className={styles.noteFormButtons}>

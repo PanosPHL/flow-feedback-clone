@@ -23,7 +23,7 @@
 }
 
 .input {
-  width: 75%;
+  width: 100%;
   height: 46px;
   font-size: 24px;
   padding: 12px;
@@ -33,9 +33,8 @@
   position: absolute;
   height: 24px;
   width: 240px;
-
-  top: 32px;
-  right: 225px;
+  bottom: -16px;
+  right: 0px;
 }
 
 .errorList {
@@ -47,6 +46,11 @@
 
 .titleButton {
   margin: 0;
+}
+
+.inputContainer {
+  position: relative;
+  width: 75%;
 }
 
 @media screen and (max-width: 1652px) {

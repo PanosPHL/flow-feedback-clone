@@ -60,12 +60,23 @@ const FlowTitleAndForm = ({ flowName, id }) => {
       <div className={styles.container}>
         {titleForm ? (
           <form className={styles.formContainer} onSubmit={handleFormSubmit}>
-            <input
-              type="text"
-              onChange={handleNameChange}
-              className={styles.input + ' form-control form-control-lg'}
-              value={name}
-            />
+            <div className={styles.inputContainer}>
+              <input
+                type="text"
+                onChange={handleNameChange}
+                className={styles.input + ' form-control form-control-lg'}
+                value={name}
+              />
+              {errors.length ? (
+                <Errors
+                  className={styles.errorList}
+                  containerClass={styles.errorContainer}
+                  errors={errors}
+                />
+              ) : (
+                <> </>
+              )}
+            </div>
             <div>
               <button
                 type="submit"
@@ -84,15 +95,6 @@ const FlowTitleAndForm = ({ flowName, id }) => {
                 <MDBIcon icon="times" />
               </button>
             </div>
-            {errors.length ? (
-              <Errors
-                className={styles.errorList}
-                containerClass={styles.errorContainer}
-                errors={errors}
-              />
-            ) : (
-              <> </>
-            )}
           </form>
         ) : (
           <>
