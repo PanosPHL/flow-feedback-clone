@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  width: 1120px;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
@@ -14,13 +14,19 @@
 .formContainer {
   display: flex;
   justify-content: space-between;
-  width: inherit;
+  align-items: center;
+  width: 100%;
+}
+
+.formButton {
+  margin: 0;
 }
 
 .input {
-  width: 866px;
-  margin-top: 5px;
-  font-size: 23.4px;
+  width: 75%;
+  height: 46px;
+  font-size: 24px;
+  padding: 12px;
 }
 
 .errorContainer {

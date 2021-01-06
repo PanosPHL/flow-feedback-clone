@@ -67,13 +67,19 @@ const FlowTitleAndForm = ({ flowName, id }) => {
               value={name}
             />
             <div>
-              <button type="submit" className="btn btn-amber">
+              <button
+                type="submit"
+                className={styles.formButton + ' btn btn-amber'}
+                style={{
+                  marginRight: '12px',
+                }}
+              >
                 <MDBIcon icon="paper-plane" />
               </button>
               <button
                 onClick={handleCancelClick}
                 type="button"
-                className="btn btn-blue-grey"
+                className={styles.formButton + ' btn btn-blue-grey'}
               >
                 <MDBIcon icon="times" />
               </button>

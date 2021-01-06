@@ -4,7 +4,6 @@
   position: relative;
   margin: 32px auto;
   max-width: 1120px;
-  min-width: 727px;
 }
 
 .noteForm {
@@ -140,7 +139,7 @@
 
 .videoPlayer {
   height: 630px;
-  width: 100%;
+  width: 1120px;
 }
 
 .noteButton {
