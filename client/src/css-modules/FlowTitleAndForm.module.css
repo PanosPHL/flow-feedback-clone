@@ -2,12 +2,13 @@
   display: flex;
   width: 1120px;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 16px;
 }
 
 .textalign {
   display: block;
-  margin: 16.8px 0 auto 0;
+  margin: 0;
 }
 
 .formContainer {
@@ -36,6 +37,10 @@
   list-style: none;
   margin-top: -10px;
   font-size: 14px;
+}
+
+.titleButton {
+  margin: 0;
 }
 
 @media screen and (max-width: 1652px) {

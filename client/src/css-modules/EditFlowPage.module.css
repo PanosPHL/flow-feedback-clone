@@ -2,16 +2,17 @@
 
 .formAndPlayerContainer {
   position: relative;
-  margin: 32px auto 0 auto;
+  margin: 32px auto;
   max-width: 1120px;
+  min-width: 727px;
 }
 
 .noteForm {
   position: absolute;
   width: 436px;
   height: 126px;
-  top: 548px;
-  left: 6px;
+  bottom: 8px;
+  left: 2px;
   background-color: white;
   padding: 11px;
   border-radius: 3px;
@@ -31,6 +32,7 @@
   font-family: 'Lato';
   overflow: hidden;
   padding-left: 1vw;
+  min-width: 1280px;
 }
 
 .noteCard {
@@ -114,7 +116,7 @@
 
 .deleteButtonsContainer {
   display: flex;
-  width: 230px;
+  width: 100%;
   justify-content: space-between;
   margin: 38px auto 0 auto;
 }
@@ -145,6 +147,16 @@
   margin: 0;
 }
 
+.videoContainer {
+  position: relative;
+  width: inherit;
+  height: inherit;
+}
+
+.deleteNote {
+  padding: 2px 34.5px;
+}
+
 @media screen and (max-width: 1652px) {
   .pageContainer {
     padding-left: 2vw;
@@ -152,6 +164,10 @@
   .videoPlayer {
     height: 576px;
     width: 1024px;
+  }
+  .noteForm {
+    width: 390px;
+    padding: 10px;
   }
 }
 

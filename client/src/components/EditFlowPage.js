@@ -158,23 +158,19 @@ const EditFlowPage = (props) => {
           className={styles.formAndPlayerContainer}
         >
           <FlowTitleAndForm flowName={currentFlow.name} id={currentFlow.id} />
-          <YouTube
-            opts={opts}
-            onPlay={onPlay}
-            onPause={onPause}
-            onReady={onReady}
-            videoId={currentFlow.videoId}
-            className={styles.videoPlayer}
-          />
+          <div className={styles.videoContainer}>
+            <YouTube
+              opts={opts}
+              onPlay={onPlay}
+              onPause={onPause}
+              onReady={onReady}
+              videoId={currentFlow.videoId}
+              className={styles.videoPlayer}
+            />
+            {currentFlow.userId === userId ? <NewNoteForm /> : <></>}
+          </div>
           <div className={styles.buttonContainer}>
-            {currentFlow.userId === userId ? (
-              <>
-                <NewNoteForm />
-                <NoteButton />
-              </>
-            ) : (
-              <div></div>
-            )}
+            {currentFlow.userId === userId ? <NoteButton /> : <div></div>}
             <FlowPlayerControls />
           </div>
         </div>
