@@ -2,9 +2,8 @@
 
 .formAndPlayerContainer {
   position: relative;
-  grid-column: 1 / 5;
-  grid-row: 1 / 5;
   margin: 32px auto 0 auto;
+  max-width: 1120px;
 }
 
 .noteForm {
@@ -28,12 +27,10 @@
 }
 
 .pageContainer {
-  display: grid;
-  grid-template-columns: repeat(5, 20vw);
-  grid-template-rows: repeat(5, 20vh);
-  height: 100vh;
+  display: flex;
   font-family: 'Lato';
-  overflow-x: hidden;
+  overflow: hidden;
+  padding-left: 1vw;
 }
 
 .noteCard {
@@ -55,7 +52,7 @@
 
 .buttonContainer {
   display: flex;
-  width: 1125px;
+  width: 100%;
   justify-content: space-between;
   margin-top: 16px;
 }
@@ -141,17 +138,24 @@
 
 .videoPlayer {
   height: 630px;
-  width: 1120px;
+  width: 100%;
 }
 
-@media screen and (max-width: 1560px) {
+.noteButton {
+  margin: 0;
+}
+
+@media screen and (max-width: 1652px) {
+  .pageContainer {
+    padding-left: 2vw;
+  }
   .videoPlayer {
     height: 576px;
     width: 1024px;
   }
 }
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1500px) {
   .videoPlayer {
     height: 473px;
     width: 840px;

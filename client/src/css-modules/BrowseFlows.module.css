@@ -96,7 +96,7 @@
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 1560px) {
   .pageContainer {
     padding-left: 5.25vw;
     padding-right: 2vw;
