@@ -1,4 +1,10 @@
 .playbackButtons {
-    box-shadow: none;
-    border: 1px solid rgb(207, 207, 207);
+  margin: 0;
+  box-shadow: none;
+  border: 1px solid rgb(207, 207, 207);
+}
+
+.playbackButtons:hover {
+  z-index: initial !important;
+  filter: brightness(96%);
 }

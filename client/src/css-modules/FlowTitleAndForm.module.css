@@ -1,39 +1,66 @@
 .container {
-    display: flex;
-    width: 1125px;
-    justify-content: space-between;
-    margin-bottom: 16px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
 }
 
 .textalign {
-    display: block;
-    margin: 16.8px 0 auto 9.6px;
+  display: block;
+  margin: 0;
 }
 
 .formContainer {
-    display: flex;
-    justify-content: space-between;
-    width: inherit;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.formButton {
+  margin: 0;
 }
 
 .input {
-    width: 866px;
-    margin-top: 5px;
-    font-size: 23.4px;
+  width: 100%;
+  height: 46px;
+  font-size: 24px;
+  padding: 12px;
 }
 
 .errorContainer {
-    position: absolute;
-    height: 24px;
-    width: 240px;
-
-    top: 32px;
-    right: 225px;
+  position: absolute;
+  height: 24px;
+  width: 240px;
+  bottom: -16px;
+  right: 0px;
 }
 
 .errorList {
-    text-align: center;
-    list-style: none;
-    margin-top: -10px;
-    font-size: 14px;
+  text-align: center;
+  list-style: none;
+  margin-top: -10px;
+  font-size: 14px;
+}
+
+.titleButton {
+  margin: 0;
+}
+
+.inputContainer {
+  position: relative;
+  width: 75%;
+}
+
+@media screen and (max-width: 1652px) {
+  .container {
+    width: 1024px;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .container {
+    width: 840px;
+  }
 }

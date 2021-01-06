@@ -1,175 +1,211 @@
 .sidebarClosed {
-    width: 38.4px;
-    transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 38.4px;
+  transition: 0.3s;
 }
 
 .sidebarOpen {
-    width: 76.8px;
-    transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+  transition: 0.3s;
 }
 
 .openButtonClosed {
-    display: block;
-    margin-top: 20.5px;
-    margin-left: 7.2px;
-    width: 23px!important;
-    padding: 0!important;
-    transition: 0.3s;
+  display: block;
+  margin-top: 2vh;
+  width: 80% !important;
+  padding: 0 !important;
+  transition: 0.3s;
 
-    box-sizing: content-box;
+  box-sizing: content-box;
 }
 
 .openButtonOpen {
-    display: block;
-    margin-top: 41px;
-    width: 6.4px!important;
-    margin-left: 8.2px;
+  display: block;
+  margin-top: 4vh;
+  width: 80% !important;
+  padding: 0;
 
-    box-sizing: content-box;
+  box-sizing: content-box;
 
-    transition: 0.3s;
+  transition: 0.3s;
 }
 
 .logoClosed {
-    display: block;
-    width: 31px;
-    margin: 19.2px auto;
-    transition: 0.3s;
+  display: block;
+  width: 31px;
+  margin: 1vh 0;
+  transition: 0.3s;
 }
 
 .logoOpen {
-    display: block;
-    width: 61.5px;
-    margin: 38.4px auto;
-    transition: 0.3s;
+  display: block;
+  width: 62px;
+  margin: 2vh 0;
+  transition: 0.3s;
 }
 
 .lowerContent {
-    margin-top: 64px;
+  margin-top: 2vh;
 }
 
-.myFlowsButtonClosed, .createFlowButtonClosed {
-    width: 27px!important;
-    padding: 0!important;
-    margin: 20.8px auto;
-    transition: 0.3s;
+.myFlowsButtonClosed,
+.createFlowButtonClosed {
+  width: 80% !important;
+  padding: 0 !important;
+  transition: 0.3s;
 }
 
 .lolButtonClosed {
-    width: 22px!important;
-    padding: 2.6px!important;
-    transition: 0.3s;
+  width: 22px !important;
+  padding: 2.6px !important;
+  transition: 0.3s;
 
-    box-sizing: content-box;
+  box-sizing: content-box;
 }
 
 .lolButtonOpen {
-    width: 43.4px!important;
-    padding: 0.4em!important;
-    margin-left: 10.4px;
-    transition: 0.3s;
+  width: 43.4px !important;
+  padding: 0.4vw !important;
+  transition: 0.3s;
 
-    box-sizing: content-box;
+  box-sizing: content-box;
 }
 
-.myFlowsButtonOpen, .createFlowButtonOpen {
-    width: 43.4px!important;
-    padding: 5.2px;
-    margin: 10.4px auto;
-    transition: 0.3s;
+.myFlowsButtonOpen,
+.createFlowButtonOpen {
+  width: 50%;
+  padding: 1vh 0.8vw;
+  transition: 0.3s;
 
-    box-sizing: content-box;
+  box-sizing: content-box;
 }
 
-.myFlowsClosed, .createFlowClosed {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    color: rgba(255, 255, 255, 0);
-    font-size: 0;
-
-    margin-right: 2.2px;
-
-    transition: 0.3s;
+.myFlowsClosed,
+.createFlowClosed {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  color: rgba(255, 255, 255, 0);
+  font-size: 0;
+  transition: 0.3s;
+  margin-top: 1vh;
 }
 
-.lolClosed, .ssbmClosed, .overwatchClosed, .csgoClosed {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    color: rgba(255, 255, 255, 0);
-    font-size: 0;
+.lolClosed,
+.ssbmClosed,
+.overwatchClosed,
+.csgoClosed {
+  margin-top: 1vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  color: rgba(255, 255, 255, 0);
+  font-size: 0;
 
-    transition: 0.3s;
+  transition: 0.3s;
 }
 
-.lolOpen, .ssbmOpen, .overwatchOpen, .csgoOpen {
-    margin-top: 22.4px;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    color: rgba(255, 255, 255, 1);
-    font-size: 14px;
-    transition: 0.3s;
+.lolOpen,
+.ssbmOpen,
+.overwatchOpen,
+.csgoOpen {
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  color: rgba(255, 255, 255, 1);
+  font-size: 14px;
+  transition: 0.3s;
 }
 
-.myFlowsOpen, .createFlowOpen {
-    margin-top: 28px;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    color: rgba(255, 255, 255, 1);
-    font-size: 14px;
+.myFlowsOpen,
+.createFlowOpen {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  color: rgba(255, 255, 255, 1);
+  font-size: 14px;
+  margin-top: 1vh;
 
-    margin-right: 2.2px;
+  transition: 0.3s;
+}
 
-    transition: 0.3s;
+.catContainerClosed,
+.catContainerOpen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .gamepadClosed {
-    color: white;
-    display: block;
-    margin: 6.6px 5.5px;
-    font-size: 22px;
-    border-bottom: 1px solid black;
-    transition: font-size 0.3s;
+  color: white;
+  display: block;
+  margin-top: 1.5vh;
+  font-size: 22px;
+  border-bottom: 1px solid black;
+  transition: font-size 0.3s;
 }
 
 .gamepadOpen {
-    color: white;
-    display: block;
-    margin: 20px 8.4px;
-    font-size: 44px;
-    border-bottom: 1px solid black;
-    transition: font-size 0.3s;
+  color: white;
+  display: block;
+  margin-top: 3vh;
+  font-size: 44px;
+  border-bottom: 1px solid black;
+  transition: font-size 0.3s;
 }
 
 .lolIconClosed {
-    width: 19.2px;
-    filter: invert();
+  width: 19.2px;
+  filter: invert();
+  transition: 0.3s;
 }
 
 .lolIconOpen {
-    width: 26.9px;
-    filter: invert();
+  width: 38.4px;
+  filter: invert();
+  transition: 0.3s;
 }
 
-.overwatchIconClosed {
-    width: 19.2px;
-    transition: 0.3s;
-}
-
-.overwatchIconOpen {
-    width: 38.4px;
-    transition: 0.3s;
-}
-
+.overwatchIconClosed,
 .csgoIconClosed {
-    width: 19.2px;
-    transition: 0.3s;
+  width: 19.2px;
+  transition: 0.3s;
 }
 
+.overwatchIconOpen,
 .csgoIconOpen {
-    width: 38.4px;
-    transition: 0.3s;
+  width: 38.4px;
+  transition: 0.3s;
+}
+
+@media screen and (max-width: 1560px) {
+  .openButtonClosed {
+    margin-top: 1vh;
+  }
+
+  .openButtonOpen {
+    margin-top: 2vh;
+  }
+
+  .lowerContent {
+    margin-top: 0vh;
+  }
+
+  .logoClosed {
+    margin-top: 0.8vh;
+  }
+
+  .logoOpen {
+    margin-top: 0.8vh;
+  }
 }
